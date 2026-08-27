@@ -1,0 +1,47 @@
+{
+  "table_counts": {
+    "data_sources": 1,
+    "league_stats": 5,
+    "match_odds": 134139,
+    "matches": 1530,
+    "referee_form_stats": 4590,
+    "referee_match_stats": 1530,
+    "referee_season_stats": 110,
+    "referees": 35,
+    "standings_history": 9148,
+    "team_form_stats": 9180,
+    "team_home_away_stats": 180,
+    "team_match_stats": 3060,
+    "team_name_mapping": 8,
+    "team_season_stats": 100,
+    "teams": 27,
+    "update_log": 5
+  },
+  "xg_team_match_rows": 20,
+  "matches_by_season": [
+    {
+      "season": "2022-23",
+      "matches": 380
+    },
+    {
+      "season": "2023-24",
+      "matches": 380
+    },
+    {
+      "season": "2024-25",
+      "matches": 380
+    },
+    {
+      "season": "2025-26",
+      "matches": 380
+    },
+    {
+      "season": "2026-27",
+      "matches": 10
+    }
+  ],
+  "quality": {
+    "missing_referee": 0,
+    "missing_result": 0
+  }
+}
