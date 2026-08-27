@@ -49,66 +49,114 @@ FIX_RE = re.compile(
 )
 
 def canonical(name):
-    name = re.sub(r"^\*+|\*+$", "", str(name)).strip()
-    return TEAM_MAP.get(name, name)
+    name=re.sub(r"^\*+|\*+$","",str(name)).strip()
+    return TEAM_MAP.get(name,name)
 
 def output_path(season):
     return FIXTURE_DIR / f"premier_league_{season}.csv"
 
 def _season_code(season):
-    # 2026-27 -> 2627
-    return season[2:4] + season[-2:]
+    return season[2:4]+season[-2:]
 
 def known_teams(season):
-    """
-    Build the allowed-team set from our own season data.
-    This prevents article notes containing 'X v Y' from becoming fixtures.
-    """
     teams=set()
-
-    # Best source: current raw football-data file.
-    raw_candidates = [
-        RAW_DIR / f"{season}.csv",
-        RAW_DIR / f"{_season_code(season)}_E0.csv",
+    raw_candidates=[
+        RAW_DIR/f"{season}.csv",
+        RAW_DIR/f"{_season_code(season)}_E0.csv",
     ]
     for path in raw_candidates:
         if not path.exists():
             continue
-        try:
-            df=pd.read_csv(path,encoding="cp1252")
-        except Exception:
+        df=None
+        for enc in ("cp1252","utf-8-sig","latin1"):
             try:
-                df=pd.read_csv(path,encoding="utf-8-sig")
+                df=pd.read_csv(path,encoding=enc)
+                break
             except Exception:
-                continue
-        if "HomeTeam" in df.columns and "AwayTeam" in df.columns:
-            vals=pd.concat([df["HomeTeam"],df["AwayTeam"]]).dropna().astype(str)
+                pass
+        if df is not None and "HomeTeam" in df and "AwayTeam" in df:
+            vals=pd.concat([df.HomeTeam,df.AwayTeam]).dropna().astype(str)
             teams.update(canonical(x) for x in vals)
 
-    # Fallback: generated team-match table for the season.
     table=TABLES/"team_match_stats.csv"
     if table.exists():
         try:
             df=pd.read_csv(table)
-            if "season" in df and "team" in df:
-                vals=df[df["season"].astype(str)==season]["team"].dropna().astype(str)
-                teams.update(canonical(x) for x in vals)
+            vals=df[df["season"].astype(str)==season]["team"].dropna().astype(str)
+            teams.update(canonical(x) for x in vals)
         except Exception:
             pass
-
     return teams
 
-def parse_official_page(html, season):
+def _validate_fixture_df(df,season,require_rounds=True):
     allowed=known_teams(season)
-    if len(allowed) < 20:
-        raise ValueError(
-            f"Could identify only {len(allowed)} valid teams for {season}; "
-            "refusing to parse official schedule without a reliable whitelist."
-        )
+    if len(allowed)<20:
+        return False
+    if df is None or len(df)==0:
+        return False
+
+    x=df.copy()
+    x["home_team"]=x["home_team"].map(canonical)
+    x["away_team"]=x["away_team"].map(canonical)
+    x=x[x.home_team.isin(allowed)&x.away_team.isin(allowed)]
+    x=x[x.home_team!=x.away_team]
+    x=x.drop_duplicates(["home_team","away_team"])
+
+    if len(x)!=380:
+        return False
+
+    if require_rounds:
+        if "match_round" not in x.columns:
+            return False
+        counts=x.groupby("match_round").size()
+        if len(counts)!=38 or not (counts==10).all():
+            return False
+    return True
+
+def repair_cached_schedule(df,season):
+    """
+    Salvage an old cache, including the previous 381-row cache:
+    filter to valid season teams + one home/away pairing each.
+    """
+    if df is None or len(df)==0:
+        return pd.DataFrame()
+
+    allowed=known_teams(season)
+    x=df.copy()
+    for c in ("home_team","away_team"):
+        if c not in x.columns:
+            return pd.DataFrame()
+        x[c]=x[c].map(canonical)
+
+    x=x[
+        x.home_team.isin(allowed) &
+        x.away_team.isin(allowed) &
+        (x.home_team!=x.away_team)
+    ].copy()
+    x=x.drop_duplicates(["home_team","away_team"],keep="first")
+
+    if len(x)!=380:
+        return pd.DataFrame()
+
+    # Rebuild rounds deterministically from cached season order.
+    # Existing valid match_round values are retained only if they are exactly 38x10.
+    if "match_round" not in x.columns or not (
+        x.groupby("match_round").size().shape[0]==38 and
+        (x.groupby("match_round").size()==10).all()
+    ):
+        x=x.reset_index(drop=True)
+        x["match_round"]=x.index//10+1
+
+    x["season"]=season
+    return x.reset_index(drop=True)
+
+def parse_live_page(html,season):
+    allowed=known_teams(season)
+    if len(allowed)<20:
+        raise ValueError(f"Only {len(allowed)} valid teams identified for {season}.")
 
     soup=BeautifulSoup(html,"html.parser")
-    text=soup.get_text("\n")
-    lines=[re.sub(r"\s+"," ",x).strip() for x in text.splitlines()]
+    lines=[re.sub(r"\s+"," ",x).strip() for x in soup.get_text("\n").splitlines()]
     lines=[x for x in lines if x]
 
     season_start=int(season[:4])
@@ -122,11 +170,10 @@ def parse_official_page(html, season):
         if dm and dm.group(3) in MONTHS:
             day=int(dm.group(2))
             month=MONTHS[dm.group(3)]
-            explicit_year=dm.group(4)
-            if explicit_year:
-                current_year=int(explicit_year)
-            elif last_month is not None and month < last_month:
-                current_year += 1
+            if dm.group(4):
+                current_year=int(dm.group(4))
+            elif last_month is not None and month<last_month:
+                current_year+=1
             last_month=month
             try:
                 current_date=datetime(current_year,month,day).date()
@@ -143,11 +190,7 @@ def parse_official_page(html, season):
 
         time,home,away=fm.groups()
         home,away=canonical(home),canonical(away)
-
-        # Critical guard: both sides must be actual teams in this PL season.
-        if home not in allowed or away not in allowed:
-            continue
-        if home == away:
+        if home not in allowed or away not in allowed or home==away:
             continue
 
         fixtures.append({
@@ -157,98 +200,117 @@ def parse_official_page(html, season):
             "away_team":away,
         })
 
-    seen=set()
-    clean=[]
-    for fx in fixtures:
-        key=(fx["match_date"],fx["home_team"],fx["away_team"])
-        if key not in seen:
-            seen.add(key)
-            clean.append(fx)
+    x=pd.DataFrame(fixtures)
+    if len(x):
+        x=x.drop_duplicates(["home_team","away_team"],keep="first").reset_index(drop=True)
+    return x
 
-    # Strong integrity check. Never poison the cache with a malformed scrape.
-    if len(clean) != 380:
+def merge_live_with_cache(live,cache,season):
+    """
+    Live page controls dates/times for fixtures it exposes.
+    Missing fixtures are restored from the repaired season cache.
+    """
+    repaired=repair_cached_schedule(cache,season)
+    if repaired.empty:
+        if len(live)==380:
+            out=live.copy().reset_index(drop=True)
+            out["match_round"]=out.index//10+1
+            out["season"]=season
+            return out
         raise ValueError(
-            f"Official fixture parser found {len(clean)} valid matches, expected exactly 380. "
-            "Existing cache will be kept."
+            f"Live page exposed {len(live)} fixtures and no repairable 380-match cache is available."
         )
 
-    # PL fixture article is published in match-round order, 10 fixtures each.
-    for i,fx in enumerate(clean):
-        fx["match_round"]=i//10+1
-        fx["season"]=season
-        fx["source"]="premierleague.com"
-        fx["synced_at"]=datetime.now().isoformat(timespec="seconds")
+    # Keep season/order/round structure from repaired cache.
+    out=repaired.copy()
 
-    df=pd.DataFrame(clean)
+    if len(live):
+        live_idx=live.set_index(["home_team","away_team"])
+        for idx,row in out.iterrows():
+            key=(row.home_team,row.away_team)
+            if key in live_idx.index:
+                lr=live_idx.loc[key]
+                # Handle theoretical duplicate index safely.
+                if isinstance(lr,pd.DataFrame):
+                    lr=lr.iloc[0]
+                out.at[idx,"match_date"]=lr["match_date"]
+                out.at[idx,"kickoff_time"]=lr.get("kickoff_time","")
 
-    round_counts=df.groupby("match_round").size()
-    if len(round_counts)!=38 or not (round_counts==10).all():
-        raise ValueError(
-            "Parsed schedule failed round integrity check: expected 38 rounds x 10 fixtures."
-        )
+    out["source"]="premierleague.com merged"
+    out["synced_at"]=datetime.now().isoformat(timespec="seconds")
+    out["season"]=season
 
-    # Each ordered home-away pairing should occur once in the schedule.
-    if df.duplicated(["home_team","away_team"]).any():
-        raise ValueError("Parsed schedule contains duplicate home-away fixtures.")
+    if not _validate_fixture_df(out,season,require_rounds=True):
+        raise ValueError("Merged fixture schedule failed 380 / 38x10 integrity validation.")
 
-    return df
+    return out.reset_index(drop=True)
 
-def sync_fixtures(season="2026-27", force=False):
+def sync_fixtures(season="2026-27",force=False):
     path=output_path(season)
+
+    old_cache=pd.DataFrame()
+    if path.exists():
+        try:
+            old_cache=pd.read_csv(path)
+        except Exception:
+            pass
+
+    # Repair malformed prior cache before doing anything else.
+    repaired=repair_cached_schedule(old_cache,season)
+    if len(repaired)==380 and (old_cache is None or len(old_cache)!=380):
+        repaired["source"]="repaired local cache"
+        repaired["synced_at"]=datetime.now().isoformat(timespec="seconds")
+        repaired.to_csv(path,index=False,encoding="utf-8-sig")
+        old_cache=repaired.copy()
 
     if path.exists() and not force:
         age=datetime.now()-datetime.fromtimestamp(path.stat().st_mtime)
-        if age < timedelta(hours=12):
+        if age<timedelta(hours=12):
             cached=pd.read_csv(path)
-            # Do not trust old malformed 381-row cache.
-            if len(cached)==380:
+            if _validate_fixture_df(cached,season):
                 return cached
 
     url=OFFICIAL_URLS.get(season)
     if not url:
-        if path.exists():
-            return pd.read_csv(path)
-        raise ValueError(f"No official fixture source configured for season {season}.")
+        if _validate_fixture_df(repaired,season):
+            return repaired
+        raise ValueError(f"No official source configured for {season}.")
 
     headers={
         "User-Agent":"Mozilla/5.0 PL-Analytika/2.0",
         "Accept-Language":"en-GB,en;q=0.9",
     }
 
-    try:
-        r=requests.get(url,headers=headers,timeout=30)
-        r.raise_for_status()
-        df=parse_official_page(r.text,season)
-        # Only write after every validation has passed.
-        df.to_csv(path,index=False,encoding="utf-8-sig")
-        return df
-    except Exception:
-        # A previously valid cache is safer than a broken live scrape.
-        if path.exists():
-            cached=pd.read_csv(path)
-            if len(cached)==380:
-                return cached
-        raise
+    r=requests.get(url,headers=headers,timeout=30)
+    r.raise_for_status()
+    live=parse_live_page(r.text,season)
 
-def load_fixtures(season="2026-27", auto_sync=True):
+    print(f"Official page exposed {len(live)} valid fixtures in text.")
+
+    merged=merge_live_with_cache(live,old_cache,season)
+    merged.to_csv(path,index=False,encoding="utf-8-sig")
+    return merged
+
+def load_fixtures(season="2026-27",auto_sync=True):
     path=output_path(season)
     if auto_sync:
         try:
             return sync_fixtures(season)
         except Exception:
             if path.exists():
-                cached=pd.read_csv(path)
+                cached=repair_cached_schedule(pd.read_csv(path),season)
                 if len(cached)==380:
                     return cached
             raise
+
     if not path.exists():
         raise FileNotFoundError(path)
-    df=pd.read_csv(path)
-    if len(df)!=380:
-        raise ValueError(f"Cached fixture file has {len(df)} rows; expected 380.")
-    return df
+    cached=repair_cached_schedule(pd.read_csv(path),season)
+    if len(cached)!=380:
+        raise ValueError("Cached fixture schedule cannot be repaired to 380 fixtures.")
+    return cached
 
-def current_round(schedule, completed_matches=None, today=None):
+def current_round(schedule,completed_matches=None,today=None):
     x=schedule.copy()
     x["match_date_dt"]=pd.to_datetime(x["match_date"],errors="coerce")
 
@@ -264,9 +326,8 @@ def current_round(schedule, completed_matches=None, today=None):
 
     incomplete=x.groupby("match_round")["played"].all()
     candidates=incomplete[~incomplete].index.tolist()
-    rnd=int(min(candidates)) if candidates else int(x["match_round"].max())
-
-    return rnd,x[x["match_round"]==rnd].copy()
+    rnd=int(min(candidates)) if candidates else int(x.match_round.max())
+    return rnd,x[x.match_round==rnd].copy()
 
 def main():
     p=argparse.ArgumentParser()

@@ -127,3 +127,7 @@ Opraven GitHub Actions rebuild: RAW sezónní CSV jsou součástí repa a `data/
 
 ## v0.9.2
 Opraven parser oficiálního rozlosování: poznámky s textem `X v Y` už nemohou vzniknout jako falešný zápas; rozpis musí projít kontrolou 380 = 38×10.
+
+
+## v0.9.3
+Rozpis se nyní skládá z live termínů + opravené 380zápasové cache, takže výpadek několika fixtures v HTML nezastaví GitHub Actions.
