@@ -1,110 +1,69 @@
-# PL Analytika 2.0 – datová vrstva 2.0
+# PL Analytika 2.0
 
-Kompletní datová vrstva před stavbou predikčního modelu. Zdrojové historické zápasy jsou z `football-data.co.uk` (`E0.csv`).
+Datová a modelová vrstva pro Premier League analytiku.
 
-## Co pipeline dělá
+## Aktuální stav
 
-- importuje a normalizuje sezónní CSV,
-- ignoruje neodehrané řádky bez výsledku, aby nekontaminovaly statistiky,
-- sjednocuje názvy týmů,
-- ukládá match-level a team-level historii,
-- zachovává dostupné bookmaker kurzy v `match_odds`,
-- vytváří season, home/away, rolling, distribution a threshold tabulky,
-- vytváří historii rozhodčích,
-- vytváří tabulku ligy po každém hracím dni,
-- vytváří leakage-safe `pre_match_features`,
-- vytváří dashboardové tabulky pro aktuální sezónu,
-- provádí kontrolu kvality a ukládá ji do `data_quality_report`.
+Datová pipeline:
+- 5 sezon
+- 1 530 zápasů
+- 3 060 team-match řádků
+- 295 leakage-safe pre-match sloupců
+- týmové, soupeřovy, home/away, rolling, referee, league a H2H statistiky
 
-## Struktura
+Modely:
+- fauly
+- rohy
+- žluté karty
 
-```text
-pl-analytika-2/
-├── database/
-│   └── schema.sql
-├── scripts/
-│   └── update_data.py
-├── docs/
-│   ├── DATA_DICTIONARY.md
-│   └── FEATURE_DICTIONARY.csv
-├── data/
-│   ├── raw/
-│   └── tables/
-├── update_data.bat
-├── update_local_only.bat
-├── requirements.txt
-├── .gitignore
-└── README.md
-```
-
-## První spuštění
-
-Do `data/raw/` vlož historické soubory například `2022-23.csv` až `2026-27.csv`.
+## Instalace
 
 ```bash
 pip install -r requirements.txt
-python scripts/update_data.py
 ```
 
-## Aktualizace po hracím dni
-
-Ve Windows stačí spustit:
-
-```text
-update_data.bat
-```
-
-To stáhne aktuální `E0.csv` a znovu bezpečně přepočítá datovou vrstvu. Alternativně:
+## Aktualizace dat
 
 ```bash
 python scripts/update_data.py --download-current
 ```
 
-Pokud si CSV aktualizuješ ručně, použij `update_local_only.bat`.
+Ve Windows lze spustit `update_data.bat`.
 
-## Pre-match modelová tabulka
+## Aktualizace + trénink všech modelů
 
-`pre_match_features` má aktuálně **295 sloupců**, z toho **139 soupeřových pre-match metrik** a **10 explicitně oddělených target sloupců**.
-
-Obsahuje mimo jiné:
-
-- sezónní profil týmu,
-- home/away profil,
-- Last 3 / Last 5 / Last 10,
-- mezi-sezónní PL Last 5,
-- stejnou sadu informací pro soupeře,
-- tabulkovou pozici, body, PPG a goal difference před zápasem,
-- dny odpočinku,
-- sezónní i mezi-sezónní historii rozhodčího,
-- ligové tempo a recent league tempo,
-- H2H historii,
-- cílové skutečné hodnoty oddělené prefixem `target_`.
-
-## Ověřený build
-
-Na dodaných 5 sezónách:
-
-- zápasy: **1530**
-- team-match řádky: **3060**
-- pre-match řádky: **3060**
-- match context řádky: **1530**
-- bookmaker hodnoty: **134139**
-
-Kontrola byla spuštěna opakovaně bez vzniku duplicit.
-
-
-## Foul model v0.1
-
-Backtest:
-```bash
-python scripts/backtest_fouls.py
+```text
+update_and_train.bat
 ```
 
-Train/update local model:
+nebo:
+
 ```bash
-python scripts/train_fouls_model.py
+python scripts/update_data.py --download-current
+python scripts/train_count_models.py
 ```
 
-Windows: `update_and_train.bat` updates match data and retrains the local foul model.
+## Predikce konkrétního zápasu
 
-Generated `.joblib` models and report CSVs remain local and are ignored by Git. Backtest methodology and summary are documented in `docs/FOUL_BACKTEST_V0_1.md`.
+```bash
+python scripts/predict_match.py --home "Arsenal" --away "Coventry" --date 2026-08-21 --season 2026-27 --referee "Michael Oliver"
+```
+
+Výstup:
+- očekávaný počet,
+- Over/Under pravděpodobnosti,
+- fair odds,
+- CSV do `reports/`.
+
+## Modelová metodika
+
+Viz:
+- `docs/COUNT_MODELS_V0_2.md`
+- `docs/PREDICT_MATCH.md`
+- `docs/FOUL_MODEL.md`
+- `docs/FOUL_BACKTEST_V0_1.md`
+
+## Git
+
+RAW CSV, generované tabulky, reporty a `.joblib` modely zůstávají lokálně
+a nejsou ukládány do GitHubu.

@@ -1,0 +1,49 @@
+{
+  "version": "0.2.0",
+  "data_rows": 3060,
+  "walk_forward_test_seasons": [
+    "2023-24",
+    "2024-25",
+    "2025-26"
+  ],
+  "models": {
+    "fouls": {
+      "mae": 2.685,
+      "baseline_mae": 2.715,
+      "mean_brier": 0.182,
+      "distribution": "poisson",
+      "ensemble_extra_weight": 0.7
+    },
+    "corners": {
+      "mae": 2.267,
+      "baseline_mae": 2.312,
+      "mean_brier": 0.193,
+      "distribution": "negative_binomial",
+      "alpha": 0.11,
+      "ensemble_extra_weight": 0.8
+    },
+    "yellow_cards": {
+      "mae": 1.086,
+      "baseline_mae": 1.113,
+      "mean_brier": 0.146,
+      "distribution": "poisson",
+      "ensemble_extra_weight": 0.8
+    }
+  },
+  "smoke_test": {
+    "fixture": "Arsenal vs Coventry",
+    "date": "2026-08-21",
+    "fouls": {
+      "Arsenal": 10.67,
+      "Coventry": 11.36
+    },
+    "corners": {
+      "Arsenal": 5.4,
+      "Coventry": 4.42
+    },
+    "yellow_cards": {
+      "Arsenal": 1.49,
+      "Coventry": 1.55
+    }
+  }
+}

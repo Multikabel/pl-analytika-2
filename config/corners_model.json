@@ -1,0 +1,66 @@
+{
+  "version": "0.1.0",
+  "market": "corners",
+  "target": "target_corners_for",
+  "features": [
+    "season_corners_for_avg",
+    "season_corners_against_avg",
+    "venue_corners_for_avg",
+    "venue_corners_against_avg",
+    "last3_corners_for_avg",
+    "last5_corners_for_avg",
+    "last10_corners_for_avg",
+    "last3_corners_against_avg",
+    "last5_corners_against_avg",
+    "last10_corners_against_avg",
+    "pl_last5_corners_for_avg",
+    "pl_last5_corners_against_avg",
+    "opp_season_corners_for_avg",
+    "opp_season_corners_against_avg",
+    "opp_venue_corners_for_avg",
+    "opp_venue_corners_against_avg",
+    "opp_last3_corners_against_avg",
+    "opp_last5_corners_against_avg",
+    "opp_last10_corners_against_avg",
+    "opp_pl_last5_corners_against_avg",
+    "league_total_corners_avg_before",
+    "pl_last20_league_total_corners_avg_before",
+    "h2h_corners_for_avg_before",
+    "h2h_last3_corners_for_avg_before",
+    "days_rest",
+    "opp_days_rest",
+    "season_shots_for_avg",
+    "last5_shots_for_avg",
+    "opp_season_shots_against_avg",
+    "opp_last5_shots_against_avg"
+  ],
+  "baseline": {
+    "for": "season_corners_for_avg",
+    "for_fallback": "pl_last5_corners_for_avg",
+    "against": "opp_season_corners_against_avg",
+    "against_fallback": "opp_pl_last5_corners_against_avg",
+    "league": "league_total_corners_avg_before"
+  },
+  "ensemble": {
+    "extra_trees_weight": 0.8
+  },
+  "extra_trees": {
+    "n_estimators": 400,
+    "min_samples_leaf": 10,
+    "max_features": 0.7,
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "distribution": {
+    "type": "negative_binomial",
+    "alpha": 0.11
+  },
+  "over_lines": [
+    2.5,
+    3.5,
+    4.5,
+    5.5,
+    6.5,
+    7.5
+  ]
+}
