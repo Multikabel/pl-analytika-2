@@ -1,0 +1,78 @@
+{
+  "table_counts": {
+    "matches": 1530,
+    "team_match_stats": 3060,
+    "match_odds": 134139,
+    "team_season_stats": 100,
+    "team_home_away_stats": 180,
+    "team_form_stats": 9180,
+    "team_rolling_stats": 1120,
+    "team_distribution_stats": 3440,
+    "team_threshold_stats": 9240,
+    "referee_match_stats": 1530,
+    "referee_season_stats": 110,
+    "referee_form_stats": 4590,
+    "referee_team_stats": 1405,
+    "standings_history": 9148,
+    "league_stats": 5,
+    "pre_match_features": 3060,
+    "match_pre_match_context": 1530,
+    "current_team_dashboard": 20,
+    "current_referee_dashboard": 10,
+    "data_quality_report": 7
+  },
+  "feature_columns": 295,
+  "opponent_feature_columns": 139,
+  "target_columns": 10,
+  "quality": [
+    {
+      "check_name": "matches",
+      "check_value": 1530.0,
+      "status": "OK",
+      "details": "",
+      "checked_at": "2026-08-27T14:07:35"
+    },
+    {
+      "check_name": "team_match_rows",
+      "check_value": 3060.0,
+      "status": "OK",
+      "details": "Expected exactly two team rows per match",
+      "checked_at": "2026-08-27T14:07:35"
+    },
+    {
+      "check_name": "duplicate_match_ids",
+      "check_value": 0.0,
+      "status": "OK",
+      "details": "",
+      "checked_at": "2026-08-27T14:07:35"
+    },
+    {
+      "check_name": "duplicate_prematch_team_rows",
+      "check_value": 0.0,
+      "status": "OK",
+      "details": "",
+      "checked_at": "2026-08-27T14:07:35"
+    },
+    {
+      "check_name": "missing_referees",
+      "check_value": 0.0,
+      "status": "OK",
+      "details": "",
+      "checked_at": "2026-08-27T14:07:35"
+    },
+    {
+      "check_name": "missing_foul_targets",
+      "check_value": 0.0,
+      "status": "OK",
+      "details": "",
+      "checked_at": "2026-08-27T14:07:35"
+    },
+    {
+      "check_name": "prematch_rows",
+      "check_value": 3060.0,
+      "status": "OK",
+      "details": "",
+      "checked_at": "2026-08-27T14:07:35"
+    }
+  ]
+}
