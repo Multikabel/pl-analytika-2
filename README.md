@@ -84,3 +84,16 @@ setup_and_run.bat
 ```
 
 Streamlit aplikace je v `app/app.py`. Obsahuje hustou tabulku týmových statistik a prediktor zápasu pro fauly, rohy a ŽK včetně O/U pravděpodobností a fair odds.
+
+
+## UI v0.4 – celé hrací kolo
+
+Streamlit nově umí nahrát CSV celého kola a hromadně spočítat fauly, rohy a ŽK pro všechny týmy a dostupné O/U hranice.
+
+Šablona:
+`data/fixtures/fixtures_template.csv`
+
+CLI:
+```bash
+python scripts/score_round.py --fixtures data/fixtures/fixtures_template.csv
+```
