@@ -115,3 +115,7 @@ Mobilní redesign, automatické delegace rozhodčích a výchozí filtr fair kur
 
 ## v0.8 – Statistika tipů
 Přidán archiv predikcí a automatické vyhodnocení WIN/LOSS po aktualizaci výsledků. Viz `docs/TIP_STATS_V0_8.md`.
+
+
+## v0.9 – automatické aktualizace
+GitHub Actions denně aktualizuje výsledky, vyhodnotí tipy a uloží nová data zpět do repozitáře. Viz `docs/AUTO_UPDATE_V0_9.md`.
