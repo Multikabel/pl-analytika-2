@@ -6,6 +6,7 @@ import joblib
 import numpy as np
 import pandas as pd
 import streamlit as st
+import os
 
 BASE = Path(__file__).resolve().parent.parent
 SCRIPTS = BASE / "scripts"
@@ -16,8 +17,10 @@ sys.path.insert(0, str(SCRIPTS))
 from count_common import load_config, ensemble_prediction, over_probability, fair_odds
 from fixture_features import build_fixture_rows
 from score_round import score_fixtures
+from update_fixtures import load_fixtures, current_round, sync_fixtures
 
 st.set_page_config(page_title="PL Analytika 2.0", page_icon="⚽", layout="wide")
+IS_STREAMLIT_CLOUD = bool(os.environ.get("STREAMLIT_SHARING_MODE") or os.environ.get("STREAMLIT_SERVER_HEADLESS"))
 
 MARKETS = ("fouls", "corners", "yellow_cards")
 MARKET_LABEL = {"fouls":"Fauly", "corners":"Rohy", "yellow_cards":"ŽK"}
@@ -112,59 +115,124 @@ last_season=sorted(history["season"].dropna().unique())[-1]
 page=st.sidebar.radio("Pohled",["Hrací kolo","Jeden zápas","Týmy"],index=0)
 
 if page=="Hrací kolo":
-    st.header("Hrací kolo")
-    st.caption("Nahraj nebo vlož seznam zápasů. Aplikace spočítá všechny trhy najednou.")
+    st.header("Aktuální hrací kolo")
 
-    col1,col2,col3=st.columns([2,1,1])
-    with col1:
-        uploaded=st.file_uploader("Fixtures CSV",type=["csv"])
-    with col2:
-        min_prob=st.slider("Min. Over pravděpodobnost",0.50,0.95,0.65,0.01)
-    with col3:
-        market_filter=st.selectbox("Trh",["Vše","Fauly","Rohy","ŽK"])
+    current_season=last_season
+    completed_matches=history[history["season"]==current_season][
+        ["match_id","team","opponent","venue"]
+    ].copy()
+    completed_home=completed_matches[completed_matches["venue"]=="H"].rename(
+        columns={"team":"home_team","opponent":"away_team"}
+    )[["home_team","away_team"]]
 
-    if uploaded is not None:
-        fixtures=pd.read_csv(uploaded).fillna("")
-    else:
-        st.info("CSV má sloupce: home_team, away_team, match_date, season, referee. Šablona je v data/fixtures/fixtures_template.csv.")
-        fixtures=pd.DataFrame(columns=["home_team","away_team","match_date","season","referee"])
+    try:
+        schedule=load_fixtures(current_season,auto_sync=True)
+        round_no, round_df=current_round(schedule,completed_home)
+        source_ok=True
+    except Exception as e:
+        source_ok=False
+        st.error(f"Nepodařilo se načíst rozlosování: {e}")
+        round_df=pd.DataFrame()
+        round_no=None
 
-    if not fixtures.empty:
-        st.subheader("Zadané zápasy")
-        st.dataframe(fixtures,use_container_width=True,hide_index=True)
+    top1,top2,top3,top4=st.columns([1.1,1.3,1.4,1.2])
+    with top1:
+        st.metric("Match Round", round_no if round_no is not None else "—")
+    with top2:
+        st.metric("Sezóna", current_season)
+    with top3:
+        if not round_df.empty:
+            d1=pd.to_datetime(round_df.match_date).min().strftime("%d.%m.%Y")
+            d2=pd.to_datetime(round_df.match_date).max().strftime("%d.%m.%Y")
+            st.metric("Termín kola", f"{d1} – {d2}")
+        else:
+            st.metric("Termín kola","—")
+    with top4:
+        if st.button("↻ Aktualizovat rozlosování",use_container_width=True):
+            try:
+                sync_fixtures(current_season,force=True)
+                st.cache_data.clear()
+                st.success("Rozlosování aktualizováno.")
+                st.rerun()
+            except Exception as e:
+                st.error(str(e))
 
-        if st.button("Spočítat celé kolo",type="primary"):
-            with st.spinner("Skóruji všechny zápasy…"):
-                scored=score_fixtures(fixtures.to_dict("records"))
-                st.session_state["round_scored"]=scored
-
-    scored=st.session_state.get("round_scored")
-    if isinstance(scored,pd.DataFrame) and not scored.empty:
-        st.subheader("Nejvyšší modelové pravděpodobnosti")
-        summary=make_round_summary(scored,min_prob,market_filter)
-        st.dataframe(summary,use_container_width=True,hide_index=True,height=650)
-
-        st.download_button(
-            "Stáhnout kompletní výstup CSV",
-            scored.to_csv(index=False).encode("utf-8-sig"),
-            file_name="round_predictions.csv",
-            mime="text/csv"
-        )
-
-        st.subheader("Souhrn zápasů")
-        best=scored.sort_values("p_over",ascending=False).groupby(
-            ["home_team","away_team","team","market"],as_index=False
-        ).first()
-        best["Zápas"]=best.home_team+" – "+best.away_team
-        best["Trh"]=best.market.map(MARKET_LABEL)
-        best["Nejlepší O"]=best.line
-        best["P"]=best.p_over.map(pct)
-        best["Fair"]=best.fair_over.round(2)
-        best["Predikce"]=best.prediction.round(2)
+    if source_ok and not round_df.empty:
+        view=round_df.copy()
+        view["Datum"]=pd.to_datetime(view["match_date"]).dt.strftime("%d.%m.%Y")
+        view["Čas"]=view["kickoff_time"].fillna("").replace({"nan":""})
+        view["Zápas"]=view["home_team"]+" – "+view["away_team"]
+        view["Stav"]=np.where(view["played"],"Odehráno","Čeká")
         st.dataframe(
-            best[["Zápas","team","Trh","Predikce","Nejlepší O","P","Fair"]],
+            view[["Datum","Čas","Zápas","Stav"]],
             use_container_width=True,hide_index=True
         )
+
+        st.caption("Rozlosování se synchronizuje z oficiální Premier League. Termíny se mohou během sezony měnit kvůli TV a pohárům.")
+
+        col1,col2,col3=st.columns([1,1,2])
+        with col1:
+            min_prob=st.slider("Min. Over pravděpodobnost",0.50,0.95,0.65,0.01)
+        with col2:
+            market_filter=st.selectbox("Trh",["Vše","Fauly","Rohy","ŽK"])
+        with col3:
+            include_played=st.checkbox("Zobrazit i odehrané zápasy kola",value=False)
+
+        future=round_df if include_played else round_df[~round_df["played"]]
+        fixtures=pd.DataFrame({
+            "home_team":future["home_team"],
+            "away_team":future["away_team"],
+            "match_date":future["match_date"],
+            "season":current_season,
+            "referee":""
+        })
+
+        if fixtures.empty:
+            st.info("V tomto kole už nejsou žádné neodehrané zápasy.")
+        elif st.button("Spočítat aktuální kolo",type="primary",use_container_width=True):
+            with st.spinner("Skóruji celé aktuální kolo…"):
+                scored=score_fixtures(fixtures.to_dict("records"))
+                st.session_state["round_scored"]=scored
+                st.session_state["round_scored_no"]=round_no
+
+        scored=st.session_state.get("round_scored")
+        scored_no=st.session_state.get("round_scored_no")
+        if isinstance(scored,pd.DataFrame) and not scored.empty and scored_no==round_no:
+            st.subheader("Nejvyšší modelové pravděpodobnosti")
+            summary=make_round_summary(scored,min_prob,market_filter)
+            st.dataframe(summary,use_container_width=True,hide_index=True,height=650)
+
+            st.download_button(
+                "Stáhnout kompletní výstup CSV",
+                scored.to_csv(index=False).encode("utf-8-sig"),
+                file_name=f"match_round_{round_no}_predictions.csv",
+                mime="text/csv"
+            )
+
+            st.subheader("Souhrn kola")
+            best=scored.sort_values("p_over",ascending=False).groupby(
+                ["home_team","away_team","team","market"],as_index=False
+            ).first()
+            best["Zápas"]=best.home_team+" – "+best.away_team
+            best["Trh"]=best.market.map(MARKET_LABEL)
+            best["Nejlepší O"]=best.line
+            best["P"]=best.p_over.map(pct)
+            best["Fair"]=best.fair_over.round(2)
+            best["Predikce"]=best.prediction.round(2)
+            st.dataframe(
+                best[["Zápas","team","Trh","Predikce","Nejlepší O","P","Fair"]],
+                use_container_width=True,hide_index=True
+            )
+
+        with st.expander("Ruční / záložní fixtures CSV"):
+            st.caption("Použij jen pokud chceš skórovat jiné zápasy než automaticky vybrané kolo.")
+            uploaded=st.file_uploader("Fixtures CSV",type=["csv"])
+            if uploaded is not None:
+                manual=pd.read_csv(uploaded).fillna("")
+                st.dataframe(manual,use_container_width=True,hide_index=True)
+                if st.button("Spočítat ruční seznam"):
+                    st.session_state["round_scored"]=score_fixtures(manual.to_dict("records"))
+                    st.session_state["round_scored_no"]="manual"
 
 elif page=="Jeden zápas":
     st.header("Jeden zápas")
@@ -218,17 +286,20 @@ else:
 
 with st.sidebar:
     st.divider()
-    if st.button("Obnovit data + modely",use_container_width=True):
-        with st.spinner("Aktualizuji…"):
-            p1=subprocess.run([sys.executable,str(SCRIPTS/"update_data.py"),"--download-current"],
-                              cwd=BASE,capture_output=True,text=True)
-            if p1.returncode:
-                st.error(p1.stderr[-1200:])
-            else:
-                p2=subprocess.run([sys.executable,str(SCRIPTS/"train_count_models.py")],
+    if IS_STREAMLIT_CLOUD:
+        st.caption("Cloud verze používá data a modely uložené v GitHub repozitáři. Aktualizaci proveď lokálně a pushni změny na GitHub.")
+    else:
+        if st.button("Obnovit data + modely",use_container_width=True):
+            with st.spinner("Aktualizuji…"):
+                p1=subprocess.run([sys.executable,str(SCRIPTS/"update_data.py"),"--download-current"],
                                   cwd=BASE,capture_output=True,text=True)
-                if p2.returncode:
-                    st.error(p2.stderr[-1200:])
+                if p1.returncode:
+                    st.error(p1.stderr[-1200:])
                 else:
-                    st.cache_data.clear(); st.cache_resource.clear()
-                    st.success("Data i modely aktualizovány.")
+                    p2=subprocess.run([sys.executable,str(SCRIPTS/"train_count_models.py")],
+                                      cwd=BASE,capture_output=True,text=True)
+                    if p2.returncode:
+                        st.error(p2.stderr[-1200:])
+                    else:
+                        st.cache_data.clear(); st.cache_resource.clear()
+                        st.success("Data i modely aktualizovány.")

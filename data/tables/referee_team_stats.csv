@@ -1,0 +1,1406 @@
+﻿season,referee,team,matches,fouls_committed_avg,fouls_suffered_avg,yellow_cards_avg,yellow_cards_opponent_avg,red_cards_avg
+2022-23,A Madley,Arsenal,2,11.5,16.5,2.5,3.0,0.0
+2022-23,A Madley,Aston Villa,2,15.0,15.0,2.0,2.5,0.0
+2022-23,A Madley,Bournemouth,2,9.5,7.5,1.5,1.5,0.0
+2022-23,A Madley,Brentford,1,13.0,5.0,2.0,1.0,0.0
+2022-23,A Madley,Brighton & Hove Albion,3,15.333333333333334,9.333333333333334,1.3333333333333333,1.3333333333333333,0.0
+2022-23,A Madley,Chelsea,4,7.75,14.0,2.5,2.0,0.0
+2022-23,A Madley,Crystal Palace,3,13.666666666666666,15.666666666666666,1.3333333333333333,1.0,0.6666666666666666
+2022-23,A Madley,Everton,2,11.0,9.5,3.0,3.0,0.0
+2022-23,A Madley,Fulham,3,10.333333333333334,10.666666666666666,0.6666666666666666,0.3333333333333333,0.0
+2022-23,A Madley,Leeds,2,11.0,5.5,3.0,1.0,0.0
+2022-23,A Madley,Leicester,2,17.5,14.5,1.5,2.5,0.0
+2022-23,A Madley,Liverpool,4,9.75,11.0,0.75,1.5,0.0
+2022-23,A Madley,Manchester City,4,8.5,14.25,1.5,2.5,0.0
+2022-23,A Madley,Manchester United,2,14.0,8.5,3.0,1.0,0.0
+2022-23,A Madley,Newcastle United,2,13.5,10.0,2.5,3.0,0.0
+2022-23,A Madley,Nottingham Forest,2,9.0,9.5,1.5,0.5,0.0
+2022-23,A Madley,Southampton,2,6.0,9.0,0.5,1.5,0.0
+2022-23,A Madley,Tottenham,3,12.333333333333334,10.333333333333334,1.0,1.6666666666666667,0.3333333333333333
+2022-23,A Madley,West Ham United,1,11.0,6.0,2.0,4.0,0.0
+2022-23,A Madley,Wolverhampton Wanderers,2,13.0,14.0,2.5,1.0,0.0
+2022-23,A Marriner,Arsenal,1,8.0,11.0,0.0,0.0,0.0
+2022-23,A Marriner,Bournemouth,1,17.0,11.0,4.0,1.0,0.0
+2022-23,A Marriner,Brentford,1,11.0,10.0,2.0,2.0,0.0
+2022-23,A Marriner,Brighton & Hove Albion,2,10.0,11.0,2.5,3.5,0.0
+2022-23,A Marriner,Chelsea,1,11.0,10.0,2.0,1.0,0.0
+2022-23,A Marriner,Crystal Palace,2,10.0,13.0,1.5,2.5,0.0
+2022-23,A Marriner,Everton,4,8.0,9.0,2.5,1.5,0.0
+2022-23,A Marriner,Leicester,2,7.5,10.0,0.5,2.0,0.5
+2022-23,A Marriner,Liverpool,1,9.0,10.0,0.0,2.0,0.0
+2022-23,A Marriner,Manchester United,2,11.5,9.5,2.5,3.0,0.5
+2022-23,A Marriner,Newcastle United,3,8.333333333333334,7.333333333333333,1.6666666666666667,0.6666666666666666,0.0
+2022-23,A Marriner,Nottingham Forest,2,9.5,8.5,2.0,2.5,0.0
+2022-23,A Marriner,Southampton,2,8.5,10.5,1.0,2.5,0.0
+2022-23,A Marriner,Tottenham,1,11.0,6.0,3.0,0.0,0.0
+2022-23,A Marriner,Wolverhampton Wanderers,1,11.0,8.0,0.0,0.0,0.0
+2022-23,A Taylor,Arsenal,6,10.5,11.333333333333334,2.0,2.1666666666666665,0.0
+2022-23,A Taylor,Aston Villa,4,11.0,13.5,2.5,3.0,0.0
+2022-23,A Taylor,Bournemouth,3,9.666666666666666,8.333333333333334,1.3333333333333333,1.6666666666666667,0.0
+2022-23,A Taylor,Brentford,2,11.0,18.0,1.0,3.5,0.0
+2022-23,A Taylor,Brighton & Hove Albion,2,7.0,10.5,1.5,2.5,0.0
+2022-23,A Taylor,Chelsea,2,7.5,13.0,2.0,2.0,0.0
+2022-23,A Taylor,Crystal Palace,1,16.0,11.0,1.0,2.0,0.0
+2022-23,A Taylor,Everton,4,10.25,8.25,2.0,1.25,0.0
+2022-23,A Taylor,Fulham,3,10.333333333333334,11.333333333333334,2.0,1.3333333333333333,0.0
+2022-23,A Taylor,Leeds,2,9.5,6.5,2.0,0.5,0.0
+2022-23,A Taylor,Liverpool,5,13.0,6.6,2.8,1.4,0.0
+2022-23,A Taylor,Manchester City,4,8.75,10.0,1.25,2.0,0.0
+2022-23,A Taylor,Manchester United,5,10.6,7.0,2.4,1.2,0.0
+2022-23,A Taylor,Newcastle United,2,5.0,9.0,1.0,2.5,0.5
+2022-23,A Taylor,Nottingham Forest,4,11.25,12.75,2.75,2.75,0.0
+2022-23,A Taylor,Southampton,2,9.5,9.5,2.0,1.5,0.0
+2022-23,A Taylor,Tottenham,5,7.4,8.6,0.8,2.2,0.2
+2022-23,A Taylor,West Ham United,2,9.0,7.0,2.0,0.5,0.0
+2022-23,A Taylor,Wolverhampton Wanderers,2,9.5,10.5,1.5,1.5,0.5
+2022-23,C Kavanagh,Arsenal,3,9.666666666666666,11.333333333333334,1.0,1.3333333333333333,0.0
+2022-23,C Kavanagh,Aston Villa,2,8.5,11.0,3.5,1.5,0.0
+2022-23,C Kavanagh,Bournemouth,3,8.666666666666666,9.0,1.3333333333333333,0.0,0.0
+2022-23,C Kavanagh,Brentford,1,10.0,15.0,0.0,0.0,0.0
+2022-23,C Kavanagh,Brighton & Hove Albion,1,14.0,11.0,2.0,7.0,0.0
+2022-23,C Kavanagh,Chelsea,1,13.0,11.0,3.0,1.0,0.0
+2022-23,C Kavanagh,Crystal Palace,1,11.0,13.0,1.0,3.0,0.0
+2022-23,C Kavanagh,Fulham,1,7.0,9.0,3.0,1.0,0.0
+2022-23,C Kavanagh,Leeds,2,12.0,11.5,0.0,1.5,0.0
+2022-23,C Kavanagh,Liverpool,1,8.0,6.0,0.0,0.0,0.0
+2022-23,C Kavanagh,Manchester United,2,9.5,8.0,0.5,2.0,0.0
+2022-23,C Kavanagh,Newcastle United,2,15.5,11.0,1.0,0.5,0.0
+2022-23,C Kavanagh,Nottingham Forest,1,14.0,13.0,3.0,5.0,0.0
+2022-23,C Kavanagh,West Ham United,4,8.25,8.25,1.25,1.0,0.0
+2022-23,C Kavanagh,Wolverhampton Wanderers,1,13.0,14.0,5.0,3.0,0.0
+2022-23,C Pawson,Arsenal,3,11.333333333333334,14.0,1.3333333333333333,2.0,0.0
+2022-23,C Pawson,Aston Villa,1,14.0,17.0,2.0,3.0,0.0
+2022-23,C Pawson,Bournemouth,4,10.5,10.5,1.75,1.5,0.0
+2022-23,C Pawson,Brighton & Hove Albion,2,13.0,9.0,3.0,1.0,0.0
+2022-23,C Pawson,Chelsea,2,11.0,11.5,1.5,2.0,0.0
+2022-23,C Pawson,Crystal Palace,3,13.0,12.666666666666666,2.6666666666666665,2.0,0.3333333333333333
+2022-23,C Pawson,Everton,3,10.333333333333334,15.0,1.3333333333333333,3.3333333333333335,0.0
+2022-23,C Pawson,Leeds,1,6.0,12.0,0.0,1.0,0.0
+2022-23,C Pawson,Leicester,4,11.75,12.25,1.0,1.25,0.0
+2022-23,C Pawson,Liverpool,3,12.333333333333334,10.666666666666666,0.6666666666666666,1.0,0.0
+2022-23,C Pawson,Manchester City,1,11.0,12.0,1.0,3.0,0.0
+2022-23,C Pawson,Manchester United,2,14.0,9.0,3.0,1.0,0.0
+2022-23,C Pawson,Newcastle United,4,10.0,12.0,1.5,2.75,0.0
+2022-23,C Pawson,Nottingham Forest,2,12.0,13.0,3.5,2.0,0.0
+2022-23,C Pawson,Tottenham,3,14.0,13.0,2.6666666666666665,3.0,0.0
+2022-23,C Pawson,West Ham United,3,12.333333333333334,10.666666666666666,1.6666666666666667,1.0,0.0
+2022-23,C Pawson,Wolverhampton Wanderers,1,22.0,9.0,6.0,1.0,0.0
+2022-23,D Bond,Bournemouth,1,11.0,5.0,1.0,1.0,0.0
+2022-23,D Bond,Brentford,2,10.0,10.0,1.0,2.0,0.5
+2022-23,D Bond,Brighton & Hove Albion,1,5.0,11.0,1.0,1.0,0.0
+2022-23,D Bond,Fulham,1,11.0,12.0,6.0,2.0,0.0
+2022-23,D Bond,Leicester,2,11.5,10.5,2.0,3.5,0.0
+2022-23,D Bond,Southampton,1,9.0,10.0,2.0,1.0,0.0
+2022-23,D Coote,Arsenal,4,8.75,11.0,1.5,1.25,0.0
+2022-23,D Coote,Aston Villa,2,12.5,13.0,3.0,2.0,0.0
+2022-23,D Coote,Bournemouth,3,11.0,9.333333333333334,2.6666666666666665,0.0,0.0
+2022-23,D Coote,Brentford,2,10.5,10.0,1.5,1.5,0.0
+2022-23,D Coote,Brighton & Hove Albion,2,15.0,13.0,2.5,2.5,0.0
+2022-23,D Coote,Chelsea,2,16.0,18.0,3.0,5.0,0.5
+2022-23,D Coote,Crystal Palace,1,14.0,18.0,3.0,1.0,0.0
+2022-23,D Coote,Everton,5,9.8,11.6,1.4,2.0,0.2
+2022-23,D Coote,Fulham,2,11.0,12.5,2.0,2.0,0.0
+2022-23,D Coote,Leeds,1,11.0,18.0,3.0,1.0,0.0
+2022-23,D Coote,Leicester,2,7.5,11.0,0.0,1.5,0.0
+2022-23,D Coote,Manchester City,2,9.5,9.5,0.5,2.5,0.0
+2022-23,D Coote,Manchester United,1,13.0,7.0,1.0,2.0,0.0
+2022-23,D Coote,Newcastle United,1,7.0,13.0,0.0,3.0,0.0
+2022-23,D Coote,Southampton,1,24.0,16.0,6.0,3.0,0.0
+2022-23,D Coote,Tottenham,3,12.333333333333334,9.333333333333334,2.3333333333333335,1.0,0.3333333333333333
+2022-23,D Coote,West Ham United,4,12.0,10.0,0.5,2.25,0.0
+2022-23,D Coote,Wolverhampton Wanderers,4,14.25,12.0,2.25,1.5,0.0
+2022-23,D England,Arsenal,2,13.0,11.0,0.5,1.5,0.0
+2022-23,D England,Aston Villa,2,12.0,10.5,0.5,1.0,0.0
+2022-23,D England,Bournemouth,1,11.0,9.0,3.0,0.0,0.0
+2022-23,D England,Brentford,2,8.0,11.5,0.0,1.0,0.0
+2022-23,D England,Brighton & Hove Albion,3,10.0,14.333333333333334,1.3333333333333333,3.0,0.0
+2022-23,D England,Chelsea,1,8.0,12.0,2.0,2.0,0.0
+2022-23,D England,Crystal Palace,3,11.0,14.333333333333334,3.0,3.0,0.0
+2022-23,D England,Everton,2,10.5,9.0,2.5,2.5,0.0
+2022-23,D England,Fulham,3,11.333333333333334,9.333333333333334,3.6666666666666665,0.6666666666666666,0.3333333333333333
+2022-23,D England,Leeds,2,11.5,10.0,2.5,1.5,0.0
+2022-23,D England,Leicester,3,9.0,11.0,1.3333333333333333,0.6666666666666666,0.0
+2022-23,D England,Liverpool,3,13.0,7.666666666666667,3.3333333333333335,1.0,0.0
+2022-23,D England,Manchester City,3,9.333333333333334,9.0,1.3333333333333333,2.3333333333333335,0.3333333333333333
+2022-23,D England,Newcastle United,1,10.0,9.0,0.0,2.0,0.0
+2022-23,D England,Nottingham Forest,1,14.0,10.0,1.0,3.0,0.0
+2022-23,D England,Southampton,2,6.5,10.5,0.0,2.5,0.0
+2022-23,D England,Tottenham,1,15.0,14.0,3.0,5.0,0.0
+2022-23,D England,West Ham United,1,9.0,5.0,1.0,0.0,0.0
+2022-23,G Scott,Aston Villa,1,14.0,10.0,0.0,2.0,0.0
+2022-23,G Scott,Bournemouth,1,11.0,9.0,0.0,2.0,0.0
+2022-23,G Scott,Brighton & Hove Albion,2,9.5,10.5,1.0,2.5,0.0
+2022-23,G Scott,Fulham,2,8.5,12.0,1.0,0.5,0.0
+2022-23,G Scott,Leicester,1,10.0,14.0,2.0,0.0,1.0
+2022-23,G Scott,Manchester City,1,6.0,8.0,0.0,1.0,0.0
+2022-23,G Scott,Newcastle United,1,6.0,8.0,3.0,2.0,0.0
+2022-23,G Scott,Nottingham Forest,1,8.0,6.0,1.0,0.0,0.0
+2022-23,G Scott,Southampton,1,13.0,8.0,1.0,0.0,0.0
+2022-23,G Scott,Wolverhampton Wanderers,1,15.0,11.0,2.0,0.0,1.0
+2022-23,J Brooks,Aston Villa,3,12.0,15.333333333333334,3.0,2.6666666666666665,0.0
+2022-23,J Brooks,Bournemouth,3,8.0,11.0,1.3333333333333333,2.3333333333333335,0.0
+2022-23,J Brooks,Brentford,4,10.5,9.5,2.25,1.25,0.0
+2022-23,J Brooks,Chelsea,1,11.0,9.0,3.0,1.0,0.0
+2022-23,J Brooks,Crystal Palace,2,12.5,12.5,2.5,1.0,0.0
+2022-23,J Brooks,Everton,5,10.8,12.0,1.8,2.2,0.2
+2022-23,J Brooks,Fulham,2,12.0,7.5,2.5,2.0,0.0
+2022-23,J Brooks,Liverpool,2,12.5,10.0,2.0,3.5,0.0
+2022-23,J Brooks,Manchester City,2,8.0,10.0,0.0,2.5,0.0
+2022-23,J Brooks,Manchester United,2,8.5,11.0,3.0,2.0,0.0
+2022-23,J Brooks,Newcastle United,2,14.5,11.0,0.5,1.0,0.0
+2022-23,J Brooks,Nottingham Forest,2,11.0,15.0,2.0,4.5,0.0
+2022-23,J Brooks,Southampton,3,15.333333333333334,8.333333333333334,2.6666666666666665,1.6666666666666667,0.0
+2022-23,J Brooks,Tottenham,1,15.0,10.0,4.0,3.0,0.0
+2022-23,J Brooks,West Ham United,1,8.0,8.0,1.0,0.0,0.0
+2022-23,J Brooks,Wolverhampton Wanderers,3,8.666666666666666,12.333333333333334,3.0,2.6666666666666665,0.0
+2022-23,J Gillett,Arsenal,1,6.0,12.0,2.0,3.0,0.0
+2022-23,J Gillett,Aston Villa,2,6.5,14.0,0.5,2.5,0.0
+2022-23,J Gillett,Bournemouth,1,9.0,5.0,1.0,1.0,0.0
+2022-23,J Gillett,Brentford,4,6.5,8.25,0.5,0.5,0.0
+2022-23,J Gillett,Brighton & Hove Albion,1,8.0,7.0,0.0,2.0,0.0
+2022-23,J Gillett,Chelsea,2,8.0,9.0,0.0,0.0,0.0
+2022-23,J Gillett,Fulham,3,10.666666666666666,9.666666666666666,2.6666666666666665,1.6666666666666667,0.0
+2022-23,J Gillett,Leicester,3,7.666666666666667,6.666666666666667,0.3333333333333333,1.0,0.0
+2022-23,J Gillett,Manchester City,1,7.0,14.0,2.0,4.0,0.0
+2022-23,J Gillett,Manchester United,1,16.0,7.0,2.0,0.0,0.0
+2022-23,J Gillett,Newcastle United,4,9.25,9.25,1.5,1.5,0.0
+2022-23,J Gillett,Nottingham Forest,3,7.666666666666667,8.666666666666666,1.3333333333333333,1.3333333333333333,0.0
+2022-23,J Gillett,Southampton,1,12.0,14.0,2.0,2.0,0.0
+2022-23,J Gillett,Tottenham,2,11.5,7.5,2.5,1.5,0.0
+2022-23,J Gillett,West Ham United,3,9.666666666666666,7.666666666666667,1.3333333333333333,0.6666666666666666,0.0
+2022-23,J Gillett,Wolverhampton Wanderers,2,13.0,9.0,2.5,1.5,0.5
+2022-23,J Smith,Crystal Palace,1,12.0,13.0,0.0,3.0,0.0
+2022-23,J Smith,Fulham,1,13.0,12.0,3.0,0.0,0.0
+2022-23,M Oliver,Arsenal,5,11.0,14.6,0.8,2.8,0.0
+2022-23,M Oliver,Aston Villa,3,10.666666666666666,8.666666666666666,2.6666666666666665,1.0,0.3333333333333333
+2022-23,M Oliver,Bournemouth,1,10.0,13.0,1.0,2.0,0.0
+2022-23,M Oliver,Brentford,2,7.5,10.5,1.0,1.0,0.0
+2022-23,M Oliver,Brighton & Hove Albion,2,13.5,10.0,1.5,2.5,0.0
+2022-23,M Oliver,Chelsea,5,11.6,12.6,2.2,1.4,0.0
+2022-23,M Oliver,Crystal Palace,3,11.333333333333334,8.333333333333334,2.0,2.0,0.0
+2022-23,M Oliver,Everton,5,9.6,9.0,1.4,1.8,0.0
+2022-23,M Oliver,Fulham,2,11.5,14.0,1.0,1.0,0.0
+2022-23,M Oliver,Leeds,3,6.0,10.333333333333334,1.0,1.3333333333333333,0.0
+2022-23,M Oliver,Leicester,2,11.5,11.0,2.5,1.5,0.0
+2022-23,M Oliver,Liverpool,5,10.4,9.2,1.2,1.4,0.0
+2022-23,M Oliver,Manchester City,4,8.0,9.75,1.0,1.5,0.0
+2022-23,M Oliver,Manchester United,3,10.0,6.333333333333333,2.0,0.3333333333333333,0.0
+2022-23,M Oliver,Nottingham Forest,3,13.666666666666666,9.666666666666666,1.3333333333333333,0.3333333333333333,0.0
+2022-23,M Oliver,Southampton,3,10.333333333333334,13.0,1.6666666666666667,1.0,0.0
+2022-23,M Oliver,Tottenham,2,12.0,10.5,2.0,1.0,0.0
+2022-23,M Oliver,West Ham United,5,10.2,9.2,0.8,1.4,0.0
+2022-23,M Oliver,Wolverhampton Wanderers,2,13.5,12.5,1.0,1.5,0.0
+2022-23,M Salisbury,Aston Villa,2,8.5,15.5,2.0,2.0,0.0
+2022-23,M Salisbury,Bournemouth,4,9.25,11.5,2.25,1.25,0.0
+2022-23,M Salisbury,Brentford,3,11.333333333333334,12.333333333333334,2.6666666666666665,1.3333333333333333,0.0
+2022-23,M Salisbury,Brighton & Hove Albion,2,12.5,13.0,1.5,3.0,0.0
+2022-23,M Salisbury,Crystal Palace,3,10.0,14.333333333333334,1.3333333333333333,2.3333333333333335,0.0
+2022-23,M Salisbury,Leeds,3,10.0,11.0,3.0,2.0,0.3333333333333333
+2022-23,M Salisbury,Leicester,3,13.666666666666666,10.666666666666666,3.0,2.0,0.0
+2022-23,M Salisbury,Manchester United,1,13.0,7.0,0.0,3.0,0.0
+2022-23,M Salisbury,Newcastle United,1,19.0,12.0,2.0,1.0,0.0
+2022-23,M Salisbury,Southampton,4,15.0,10.75,2.0,2.25,0.0
+2022-23,M Salisbury,Tottenham,2,8.5,10.5,1.5,3.0,0.0
+2022-23,M Salisbury,Wolverhampton Wanderers,2,13.5,9.5,3.0,4.0,0.5
+2022-23,P Bankes,Arsenal,1,9.0,9.0,0.0,2.0,0.0
+2022-23,P Bankes,Aston Villa,2,12.5,16.0,3.0,3.0,0.0
+2022-23,P Bankes,Bournemouth,2,16.5,14.5,2.0,3.5,0.0
+2022-23,P Bankes,Brentford,5,9.4,10.8,1.8,1.8,0.0
+2022-23,P Bankes,Brighton & Hove Albion,1,13.0,20.0,1.0,2.0,0.0
+2022-23,P Bankes,Chelsea,3,11.333333333333334,15.666666666666666,3.0,3.0,0.0
+2022-23,P Bankes,Crystal Palace,2,18.5,11.5,3.5,1.5,0.0
+2022-23,P Bankes,Fulham,3,12.0,12.333333333333334,2.6666666666666665,2.3333333333333335,0.0
+2022-23,P Bankes,Leeds,5,12.4,12.4,2.4,2.0,0.0
+2022-23,P Bankes,Leicester,1,15.0,11.0,2.0,1.0,0.0
+2022-23,P Bankes,Manchester City,1,9.0,7.0,2.0,2.0,0.0
+2022-23,P Bankes,Manchester United,1,9.0,4.0,2.0,0.0,0.0
+2022-23,P Bankes,Newcastle United,2,11.0,11.5,1.5,1.5,0.0
+2022-23,P Bankes,Nottingham Forest,2,14.5,10.0,2.0,1.5,0.0
+2022-23,P Bankes,Southampton,2,10.0,9.0,2.5,1.5,0.0
+2022-23,P Bankes,Tottenham,2,11.5,9.5,4.0,2.5,0.0
+2022-23,P Bankes,West Ham United,5,7.2,9.4,1.0,2.6,0.0
+2022-23,P Bankes,Wolverhampton Wanderers,2,12.0,10.5,2.0,3.0,0.0
+2022-23,P Tierney,Arsenal,2,10.0,12.0,3.5,3.5,0.0
+2022-23,P Tierney,Aston Villa,2,9.0,11.5,0.5,0.5,0.0
+2022-23,P Tierney,Bournemouth,1,10.0,9.0,2.0,2.0,0.0
+2022-23,P Tierney,Brentford,2,9.0,10.0,1.5,1.5,0.0
+2022-23,P Tierney,Brighton & Hove Albion,3,9.666666666666666,9.333333333333334,1.3333333333333333,3.3333333333333335,0.0
+2022-23,P Tierney,Chelsea,3,10.666666666666666,10.333333333333334,2.0,1.0,0.3333333333333333
+2022-23,P Tierney,Crystal Palace,4,9.0,12.5,2.5,2.0,0.0
+2022-23,P Tierney,Everton,1,13.0,12.0,4.0,1.0,0.0
+2022-23,P Tierney,Fulham,2,9.5,10.0,1.0,2.0,0.0
+2022-23,P Tierney,Leeds,4,14.75,12.5,2.5,1.75,0.0
+2022-23,P Tierney,Leicester,3,11.333333333333334,11.666666666666666,2.0,2.0,0.0
+2022-23,P Tierney,Liverpool,7,10.0,9.857142857142858,1.8571428571428572,2.2857142857142856,0.14285714285714285
+2022-23,P Tierney,Manchester City,3,9.0,8.666666666666666,0.6666666666666666,1.6666666666666667,0.0
+2022-23,P Tierney,Manchester United,4,10.75,10.0,2.25,1.75,0.0
+2022-23,P Tierney,Newcastle United,2,10.0,14.0,1.0,3.0,0.0
+2022-23,P Tierney,Nottingham Forest,5,12.8,10.2,2.0,1.4,0.0
+2022-23,P Tierney,Southampton,2,10.0,9.0,3.5,1.0,0.0
+2022-23,P Tierney,Tottenham,3,9.333333333333334,11.666666666666666,2.0,2.6666666666666665,0.0
+2022-23,P Tierney,West Ham United,3,9.333333333333334,8.0,1.0,1.6666666666666667,0.0
+2022-23,P Tierney,Wolverhampton Wanderers,4,10.25,9.0,1.75,1.5,0.0
+2022-23,R Jones,Arsenal,3,9.333333333333334,11.666666666666666,1.0,2.3333333333333335,0.0
+2022-23,R Jones,Aston Villa,4,12.0,11.75,1.5,2.5,0.0
+2022-23,R Jones,Bournemouth,1,13.0,8.0,4.0,1.0,0.0
+2022-23,R Jones,Brentford,1,8.0,9.0,2.0,2.0,0.0
+2022-23,R Jones,Brighton & Hove Albion,3,12.333333333333334,12.333333333333334,2.6666666666666665,1.6666666666666667,0.0
+2022-23,R Jones,Chelsea,4,10.75,11.75,2.25,1.25,0.0
+2022-23,R Jones,Crystal Palace,3,11.333333333333334,13.333333333333334,2.3333333333333335,3.0,0.0
+2022-23,R Jones,Fulham,3,12.333333333333334,11.666666666666666,1.6666666666666667,1.6666666666666667,0.0
+2022-23,R Jones,Leeds,4,11.75,11.25,1.75,2.5,0.0
+2022-23,R Jones,Leicester,4,11.0,11.75,1.75,2.0,0.0
+2022-23,R Jones,Manchester City,4,12.5,9.0,1.25,1.0,0.0
+2022-23,R Jones,Manchester United,3,11.666666666666666,10.0,2.0,1.3333333333333333,0.0
+2022-23,R Jones,Newcastle United,3,12.333333333333334,13.666666666666666,2.0,3.0,0.0
+2022-23,R Jones,Nottingham Forest,4,12.5,12.25,4.0,1.5,0.0
+2022-23,R Jones,Southampton,4,9.5,9.75,1.75,1.75,0.0
+2022-23,R Jones,West Ham United,1,11.0,10.0,1.0,4.0,0.0
+2022-23,R Jones,Wolverhampton Wanderers,3,11.0,12.666666666666666,2.0,3.0,0.0
+2022-23,R Madley,Brentford,1,10.0,17.0,3.0,3.0,0.0
+2022-23,R Madley,Wolverhampton Wanderers,1,17.0,10.0,3.0,3.0,1.0
+2022-23,S Attwell,Arsenal,2,7.0,7.5,1.0,2.0,0.0
+2022-23,S Attwell,Aston Villa,2,10.5,21.5,2.5,3.0,0.0
+2022-23,S Attwell,Bournemouth,3,8.333333333333334,9.0,2.0,1.3333333333333333,0.0
+2022-23,S Attwell,Brentford,2,5.5,11.5,0.5,3.5,0.0
+2022-23,S Attwell,Brighton & Hove Albion,2,10.5,11.5,0.5,3.0,0.0
+2022-23,S Attwell,Chelsea,5,11.0,12.0,1.4,2.2,0.2
+2022-23,S Attwell,Crystal Palace,1,10.0,8.0,1.0,0.0,0.0
+2022-23,S Attwell,Everton,2,8.5,10.5,1.0,2.0,0.0
+2022-23,S Attwell,Fulham,3,8.666666666666666,11.666666666666666,2.6666666666666665,1.3333333333333333,0.0
+2022-23,S Attwell,Leeds,3,16.666666666666668,13.666666666666666,2.0,2.0,0.3333333333333333
+2022-23,S Attwell,Leicester,1,9.0,9.0,2.0,0.0,0.0
+2022-23,S Attwell,Liverpool,4,8.25,6.5,0.75,0.5,0.0
+2022-23,S Attwell,Manchester City,2,9.5,13.0,1.5,3.0,0.0
+2022-23,S Attwell,Manchester United,6,12.166666666666666,7.0,2.0,0.6666666666666666,0.0
+2022-23,S Attwell,Newcastle United,3,9.333333333333334,9.0,1.0,1.0,0.0
+2022-23,S Attwell,Southampton,1,7.0,10.0,1.0,0.0,0.0
+2022-23,S Attwell,Tottenham,3,11.333333333333334,10.333333333333334,2.6666666666666665,2.6666666666666665,0.0
+2022-23,S Attwell,West Ham United,3,8.333333333333334,7.0,1.3333333333333333,0.3333333333333333,0.0
+2022-23,S Attwell,Wolverhampton Wanderers,2,12.5,7.5,3.0,2.5,0.0
+2022-23,S Hooper,Arsenal,3,7.666666666666667,11.666666666666666,0.6666666666666666,2.6666666666666665,0.0
+2022-23,S Hooper,Aston Villa,2,10.0,5.0,2.0,0.5,0.0
+2022-23,S Hooper,Bournemouth,1,10.0,8.0,0.0,0.0,0.0
+2022-23,S Hooper,Brentford,2,10.0,11.0,1.5,1.5,0.0
+2022-23,S Hooper,Brighton & Hove Albion,2,13.5,12.0,1.5,3.0,0.0
+2022-23,S Hooper,Chelsea,2,8.0,9.0,1.0,0.0,0.0
+2022-23,S Hooper,Crystal Palace,3,11.0,11.666666666666666,2.0,2.6666666666666665,0.0
+2022-23,S Hooper,Everton,4,14.0,11.25,3.25,1.75,0.0
+2022-23,S Hooper,Fulham,1,9.0,10.0,1.0,3.0,0.0
+2022-23,S Hooper,Leeds,4,14.25,10.5,3.5,1.75,0.25
+2022-23,S Hooper,Leicester,2,8.5,9.5,1.5,1.0,0.0
+2022-23,S Hooper,Liverpool,3,9.333333333333334,11.0,0.6666666666666666,2.0,0.0
+2022-23,S Hooper,Manchester City,6,9.0,11.833333333333334,1.3333333333333333,2.0,0.0
+2022-23,S Hooper,Manchester United,3,7.666666666666667,9.0,1.3333333333333333,1.6666666666666667,0.0
+2022-23,S Hooper,Newcastle United,4,12.25,14.25,2.25,3.25,0.0
+2022-23,S Hooper,Nottingham Forest,3,10.333333333333334,9.0,2.0,0.6666666666666666,0.0
+2022-23,S Hooper,Southampton,3,11.666666666666666,8.666666666666666,2.6666666666666665,0.6666666666666666,0.0
+2022-23,S Hooper,Tottenham,5,9.6,9.4,1.2,1.4,0.0
+2022-23,S Hooper,West Ham United,2,8.5,9.0,1.5,0.5,0.0
+2022-23,S Hooper,Wolverhampton Wanderers,3,8.666666666666666,8.333333333333334,0.6666666666666666,2.0,0.0
+2022-23,T Bramall,Aston Villa,1,6.0,18.0,3.0,2.0,0.0
+2022-23,T Bramall,Bournemouth,1,11.0,10.0,1.0,2.0,0.0
+2022-23,T Bramall,Brentford,1,10.0,11.0,2.0,1.0,0.0
+2022-23,T Bramall,Brighton & Hove Albion,2,10.0,9.0,1.0,1.0,0.0
+2022-23,T Bramall,Crystal Palace,1,9.0,13.0,0.0,2.0,0.0
+2022-23,T Bramall,Fulham,3,13.0,11.333333333333334,1.3333333333333333,2.0,0.0
+2022-23,T Bramall,Leicester,1,9.0,9.0,0.0,1.0,0.0
+2022-23,T Bramall,Nottingham Forest,3,14.333333333333334,13.333333333333334,2.0,1.3333333333333333,0.0
+2022-23,T Bramall,Southampton,2,15.5,14.5,2.0,1.0,0.0
+2022-23,T Bramall,Wolverhampton Wanderers,1,17.0,13.0,2.0,2.0,0.0
+2022-23,T Harrington,Aston Villa,1,13.0,13.0,3.0,1.0,0.0
+2022-23,T Harrington,Bournemouth,1,10.0,16.0,2.0,2.0,0.0
+2022-23,T Harrington,Brighton & Hove Albion,2,7.5,11.0,1.0,1.5,0.0
+2022-23,T Harrington,Everton,1,12.0,9.0,4.0,2.0,0.0
+2022-23,T Harrington,Leeds,2,14.0,10.0,2.5,1.5,0.0
+2022-23,T Harrington,Leicester,1,8.0,6.0,1.0,1.0,0.0
+2022-23,T Harrington,Newcastle United,1,9.0,12.0,2.0,4.0,0.0
+2022-23,T Harrington,Southampton,2,11.5,12.5,1.0,3.0,0.0
+2022-23,T Harrington,Tottenham,1,14.0,9.0,2.0,1.0,0.0
+2022-23,T Robinson,Crystal Palace,1,12.0,16.0,3.0,4.0,0.0
+2022-23,T Robinson,Leicester,1,16.0,12.0,4.0,3.0,0.0
+2022-23,T Robinson,Tottenham,1,18.0,11.0,1.0,1.0,0.0
+2022-23,T Robinson,Wolverhampton Wanderers,1,11.0,18.0,1.0,1.0,0.0
+2023-24,A Madley,Aston Villa,2,18.0,16.5,4.0,4.0,0.0
+2023-24,A Madley,Bournemouth,3,10.333333333333334,8.333333333333334,0.6666666666666666,2.0,0.0
+2023-24,A Madley,Brentford,3,10.333333333333334,12.0,2.3333333333333335,0.6666666666666666,0.0
+2023-24,A Madley,Brighton & Hove Albion,3,14.666666666666666,14.0,3.6666666666666665,2.6666666666666665,0.0
+2023-24,A Madley,Burnley,1,9.0,10.0,0.0,1.0,0.0
+2023-24,A Madley,Chelsea,3,11.0,10.333333333333334,1.6666666666666667,2.3333333333333335,0.0
+2023-24,A Madley,Crystal Palace,2,18.0,14.0,3.5,1.5,0.5
+2023-24,A Madley,Everton,2,9.5,12.0,1.0,2.0,0.0
+2023-24,A Madley,Liverpool,5,14.0,10.6,1.8,2.2,0.0
+2023-24,A Madley,Luton,3,9.333333333333334,14.0,1.6666666666666667,0.6666666666666666,0.0
+2023-24,A Madley,Manchester City,3,7.666666666666667,9.666666666666666,1.0,2.3333333333333335,0.0
+2023-24,A Madley,Manchester United,3,10.0,9.0,0.3333333333333333,2.0,0.0
+2023-24,A Madley,Newcastle United,1,12.0,17.0,4.0,4.0,0.0
+2023-24,A Madley,Sheffield United,5,10.4,9.6,2.2,0.8,0.0
+2023-24,A Madley,Tottenham,2,10.0,15.0,0.5,2.0,0.0
+2023-24,A Madley,West Ham United,3,7.333333333333333,11.0,2.3333333333333335,1.0,0.0
+2023-24,A Madley,Wolverhampton Wanderers,2,14.0,8.0,2.0,3.5,0.5
+2023-24,A Taylor,Arsenal,3,13.0,9.0,3.3333333333333335,1.6666666666666667,0.0
+2023-24,A Taylor,Aston Villa,2,9.5,14.0,3.0,3.5,0.0
+2023-24,A Taylor,Bournemouth,2,10.5,8.0,3.0,3.5,0.0
+2023-24,A Taylor,Brentford,1,10.0,8.0,1.0,2.0,0.0
+2023-24,A Taylor,Brighton & Hove Albion,3,9.666666666666666,13.666666666666666,2.0,2.3333333333333335,0.3333333333333333
+2023-24,A Taylor,Burnley,2,8.5,8.0,1.0,1.5,0.0
+2023-24,A Taylor,Chelsea,4,8.75,11.25,3.75,2.5,0.0
+2023-24,A Taylor,Everton,4,10.75,9.0,2.0,1.5,0.0
+2023-24,A Taylor,Fulham,3,10.666666666666666,9.666666666666666,0.6666666666666666,2.3333333333333335,0.3333333333333333
+2023-24,A Taylor,Liverpool,6,13.166666666666666,10.0,2.3333333333333335,3.3333333333333335,0.16666666666666666
+2023-24,A Taylor,Luton,2,9.0,9.0,1.5,0.5,0.0
+2023-24,A Taylor,Manchester City,4,8.75,14.5,1.5,3.75,0.25
+2023-24,A Taylor,Manchester United,2,8.0,9.0,4.0,2.0,0.0
+2023-24,A Taylor,Newcastle United,4,11.0,11.5,3.25,1.75,0.0
+2023-24,A Taylor,Nottingham Forest,4,11.75,8.25,3.0,3.0,0.0
+2023-24,A Taylor,Sheffield United,2,13.5,11.5,4.0,3.0,0.0
+2023-24,A Taylor,Tottenham,2,9.0,13.5,1.0,0.5,0.0
+2023-24,A Taylor,West Ham United,2,8.5,10.0,1.5,1.5,0.0
+2023-24,A Taylor,Wolverhampton Wanderers,2,13.0,11.5,1.0,2.0,0.0
+2023-24,C Kavanagh,Arsenal,2,14.0,10.0,4.0,2.5,0.0
+2023-24,C Kavanagh,Aston Villa,1,11.0,15.0,0.0,2.0,1.0
+2023-24,C Kavanagh,Bournemouth,1,10.0,4.0,2.0,1.0,0.0
+2023-24,C Kavanagh,Burnley,1,9.0,12.0,2.0,5.0,0.0
+2023-24,C Kavanagh,Chelsea,2,9.5,13.0,1.5,3.5,0.0
+2023-24,C Kavanagh,Crystal Palace,3,10.0,11.333333333333334,1.3333333333333333,1.6666666666666667,0.0
+2023-24,C Kavanagh,Liverpool,6,11.5,11.666666666666666,1.5,2.1666666666666665,0.0
+2023-24,C Kavanagh,Luton,1,7.0,12.0,1.0,2.0,0.0
+2023-24,C Kavanagh,Manchester City,3,9.0,10.666666666666666,2.0,2.3333333333333335,0.0
+2023-24,C Kavanagh,Manchester United,2,11.0,10.0,3.5,1.0,0.0
+2023-24,C Kavanagh,Newcastle United,4,8.25,9.5,2.0,2.0,0.0
+2023-24,C Kavanagh,Nottingham Forest,4,11.25,10.0,2.0,1.5,0.0
+2023-24,C Kavanagh,Sheffield United,3,11.0,7.666666666666667,2.3333333333333335,1.3333333333333333,0.6666666666666666
+2023-24,C Kavanagh,Tottenham,3,13.0,11.333333333333334,2.0,2.0,0.0
+2023-24,C Kavanagh,West Ham United,2,12.5,13.5,2.5,0.5,0.0
+2023-24,C Kavanagh,Wolverhampton Wanderers,2,13.0,13.0,1.0,2.0,0.5
+2023-24,C Pawson,Arsenal,2,11.5,12.5,0.5,2.5,0.0
+2023-24,C Pawson,Aston Villa,2,11.5,12.0,3.0,3.0,0.0
+2023-24,C Pawson,Bournemouth,2,13.0,9.0,2.0,0.5,0.0
+2023-24,C Pawson,Brentford,1,12.0,8.0,5.0,3.0,0.0
+2023-24,C Pawson,Brighton & Hove Albion,3,10.666666666666666,12.666666666666666,2.3333333333333335,3.3333333333333335,0.0
+2023-24,C Pawson,Burnley,1,11.0,8.0,0.0,0.0,1.0
+2023-24,C Pawson,Chelsea,2,15.0,12.5,4.0,4.0,0.5
+2023-24,C Pawson,Crystal Palace,2,8.5,14.5,0.5,2.0,0.0
+2023-24,C Pawson,Everton,3,9.333333333333334,9.666666666666666,1.6666666666666667,2.3333333333333335,0.3333333333333333
+2023-24,C Pawson,Fulham,1,5.0,11.0,3.0,0.0,0.0
+2023-24,C Pawson,Liverpool,2,10.0,7.0,0.5,2.0,0.0
+2023-24,C Pawson,Luton,1,8.0,12.0,1.0,1.0,0.0
+2023-24,C Pawson,Manchester City,4,8.0,13.75,1.0,2.5,0.0
+2023-24,C Pawson,Manchester United,2,9.5,10.0,2.0,2.0,0.0
+2023-24,C Pawson,Newcastle United,1,8.0,12.0,3.0,5.0,0.0
+2023-24,C Pawson,Nottingham Forest,2,13.5,8.5,1.5,1.5,0.0
+2023-24,C Pawson,West Ham United,2,11.5,10.0,3.0,0.5,0.0
+2023-24,C Pawson,Wolverhampton Wanderers,5,14.4,10.2,4.0,2.0,0.0
+2023-24,D Bond,Aston Villa,1,8.0,10.0,4.0,1.0,0.0
+2023-24,D Bond,Brentford,2,14.5,13.5,3.0,2.0,0.5
+2023-24,D Bond,Burnley,2,12.5,12.0,2.0,3.0,0.0
+2023-24,D Bond,Crystal Palace,1,10.0,8.0,1.0,4.0,0.0
+2023-24,D Bond,Fulham,2,10.0,11.5,2.0,2.0,0.5
+2023-24,D Bond,Sheffield United,1,4.0,8.0,1.0,2.0,0.0
+2023-24,D Bond,Wolverhampton Wanderers,1,8.0,4.0,2.0,1.0,0.0
+2023-24,D Coote,Arsenal,3,12.666666666666666,11.0,2.0,2.0,0.3333333333333333
+2023-24,D Coote,Aston Villa,4,9.0,14.75,2.25,2.75,0.25
+2023-24,D Coote,Bournemouth,4,13.75,14.5,2.5,2.5,0.0
+2023-24,D Coote,Brentford,2,17.0,9.5,4.5,3.0,0.5
+2023-24,D Coote,Brighton & Hove Albion,2,8.5,16.0,2.5,3.5,0.0
+2023-24,D Coote,Burnley,1,8.0,13.0,2.0,4.0,0.0
+2023-24,D Coote,Chelsea,2,14.5,13.0,5.0,2.0,0.0
+2023-24,D Coote,Crystal Palace,1,14.0,10.0,2.0,1.0,0.0
+2023-24,D Coote,Everton,2,13.5,14.5,1.0,3.0,0.0
+2023-24,D Coote,Liverpool,1,20.0,6.0,5.0,3.0,0.0
+2023-24,D Coote,Luton,3,11.0,15.333333333333334,2.0,3.3333333333333335,0.0
+2023-24,D Coote,Manchester City,1,5.0,6.0,1.0,1.0,0.0
+2023-24,D Coote,Manchester United,1,21.0,7.0,5.0,3.0,0.0
+2023-24,D Coote,Sheffield United,1,6.0,5.0,1.0,1.0,0.0
+2023-24,D Coote,Tottenham,1,13.0,15.0,2.0,3.0,0.0
+2023-24,D Coote,West Ham United,1,15.0,9.0,1.0,0.0,0.0
+2023-24,D Coote,Wolverhampton Wanderers,2,12.5,11.5,3.0,3.0,0.0
+2023-24,D England,Aston Villa,2,13.0,7.5,3.5,2.0,0.0
+2023-24,D England,Bournemouth,1,11.0,11.0,2.0,1.0,0.0
+2023-24,D England,Brentford,3,9.333333333333334,12.0,2.3333333333333335,2.0,0.0
+2023-24,D England,Brighton & Hove Albion,1,16.0,9.0,4.0,3.0,0.0
+2023-24,D England,Burnley,3,13.333333333333334,10.666666666666666,3.3333333333333335,2.3333333333333335,0.3333333333333333
+2023-24,D England,Chelsea,1,12.0,7.0,2.0,2.0,0.0
+2023-24,D England,Crystal Palace,1,9.0,13.0,3.0,5.0,0.0
+2023-24,D England,Everton,1,10.0,12.0,1.0,2.0,0.0
+2023-24,D England,Fulham,1,11.0,11.0,1.0,2.0,0.0
+2023-24,D England,Luton,2,10.5,11.0,1.5,1.5,0.0
+2023-24,D England,Manchester City,2,9.0,9.5,1.5,3.0,0.0
+2023-24,D England,Newcastle United,2,7.0,13.5,2.0,3.0,0.0
+2023-24,D England,Nottingham Forest,2,15.5,10.0,2.5,1.0,0.0
+2023-24,D England,Tottenham,1,9.0,15.0,3.0,4.0,0.0
+2023-24,D England,West Ham United,1,11.0,18.0,2.0,4.0,0.0
+2023-24,G Scott,Bournemouth,1,13.0,14.0,3.0,2.0,0.0
+2023-24,G Scott,Brentford,1,3.0,6.0,1.0,1.0,0.0
+2023-24,G Scott,Burnley,1,11.0,5.0,1.0,0.0,0.0
+2023-24,G Scott,Crystal Palace,2,11.5,11.0,2.5,2.5,0.0
+2023-24,G Scott,Fulham,1,6.0,3.0,1.0,1.0,0.0
+2023-24,G Scott,Luton,1,11.0,9.0,2.0,0.0,0.0
+2023-24,G Scott,Manchester United,1,9.0,11.0,0.0,2.0,0.0
+2023-24,G Scott,Nottingham Forest,1,5.0,11.0,0.0,1.0,0.0
+2023-24,G Scott,Sheffield United,1,9.0,6.0,1.0,1.0,0.0
+2023-24,G Scott,West Ham United,2,7.5,9.0,1.5,2.0,0.0
+2023-24,J Brooks,Arsenal,1,13.0,14.0,2.0,1.0,0.0
+2023-24,J Brooks,Aston Villa,3,12.666666666666666,11.666666666666666,3.0,1.6666666666666667,0.0
+2023-24,J Brooks,Bournemouth,1,17.0,12.0,3.0,3.0,0.0
+2023-24,J Brooks,Brighton & Hove Albion,4,12.5,14.5,2.25,3.0,0.25
+2023-24,J Brooks,Burnley,1,11.0,7.0,3.0,1.0,0.0
+2023-24,J Brooks,Chelsea,2,10.5,9.5,3.0,1.5,0.0
+2023-24,J Brooks,Crystal Palace,3,13.0,12.0,2.3333333333333335,2.0,0.0
+2023-24,J Brooks,Everton,3,11.333333333333334,6.333333333333333,3.0,0.6666666666666666,0.0
+2023-24,J Brooks,Fulham,1,9.0,15.0,5.0,2.0,0.0
+2023-24,J Brooks,Liverpool,1,10.0,16.0,2.0,1.0,1.0
+2023-24,J Brooks,Luton,3,10.666666666666666,8.333333333333334,1.3333333333333333,1.6666666666666667,0.0
+2023-24,J Brooks,Manchester City,5,6.8,11.0,1.0,1.8,0.0
+2023-24,J Brooks,Manchester United,4,9.5,8.75,1.25,3.0,0.0
+2023-24,J Brooks,Newcastle United,3,11.666666666666666,12.0,1.0,3.0,0.0
+2023-24,J Brooks,Sheffield United,2,17.0,12.0,2.5,1.5,0.0
+2023-24,J Brooks,Tottenham,4,7.0,13.25,1.75,1.75,0.25
+2023-24,J Brooks,West Ham United,3,12.333333333333334,7.0,1.3333333333333333,2.3333333333333335,0.3333333333333333
+2023-24,J Gillett,Arsenal,2,9.5,13.5,1.5,3.0,0.0
+2023-24,J Gillett,Aston Villa,4,12.0,9.75,2.75,2.0,0.0
+2023-24,J Gillett,Bournemouth,1,14.0,6.0,2.0,2.0,0.0
+2023-24,J Gillett,Brentford,3,7.0,8.666666666666666,2.0,0.6666666666666666,0.0
+2023-24,J Gillett,Brighton & Hove Albion,3,12.333333333333334,5.666666666666667,2.3333333333333335,1.3333333333333333,0.0
+2023-24,J Gillett,Burnley,3,13.333333333333334,9.666666666666666,3.6666666666666665,2.0,0.0
+2023-24,J Gillett,Chelsea,3,8.333333333333334,12.0,2.0,2.0,0.0
+2023-24,J Gillett,Crystal Palace,2,12.0,11.5,1.0,3.5,0.0
+2023-24,J Gillett,Luton,3,14.0,12.333333333333334,3.6666666666666665,1.6666666666666667,0.0
+2023-24,J Gillett,Manchester City,4,3.75,9.25,0.5,2.0,0.0
+2023-24,J Gillett,Manchester United,4,10.25,9.5,2.0,2.0,0.0
+2023-24,J Gillett,Nottingham Forest,2,11.0,10.0,1.5,2.5,0.0
+2023-24,J Gillett,Sheffield United,1,11.0,2.0,3.0,0.0,0.0
+2023-24,J Gillett,Tottenham,4,10.75,15.5,2.75,3.5,0.25
+2023-24,J Gillett,West Ham United,1,13.0,12.0,3.0,3.0,0.0
+2023-24,J Gillett,Wolverhampton Wanderers,2,10.5,12.5,2.0,4.5,0.0
+2023-24,J Smith,Arsenal,1,10.0,11.0,1.0,4.0,0.0
+2023-24,J Smith,Brentford,1,14.0,12.0,5.0,2.0,0.0
+2023-24,J Smith,Burnley,1,12.0,14.0,2.0,5.0,1.0
+2023-24,J Smith,Fulham,2,9.0,10.0,2.0,1.0,0.0
+2023-24,J Smith,Luton,1,12.0,17.0,0.0,2.0,0.0
+2023-24,J Smith,Nottingham Forest,1,10.0,7.0,1.0,0.0,0.0
+2023-24,J Smith,Wolverhampton Wanderers,1,17.0,12.0,2.0,0.0,1.0
+2023-24,L Smith,Aston Villa,1,6.0,11.0,2.0,5.0,0.0
+2023-24,L Smith,Burnley,1,13.0,8.0,1.0,3.0,1.0
+2023-24,L Smith,Crystal Palace,1,8.0,13.0,3.0,1.0,0.0
+2023-24,L Smith,Fulham,1,11.0,6.0,5.0,2.0,0.0
+2023-24,M Donohue,Bournemouth,1,16.0,12.0,2.0,2.0,0.0
+2023-24,M Donohue,Brentford,1,12.0,16.0,2.0,2.0,0.0
+2023-24,M Donohue,Fulham,1,20.0,15.0,4.0,5.0,0.0
+2023-24,M Donohue,Luton,1,15.0,20.0,5.0,4.0,0.0
+2023-24,M Oliver,Arsenal,6,10.0,9.833333333333334,1.8333333333333333,1.8333333333333333,0.16666666666666666
+2023-24,M Oliver,Aston Villa,1,19.0,8.0,4.0,1.0,0.0
+2023-24,M Oliver,Brentford,2,6.5,15.0,2.0,1.5,0.0
+2023-24,M Oliver,Burnley,2,11.0,9.5,1.0,1.0,0.5
+2023-24,M Oliver,Chelsea,3,13.333333333333334,12.666666666666666,3.0,1.6666666666666667,0.0
+2023-24,M Oliver,Crystal Palace,2,10.5,12.0,1.0,2.0,0.0
+2023-24,M Oliver,Everton,5,10.8,11.2,2.4,1.8,0.0
+2023-24,M Oliver,Fulham,3,10.333333333333334,8.333333333333334,3.0,1.3333333333333333,0.0
+2023-24,M Oliver,Liverpool,4,10.25,8.0,1.5,2.5,0.0
+2023-24,M Oliver,Luton,2,11.5,14.0,2.0,2.5,0.0
+2023-24,M Oliver,Manchester City,3,9.666666666666666,8.666666666666666,2.6666666666666665,2.0,0.0
+2023-24,M Oliver,Manchester United,4,8.0,11.25,2.5,2.75,0.25
+2023-24,M Oliver,Nottingham Forest,2,9.5,10.0,1.0,1.0,0.0
+2023-24,M Oliver,Sheffield United,1,12.0,10.0,3.0,1.0,0.0
+2023-24,M Oliver,Tottenham,4,11.75,13.25,1.0,3.0,0.5
+2023-24,M Oliver,West Ham United,3,11.333333333333334,10.0,1.0,1.6666666666666667,0.0
+2023-24,M Oliver,Wolverhampton Wanderers,1,10.0,4.0,1.0,3.0,0.0
+2023-24,M Salisbury,Arsenal,1,10.0,11.0,1.0,0.0,0.0
+2023-24,M Salisbury,Aston Villa,2,13.0,11.5,1.0,2.0,0.0
+2023-24,M Salisbury,Bournemouth,2,16.5,9.5,1.5,1.0,0.0
+2023-24,M Salisbury,Brentford,1,11.0,15.0,2.0,2.0,0.0
+2023-24,M Salisbury,Brighton & Hove Albion,3,13.0,12.0,2.0,3.0,0.0
+2023-24,M Salisbury,Burnley,1,12.0,11.0,2.0,0.0,0.0
+2023-24,M Salisbury,Chelsea,2,13.5,14.5,2.5,2.0,0.5
+2023-24,M Salisbury,Crystal Palace,1,16.0,13.0,2.0,3.0,0.0
+2023-24,M Salisbury,Fulham,3,9.0,13.0,2.3333333333333335,1.3333333333333333,0.0
+2023-24,M Salisbury,Luton,1,14.0,6.0,2.0,2.0,0.0
+2023-24,M Salisbury,Manchester United,1,7.0,9.0,0.0,1.0,0.0
+2023-24,M Salisbury,Newcastle United,1,9.0,22.0,1.0,3.0,0.0
+2023-24,M Salisbury,Nottingham Forest,2,13.0,11.5,3.0,3.0,0.0
+2023-24,M Salisbury,Sheffield United,2,10.0,8.5,2.0,0.5,0.5
+2023-24,M Salisbury,Tottenham,1,11.0,12.0,3.0,3.0,0.0
+2023-24,M Salisbury,West Ham United,3,10.333333333333334,11.333333333333334,2.0,2.6666666666666665,0.3333333333333333
+2023-24,M Salisbury,Wolverhampton Wanderers,1,13.0,13.0,2.0,2.0,0.0
+2023-24,P Bankes,Arsenal,1,10.0,10.0,1.0,2.0,0.0
+2023-24,P Bankes,Bournemouth,2,9.5,10.5,1.0,3.5,0.0
+2023-24,P Bankes,Brentford,2,8.5,12.5,0.5,1.5,0.0
+2023-24,P Bankes,Brighton & Hove Albion,1,10.0,8.0,3.0,1.0,0.0
+2023-24,P Bankes,Burnley,2,7.5,13.0,1.0,4.5,0.0
+2023-24,P Bankes,Crystal Palace,2,13.5,9.0,2.5,0.0,0.0
+2023-24,P Bankes,Luton,1,14.0,6.0,4.0,2.0,0.0
+2023-24,P Bankes,Manchester United,1,7.0,10.0,3.0,1.0,0.0
+2023-24,P Bankes,Newcastle United,1,18.0,11.0,3.0,3.0,0.0
+2023-24,P Bankes,Nottingham Forest,1,5.0,9.0,2.0,3.0,0.0
+2023-24,P Bankes,Sheffield United,2,11.5,9.0,4.0,4.0,0.5
+2023-24,P Bankes,Tottenham,1,13.0,14.0,6.0,5.0,0.0
+2023-24,P Bankes,West Ham United,2,12.5,13.5,3.5,2.0,0.0
+2023-24,P Bankes,Wolverhampton Wanderers,1,10.0,10.0,2.0,1.0,0.0
+2023-24,P Tierney,Arsenal,5,8.8,8.4,1.0,1.2,0.0
+2023-24,P Tierney,Aston Villa,2,9.0,14.5,1.5,2.5,0.0
+2023-24,P Tierney,Bournemouth,2,14.5,10.0,2.0,4.0,0.5
+2023-24,P Tierney,Brentford,2,11.0,11.0,2.0,1.0,0.0
+2023-24,P Tierney,Brighton & Hove Albion,1,10.0,14.0,2.0,2.0,0.0
+2023-24,P Tierney,Burnley,1,7.0,10.0,2.0,1.0,0.0
+2023-24,P Tierney,Chelsea,3,14.0,16.666666666666668,2.3333333333333335,2.6666666666666665,0.0
+2023-24,P Tierney,Crystal Palace,5,11.2,9.2,1.4,0.8,0.0
+2023-24,P Tierney,Everton,3,14.333333333333334,10.666666666666666,1.3333333333333333,1.3333333333333333,0.0
+2023-24,P Tierney,Fulham,3,8.333333333333334,8.666666666666666,2.3333333333333335,1.3333333333333333,0.3333333333333333
+2023-24,P Tierney,Liverpool,5,13.4,11.6,1.4,2.8,0.0
+2023-24,P Tierney,Luton,2,11.0,17.0,1.5,1.5,0.0
+2023-24,P Tierney,Manchester City,3,6.333333333333333,10.333333333333334,1.0,2.0,0.0
+2023-24,P Tierney,Manchester United,2,7.0,5.0,2.0,1.5,0.0
+2023-24,P Tierney,Newcastle United,1,6.0,15.0,0.0,1.0,0.0
+2023-24,P Tierney,Nottingham Forest,3,10.666666666666666,12.0,1.3333333333333333,1.3333333333333333,0.3333333333333333
+2023-24,P Tierney,Sheffield United,1,10.0,7.0,1.0,0.0,0.0
+2023-24,P Tierney,Tottenham,1,12.0,14.0,4.0,1.0,0.0
+2023-24,P Tierney,West Ham United,2,11.5,6.5,1.0,1.5,0.0
+2023-24,P Tierney,Wolverhampton Wanderers,3,14.333333333333334,11.666666666666666,4.333333333333333,2.3333333333333335,0.0
+2023-24,R Jones,Arsenal,2,10.5,14.5,2.5,4.0,0.0
+2023-24,R Jones,Aston Villa,4,10.25,12.5,2.5,1.5,0.0
+2023-24,R Jones,Bournemouth,1,10.0,10.0,3.0,0.0,0.0
+2023-24,R Jones,Brentford,3,10.666666666666666,12.0,2.0,2.0,0.0
+2023-24,R Jones,Brighton & Hove Albion,3,12.666666666666666,10.666666666666666,2.0,1.6666666666666667,0.0
+2023-24,R Jones,Burnley,1,10.0,16.0,3.0,2.0,1.0
+2023-24,R Jones,Chelsea,3,12.333333333333334,13.333333333333334,1.3333333333333333,2.6666666666666665,0.0
+2023-24,R Jones,Crystal Palace,2,13.0,11.0,0.5,2.0,0.0
+2023-24,R Jones,Fulham,1,9.0,10.0,2.0,3.0,0.0
+2023-24,R Jones,Luton,2,12.5,14.5,2.5,2.0,0.0
+2023-24,R Jones,Manchester City,2,10.5,11.0,1.5,3.5,0.5
+2023-24,R Jones,Manchester United,3,12.0,7.333333333333333,2.3333333333333335,2.3333333333333335,0.0
+2023-24,R Jones,Newcastle United,4,8.25,12.25,2.5,1.75,0.25
+2023-24,R Jones,Nottingham Forest,2,13.0,10.0,1.0,3.0,0.5
+2023-24,R Jones,Sheffield United,2,12.5,10.0,3.0,2.5,0.0
+2023-24,R Jones,Tottenham,5,13.8,11.6,2.4,2.0,0.0
+2023-24,R Jones,West Ham United,1,8.0,9.0,1.0,1.0,0.0
+2023-24,R Jones,Wolverhampton Wanderers,3,13.666666666666666,11.333333333333334,2.6666666666666665,1.6666666666666667,0.3333333333333333
+2023-24,R Madley,Bournemouth,1,13.0,6.0,2.0,1.0,0.0
+2023-24,R Madley,Brentford,1,6.0,13.0,1.0,2.0,0.0
+2023-24,R Welch,Bournemouth,1,19.0,12.0,3.0,2.0,1.0
+2023-24,R Welch,Burnley,1,17.0,5.0,1.0,2.0,0.0
+2023-24,R Welch,Fulham,1,5.0,17.0,2.0,1.0,0.0
+2023-24,R Welch,Nottingham Forest,1,12.0,19.0,2.0,3.0,0.0
+2023-24,S Allison,Bournemouth,1,16.0,11.0,1.0,2.0,0.0
+2023-24,S Allison,Fulham,1,10.0,13.0,1.0,2.0,0.0
+2023-24,S Allison,Luton,2,12.0,14.5,1.0,3.0,0.0
+2023-24,S Allison,Newcastle United,1,13.0,10.0,2.0,1.0,0.0
+2023-24,S Allison,Sheffield United,1,13.0,13.0,5.0,0.0,0.0
+2023-24,S Attwell,Arsenal,1,9.0,14.0,1.0,5.0,0.0
+2023-24,S Attwell,Aston Villa,1,9.0,14.0,4.0,1.0,0.0
+2023-24,S Attwell,Bournemouth,1,17.0,10.0,1.0,4.0,1.0
+2023-24,S Attwell,Brentford,1,13.0,14.0,1.0,5.0,0.0
+2023-24,S Attwell,Brighton & Hove Albion,2,9.5,10.0,4.0,2.5,0.0
+2023-24,S Attwell,Burnley,2,12.5,8.5,1.5,4.0,0.5
+2023-24,S Attwell,Chelsea,1,8.0,11.0,4.0,2.0,0.0
+2023-24,S Attwell,Crystal Palace,1,15.0,11.0,2.0,0.0,0.0
+2023-24,S Attwell,Everton,4,11.75,7.5,1.5,2.25,0.0
+2023-24,S Attwell,Fulham,4,9.25,9.75,1.0,0.75,0.0
+2023-24,S Attwell,Liverpool,2,6.0,8.0,0.0,0.5,0.0
+2023-24,S Attwell,Manchester United,1,13.0,11.0,4.0,4.0,0.0
+2023-24,S Attwell,Newcastle United,3,13.0,11.666666666666666,3.0,2.6666666666666665,0.0
+2023-24,S Attwell,Nottingham Forest,1,11.0,13.0,4.0,4.0,1.0
+2023-24,S Attwell,Sheffield United,5,9.8,7.6,2.4,1.2,0.2
+2023-24,S Attwell,Tottenham,1,6.0,18.0,1.0,4.0,0.0
+2023-24,S Attwell,West Ham United,2,6.5,12.0,2.5,1.5,0.0
+2023-24,S Attwell,Wolverhampton Wanderers,1,10.0,17.0,4.0,1.0,0.0
+2023-24,S Barrott,Arsenal,2,5.5,12.5,0.5,1.5,0.0
+2023-24,S Barrott,Aston Villa,1,7.0,16.0,1.0,2.0,0.0
+2023-24,S Barrott,Bournemouth,2,11.5,11.5,1.5,2.5,0.0
+2023-24,S Barrott,Brentford,1,8.0,11.0,3.0,1.0,0.0
+2023-24,S Barrott,Brighton & Hove Albion,2,9.5,9.0,1.5,1.5,0.0
+2023-24,S Barrott,Burnley,3,12.0,6.333333333333333,2.0,2.3333333333333335,0.0
+2023-24,S Barrott,Crystal Palace,1,9.0,18.0,1.0,4.0,0.0
+2023-24,S Barrott,Everton,2,14.5,11.5,3.0,1.0,0.0
+2023-24,S Barrott,Fulham,2,10.0,8.5,1.5,1.0,0.5
+2023-24,S Barrott,Luton,2,12.5,9.5,1.0,2.0,0.0
+2023-24,S Barrott,Manchester City,1,3.0,13.0,2.0,2.0,0.0
+2023-24,S Barrott,Newcastle United,1,7.0,12.0,0.0,2.0,0.0
+2023-24,S Barrott,Nottingham Forest,3,13.0,9.0,2.0,0.3333333333333333,0.0
+2023-24,S Barrott,Sheffield United,3,10.666666666666666,6.666666666666667,1.3333333333333333,1.3333333333333333,0.0
+2023-24,S Barrott,Tottenham,1,14.0,13.0,2.0,3.0,0.0
+2023-24,S Barrott,West Ham United,2,5.5,8.5,2.0,0.5,0.0
+2023-24,S Barrott,Wolverhampton Wanderers,1,9.0,11.0,0.0,1.0,0.0
+2023-24,S Hooper,Arsenal,3,9.666666666666666,9.666666666666666,1.3333333333333333,1.0,0.0
+2023-24,S Hooper,Aston Villa,3,7.333333333333333,14.666666666666666,1.3333333333333333,2.0,0.0
+2023-24,S Hooper,Bournemouth,1,18.0,9.0,3.0,3.0,0.0
+2023-24,S Hooper,Brentford,5,9.4,10.6,3.0,2.0,0.0
+2023-24,S Hooper,Brighton & Hove Albion,4,7.75,14.0,1.25,2.25,0.0
+2023-24,S Hooper,Burnley,2,13.0,6.5,2.5,1.0,0.0
+2023-24,S Hooper,Chelsea,3,14.0,10.666666666666666,2.3333333333333335,3.3333333333333335,0.3333333333333333
+2023-24,S Hooper,Crystal Palace,1,14.0,8.0,3.0,1.0,0.0
+2023-24,S Hooper,Everton,2,11.5,11.5,1.5,1.0,0.0
+2023-24,S Hooper,Fulham,2,16.5,7.0,3.0,2.0,0.0
+2023-24,S Hooper,Liverpool,4,13.0,10.25,2.0,2.25,0.5
+2023-24,S Hooper,Manchester City,2,10.0,11.0,2.0,2.0,0.0
+2023-24,S Hooper,Manchester United,4,14.0,10.25,2.0,2.25,0.0
+2023-24,S Hooper,Newcastle United,2,12.0,17.0,4.0,4.0,0.0
+2023-24,S Hooper,Nottingham Forest,3,8.666666666666666,8.0,1.0,1.0,0.0
+2023-24,S Hooper,Sheffield United,1,12.0,8.0,2.0,3.0,0.0
+2023-24,S Hooper,Tottenham,4,11.25,15.25,3.5,3.5,0.0
+2023-24,S Hooper,West Ham United,2,9.0,12.0,1.5,2.5,0.0
+2023-24,S Hooper,Wolverhampton Wanderers,2,10.5,11.5,2.5,2.5,0.0
+2023-24,S Singh,Crystal Palace,1,20.0,11.0,2.0,3.0,0.0
+2023-24,S Singh,Luton,1,11.0,20.0,3.0,2.0,0.0
+2023-24,T Bramall,Aston Villa,1,12.0,16.0,3.0,5.0,0.0
+2023-24,T Bramall,Bournemouth,2,14.5,11.5,4.0,2.0,0.0
+2023-24,T Bramall,Brentford,1,12.0,14.0,1.0,4.0,0.0
+2023-24,T Bramall,Burnley,2,12.5,9.5,1.5,1.5,0.0
+2023-24,T Bramall,Crystal Palace,2,11.0,14.0,2.5,3.0,0.5
+2023-24,T Bramall,Everton,2,13.5,7.5,2.5,1.5,0.0
+2023-24,T Bramall,Fulham,1,6.0,13.0,1.0,2.0,0.0
+2023-24,T Bramall,Liverpool,1,11.0,13.0,1.0,3.0,1.0
+2023-24,T Bramall,Luton,1,16.0,13.0,2.0,2.0,0.0
+2023-24,T Bramall,Newcastle United,3,11.666666666666666,13.666666666666666,2.0,2.6666666666666665,0.0
+2023-24,T Bramall,Nottingham Forest,1,13.0,15.0,4.0,4.0,0.0
+2023-24,T Bramall,West Ham United,2,14.5,12.5,4.0,2.5,0.5
+2023-24,T Bramall,Wolverhampton Wanderers,3,11.333333333333334,12.0,2.3333333333333335,1.6666666666666667,0.0
+2023-24,T Harrington,Bournemouth,1,13.0,14.0,4.0,0.0,0.0
+2023-24,T Harrington,Brighton & Hove Albion,1,9.0,14.0,2.0,3.0,1.0
+2023-24,T Harrington,Burnley,2,6.5,12.0,1.0,1.0,0.0
+2023-24,T Harrington,Chelsea,1,8.0,14.0,3.0,2.0,0.0
+2023-24,T Harrington,Crystal Palace,1,8.0,18.0,1.0,4.0,0.0
+2023-24,T Harrington,Everton,2,14.0,9.0,3.0,1.0,0.0
+2023-24,T Harrington,Fulham,1,11.0,7.0,2.0,2.0,0.0
+2023-24,T Harrington,Luton,1,12.0,7.0,0.0,1.0,0.0
+2023-24,T Harrington,Manchester United,2,13.0,9.5,1.0,2.5,0.0
+2023-24,T Harrington,Newcastle United,2,9.0,12.0,0.0,1.5,0.0
+2023-24,T Harrington,Nottingham Forest,1,14.0,8.0,2.0,3.0,0.0
+2023-24,T Harrington,Sheffield United,2,14.0,8.5,2.0,0.5,0.0
+2023-24,T Harrington,West Ham United,1,7.0,15.0,2.0,5.0,0.0
+2023-24,T Harrington,Wolverhampton Wanderers,2,11.0,9.0,3.5,2.0,0.0
+2023-24,T Robinson,Arsenal,3,9.0,10.333333333333334,0.6666666666666666,2.3333333333333335,0.0
+2023-24,T Robinson,Aston Villa,1,8.0,14.0,1.0,3.0,0.0
+2023-24,T Robinson,Bournemouth,4,13.25,10.5,1.75,1.75,0.0
+2023-24,T Robinson,Brentford,1,9.0,7.0,1.0,1.0,0.0
+2023-24,T Robinson,Brighton & Hove Albion,2,7.0,13.0,2.5,2.5,0.0
+2023-24,T Robinson,Burnley,1,13.0,11.0,2.0,3.0,0.0
+2023-24,T Robinson,Chelsea,3,12.333333333333334,11.666666666666666,3.3333333333333335,2.3333333333333335,0.0
+2023-24,T Robinson,Crystal Palace,1,12.0,7.0,3.0,2.0,0.0
+2023-24,T Robinson,Everton,3,15.0,9.0,3.3333333333333335,1.0,0.0
+2023-24,T Robinson,Fulham,3,12.666666666666666,10.666666666666666,1.3333333333333333,2.6666666666666665,0.0
+2023-24,T Robinson,Liverpool,1,11.0,13.0,3.0,2.0,0.0
+2023-24,T Robinson,Luton,2,15.0,9.0,1.5,2.0,0.0
+2023-24,T Robinson,Manchester City,1,6.0,16.0,1.0,2.0,0.0
+2023-24,T Robinson,Manchester United,1,11.0,9.0,4.0,2.0,0.0
+2023-24,T Robinson,Newcastle United,4,9.25,13.25,0.5,2.75,0.0
+2023-24,T Robinson,Nottingham Forest,2,9.0,10.5,3.0,3.5,0.0
+2023-24,T Robinson,Sheffield United,2,11.5,11.0,3.5,0.5,0.0
+2023-24,T Robinson,Tottenham,3,12.666666666666666,17.0,3.3333333333333335,1.6666666666666667,0.0
+2023-24,T Robinson,West Ham United,1,13.0,11.0,1.0,3.0,0.0
+2023-24,T Robinson,Wolverhampton Wanderers,3,13.666666666666666,12.666666666666666,2.3333333333333335,2.0,0.0
+2024-25,A Kitchen,Ipswich,1,12.0,15.0,0.0,1.0,0.0
+2024-25,A Kitchen,Leicester,1,15.0,12.0,1.0,0.0,0.0
+2024-25,A Kitchen,Southampton,1,13.0,14.0,1.0,2.0,0.0
+2024-25,A Kitchen,West Ham United,1,14.0,13.0,2.0,1.0,0.0
+2024-25,A Madley,Arsenal,1,17.0,10.0,1.0,1.0,0.0
+2024-25,A Madley,Aston Villa,2,12.5,17.0,5.0,4.0,0.0
+2024-25,A Madley,Bournemouth,1,14.0,12.0,6.0,7.0,0.0
+2024-25,A Madley,Brentford,3,9.0,10.0,2.0,2.0,0.0
+2024-25,A Madley,Brighton & Hove Albion,1,6.0,12.0,0.0,2.0,0.0
+2024-25,A Madley,Chelsea,1,12.0,15.0,3.0,4.0,0.0
+2024-25,A Madley,Crystal Palace,4,8.75,12.25,1.25,3.0,0.0
+2024-25,A Madley,Everton,3,14.333333333333334,11.333333333333334,2.6666666666666665,2.0,0.0
+2024-25,A Madley,Fulham,2,12.0,7.5,0.0,0.0,0.0
+2024-25,A Madley,Leicester,2,11.0,9.0,2.0,1.5,0.0
+2024-25,A Madley,Liverpool,3,15.333333333333334,7.666666666666667,2.6666666666666665,2.0,0.0
+2024-25,A Madley,Manchester City,2,5.0,12.0,0.0,0.5,0.0
+2024-25,A Madley,Manchester United,1,9.0,12.0,1.0,4.0,0.0
+2024-25,A Madley,Newcastle United,3,12.333333333333334,11.0,2.3333333333333335,2.0,0.0
+2024-25,A Madley,Nottingham Forest,2,12.5,13.0,4.5,2.0,0.0
+2024-25,A Madley,Southampton,2,14.0,13.5,3.0,1.5,0.0
+2024-25,A Madley,Tottenham,3,10.333333333333334,14.333333333333334,0.6666666666666666,2.3333333333333335,0.0
+2024-25,A Madley,West Ham United,2,11.5,12.5,2.5,0.5,0.5
+2024-25,A Madley,Wolverhampton Wanderers,2,15.0,11.0,2.5,2.5,0.0
+2024-25,A Taylor,Arsenal,5,12.4,12.4,1.6,1.8,0.2
+2024-25,A Taylor,Aston Villa,1,10.0,15.0,1.0,2.0,1.0
+2024-25,A Taylor,Bournemouth,1,16.0,9.0,6.0,8.0,0.0
+2024-25,A Taylor,Brentford,2,6.0,7.0,0.0,1.0,0.0
+2024-25,A Taylor,Brighton & Hove Albion,2,15.0,13.0,1.5,1.5,0.5
+2024-25,A Taylor,Chelsea,5,10.4,13.0,3.2,2.4,0.0
+2024-25,A Taylor,Crystal Palace,3,10.0,10.666666666666666,0.6666666666666666,1.0,0.6666666666666666
+2024-25,A Taylor,Everton,2,13.5,10.0,0.5,0.0,0.0
+2024-25,A Taylor,Fulham,2,10.0,9.0,0.5,2.0,0.0
+2024-25,A Taylor,Ipswich,2,8.5,11.0,0.5,0.0,0.0
+2024-25,A Taylor,Leicester,2,12.5,13.0,2.5,2.5,0.0
+2024-25,A Taylor,Liverpool,6,10.333333333333334,9.5,1.1666666666666667,1.5,0.0
+2024-25,A Taylor,Manchester City,4,5.25,10.0,0.5,0.5,0.0
+2024-25,A Taylor,Manchester United,6,9.666666666666666,8.166666666666666,1.3333333333333333,0.5,0.0
+2024-25,A Taylor,Newcastle United,2,10.5,11.5,1.5,1.0,0.0
+2024-25,A Taylor,Nottingham Forest,3,9.0,11.666666666666666,1.0,2.3333333333333335,0.0
+2024-25,A Taylor,Southampton,2,14.0,7.0,4.5,1.5,0.5
+2024-25,A Taylor,Tottenham,3,14.333333333333334,12.666666666666666,1.3333333333333333,1.0,0.0
+2024-25,A Taylor,West Ham United,3,9.666666666666666,9.666666666666666,1.3333333333333333,0.6666666666666666,0.0
+2024-25,A Taylor,Wolverhampton Wanderers,4,12.75,11.75,1.0,2.25,0.0
+2024-25,C Kavanagh,Arsenal,5,9.6,11.6,2.0,2.4,0.2
+2024-25,C Kavanagh,Aston Villa,1,18.0,10.0,3.0,2.0,0.0
+2024-25,C Kavanagh,Bournemouth,1,6.0,11.0,0.0,2.0,0.0
+2024-25,C Kavanagh,Brentford,1,10.0,8.0,0.0,0.0,1.0
+2024-25,C Kavanagh,Brighton & Hove Albion,1,7.0,12.0,2.0,3.0,0.0
+2024-25,C Kavanagh,Chelsea,5,11.6,13.2,2.2,3.0,0.0
+2024-25,C Kavanagh,Crystal Palace,1,10.0,12.0,1.0,1.0,0.0
+2024-25,C Kavanagh,Everton,3,13.0,11.0,1.3333333333333333,0.3333333333333333,0.0
+2024-25,C Kavanagh,Fulham,3,11.666666666666666,9.333333333333334,3.6666666666666665,2.0,0.0
+2024-25,C Kavanagh,Ipswich,1,10.0,7.0,0.0,0.0,1.0
+2024-25,C Kavanagh,Leicester,1,11.0,12.0,1.0,1.0,0.0
+2024-25,C Kavanagh,Liverpool,4,10.0,9.0,0.5,2.25,0.0
+2024-25,C Kavanagh,Manchester City,3,6.666666666666667,8.666666666666666,2.0,2.6666666666666665,0.0
+2024-25,C Kavanagh,Manchester United,3,13.0,10.333333333333334,4.333333333333333,1.3333333333333333,0.3333333333333333
+2024-25,C Kavanagh,Newcastle United,4,8.5,13.25,2.0,2.25,0.0
+2024-25,C Kavanagh,Nottingham Forest,3,9.0,9.666666666666666,2.3333333333333335,3.0,0.3333333333333333
+2024-25,C Kavanagh,Tottenham,4,11.75,11.75,1.5,2.25,0.0
+2024-25,C Kavanagh,West Ham United,1,11.0,6.0,2.0,0.0,0.0
+2024-25,C Kavanagh,Wolverhampton Wanderers,3,11.666666666666666,6.666666666666667,3.0,1.6666666666666667,0.0
+2024-25,C Pawson,Arsenal,2,11.0,12.0,0.5,3.0,0.5
+2024-25,C Pawson,Aston Villa,5,10.2,11.0,1.4,2.4,0.0
+2024-25,C Pawson,Bournemouth,3,11.0,10.0,2.6666666666666665,1.3333333333333333,0.0
+2024-25,C Pawson,Brentford,2,8.0,10.0,0.5,2.5,0.0
+2024-25,C Pawson,Brighton & Hove Albion,3,12.666666666666666,10.666666666666666,2.0,1.6666666666666667,0.0
+2024-25,C Pawson,Chelsea,1,7.0,16.0,5.0,5.0,0.0
+2024-25,C Pawson,Crystal Palace,1,13.0,14.0,4.0,2.0,0.0
+2024-25,C Pawson,Everton,4,11.5,8.25,2.75,0.75,0.0
+2024-25,C Pawson,Fulham,1,18.0,9.0,3.0,3.0,0.0
+2024-25,C Pawson,Ipswich,1,14.0,13.0,2.0,4.0,0.0
+2024-25,C Pawson,Leicester,1,16.0,9.0,5.0,2.0,0.0
+2024-25,C Pawson,Liverpool,1,6.0,8.0,0.0,1.0,0.0
+2024-25,C Pawson,Manchester City,1,9.0,10.0,3.0,3.0,0.0
+2024-25,C Pawson,Manchester United,2,12.0,10.0,1.5,2.0,0.0
+2024-25,C Pawson,Newcastle United,4,11.0,12.75,1.5,1.75,0.25
+2024-25,C Pawson,Nottingham Forest,4,10.5,12.75,2.0,3.0,0.0
+2024-25,C Pawson,Southampton,1,16.0,15.0,4.0,2.0,0.0
+2024-25,C Pawson,Tottenham,3,14.333333333333334,11.0,3.0,2.6666666666666665,0.3333333333333333
+2024-25,C Pawson,West Ham United,3,10.666666666666666,15.0,2.0,1.6666666666666667,0.0
+2024-25,C Pawson,Wolverhampton Wanderers,1,7.0,9.0,2.0,1.0,0.0
+2024-25,D Bond,Arsenal,1,8.0,7.0,0.0,0.0,0.0
+2024-25,D Bond,Aston Villa,1,18.0,15.0,1.0,3.0,0.0
+2024-25,D Bond,Bournemouth,2,15.0,10.0,2.5,3.0,0.0
+2024-25,D Bond,Brentford,2,5.5,12.5,1.5,3.5,0.0
+2024-25,D Bond,Brighton & Hove Albion,2,10.5,11.0,1.0,3.5,0.0
+2024-25,D Bond,Crystal Palace,1,16.0,12.0,4.0,4.0,0.0
+2024-25,D Bond,Everton,2,9.5,10.5,0.5,1.0,0.0
+2024-25,D Bond,Fulham,3,12.666666666666666,10.333333333333334,1.3333333333333333,2.3333333333333335,0.3333333333333333
+2024-25,D Bond,Ipswich,1,14.0,10.0,5.0,1.0,0.0
+2024-25,D Bond,Leicester,5,10.8,12.2,2.6,1.6,0.0
+2024-25,D Bond,Liverpool,1,17.0,5.0,3.0,2.0,0.0
+2024-25,D Bond,Manchester City,1,9.0,3.0,3.0,1.0,0.0
+2024-25,D Bond,Southampton,3,11.0,12.666666666666666,1.6666666666666667,0.3333333333333333,0.0
+2024-25,D Bond,Tottenham,2,8.0,15.0,2.0,2.5,0.0
+2024-25,D Bond,West Ham United,1,8.0,12.0,2.0,1.0,0.0
+2024-25,D Coote,Aston Villa,2,18.0,12.0,4.0,2.0,0.0
+2024-25,D Coote,Bournemouth,1,19.0,8.0,2.0,2.0,0.0
+2024-25,D Coote,Brighton & Hove Albion,1,14.0,10.0,2.0,2.0,0.0
+2024-25,D Coote,Crystal Palace,1,7.0,12.0,3.0,1.0,0.0
+2024-25,D Coote,Leicester,1,13.0,21.0,4.0,5.0,0.0
+2024-25,D Coote,Liverpool,1,11.0,15.0,0.0,3.0,0.0
+2024-25,D Coote,Manchester United,2,9.5,6.5,1.0,4.0,0.0
+2024-25,D Coote,Newcastle United,1,8.0,19.0,2.0,2.0,0.0
+2024-25,D Coote,Tottenham,1,10.0,14.0,2.0,2.0,0.0
+2024-25,D Coote,West Ham United,1,6.0,7.0,5.0,1.0,0.0
+2024-25,D England,Arsenal,2,10.0,14.5,1.0,2.0,0.0
+2024-25,D England,Aston Villa,1,11.0,8.0,3.0,3.0,1.0
+2024-25,D England,Bournemouth,1,15.0,9.0,2.0,3.0,0.0
+2024-25,D England,Brentford,2,12.5,10.0,3.0,2.0,0.0
+2024-25,D England,Brighton & Hove Albion,1,7.0,9.0,1.0,1.0,0.0
+2024-25,D England,Chelsea,1,13.0,13.0,3.0,2.0,0.0
+2024-25,D England,Crystal Palace,3,12.333333333333334,9.0,2.0,2.0,0.0
+2024-25,D England,Everton,3,14.333333333333334,12.666666666666666,2.3333333333333335,1.0,0.0
+2024-25,D England,Fulham,1,8.0,11.0,3.0,3.0,1.0
+2024-25,D England,Ipswich,3,15.666666666666666,8.666666666666666,3.3333333333333335,2.0,0.0
+2024-25,D England,Leicester,2,9.5,11.5,2.5,1.5,0.0
+2024-25,D England,Liverpool,2,8.0,12.5,2.0,1.0,0.5
+2024-25,D England,Manchester City,1,11.0,8.0,1.0,4.0,0.0
+2024-25,D England,Manchester United,2,9.5,14.5,2.0,3.0,0.5
+2024-25,D England,Newcastle United,3,10.0,13.333333333333334,1.6666666666666667,2.6666666666666665,0.0
+2024-25,D England,Nottingham Forest,2,11.5,11.0,2.5,2.5,0.0
+2024-25,D England,Southampton,1,8.0,15.0,1.0,3.0,0.0
+2024-25,D England,Tottenham,3,13.0,13.666666666666666,1.6666666666666667,2.6666666666666665,0.0
+2024-25,D England,West Ham United,2,9.5,10.0,1.0,1.0,0.0
+2024-25,D England,Wolverhampton Wanderers,2,13.0,11.5,2.0,1.5,0.0
+2024-25,D Webb,Crystal Palace,1,14.0,8.0,1.0,2.0,0.0
+2024-25,D Webb,Leicester,1,12.0,13.0,1.0,3.0,0.0
+2024-25,D Webb,Southampton,1,13.0,12.0,3.0,1.0,0.0
+2024-25,D Webb,Wolverhampton Wanderers,1,8.0,14.0,2.0,1.0,0.0
+2024-25,J Brooks,Arsenal,2,10.0,13.0,2.5,3.0,0.0
+2024-25,J Brooks,Bournemouth,2,15.5,14.5,2.5,2.5,0.0
+2024-25,J Brooks,Brentford,1,9.0,11.0,1.0,3.0,0.0
+2024-25,J Brooks,Brighton & Hove Albion,1,9.0,8.0,1.0,0.0,0.0
+2024-25,J Brooks,Chelsea,4,9.75,9.0,2.75,3.75,0.25
+2024-25,J Brooks,Crystal Palace,1,13.0,12.0,1.0,3.0,0.0
+2024-25,J Brooks,Everton,3,11.333333333333334,11.666666666666666,2.0,1.3333333333333333,0.0
+2024-25,J Brooks,Fulham,2,9.0,5.0,1.0,1.0,0.0
+2024-25,J Brooks,Ipswich,1,9.0,5.0,4.0,4.0,0.0
+2024-25,J Brooks,Liverpool,2,10.0,11.0,2.0,2.0,0.0
+2024-25,J Brooks,Manchester City,3,11.333333333333334,10.0,3.0,2.3333333333333335,0.0
+2024-25,J Brooks,Manchester United,4,11.0,11.0,2.25,2.25,0.0
+2024-25,J Brooks,Newcastle United,2,12.5,15.5,4.0,3.0,0.0
+2024-25,J Brooks,Southampton,1,10.0,7.0,3.0,1.0,0.0
+2024-25,J Brooks,Tottenham,3,11.666666666666666,14.666666666666666,2.6666666666666665,2.6666666666666665,0.0
+2024-25,J Brooks,West Ham United,1,12.0,17.0,5.0,4.0,0.0
+2024-25,J Brooks,Wolverhampton Wanderers,1,17.0,12.0,4.0,5.0,0.0
+2024-25,J Gillett,Arsenal,3,11.333333333333334,14.333333333333334,1.6666666666666667,3.0,0.0
+2024-25,J Gillett,Aston Villa,3,8.0,11.0,1.0,2.0,0.0
+2024-25,J Gillett,Bournemouth,2,15.5,10.0,2.5,0.5,0.0
+2024-25,J Gillett,Brentford,3,8.666666666666666,8.0,2.0,2.3333333333333335,0.0
+2024-25,J Gillett,Chelsea,1,9.0,13.0,4.0,2.0,0.0
+2024-25,J Gillett,Crystal Palace,2,14.5,9.5,2.5,3.0,0.0
+2024-25,J Gillett,Fulham,1,8.0,12.0,4.0,4.0,0.0
+2024-25,J Gillett,Leicester,1,11.0,10.0,1.0,0.0,0.0
+2024-25,J Gillett,Manchester City,3,11.666666666666666,14.0,2.0,3.3333333333333335,0.0
+2024-25,J Gillett,Manchester United,2,7.5,9.0,1.5,1.0,0.0
+2024-25,J Gillett,Newcastle United,3,12.333333333333334,10.666666666666666,2.6666666666666665,3.0,0.0
+2024-25,J Gillett,Nottingham Forest,2,9.0,11.5,2.5,2.0,0.0
+2024-25,J Gillett,Southampton,1,13.0,15.0,1.0,3.0,0.0
+2024-25,J Gillett,Tottenham,3,12.0,9.666666666666666,3.0,1.0,0.0
+2024-25,J Gillett,West Ham United,1,13.0,3.0,1.0,0.0,0.0
+2024-25,J Gillett,Wolverhampton Wanderers,1,14.0,17.0,2.0,2.0,0.0
+2024-25,J Smith,Brentford,1,10.0,7.0,2.0,1.0,0.0
+2024-25,J Smith,Fulham,1,15.0,11.0,4.0,2.0,0.0
+2024-25,J Smith,Leicester,1,9.0,7.0,2.0,2.0,0.0
+2024-25,J Smith,Nottingham Forest,1,11.0,15.0,2.0,4.0,0.0
+2024-25,J Smith,Southampton,1,7.0,10.0,1.0,2.0,0.0
+2024-25,J Smith,West Ham United,1,7.0,9.0,2.0,2.0,0.0
+2024-25,K Kavanagh,Brighton & Hove Albion,1,12.0,15.0,1.0,2.0,0.0
+2024-25,K Kavanagh,Chelsea,1,15.0,12.0,2.0,1.0,0.0
+2024-25,L Smith,Aston Villa,1,11.0,15.0,2.0,2.0,0.0
+2024-25,L Smith,Bournemouth,1,19.0,16.0,0.0,2.0,0.0
+2024-25,L Smith,Brentford,2,11.0,10.5,1.0,1.5,0.0
+2024-25,L Smith,Everton,1,12.0,15.0,4.0,4.0,0.0
+2024-25,L Smith,Fulham,1,15.0,15.0,3.0,2.0,0.0
+2024-25,L Smith,Ipswich,3,13.333333333333334,11.333333333333334,2.3333333333333335,2.3333333333333335,0.3333333333333333
+2024-25,L Smith,Leicester,1,16.0,19.0,2.0,0.0,0.0
+2024-25,L Smith,Liverpool,1,10.0,9.0,2.0,1.0,0.0
+2024-25,L Smith,Southampton,2,12.0,9.0,1.0,2.0,0.0
+2024-25,L Smith,West Ham United,1,8.0,15.0,2.0,1.0,0.0
+2024-25,M Oliver,Arsenal,4,11.75,11.75,2.5,2.0,0.5
+2024-25,M Oliver,Aston Villa,2,11.5,15.5,1.0,3.0,0.0
+2024-25,M Oliver,Bournemouth,4,13.0,11.75,2.0,2.25,0.0
+2024-25,M Oliver,Brentford,3,10.0,12.0,1.6666666666666667,2.6666666666666665,0.0
+2024-25,M Oliver,Brighton & Hove Albion,4,11.75,11.75,1.75,2.25,0.0
+2024-25,M Oliver,Chelsea,3,13.333333333333334,13.0,3.3333333333333335,1.3333333333333333,0.0
+2024-25,M Oliver,Crystal Palace,1,15.0,11.0,4.0,1.0,0.0
+2024-25,M Oliver,Everton,3,8.333333333333334,14.0,1.3333333333333333,1.3333333333333333,0.3333333333333333
+2024-25,M Oliver,Ipswich,2,11.5,12.0,0.5,2.0,0.0
+2024-25,M Oliver,Leicester,2,10.5,7.5,1.5,1.0,0.0
+2024-25,M Oliver,Liverpool,3,15.0,9.333333333333334,2.6666666666666665,3.3333333333333335,0.3333333333333333
+2024-25,M Oliver,Manchester City,5,5.8,11.4,1.8,3.0,0.0
+2024-25,M Oliver,Manchester United,1,13.0,10.0,4.0,2.0,0.0
+2024-25,M Oliver,Nottingham Forest,4,13.0,9.75,3.25,3.0,0.0
+2024-25,M Oliver,Southampton,3,12.0,12.0,3.0,1.0,0.0
+2024-25,M Oliver,Tottenham,1,15.0,18.0,2.0,2.0,0.0
+2024-25,M Oliver,West Ham United,2,14.0,9.0,2.5,2.0,0.0
+2024-25,M Oliver,Wolverhampton Wanderers,3,12.666666666666666,11.333333333333334,1.3333333333333333,1.6666666666666667,0.3333333333333333
+2024-25,M Salisbury,Arsenal,1,4.0,6.0,1.0,1.0,0.0
+2024-25,M Salisbury,Bournemouth,2,15.0,9.0,2.0,2.5,0.5
+2024-25,M Salisbury,Crystal Palace,3,11.333333333333334,11.333333333333334,1.3333333333333333,1.6666666666666667,0.3333333333333333
+2024-25,M Salisbury,Everton,2,9.5,11.5,1.0,0.5,0.0
+2024-25,M Salisbury,Fulham,3,11.333333333333334,9.0,1.0,1.3333333333333333,0.0
+2024-25,M Salisbury,Ipswich,5,9.6,9.8,2.0,1.0,0.2
+2024-25,M Salisbury,Leicester,1,8.0,8.0,3.0,1.0,0.0
+2024-25,M Salisbury,Liverpool,1,10.0,11.0,0.0,2.0,0.0
+2024-25,M Salisbury,Manchester City,2,6.0,14.0,2.0,2.0,0.0
+2024-25,M Salisbury,Newcastle United,2,12.0,8.0,1.0,1.0,0.0
+2024-25,M Salisbury,Nottingham Forest,1,13.0,4.0,1.0,1.0,0.0
+2024-25,M Salisbury,Southampton,2,19.5,17.0,2.0,1.5,0.0
+2024-25,M Salisbury,Tottenham,1,16.0,20.0,1.0,1.0,0.0
+2024-25,M Salisbury,West Ham United,2,10.0,11.5,0.5,1.5,0.0
+2024-25,M Salisbury,Wolverhampton Wanderers,2,8.5,13.5,1.5,2.5,0.0
+2024-25,O Oliver,Bournemouth,1,11.0,10.0,3.0,2.0,0.0
+2024-25,O Oliver,Fulham,1,10.0,11.0,2.0,3.0,0.0
+2024-25,P Bankes,Arsenal,2,7.0,6.5,2.0,0.5,0.0
+2024-25,P Bankes,Aston Villa,3,10.666666666666666,11.666666666666666,2.0,2.6666666666666665,0.0
+2024-25,P Bankes,Bournemouth,2,11.0,12.5,2.5,3.0,0.5
+2024-25,P Bankes,Brentford,3,8.333333333333334,10.333333333333334,1.3333333333333333,1.0,0.0
+2024-25,P Bankes,Brighton & Hove Albion,4,9.25,10.5,2.25,2.5,0.0
+2024-25,P Bankes,Chelsea,2,11.0,7.5,1.5,2.0,0.5
+2024-25,P Bankes,Fulham,4,12.0,7.0,3.0,1.25,0.0
+2024-25,P Bankes,Ipswich,1,12.0,16.0,2.0,2.0,0.0
+2024-25,P Bankes,Leicester,1,5.0,9.0,1.0,0.0,0.0
+2024-25,P Bankes,Manchester City,4,6.25,10.25,1.25,1.5,0.0
+2024-25,P Bankes,Manchester United,4,10.75,10.25,1.75,2.25,0.0
+2024-25,P Bankes,Newcastle United,3,10.333333333333334,12.333333333333334,1.0,3.0,0.0
+2024-25,P Bankes,Nottingham Forest,3,9.0,10.0,2.3333333333333335,1.3333333333333333,0.0
+2024-25,P Bankes,Tottenham,3,12.0,8.666666666666666,1.3333333333333333,2.3333333333333335,0.0
+2024-25,P Bankes,West Ham United,2,12.5,10.0,2.5,1.5,0.5
+2024-25,P Bankes,Wolverhampton Wanderers,5,11.6,10.6,1.6,1.6,0.0
+2024-25,R Jones,Arsenal,1,11.0,12.0,1.0,1.0,1.0
+2024-25,R Jones,Aston Villa,3,8.333333333333334,13.0,0.3333333333333333,4.333333333333333,0.0
+2024-25,R Jones,Bournemouth,4,14.5,12.0,2.0,1.5,0.0
+2024-25,R Jones,Brighton & Hove Albion,4,15.0,13.5,2.0,3.25,0.0
+2024-25,R Jones,Chelsea,2,14.5,17.5,2.0,4.5,0.0
+2024-25,R Jones,Crystal Palace,3,6.666666666666667,12.333333333333334,1.6666666666666667,0.6666666666666666,0.0
+2024-25,R Jones,Fulham,5,11.6,11.0,2.6,1.6,0.0
+2024-25,R Jones,Ipswich,2,13.0,10.5,2.5,0.5,0.5
+2024-25,R Jones,Leicester,2,12.0,7.5,3.5,0.5,0.0
+2024-25,R Jones,Manchester City,1,10.0,4.0,0.0,1.0,1.0
+2024-25,R Jones,Manchester United,4,13.25,13.5,3.75,2.25,0.0
+2024-25,R Jones,Newcastle United,2,12.5,10.5,2.0,3.0,0.0
+2024-25,R Jones,Nottingham Forest,1,11.0,12.0,4.0,3.0,1.0
+2024-25,R Jones,Southampton,2,14.0,16.5,2.0,1.0,0.0
+2024-25,R Jones,Tottenham,3,10.666666666666666,13.333333333333334,2.6666666666666665,3.3333333333333335,0.0
+2024-25,R Jones,West Ham United,2,15.5,14.5,1.5,1.5,0.0
+2024-25,R Jones,Wolverhampton Wanderers,3,15.0,12.333333333333334,1.0,1.6666666666666667,0.0
+2024-25,S Allison,Ipswich,1,16.0,16.0,4.0,4.0,0.0
+2024-25,S Allison,Southampton,1,16.0,16.0,4.0,4.0,0.0
+2024-25,S Attwell,Aston Villa,4,10.75,16.5,2.25,2.75,0.25
+2024-25,S Attwell,Bournemouth,4,12.75,8.75,3.25,2.0,0.0
+2024-25,S Attwell,Brentford,3,7.0,7.666666666666667,1.3333333333333333,2.0,0.0
+2024-25,S Attwell,Brighton & Hove Albion,3,12.0,11.0,1.6666666666666667,2.0,0.3333333333333333
+2024-25,S Attwell,Chelsea,3,14.333333333333334,7.666666666666667,2.3333333333333335,1.6666666666666667,0.0
+2024-25,S Attwell,Everton,3,10.333333333333334,7.333333333333333,2.0,1.3333333333333333,0.0
+2024-25,S Attwell,Fulham,1,3.0,10.0,2.0,1.0,0.0
+2024-25,S Attwell,Ipswich,3,8.666666666666666,10.666666666666666,2.6666666666666665,1.0,0.0
+2024-25,S Attwell,Leicester,3,8.666666666666666,9.666666666666666,0.6666666666666666,1.3333333333333333,0.0
+2024-25,S Attwell,Liverpool,2,8.5,9.0,2.0,2.0,0.0
+2024-25,S Attwell,Manchester United,1,14.0,11.0,4.0,1.0,0.0
+2024-25,S Attwell,Newcastle United,2,7.0,13.5,0.5,4.0,0.0
+2024-25,S Attwell,Southampton,2,10.5,9.0,1.5,2.0,0.5
+2024-25,S Attwell,West Ham United,3,10.666666666666666,8.666666666666666,0.6666666666666666,1.6666666666666667,0.0
+2024-25,S Attwell,Wolverhampton Wanderers,1,11.0,16.0,2.0,2.0,0.0
+2024-25,S Barrott,Arsenal,3,11.0,7.666666666666667,1.3333333333333333,3.0,0.0
+2024-25,S Barrott,Aston Villa,3,8.666666666666666,16.0,1.0,1.6666666666666667,0.0
+2024-25,S Barrott,Bournemouth,1,10.0,13.0,4.0,3.0,0.0
+2024-25,S Barrott,Brentford,3,7.666666666666667,11.666666666666666,2.3333333333333335,3.0,0.0
+2024-25,S Barrott,Brighton & Hove Albion,3,10.666666666666666,12.666666666666666,2.3333333333333335,2.6666666666666665,0.0
+2024-25,S Barrott,Chelsea,2,11.0,15.0,1.5,4.0,0.0
+2024-25,S Barrott,Crystal Palace,3,15.666666666666666,8.666666666666666,3.6666666666666665,2.0,0.3333333333333333
+2024-25,S Barrott,Everton,2,14.0,8.5,2.0,1.5,0.0
+2024-25,S Barrott,Fulham,2,12.5,9.5,2.5,0.5,0.0
+2024-25,S Barrott,Ipswich,3,8.666666666666666,11.0,1.6666666666666667,3.0,0.0
+2024-25,S Barrott,Leicester,3,10.666666666666666,9.333333333333334,3.3333333333333335,1.3333333333333333,0.0
+2024-25,S Barrott,Liverpool,3,8.333333333333334,9.666666666666666,2.6666666666666665,2.0,0.0
+2024-25,S Barrott,Manchester City,2,8.5,8.0,2.0,1.5,0.0
+2024-25,S Barrott,Manchester United,2,11.0,8.5,2.5,1.5,0.0
+2024-25,S Barrott,Newcastle United,1,5.0,10.0,0.0,1.0,0.0
+2024-25,S Barrott,Nottingham Forest,3,11.0,11.333333333333334,2.0,3.3333333333333335,0.0
+2024-25,S Barrott,Southampton,3,11.666666666666666,9.333333333333334,2.3333333333333335,2.3333333333333335,0.0
+2024-25,S Barrott,Tottenham,1,7.0,9.0,1.0,2.0,0.0
+2024-25,S Barrott,West Ham United,2,15.5,8.0,5.5,2.5,0.0
+2024-25,S Barrott,Wolverhampton Wanderers,1,7.0,17.0,1.0,4.0,0.0
+2024-25,S Hooper,Arsenal,5,10.0,7.4,2.4,2.2,0.0
+2024-25,S Hooper,Aston Villa,1,7.0,15.0,2.0,2.0,0.0
+2024-25,S Hooper,Bournemouth,1,15.0,8.0,2.0,2.0,0.0
+2024-25,S Hooper,Brentford,3,4.666666666666667,8.0,2.3333333333333335,1.6666666666666667,0.0
+2024-25,S Hooper,Brighton & Hove Albion,3,10.333333333333334,8.666666666666666,3.0,1.3333333333333333,0.0
+2024-25,S Hooper,Chelsea,3,10.333333333333334,13.666666666666666,4.0,2.3333333333333335,0.0
+2024-25,S Hooper,Crystal Palace,3,8.0,10.0,3.3333333333333335,2.3333333333333335,0.0
+2024-25,S Hooper,Everton,4,7.75,5.5,2.5,1.0,0.25
+2024-25,S Hooper,Ipswich,2,8.0,10.5,2.5,2.0,0.0
+2024-25,S Hooper,Liverpool,3,13.666666666666666,10.0,2.0,2.6666666666666665,0.0
+2024-25,S Hooper,Manchester City,3,7.0,9.0,1.0,4.333333333333333,0.0
+2024-25,S Hooper,Manchester United,1,13.0,8.0,1.0,1.0,0.0
+2024-25,S Hooper,Newcastle United,3,11.0,11.666666666666666,2.3333333333333335,3.3333333333333335,0.0
+2024-25,S Hooper,Nottingham Forest,4,9.75,12.0,2.0,3.0,0.0
+2024-25,S Hooper,Tottenham,2,8.5,15.5,1.5,2.5,0.0
+2024-25,S Hooper,West Ham United,1,11.0,2.0,3.0,2.0,0.0
+2024-25,S Hooper,Wolverhampton Wanderers,4,14.5,11.75,2.0,2.75,0.25
+2024-25,T Bramall,Aston Villa,2,7.0,10.5,1.5,2.5,0.5
+2024-25,T Bramall,Bournemouth,2,13.0,9.5,2.5,1.5,0.5
+2024-25,T Bramall,Chelsea,1,6.0,9.0,1.0,2.0,0.0
+2024-25,T Bramall,Crystal Palace,2,11.0,13.0,1.0,1.5,0.0
+2024-25,T Bramall,Fulham,1,13.0,8.0,0.0,0.0,0.0
+2024-25,T Bramall,Leicester,2,11.0,6.5,2.5,1.5,0.0
+2024-25,T Bramall,Liverpool,1,16.0,9.0,2.0,1.0,0.0
+2024-25,T Bramall,Manchester City,1,7.0,13.0,1.0,3.0,1.0
+2024-25,T Bramall,Manchester United,2,8.0,8.0,1.0,2.0,0.0
+2024-25,T Bramall,Newcastle United,1,7.0,16.0,3.0,3.0,0.0
+2024-25,T Bramall,Nottingham Forest,1,8.0,13.0,0.0,0.0,0.0
+2024-25,T Bramall,Southampton,3,10.666666666666666,8.0,3.0,1.0,0.0
+2024-25,T Bramall,Tottenham,1,9.0,16.0,1.0,2.0,0.0
+2024-25,T Bramall,West Ham United,1,13.0,10.0,1.0,0.0,1.0
+2024-25,T Bramall,Wolverhampton Wanderers,1,14.0,12.0,1.0,4.0,0.0
+2024-25,T Harrington,Arsenal,1,10.0,9.0,0.0,3.0,0.0
+2024-25,T Harrington,Aston Villa,1,11.0,18.0,2.0,1.0,0.0
+2024-25,T Harrington,Bournemouth,1,12.0,10.0,4.0,1.0,0.0
+2024-25,T Harrington,Brentford,2,10.5,9.0,1.0,3.0,0.0
+2024-25,T Harrington,Brighton & Hove Albion,2,16.0,11.5,1.5,1.5,0.0
+2024-25,T Harrington,Chelsea,1,14.0,7.0,0.0,1.0,0.0
+2024-25,T Harrington,Crystal Palace,2,9.5,13.0,1.0,2.5,0.0
+2024-25,T Harrington,Everton,2,11.0,11.0,4.0,1.0,0.0
+2024-25,T Harrington,Fulham,2,9.5,10.0,2.5,2.0,0.0
+2024-25,T Harrington,Ipswich,2,14.5,9.5,2.5,1.5,0.0
+2024-25,T Harrington,Leicester,3,12.0,10.666666666666666,3.3333333333333335,1.0,0.0
+2024-25,T Harrington,Liverpool,3,10.0,12.333333333333334,1.6666666666666667,3.0,0.3333333333333333
+2024-25,T Harrington,Manchester City,1,9.0,9.0,1.0,3.0,0.0
+2024-25,T Harrington,Manchester United,1,12.0,12.0,2.0,2.0,1.0
+2024-25,T Harrington,Newcastle United,1,12.0,9.0,1.0,4.0,0.0
+2024-25,T Harrington,Nottingham Forest,3,8.666666666666666,13.333333333333334,1.6666666666666667,3.3333333333333335,0.0
+2024-25,T Harrington,Southampton,4,8.75,11.25,2.0,0.5,0.25
+2024-25,T Harrington,West Ham United,2,15.0,13.5,1.5,3.0,0.0
+2024-25,T Harrington,Wolverhampton Wanderers,2,14.0,12.0,3.0,2.0,0.0
+2024-25,T Robinson,Aston Villa,2,10.5,13.5,3.0,4.0,0.0
+2024-25,T Robinson,Bournemouth,1,13.0,13.0,2.0,2.0,0.0
+2024-25,T Robinson,Brentford,2,8.5,9.0,3.0,1.5,0.0
+2024-25,T Robinson,Brighton & Hove Albion,2,9.5,9.0,3.0,3.5,0.5
+2024-25,T Robinson,Chelsea,2,12.0,11.0,1.5,0.0,0.0
+2024-25,T Robinson,Crystal Palace,3,10.666666666666666,10.333333333333334,1.6666666666666667,2.3333333333333335,0.0
+2024-25,T Robinson,Everton,1,11.0,8.0,4.0,3.0,0.0
+2024-25,T Robinson,Fulham,2,11.5,16.5,1.5,3.0,0.0
+2024-25,T Robinson,Ipswich,4,11.25,12.75,2.5,1.25,0.25
+2024-25,T Robinson,Leicester,2,11.5,11.5,1.0,2.5,0.0
+2024-25,T Robinson,Liverpool,1,18.0,9.0,1.0,3.0,0.0
+2024-25,T Robinson,Manchester City,1,8.0,9.0,0.0,2.0,0.0
+2024-25,T Robinson,Newcastle United,1,7.0,10.0,0.0,3.0,0.0
+2024-25,T Robinson,Nottingham Forest,1,9.0,12.0,2.0,3.0,0.0
+2024-25,T Robinson,Southampton,2,12.0,8.0,2.5,0.5,0.0
+2024-25,T Robinson,Tottenham,1,14.0,15.0,1.0,2.0,0.0
+2024-25,T Robinson,West Ham United,3,13.333333333333334,12.666666666666666,2.0,1.6666666666666667,0.0
+2024-25,T Robinson,Wolverhampton Wanderers,1,16.0,11.0,6.0,3.0,0.0
+2025-26,A Kitchen,Aston Villa,1,9.0,15.0,3.0,1.0,0.0
+2025-26,A Kitchen,Burnley,2,12.5,10.0,1.5,2.5,0.0
+2025-26,A Kitchen,Chelsea,1,12.0,14.0,1.0,2.0,0.0
+2025-26,A Kitchen,Manchester United,1,13.0,9.0,2.0,2.0,0.0
+2025-26,A Kitchen,West Ham United,1,9.0,13.0,2.0,2.0,0.0
+2025-26,A Kitchen,Wolverhampton Wanderers,2,12.5,11.0,2.0,1.5,0.0
+2025-26,A Madley,Arsenal,1,11.0,12.0,0.0,0.0,0.0
+2025-26,A Madley,Aston Villa,4,6.5,9.75,0.75,2.25,0.0
+2025-26,A Madley,Bournemouth,2,18.0,13.0,2.5,2.5,0.5
+2025-26,A Madley,Brentford,3,12.0,11.333333333333334,1.3333333333333333,1.6666666666666667,0.0
+2025-26,A Madley,Brighton & Hove Albion,2,11.0,11.0,2.5,1.5,0.0
+2025-26,A Madley,Burnley,2,10.0,10.0,1.0,0.5,0.0
+2025-26,A Madley,Chelsea,2,14.5,13.0,3.5,2.0,0.0
+2025-26,A Madley,Crystal Palace,4,12.25,9.75,1.75,1.75,0.0
+2025-26,A Madley,Everton,3,12.333333333333334,13.333333333333334,1.0,1.6666666666666667,0.3333333333333333
+2025-26,A Madley,Fulham,3,13.0,14.0,3.3333333333333335,1.6666666666666667,0.3333333333333333
+2025-26,A Madley,Liverpool,3,9.666666666666666,9.333333333333334,1.3333333333333333,1.6666666666666667,0.0
+2025-26,A Madley,Manchester City,3,9.666666666666666,8.0,0.6666666666666666,0.0,0.0
+2025-26,A Madley,Newcastle United,3,13.0,16.333333333333332,2.6666666666666665,2.6666666666666665,0.0
+2025-26,A Madley,Nottingham Forest,2,10.5,11.5,0.5,2.5,0.0
+2025-26,A Madley,Sunderland,2,11.5,12.0,0.5,1.0,0.5
+2025-26,A Madley,Tottenham,2,12.0,11.0,2.5,1.5,0.0
+2025-26,A Madley,West Ham United,1,10.0,10.0,1.0,1.0,0.0
+2025-26,A Taylor,Arsenal,4,9.75,9.25,2.5,1.25,0.0
+2025-26,A Taylor,Aston Villa,4,9.25,12.5,1.5,1.5,0.0
+2025-26,A Taylor,Bournemouth,4,10.25,8.25,2.25,1.5,0.0
+2025-26,A Taylor,Brentford,2,10.0,10.0,2.0,1.5,0.0
+2025-26,A Taylor,Brighton & Hove Albion,1,13.0,4.0,2.0,2.0,0.0
+2025-26,A Taylor,Burnley,1,18.0,8.0,1.0,1.0,0.0
+2025-26,A Taylor,Chelsea,4,11.0,11.0,1.75,2.75,0.25
+2025-26,A Taylor,Crystal Palace,2,10.0,12.0,3.0,2.5,0.0
+2025-26,A Taylor,Everton,1,9.0,8.0,0.0,2.0,0.0
+2025-26,A Taylor,Fulham,3,6.666666666666667,7.666666666666667,1.6666666666666667,1.3333333333333333,0.0
+2025-26,A Taylor,Leeds,3,12.333333333333334,12.0,2.3333333333333335,1.3333333333333333,0.0
+2025-26,A Taylor,Liverpool,6,9.5,10.0,1.3333333333333333,1.5,0.0
+2025-26,A Taylor,Manchester City,5,7.2,12.0,1.8,2.0,0.0
+2025-26,A Taylor,Manchester United,5,8.8,7.8,1.8,1.6,0.0
+2025-26,A Taylor,Newcastle United,3,8.0,14.333333333333334,1.3333333333333333,3.6666666666666665,0.0
+2025-26,A Taylor,Nottingham Forest,4,10.75,9.25,2.5,2.75,0.0
+2025-26,A Taylor,Sunderland,2,15.0,10.0,4.5,1.5,0.0
+2025-26,A Taylor,Tottenham,2,14.5,9.5,3.5,2.5,0.0
+2025-26,A Taylor,West Ham United,3,14.0,12.666666666666666,1.0,2.6666666666666665,0.3333333333333333
+2025-26,A Taylor,Wolverhampton Wanderers,3,10.666666666666666,10.666666666666666,2.0,2.6666666666666665,0.0
+2025-26,C Kavanagh,Arsenal,5,11.0,11.6,1.8,2.8,0.0
+2025-26,C Kavanagh,Aston Villa,2,12.5,15.0,1.5,2.5,0.0
+2025-26,C Kavanagh,Bournemouth,2,12.0,9.5,2.0,1.0,0.0
+2025-26,C Kavanagh,Brentford,2,9.0,8.0,3.0,3.0,0.0
+2025-26,C Kavanagh,Brighton & Hove Albion,5,11.8,11.6,2.6,2.0,0.0
+2025-26,C Kavanagh,Burnley,3,10.0,10.0,1.6666666666666667,1.3333333333333333,0.3333333333333333
+2025-26,C Kavanagh,Chelsea,3,14.666666666666666,14.0,2.3333333333333335,2.0,0.3333333333333333
+2025-26,C Kavanagh,Crystal Palace,2,11.0,10.5,1.5,2.5,0.5
+2025-26,C Kavanagh,Everton,4,11.75,11.5,2.5,1.0,0.0
+2025-26,C Kavanagh,Fulham,4,9.25,8.25,2.75,1.25,0.0
+2025-26,C Kavanagh,Leeds,3,6.666666666666667,9.666666666666666,1.0,2.3333333333333335,0.0
+2025-26,C Kavanagh,Liverpool,8,9.875,10.375,1.25,1.625,0.0
+2025-26,C Kavanagh,Manchester City,2,14.0,12.5,1.5,3.5,0.0
+2025-26,C Kavanagh,Manchester United,3,9.666666666666666,11.0,1.6666666666666667,2.3333333333333335,0.0
+2025-26,C Kavanagh,Newcastle United,2,10.0,14.5,2.0,3.5,0.0
+2025-26,C Kavanagh,Nottingham Forest,2,14.0,16.5,2.5,3.0,0.0
+2025-26,C Kavanagh,Sunderland,2,11.5,14.0,2.0,1.0,0.0
+2025-26,C Kavanagh,Tottenham,2,13.0,9.0,1.0,0.5,0.0
+2025-26,C Kavanagh,West Ham United,2,11.0,10.0,2.0,3.5,0.0
+2025-26,C Kavanagh,Wolverhampton Wanderers,2,19.0,11.5,4.0,0.5,0.0
+2025-26,C Pawson,Arsenal,2,12.0,11.0,1.5,1.0,0.0
+2025-26,C Pawson,Aston Villa,2,16.0,12.0,2.0,2.0,0.5
+2025-26,C Pawson,Bournemouth,2,8.0,10.5,1.5,1.0,0.0
+2025-26,C Pawson,Brentford,3,10.666666666666666,10.333333333333334,1.3333333333333333,2.3333333333333335,0.0
+2025-26,C Pawson,Brighton & Hove Albion,3,13.0,7.666666666666667,1.0,1.0,0.0
+2025-26,C Pawson,Burnley,1,8.0,8.0,0.0,2.0,0.0
+2025-26,C Pawson,Chelsea,2,11.5,16.0,2.5,1.5,0.0
+2025-26,C Pawson,Everton,3,7.0,7.333333333333333,1.3333333333333333,0.0,0.0
+2025-26,C Pawson,Fulham,4,13.25,8.0,0.75,1.25,0.0
+2025-26,C Pawson,Leeds,1,15.0,20.0,2.0,1.0,0.0
+2025-26,C Pawson,Liverpool,4,10.5,14.75,1.5,2.75,0.25
+2025-26,C Pawson,Manchester City,2,11.5,11.0,2.5,1.0,0.0
+2025-26,C Pawson,Manchester United,2,9.5,12.5,1.0,2.0,0.0
+2025-26,C Pawson,Newcastle United,3,8.666666666666666,8.666666666666666,0.6666666666666666,0.3333333333333333,0.0
+2025-26,C Pawson,Nottingham Forest,2,12.5,6.5,0.5,0.5,0.0
+2025-26,C Pawson,Sunderland,2,9.5,13.0,1.5,1.0,0.0
+2025-26,C Pawson,Tottenham,1,8.0,9.0,0.0,2.0,0.0
+2025-26,C Pawson,West Ham United,2,9.0,11.0,1.5,0.5,0.0
+2025-26,C Pawson,Wolverhampton Wanderers,1,13.0,19.0,3.0,3.0,0.0
+2025-26,D England,Arsenal,3,12.333333333333334,11.333333333333334,1.3333333333333333,2.3333333333333335,0.0
+2025-26,D England,Aston Villa,1,9.0,18.0,3.0,2.0,0.0
+2025-26,D England,Bournemouth,1,19.0,10.0,3.0,3.0,0.0
+2025-26,D England,Brentford,2,9.5,7.5,3.0,2.0,0.0
+2025-26,D England,Brighton & Hove Albion,3,12.666666666666666,13.333333333333334,3.0,3.0,0.0
+2025-26,D England,Burnley,1,11.0,10.0,3.0,1.0,0.0
+2025-26,D England,Chelsea,4,11.75,11.0,2.0,1.75,0.25
+2025-26,D England,Crystal Palace,4,11.25,9.5,2.25,1.25,0.25
+2025-26,D England,Everton,2,11.0,9.0,2.5,2.5,0.0
+2025-26,D England,Fulham,1,5.0,13.0,3.0,3.0,0.0
+2025-26,D England,Leeds,1,10.0,13.0,1.0,1.0,0.0
+2025-26,D England,Liverpool,5,11.2,10.8,2.2,2.8,0.0
+2025-26,D England,Manchester City,4,9.0,10.25,1.0,2.75,0.0
+2025-26,D England,Manchester United,3,8.666666666666666,11.0,2.0,1.6666666666666667,0.0
+2025-26,D England,Nottingham Forest,4,10.5,9.5,2.75,1.0,0.0
+2025-26,D England,Sunderland,3,13.666666666666666,10.333333333333334,2.3333333333333335,3.3333333333333335,0.0
+2025-26,D England,Tottenham,1,10.0,19.0,3.0,3.0,0.0
+2025-26,D England,West Ham United,3,11.333333333333334,12.666666666666666,1.0,1.6666666666666667,0.3333333333333333
+2025-26,F Hallam,Arsenal,1,12.0,9.0,1.0,0.0,0.0
+2025-26,F Hallam,Brentford,1,6.0,7.0,0.0,2.0,0.0
+2025-26,F Hallam,Burnley,1,8.0,11.0,1.0,2.0,0.0
+2025-26,F Hallam,Crystal Palace,2,10.0,10.0,1.0,1.0,0.0
+2025-26,F Hallam,Everton,1,7.0,6.0,2.0,0.0,0.0
+2025-26,F Hallam,Leeds,1,9.0,17.0,2.0,1.0,0.0
+2025-26,F Hallam,Manchester City,1,16.0,14.0,1.0,3.0,0.0
+2025-26,F Hallam,Wolverhampton Wanderers,2,15.5,12.5,2.0,1.5,0.0
+2025-26,J Brooks,Arsenal,3,10.666666666666666,13.0,1.3333333333333333,2.6666666666666665,0.0
+2025-26,J Brooks,Aston Villa,1,8.0,20.0,2.0,2.0,0.0
+2025-26,J Brooks,Bournemouth,1,20.0,8.0,2.0,2.0,0.0
+2025-26,J Brooks,Brentford,3,10.0,9.0,1.6666666666666667,1.6666666666666667,0.0
+2025-26,J Brooks,Brighton & Hove Albion,2,11.0,9.0,2.0,2.0,0.0
+2025-26,J Brooks,Chelsea,1,7.0,10.0,3.0,2.0,0.0
+2025-26,J Brooks,Crystal Palace,1,12.0,5.0,3.0,1.0,0.0
+2025-26,J Brooks,Everton,1,14.0,9.0,3.0,0.0,0.0
+2025-26,J Brooks,Fulham,2,11.0,10.0,1.0,2.5,0.0
+2025-26,J Brooks,Leeds,1,9.0,8.0,0.0,0.0,0.0
+2025-26,J Brooks,Liverpool,1,7.0,9.0,3.0,3.0,0.0
+2025-26,J Brooks,Manchester United,1,6.0,9.0,2.0,1.0,0.0
+2025-26,J Brooks,Newcastle United,1,5.0,12.0,1.0,3.0,0.0
+2025-26,J Brooks,Sunderland,1,9.0,14.0,0.0,3.0,0.0
+2025-26,J Brooks,Tottenham,1,9.0,7.0,3.0,3.0,2.0
+2025-26,J Brooks,West Ham United,1,14.0,14.0,2.0,0.0,0.0
+2025-26,J Brooks,Wolverhampton Wanderers,2,12.5,11.0,2.5,1.0,0.5
+2025-26,J Gillett,Arsenal,3,8.0,10.333333333333334,0.3333333333333333,1.6666666666666667,0.0
+2025-26,J Gillett,Aston Villa,2,11.0,8.0,2.5,1.5,0.0
+2025-26,J Gillett,Bournemouth,2,15.5,10.0,4.0,1.5,0.0
+2025-26,J Gillett,Brentford,2,9.0,10.0,0.5,2.0,0.0
+2025-26,J Gillett,Brighton & Hove Albion,2,11.5,11.0,3.0,1.5,0.0
+2025-26,J Gillett,Chelsea,3,10.333333333333334,11.0,1.6666666666666667,2.6666666666666665,0.0
+2025-26,J Gillett,Crystal Palace,2,7.5,10.5,2.0,3.0,0.0
+2025-26,J Gillett,Fulham,1,12.0,7.0,1.0,0.0,0.0
+2025-26,J Gillett,Leeds,5,8.8,9.6,1.2,1.2,0.0
+2025-26,J Gillett,Manchester City,2,6.5,11.0,1.5,1.0,0.0
+2025-26,J Gillett,Manchester United,1,9.0,9.0,1.0,0.0,0.0
+2025-26,J Gillett,Newcastle United,3,7.666666666666667,10.666666666666666,1.3333333333333333,2.0,0.0
+2025-26,J Gillett,Nottingham Forest,1,10.0,11.0,2.0,1.0,0.0
+2025-26,J Gillett,Sunderland,2,10.5,10.5,1.5,2.5,0.0
+2025-26,J Gillett,Tottenham,5,10.0,10.2,3.0,1.8,0.0
+2025-26,J Gillett,West Ham United,4,11.75,8.5,2.0,2.25,0.25
+2025-26,J Gillett,Wolverhampton Wanderers,4,10.5,9.25,1.5,2.25,0.0
+2025-26,L Smith,Burnley,1,11.0,13.0,2.0,2.0,0.0
+2025-26,L Smith,Chelsea,1,13.0,11.0,2.0,2.0,1.0
+2025-26,M Donohue,Brentford,2,14.0,12.5,3.0,1.5,0.0
+2025-26,M Donohue,Fulham,1,14.0,12.0,2.0,4.0,0.0
+2025-26,M Donohue,Sunderland,1,13.0,13.0,1.0,2.0,0.0
+2025-26,M Donohue,West Ham United,1,12.0,14.0,4.0,2.0,0.0
+2025-26,M Donohue,Wolverhampton Wanderers,1,12.0,15.0,2.0,4.0,0.0
+2025-26,M Oliver,Arsenal,3,12.333333333333334,13.666666666666666,1.0,2.3333333333333335,0.0
+2025-26,M Oliver,Aston Villa,4,10.5,15.0,1.25,3.0,0.0
+2025-26,M Oliver,Bournemouth,4,15.25,12.0,2.0,2.0,0.0
+2025-26,M Oliver,Brentford,1,13.0,11.0,1.0,4.0,0.0
+2025-26,M Oliver,Brighton & Hove Albion,4,8.25,9.25,0.5,0.75,0.0
+2025-26,M Oliver,Burnley,3,8.333333333333334,10.333333333333334,0.3333333333333333,1.3333333333333333,0.0
+2025-26,M Oliver,Chelsea,4,12.25,11.75,1.75,1.5,0.0
+2025-26,M Oliver,Everton,4,11.5,11.5,2.0,1.75,0.25
+2025-26,M Oliver,Fulham,4,10.75,9.75,2.25,1.25,0.0
+2025-26,M Oliver,Leeds,4,11.0,10.25,2.0,0.75,0.0
+2025-26,M Oliver,Liverpool,2,8.5,11.5,1.0,1.0,0.0
+2025-26,M Oliver,Manchester City,4,9.5,12.75,2.5,2.5,0.0
+2025-26,M Oliver,Manchester United,4,13.25,10.5,2.0,1.0,0.0
+2025-26,M Oliver,Nottingham Forest,4,10.75,11.5,1.0,0.75,0.0
+2025-26,M Oliver,Tottenham,5,13.6,11.2,2.2,1.4,0.2
+2025-26,M Oliver,West Ham United,2,10.5,7.5,1.0,1.5,0.0
+2025-26,M Oliver,Wolverhampton Wanderers,2,13.0,12.5,1.5,2.0,0.0
+2025-26,M Salisbury,Aston Villa,1,10.0,15.0,2.0,2.0,0.0
+2025-26,M Salisbury,Bournemouth,3,9.0,10.333333333333334,2.3333333333333335,1.3333333333333333,0.0
+2025-26,M Salisbury,Brentford,1,14.0,8.0,2.0,4.0,0.0
+2025-26,M Salisbury,Brighton & Hove Albion,1,18.0,11.0,5.0,3.0,0.0
+2025-26,M Salisbury,Burnley,2,11.0,10.0,1.0,1.5,0.0
+2025-26,M Salisbury,Crystal Palace,2,14.0,8.5,3.0,1.5,0.0
+2025-26,M Salisbury,Everton,2,13.5,15.0,2.5,3.0,0.0
+2025-26,M Salisbury,Leeds,2,10.0,8.5,1.0,3.0,0.0
+2025-26,M Salisbury,Liverpool,1,7.0,7.0,1.0,1.0,0.0
+2025-26,M Salisbury,Manchester City,1,8.0,14.0,4.0,2.0,0.0
+2025-26,M Salisbury,Manchester United,2,11.5,11.0,2.0,2.0,0.0
+2025-26,M Salisbury,Newcastle United,1,11.0,10.0,3.0,2.0,0.0
+2025-26,M Salisbury,Nottingham Forest,3,8.0,11.0,1.3333333333333333,2.3333333333333335,0.0
+2025-26,M Salisbury,Sunderland,1,5.0,9.0,1.0,0.0,0.0
+2025-26,M Salisbury,Tottenham,1,9.0,11.0,3.0,2.0,0.0
+2025-26,M Salisbury,West Ham United,2,13.0,15.5,2.5,3.5,0.0
+2025-26,M Salisbury,Wolverhampton Wanderers,2,14.0,10.5,2.5,2.5,0.0
+2025-26,P Bankes,Arsenal,2,9.5,13.5,1.5,1.0,0.0
+2025-26,P Bankes,Aston Villa,2,9.5,11.5,1.0,2.5,0.0
+2025-26,P Bankes,Bournemouth,3,9.666666666666666,10.0,2.0,2.3333333333333335,0.0
+2025-26,P Bankes,Brentford,3,11.666666666666666,7.333333333333333,2.3333333333333335,1.0,0.0
+2025-26,P Bankes,Brighton & Hove Albion,2,12.5,12.5,3.5,3.0,0.0
+2025-26,P Bankes,Burnley,3,10.666666666666666,7.333333333333333,1.3333333333333333,1.0,0.0
+2025-26,P Bankes,Chelsea,3,9.333333333333334,12.333333333333334,3.6666666666666665,1.6666666666666667,0.6666666666666666
+2025-26,P Bankes,Crystal Palace,1,7.0,11.0,0.0,3.0,0.0
+2025-26,P Bankes,Fulham,2,14.5,8.5,2.5,1.5,0.0
+2025-26,P Bankes,Leeds,4,10.0,13.0,0.75,2.25,0.0
+2025-26,P Bankes,Manchester City,3,10.666666666666666,11.0,2.6666666666666665,1.6666666666666667,0.0
+2025-26,P Bankes,Manchester United,2,14.5,14.5,1.5,3.5,0.5
+2025-26,P Bankes,Newcastle United,5,13.4,13.8,1.4,3.0,0.2
+2025-26,P Bankes,Nottingham Forest,3,11.333333333333334,13.333333333333334,2.0,1.0,0.0
+2025-26,P Bankes,Sunderland,1,10.0,10.0,5.0,4.0,0.0
+2025-26,P Bankes,Tottenham,3,12.666666666666666,8.666666666666666,2.0,1.0,0.0
+2025-26,P Bankes,West Ham United,1,10.0,11.0,0.0,1.0,0.0
+2025-26,P Bankes,Wolverhampton Wanderers,1,11.0,10.0,1.0,0.0,0.0
+2025-26,P Tierney,Arsenal,2,7.5,11.0,1.0,2.5,0.0
+2025-26,P Tierney,Aston Villa,1,3.0,7.0,0.0,1.0,0.0
+2025-26,P Tierney,Bournemouth,1,6.0,7.0,3.0,2.0,0.0
+2025-26,P Tierney,Brentford,1,8.0,13.0,0.0,1.0,0.0
+2025-26,P Tierney,Brighton & Hove Albion,1,7.0,6.0,2.0,3.0,0.0
+2025-26,P Tierney,Burnley,2,13.0,9.5,3.5,1.0,0.0
+2025-26,P Tierney,Chelsea,1,9.0,10.0,2.0,2.0,0.0
+2025-26,P Tierney,Fulham,2,11.5,8.0,1.0,1.5,0.0
+2025-26,P Tierney,Leeds,1,15.0,12.0,2.0,3.0,0.0
+2025-26,P Tierney,Manchester City,2,12.0,10.0,2.0,1.0,0.0
+2025-26,P Tierney,Manchester United,1,12.0,15.0,3.0,2.0,1.0
+2025-26,P Tierney,Newcastle United,2,10.5,12.5,1.0,2.0,0.0
+2025-26,P Tierney,Nottingham Forest,1,16.0,11.0,2.0,0.0,0.0
+2025-26,P Tierney,Sunderland,2,11.5,10.5,2.5,2.0,0.5
+2025-26,P Tierney,West Ham United,2,8.5,9.5,1.0,0.5,0.0
+2025-26,P Tierney,Wolverhampton Wanderers,2,8.5,9.5,1.0,2.5,0.0
+2025-26,R Jones,Arsenal,1,7.0,15.0,0.0,4.0,0.0
+2025-26,R Jones,Aston Villa,1,16.0,18.0,1.0,5.0,0.0
+2025-26,R Jones,Bournemouth,2,8.5,10.5,1.0,1.5,0.0
+2025-26,R Jones,Brentford,1,9.0,8.0,4.0,3.0,0.0
+2025-26,R Jones,Burnley,2,8.0,4.0,2.5,1.0,0.0
+2025-26,R Jones,Chelsea,2,10.0,15.0,3.0,3.0,0.0
+2025-26,R Jones,Crystal Palace,3,13.333333333333334,10.666666666666666,2.6666666666666665,1.6666666666666667,0.0
+2025-26,R Jones,Fulham,2,15.0,8.5,2.0,2.0,0.0
+2025-26,R Jones,Leeds,2,15.5,12.5,4.5,2.5,0.0
+2025-26,R Jones,Manchester City,3,10.0,9.0,2.0,2.3333333333333335,0.0
+2025-26,R Jones,Manchester United,1,14.0,14.0,2.0,3.0,0.0
+2025-26,R Jones,Newcastle United,4,7.25,8.5,1.5,1.75,0.0
+2025-26,R Jones,Nottingham Forest,1,5.0,13.0,1.0,2.0,0.0
+2025-26,R Jones,Sunderland,4,8.75,13.0,1.5,1.75,0.0
+2025-26,R Jones,Tottenham,3,12.666666666666666,11.666666666666666,3.0,3.3333333333333335,0.0
+2025-26,R Jones,West Ham United,2,7.5,9.0,1.0,1.0,0.0
+2025-26,R Jones,Wolverhampton Wanderers,2,13.5,6.0,2.0,0.0,0.0
+2025-26,S Attwell,Arsenal,2,9.0,10.0,1.0,1.5,0.0
+2025-26,S Attwell,Aston Villa,3,8.666666666666666,14.333333333333334,2.6666666666666665,3.3333333333333335,0.0
+2025-26,S Attwell,Bournemouth,1,10.0,9.0,2.0,2.0,0.0
+2025-26,S Attwell,Brentford,3,11.666666666666666,10.666666666666666,2.3333333333333335,2.3333333333333335,0.0
+2025-26,S Attwell,Brighton & Hove Albion,2,14.5,10.5,2.0,3.5,0.0
+2025-26,S Attwell,Burnley,2,10.0,8.5,2.0,1.0,0.5
+2025-26,S Attwell,Chelsea,3,12.0,13.0,3.6666666666666665,3.0,0.0
+2025-26,S Attwell,Crystal Palace,2,10.5,8.5,2.5,1.0,0.0
+2025-26,S Attwell,Everton,4,9.25,12.5,4.0,2.25,0.0
+2025-26,S Attwell,Fulham,2,9.0,11.5,1.5,4.0,0.0
+2025-26,S Attwell,Leeds,3,12.333333333333334,12.333333333333334,1.6666666666666667,2.3333333333333335,0.0
+2025-26,S Attwell,Liverpool,2,11.5,8.0,1.5,2.0,0.0
+2025-26,S Attwell,Manchester City,2,10.0,9.0,1.0,1.5,0.0
+2025-26,S Attwell,Manchester United,4,9.75,10.75,1.5,2.0,0.25
+2025-26,S Attwell,Newcastle United,3,12.333333333333334,9.333333333333334,1.6666666666666667,2.3333333333333335,0.0
+2025-26,S Attwell,Sunderland,5,10.8,11.4,2.2,1.6,0.0
+2025-26,S Attwell,Tottenham,4,13.25,9.5,2.75,2.5,0.0
+2025-26,S Attwell,West Ham United,2,10.0,11.5,3.0,3.5,0.0
+2025-26,S Attwell,Wolverhampton Wanderers,1,10.0,12.0,4.0,2.0,0.0
+2025-26,S Barrott,Arsenal,3,9.666666666666666,7.333333333333333,1.6666666666666667,2.0,0.0
+2025-26,S Barrott,Aston Villa,3,10.333333333333334,12.333333333333334,1.3333333333333333,3.3333333333333335,0.0
+2025-26,S Barrott,Bournemouth,3,13.333333333333334,7.333333333333333,1.6666666666666667,1.0,0.0
+2025-26,S Barrott,Brentford,4,8.5,7.75,1.0,1.75,0.0
+2025-26,S Barrott,Brighton & Hove Albion,2,13.5,11.5,1.5,2.0,0.0
+2025-26,S Barrott,Burnley,3,8.333333333333334,8.333333333333334,3.0,1.0,0.0
+2025-26,S Barrott,Chelsea,2,6.0,9.0,1.5,0.5,0.0
+2025-26,S Barrott,Crystal Palace,2,6.5,6.0,1.5,0.5,0.0
+2025-26,S Barrott,Everton,3,5.666666666666667,9.333333333333334,1.6666666666666667,2.6666666666666665,0.0
+2025-26,S Barrott,Fulham,3,10.0,10.666666666666666,2.0,1.6666666666666667,0.0
+2025-26,S Barrott,Manchester City,1,8.0,13.0,3.0,1.0,0.0
+2025-26,S Barrott,Manchester United,3,8.333333333333334,10.0,1.0,3.3333333333333335,0.0
+2025-26,S Barrott,Newcastle United,3,10.333333333333334,11.666666666666666,1.6666666666666667,2.3333333333333335,0.0
+2025-26,S Barrott,Nottingham Forest,4,8.5,12.75,1.0,2.5,0.0
+2025-26,S Barrott,Sunderland,3,11.0,10.0,2.3333333333333335,1.0,0.3333333333333333
+2025-26,S Barrott,Tottenham,3,11.666666666666666,9.666666666666666,4.333333333333333,1.3333333333333333,0.0
+2025-26,S Barrott,West Ham United,2,13.0,9.0,2.5,2.0,0.0
+2025-26,S Barrott,Wolverhampton Wanderers,1,14.0,8.0,2.0,2.0,0.0
+2025-26,S Hooper,Arsenal,1,19.0,10.0,4.0,1.0,0.0
+2025-26,S Hooper,Aston Villa,3,10.666666666666666,16.0,1.3333333333333333,2.3333333333333335,0.0
+2025-26,S Hooper,Bournemouth,3,11.0,14.0,2.3333333333333335,1.6666666666666667,0.0
+2025-26,S Hooper,Brentford,1,7.0,10.0,3.0,2.0,0.0
+2025-26,S Hooper,Brighton & Hove Albion,2,14.0,8.5,3.5,2.5,0.0
+2025-26,S Hooper,Chelsea,1,9.0,16.0,3.0,5.0,1.0
+2025-26,S Hooper,Everton,2,13.0,14.0,1.5,3.0,0.0
+2025-26,S Hooper,Fulham,1,10.0,8.0,1.0,0.0,0.0
+2025-26,S Hooper,Leeds,1,13.0,9.0,3.0,0.0,0.0
+2025-26,S Hooper,Liverpool,4,10.25,11.0,1.5,2.25,0.0
+2025-26,S Hooper,Manchester United,3,9.666666666666666,13.666666666666666,1.3333333333333333,2.6666666666666665,0.0
+2025-26,S Hooper,Newcastle United,2,12.0,13.0,2.5,2.0,0.5
+2025-26,S Hooper,Nottingham Forest,1,20.0,10.0,2.0,1.0,0.0
+2025-26,S Hooper,Tottenham,2,14.0,10.0,2.0,2.0,0.0
+2025-26,S Hooper,West Ham United,2,9.0,8.0,1.5,1.5,0.0
+2025-26,S Hooper,Wolverhampton Wanderers,1,13.0,5.0,1.0,0.0,0.0
+2025-26,T Bramall,Arsenal,1,6.0,11.0,0.0,0.0,0.0
+2025-26,T Bramall,Bournemouth,3,11.333333333333334,12.333333333333334,3.0,2.6666666666666665,0.0
+2025-26,T Bramall,Brighton & Hove Albion,3,13.0,7.333333333333333,2.6666666666666665,2.0,0.0
+2025-26,T Bramall,Burnley,3,10.0,11.333333333333334,2.0,2.0,0.0
+2025-26,T Bramall,Chelsea,1,13.0,11.0,1.0,0.0,0.0
+2025-26,T Bramall,Crystal Palace,6,9.5,9.166666666666666,1.5,1.0,0.0
+2025-26,T Bramall,Everton,3,12.0,9.333333333333334,1.3333333333333333,1.3333333333333333,0.0
+2025-26,T Bramall,Fulham,1,11.0,14.0,3.0,3.0,0.0
+2025-26,T Bramall,Leeds,4,9.5,11.25,2.0,2.75,0.25
+2025-26,T Bramall,Liverpool,1,13.0,10.0,1.0,2.0,0.0
+2025-26,T Bramall,Manchester City,2,9.0,14.5,1.5,5.5,0.0
+2025-26,T Bramall,Manchester United,1,9.0,12.0,0.0,2.0,0.0
+2025-26,T Bramall,Newcastle United,3,9.666666666666666,12.0,2.3333333333333335,3.0,0.0
+2025-26,T Bramall,Nottingham Forest,1,11.0,12.0,1.0,1.0,0.0
+2025-26,T Bramall,Sunderland,3,11.333333333333334,10.333333333333334,2.6666666666666665,1.6666666666666667,0.0
+2025-26,T Bramall,Tottenham,3,12.666666666666666,8.666666666666666,3.0,1.6666666666666667,0.0
+2025-26,T Bramall,West Ham United,2,9.5,12.5,2.0,3.5,0.0
+2025-26,T Bramall,Wolverhampton Wanderers,3,12.666666666666666,11.666666666666666,2.6666666666666665,1.0,0.3333333333333333
+2025-26,T Harrington,Arsenal,1,7.0,9.0,0.0,1.0,0.0
+2025-26,T Harrington,Aston Villa,2,12.0,12.0,1.5,1.5,0.0
+2025-26,T Harrington,Brentford,2,10.0,8.0,1.0,1.0,0.0
+2025-26,T Harrington,Burnley,1,7.0,12.0,0.0,1.0,0.0
+2025-26,T Harrington,Crystal Palace,2,6.0,12.5,1.5,4.0,0.0
+2025-26,T Harrington,Everton,3,12.0,11.666666666666666,1.3333333333333333,1.0,0.3333333333333333
+2025-26,T Harrington,Fulham,1,10.0,7.0,5.0,0.0,0.0
+2025-26,T Harrington,Leeds,1,9.0,7.0,0.0,1.0,0.0
+2025-26,T Harrington,Manchester City,1,8.0,14.0,0.0,2.0,0.0
+2025-26,T Harrington,Manchester United,1,12.0,9.0,2.0,0.0,0.0
+2025-26,T Harrington,Nottingham Forest,2,10.0,10.5,2.0,2.5,0.0
+2025-26,T Harrington,Sunderland,2,6.5,10.0,1.5,2.0,0.0
+2025-26,T Harrington,West Ham United,2,15.0,7.0,3.0,1.5,0.0
+2025-26,T Harrington,Wolverhampton Wanderers,1,12.0,7.0,1.0,0.0,0.0
+2025-26,T Kirk,Brighton & Hove Albion,1,12.0,7.0,2.0,1.0,0.0
+2025-26,T Kirk,Burnley,2,10.5,8.0,1.0,0.0,0.0
+2025-26,T Kirk,Crystal Palace,2,13.5,11.0,2.5,0.5,0.0
+2025-26,T Kirk,Everton,1,13.0,15.0,1.0,3.0,2.0
+2025-26,T Kirk,Fulham,1,8.0,20.0,0.0,1.0,0.0
+2025-26,T Kirk,Nottingham Forest,1,8.0,12.0,0.0,2.0,0.0
+2025-26,T Kirk,Sunderland,1,7.0,12.0,1.0,2.0,0.0
+2025-26,T Kirk,Wolverhampton Wanderers,3,16.0,13.333333333333334,1.6666666666666667,2.0,0.3333333333333333
+2025-26,T Robinson,Aston Villa,1,8.0,8.0,0.0,3.0,0.0
+2025-26,T Robinson,Bournemouth,1,13.0,14.0,5.0,5.0,1.0
+2025-26,T Robinson,Brentford,1,8.0,8.0,3.0,0.0,0.0
+2025-26,T Robinson,Brighton & Hove Albion,2,9.5,13.5,2.0,2.5,0.0
+2025-26,T Robinson,Burnley,3,13.0,8.0,2.3333333333333335,0.3333333333333333,0.0
+2025-26,T Robinson,Crystal Palace,1,10.0,12.0,1.0,4.0,0.0
+2025-26,T Robinson,Everton,1,10.0,12.0,0.0,1.0,0.0
+2025-26,T Robinson,Leeds,1,7.0,10.0,1.0,2.0,0.0
+2025-26,T Robinson,Liverpool,1,12.0,11.0,2.0,2.0,0.0
+2025-26,T Robinson,Nottingham Forest,2,11.5,16.0,1.0,2.0,0.0
+2025-26,T Robinson,Sunderland,1,14.0,13.0,5.0,5.0,0.0
+2025-26,T Robinson,West Ham United,1,11.0,12.0,2.0,2.0,0.0
+2025-26,T Robinson,Wolverhampton Wanderers,2,16.0,11.5,2.0,1.0,0.0
+2026-27,D England,Hull,1,10.0,9.0,2.0,1.0,0.0
+2026-27,D England,Manchester United,1,9.0,10.0,1.0,2.0,0.0
+2026-27,F Hallam,Ipswich,1,12.0,14.0,0.0,3.0,0.0
+2026-27,F Hallam,Sunderland,1,14.0,12.0,3.0,0.0,0.0
+2026-27,J Brooks,Chelsea,1,7.0,12.0,3.0,2.0,0.0
+2026-27,J Brooks,Fulham,1,12.0,7.0,2.0,3.0,0.0
+2026-27,J Gillett,Bournemouth,1,11.0,11.0,2.0,1.0,0.0
+2026-27,J Gillett,Manchester City,1,11.0,11.0,1.0,2.0,0.0
+2026-27,M Oliver,Brentford,1,17.0,14.0,1.0,1.0,0.0
+2026-27,M Oliver,Tottenham,1,14.0,17.0,1.0,1.0,0.0
+2026-27,P Bankes,Aston Villa,1,11.0,12.0,3.0,2.0,1.0
+2026-27,P Bankes,Brighton & Hove Albion,1,12.0,11.0,2.0,3.0,0.0
+2026-27,P Tierney,Crystal Palace,1,15.0,5.0,1.0,0.0,0.0
+2026-27,P Tierney,Everton,1,5.0,15.0,0.0,1.0,0.0
+2026-27,R Jones,Leeds,1,14.0,15.0,1.0,2.0,0.0
+2026-27,R Jones,Nottingham Forest,1,15.0,14.0,2.0,1.0,0.0
+2026-27,S Attwell,Liverpool,1,15.0,16.0,3.0,5.0,0.0
+2026-27,S Attwell,Newcastle United,1,16.0,15.0,5.0,3.0,0.0
+2026-27,T Bramall,Arsenal,1,10.0,13.0,1.0,1.0,0.0
+2026-27,T Bramall,Coventry,1,13.0,10.0,1.0,1.0,0.0

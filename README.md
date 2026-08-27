@@ -97,3 +97,13 @@ CLI:
 ```bash
 python scripts/score_round.py --fixtures data/fixtures/fixtures_template.csv
 ```
+
+
+## Mobil / Streamlit Community Cloud
+
+Cloudový entrypoint je `streamlit_app.py`.
+
+Podrobný návod:
+`docs/STREAMLIT_CLOUD.md`
+
+Po nasazení na Streamlit Community Cloud lze aplikaci otevřít z telefonu přes běžnou `streamlit.app` URL.

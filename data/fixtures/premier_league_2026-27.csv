@@ -1,0 +1,41 @@
+﻿match_date,kickoff_time,home_team,away_team,match_round,season,source,synced_at
+2026-08-21,20:00,Arsenal,Coventry,1,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-08-22,12:30,Hull,Manchester United,1,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-08-22,,Everton,Crystal Palace,1,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-08-22,,Ipswich,Sunderland,1,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-08-22,,Nottingham Forest,Leeds,1,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-08-22,17:30,Brentford,Tottenham,1,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-08-23,14:00,Brighton & Hove Albion,Aston Villa,1,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-08-23,14:00,Manchester City,Bournemouth,1,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-08-23,16:30,Newcastle United,Liverpool,1,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-08-24,20:00,Fulham,Chelsea,1,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-08-28,20:00,Crystal Palace,Manchester City,2,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-08-29,12:30,Liverpool,Nottingham Forest,2,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-08-29,,Bournemouth,Everton,2,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-08-29,,Coventry,Hull,2,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-08-29,17:30,Tottenham,Newcastle United,2,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-08-30,14:00,Chelsea,Brighton & Hove Albion,2,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-08-30,14:00,Leeds,Brentford,2,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-08-30,14:00,Sunderland,Fulham,2,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-08-30,16:30,Manchester United,Ipswich,2,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-08-31,20:00,Aston Villa,Arsenal,2,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-09-04,20:00,Ipswich,Liverpool,3,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-09-05,12:30,Newcastle United,Bournemouth,3,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-09-05,,Brentford,Sunderland,3,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-09-05,,Brighton & Hove Albion,Leeds,3,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-09-05,,Fulham,Crystal Palace,3,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-09-05,,Manchester City,Coventry,3,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-09-05,,Nottingham Forest,Tottenham,3,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-09-05,17:30,Hull,Aston Villa,3,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-09-06,14:00,Everton,Manchester United,3,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-09-06,16:30,Arsenal,Chelsea,3,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-09-12,,Bournemouth,Brentford,4,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-09-12,,Aston Villa,Nottingham Forest,4,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-09-12,,Chelsea,Hull,4,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-09-12,,Crystal Palace,Ipswich,4,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-09-12,,Liverpool,Fulham,4,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-09-12,17:30,Tottenham,Everton,4,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-09-12,20:00,Sunderland,Arsenal,4,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-09-13,14:00,Coventry,Brighton & Hove Albion,4,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-09-13,16:30,Manchester United,Manchester City,4,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
+2026-09-14,20:00,Leeds,Newcastle United,4,2026-27,premierleague.com bootstrap,2026-08-27T16:40:00
