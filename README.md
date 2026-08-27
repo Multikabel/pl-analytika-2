@@ -111,3 +111,7 @@ Po nasazení na Streamlit Community Cloud lze aplikaci otevřít z telefonu pře
 
 ## v0.7
 Mobilní redesign, automatické delegace rozhodčích a výchozí filtr fair kurzu 2,00+. Viz `docs/UI_V0_7.md`.
+
+
+## v0.8 – Statistika tipů
+Přidán archiv predikcí a automatické vyhodnocení WIN/LOSS po aktualizaci výsledků. Viz `docs/TIP_STATS_V0_8.md`.

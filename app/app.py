@@ -15,6 +15,7 @@ from fixture_features import build_fixture_rows
 from score_round import score_fixtures
 from update_fixtures import load_fixtures,current_round,sync_fixtures
 from update_officials import sync_officials,referee_for_match,referee_choices
+from prediction_archive import load_log, archive_predictions, settle_predictions, summary_stats
 
 st.set_page_config(page_title="PL Analytika 2.0",page_icon="⚽",layout="wide",initial_sidebar_state="collapsed")
 
@@ -108,7 +109,7 @@ ref_hist=sorted(H.referee.dropna().unique())
 
 st.title("⚽ PL Analytika 2.0")
 
-nav=st.segmented_control("Pohled",["Kolo","Zápas","Týmy"],default="Kolo",label_visibility="collapsed")
+nav=st.segmented_control("Pohled",["Kolo","Zápas","Tipy","Týmy"],default="Kolo",label_visibility="collapsed")
 if nav is None: nav="Kolo"
 
 with st.expander("⚙️ Filtry",expanded=False):
@@ -145,6 +146,14 @@ if nav=="Kolo":
             with st.spinner("Počítám celé kolo…"):
                 st.session_state.round_score=score_fixtures(fixtures)
                 st.session_state.round_no=rnd
+                added=archive_predictions(
+                    st.session_state.round_score,
+                    match_round=rnd,
+                    min_fair=min_fair,
+                    model_version="count-models-v0.2",
+                )
+                if added:
+                    st.toast(f"Uloženo {added} tipů do historie.")
 
     score=st.session_state.get("round_score")
     for _,r in round_df.iterrows():
@@ -220,6 +229,69 @@ elif nav=="Zápas":
             out["Fair"]=out.fair_over.round(2)
             st.dataframe(out[["team","Trh","Tip","prediction","P","Fair"]],
                          use_container_width=True,hide_index=True)
+
+elif nav=="Tipy":
+    st.subheader("📈 Statistika tipů")
+    # Settle whenever the page is opened; harmless/idempotent if nothing new exists.
+    try:
+        settle_predictions()
+    except Exception:
+        pass
+    log=load_log()
+    stats=summary_stats(log)
+
+    c1,c2,c3,c4=st.columns(4)
+    c1.metric("Vyhodnoceno",stats["tips"])
+    c2.metric("Výher",stats["wins"])
+    c3.metric("Proher",stats["losses"])
+    c4.metric("Úspěšnost",f'{100*stats["hit_rate"]:.1f}%' if pd.notna(stats["hit_rate"]) else "—")
+
+    settled=log[log["status"].eq("settled")].copy()
+    pending=log[log["status"].eq("pending")].copy()
+
+    if len(settled):
+        st.caption(f'Průměrný modelový fair kurz vyhodnocených tipů: {stats["avg_fair"]:.2f}')
+
+        by_market=[]
+        for market,g in settled.groupby("market"):
+            wins=(g.result=="WIN").sum()
+            by_market.append({
+                "Trh":LABEL.get(market,market),
+                "Tipů":len(g),
+                "Výher":int(wins),
+                "Úspěšnost":f"{100*wins/len(g):.1f}%",
+                "Prům. fair":round(pd.to_numeric(g.fair_over,errors="coerce").mean(),2),
+            })
+        st.dataframe(pd.DataFrame(by_market),use_container_width=True,hide_index=True)
+
+        st.subheader("Historie")
+        h=settled.sort_values(["match_date","created_at"],ascending=False).copy()
+        h["Zápas"]=h.home_team+" – "+h.away_team
+        h["Tip"]=h.team+" O"+h.line.astype(str)+" "+h.market.map(LABEL)
+        h["Fair"]=pd.to_numeric(h.fair_over,errors="coerce").round(2)
+        h["P"]=pd.to_numeric(h.p_over,errors="coerce").map(lambda x:f"{100*x:.0f}%")
+        h["Skutečnost"]=pd.to_numeric(h.actual_value,errors="coerce")
+        h["Výsledek"]=h.result.map({"WIN":"✅","LOSS":"❌"}).fillna(h.result)
+        st.dataframe(
+            h[["match_date","Zápas","Tip","P","Fair","Skutečnost","Výsledek"]],
+            use_container_width=True,hide_index=True,height=600
+        )
+    else:
+        st.info("Zatím není vyhodnocený žádný archivovaný tip.")
+
+    if len(pending):
+        with st.expander(f"Čekající tipy ({len(pending)})"):
+            p=pending.copy()
+            p["Zápas"]=p.home_team+" – "+p.away_team
+            p["Tip"]=p.team+" O"+p.line.astype(str)+" "+p.market.map(LABEL)
+            p["P"]=pd.to_numeric(p.p_over,errors="coerce").map(lambda x:f"{100*x:.0f}%")
+            p["Fair"]=pd.to_numeric(p.fair_over,errors="coerce").round(2)
+            st.dataframe(
+                p[["match_date","Zápas","Tip","P","Fair"]],
+                use_container_width=True,hide_index=True
+            )
+
+    st.caption("Tip se ukládá před zápasem. Po aktualizaci výsledků se pouze vyhodnotí proti původní uložené predikci; historie se novým modelem zpětně nepřepisuje.")
 
 else:
     st.subheader("Týmy")
