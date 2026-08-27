@@ -1,53 +1,72 @@
-# PL Analytika 2.0 – datová vrstva
+# PL Analytika 2.0
 
-Tato verze záměrně neobsahuje predikční model. Nejdřív buduje čistou a opakovatelně aktualizovatelnou datovou základnu.
+Datová vrstva pro analytickou aplikaci Premier League.
 
-## Vstupy
-`data/raw/2022-23.csv` až `data/raw/2026-27.csv`
+## Struktura
 
-## Hlavní tabulky
-- `matches` – 1 řádek = zápas
-- `team_match_stats` – 2 řádky = pohled domácího a hostujícího týmu
-- `match_odds` – všechny ostatní numerické sloupce ze zdrojového CSV v dlouhém formátu
-- `referee_match_stats` – rozhodčí po jednotlivých zápasech
-- `teams`, `referees`, `team_name_mapping` – číselníky
-- `team_season_stats` – sezónní týmové souhrny
-- `team_home_away_stats` – home/away souhrny
-- `team_form_stats` – poslední 3/5/10 k jednotlivým hracím dnům
-- `referee_season_stats` – sezónní souhrny rozhodčích
-- `referee_form_stats` – poslední 3/5/10 k jednotlivým hracím dnům
-- `league_stats` – ligové referenční hodnoty
-- `standings_history` – tabulka PL po každém hracím datu
-- `update_log`, `data_sources` – audit aktualizací
+```text
+pl-analytika-2/
+├── database/
+│   └── schema.sql
+├── scripts/
+│   └── update_data.py
+├── data/
+│   ├── raw/
+│   └── tables/
+├── .gitignore
+├── requirements.txt
+└── README.md
+```
 
-## xG
-`HxG/AxG` je volitelné. Starší sezóny mají `NULL`, 2026/27 se plní automaticky, pokud sloupce existují.
+RAW CSV, generované tabulky a SQLite databáze nejsou verzovány v GitHubu.
 
-## První spuštění
+## Lokální data
+
+Do `data/raw/` vlož:
+
+- `2022-23.csv`
+- `2023-24.csv`
+- `2024-25.csv`
+- `2025-26.csv`
+- `2026-27.csv`
+
+## Instalace
+
 ```bash
 pip install -r requirements.txt
-python update_data.py
 ```
 
-## Aktualizace po hracím dni
-Nejjednodušší varianta:
+## Aktualizace z lokálních CSV
+
 ```bash
-python update_data.py --download-current
+python scripts/update_data.py
 ```
 
-Skript stáhne aktuální `E0.csv`, přepíše aktuální sezonní CSV, znovu provede idempotentní import a přepočítá odvozené datové tabulky. Historie zápasů se neduplikuje díky stabilnímu `match_id`.
+## Aktualizace aktuální sezóny z football-data.co.uk
 
-Pokud si CSV stahuješ ručně, stačí nahradit `data/raw/2026-27.csv` novější verzí a spustit:
 ```bash
-python update_data.py
+python scripts/update_data.py --download-current
 ```
 
-## Výstupy
-SQLite:
-`data/pl_analytika.sqlite`
+Skript aktualizuje SQLite databázi a exportuje datové tabulky do `data/tables/`.
 
-CSV export každé tabulky:
-`data/tables/*.csv`
+## Aktuální datové tabulky
 
-## Poznámka k form tabulkám
-`team_form_stats` a `referee_form_stats` jsou datové agregace, nikoli predikce. Jsou připraveny pro budoucí model. Aktuálně používají stav **včetně zápasů daného data**; pro budoucí backtest vytvoříme zvlášť leakage-safe pre-match features.
+- matches
+- team_match_stats
+- match_odds
+- teams
+- team_name_mapping
+- referees
+- referee_match_stats
+- team_season_stats
+- team_home_away_stats
+- team_form_stats
+- referee_season_stats
+- referee_form_stats
+- league_stats
+- standings_history
+- data_sources
+- update_log
+
+Predikční model zatím není součástí této verze.

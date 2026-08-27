@@ -1,0 +1,28 @@
+# Local/raw data
+data/raw/*
+!data/raw/.gitkeep
+
+# Generated tables
+data/tables/*
+!data/tables/.gitkeep
+
+# Local database
+data/*.sqlite
+data/*.sqlite3
+*.db
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Secrets / local config
+.env
+.env.*
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
