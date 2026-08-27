@@ -107,3 +107,7 @@ Podrobný návod:
 `docs/STREAMLIT_CLOUD.md`
 
 Po nasazení na Streamlit Community Cloud lze aplikaci otevřít z telefonu přes běžnou `streamlit.app` URL.
+
+
+## v0.7
+Mobilní redesign, automatické delegace rozhodčích a výchozí filtr fair kurzu 2,00+. Viz `docs/UI_V0_7.md`.
