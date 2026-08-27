@@ -123,3 +123,7 @@ GitHub Actions denně aktualizuje výsledky, vyhodnotí tipy a uloží nová dat
 
 ## v0.9.1
 Opraven GitHub Actions rebuild: RAW sezónní CSV jsou součástí repa a `data/raw` se vytváří automaticky.
+
+
+## v0.9.2
+Opraven parser oficiálního rozlosování: poznámky s textem `X v Y` už nemohou vzniknout jako falešný zápas; rozpis musí projít kontrolou 380 = 38×10.
