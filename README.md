@@ -119,3 +119,7 @@ Přidán archiv predikcí a automatické vyhodnocení WIN/LOSS po aktualizaci v�
 
 ## v0.9 – automatické aktualizace
 GitHub Actions denně aktualizuje výsledky, vyhodnotí tipy a uloží nová data zpět do repozitáře. Viz `docs/AUTO_UPDATE_V0_9.md`.
+
+
+## v0.9.1
+Opraven GitHub Actions rebuild: RAW sezónní CSV jsou součástí repa a `data/raw` se vytváří automaticky.

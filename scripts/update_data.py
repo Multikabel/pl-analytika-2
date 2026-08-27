@@ -11,6 +11,7 @@ import requests
 
 BASE = Path(__file__).resolve().parent.parent
 RAW = BASE / "data" / "raw"
+RAW.mkdir(parents=True, exist_ok=True)
 TABLES = BASE / "data" / "tables"
 DB = BASE / "data" / "pl_analytika.sqlite"
 SCHEMA = BASE / "database" / "schema.sql"
