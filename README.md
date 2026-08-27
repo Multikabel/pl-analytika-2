@@ -131,3 +131,7 @@ Opraven parser oficiálního rozlosování: poznámky s textem `X v Y` už nemoh
 
 ## v0.9.3
 Rozpis se nyní skládá z live termínů + opravené 380zápasové cache, takže výpadek několika fixtures v HTML nezastaví GitHub Actions.
+
+
+## v0.9.4
+Automatické rozlosování převedeno z křehkého HTML parseru na validovaný JSON feed. Každý update musí projít kontrolou 380 zápasů / 38 kol / 20 týmů.
