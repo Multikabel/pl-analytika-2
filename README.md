@@ -91,3 +91,20 @@ Na dodaných 5 sezónách:
 - bookmaker hodnoty: **134139**
 
 Kontrola byla spuštěna opakovaně bez vzniku duplicit.
+
+
+## Foul model v0.1
+
+Backtest:
+```bash
+python scripts/backtest_fouls.py
+```
+
+Train/update local model:
+```bash
+python scripts/train_fouls_model.py
+```
+
+Windows: `update_and_train.bat` updates match data and retrains the local foul model.
+
+Generated `.joblib` models and report CSVs remain local and are ignored by Git. Backtest methodology and summary are documented in `docs/FOUL_BACKTEST_V0_1.md`.
