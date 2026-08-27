@@ -1,0 +1,55 @@
+name: Update PL Analytika
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "15 22 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pl-analytika-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Update data, settle tips and rebuild models
+        run: python scripts/auto_update.py
+
+      - name: Show changed files
+        run: git status --short
+
+      - name: Commit updated persistent data
+        shell: bash
+        run: |
+          git config user.name "PL Analytika Bot"
+          git config user.email "actions@users.noreply.github.com"
+
+          git add -f data/tables/*.csv
+          git add -f data/fixtures/*.csv
+          git add -f data/predictions/prediction_log.csv
+
+          if git diff --cached --quiet; then
+            echo "No persistent data changes."
+            exit 0
+          fi
+
+          git commit -m "chore: automatic PL data update"
+          git push
