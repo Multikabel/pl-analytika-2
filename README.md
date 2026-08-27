@@ -67,3 +67,20 @@ Viz:
 
 RAW CSV, generované tabulky, reporty a `.joblib` modely zůstávají lokálně
 a nejsou ukládány do GitHubu.
+
+
+## Tabulkové UI v0.3
+
+Spuštění:
+
+```text
+run_app.bat
+```
+
+První kompletní setup:
+
+```text
+setup_and_run.bat
+```
+
+Streamlit aplikace je v `app/app.py`. Obsahuje hustou tabulku týmových statistik a prediktor zápasu pro fauly, rohy a ŽK včetně O/U pravděpodobností a fair odds.
