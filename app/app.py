@@ -20,7 +20,9 @@ from prediction_archive import load_log, archive_selected_predictions, settle_pr
 st.set_page_config(page_title="PL Analytika 2.0",page_icon="⚽",layout="wide",initial_sidebar_state="collapsed")
 
 MARKETS=("fouls","corners","yellow_cards")
-LABEL={"fouls":"Fauly","corners":"Rohy","yellow_cards":"ŽK"}
+LABEL={"fouls":"Fauly","corners":"Rohy","yellow_cards":"ŽK",
+       "fouls_total":"Fauly celkem","corners_total":"Rohy celkem",
+       "yellow_cards_total":"Karty celkem"}
 IS_CLOUD=bool(os.environ.get("STREAMLIT_SHARING_MODE") or os.environ.get("STREAMLIT_SERVER_HEADLESS"))
 
 st.markdown("""
@@ -58,23 +60,10 @@ def pct(x): return f"{100*x:.0f}%"
 def fmt_odds(x): return f"{x:.2f}" if np.isfinite(x) else "—"
 
 def predict_one(home,away,match_date,season,referee):
-    fx=build_fixture_rows(home,away,referee,str(match_date),season)
-    rec=[]
-    for market,art in models().items():
-        cfg=art["config"]
-        for c in cfg["features"]:
-            if c not in fx: fx[c]=np.nan
-        pred,extra,base=ensemble_prediction(art["model"],fx,art["train_mean"],cfg)
-        for i,row in fx.iterrows():
-            for line in cfg["over_lines"]:
-                p=float(over_probability([pred[i]],line,cfg)[0])
-                rec.append({
-                    "team":row.team,"venue":row.venue,"market":market,"line":line,
-                    "prediction":float(pred[i]),"p_over":p,
-                    "fair_over":float(fair_odds([p])[0]),
-                    "model_component":float(extra[i]),"baseline_component":float(base[i])
-                })
-    return pd.DataFrame(rec)
+    return score_fixtures([{
+        "home_team":home,"away_team":away,"match_date":str(match_date),
+        "season":season,"referee":referee
+    }])
 
 def best_high_odds_lines(scored,min_fair=2.0):
     # Until bookmaker odds are connected, this filter is explicitly on MODEL FAIR ODDS.

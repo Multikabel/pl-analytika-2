@@ -13,7 +13,11 @@ MARKET_TO_ACTUAL = {
     "fouls": "fouls_committed",
     "corners": "corners_for",
     "yellow_cards": "yellow_cards",
+    "fouls_total": "fouls_committed",
+    "corners_total": "corners_for",
+    "yellow_cards_total": "yellow_cards",
 }
+TOTAL_MARKETS={"fouls_total","corners_total","yellow_cards_total"}
 
 COLUMNS = [
     "prediction_id","created_at","season","match_round","match_date",
@@ -113,22 +117,37 @@ def settle_predictions():
     now=datetime.now().isoformat(timespec="seconds")
 
     for idx,r in log[pending].iterrows():
-        q=tm[
-            (tm["season"].astype(str)==str(r["season"])) &
-            (tm["match_date"].astype(str)==str(r["match_date"])) &
-            (tm["team"].astype(str)==str(r["team"])) &
-            (tm["opponent"].astype(str)==(
-                str(r["away_team"]) if str(r["team"])==str(r["home_team"]) else str(r["home_team"])
-            ))
-        ]
-        if q.empty:
+        market=str(r["market"])
+        actual_col=MARKET_TO_ACTUAL.get(market)
+        if not actual_col or actual_col not in tm.columns:
             continue
-        actual_col=MARKET_TO_ACTUAL.get(str(r["market"]))
-        if not actual_col or actual_col not in q.columns:
-            continue
-        actual=pd.to_numeric(q.iloc[0][actual_col],errors="coerce")
-        if pd.isna(actual):
-            continue
+
+        if market in TOTAL_MARKETS:
+            q=tm[
+                (tm["season"].astype(str)==str(r["season"])) &
+                (tm["match_date"].astype(str)==str(r["match_date"])) &
+                (tm["team"].astype(str).isin([str(r["home_team"]),str(r["away_team"])]))
+            ]
+            if len(q)<2:
+                continue
+            vals=pd.to_numeric(q[actual_col],errors="coerce")
+            if vals.isna().any():
+                continue
+            actual=float(vals.sum())
+        else:
+            q=tm[
+                (tm["season"].astype(str)==str(r["season"])) &
+                (tm["match_date"].astype(str)==str(r["match_date"])) &
+                (tm["team"].astype(str)==str(r["team"])) &
+                (tm["opponent"].astype(str)==(
+                    str(r["away_team"]) if str(r["team"])==str(r["home_team"]) else str(r["home_team"])
+                ))
+            ]
+            if q.empty:
+                continue
+            actual=pd.to_numeric(q.iloc[0][actual_col],errors="coerce")
+            if pd.isna(actual):
+                continue
 
         line=float(r["line"])
         # Current archive contains half-lines, so there is no push.

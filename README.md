@@ -143,3 +143,7 @@ Vyčištěna historie testovacích tipů. Nová statistika začíná od nuly.
 
 ## v1.1 – skutečné kurzy a profit
 Ručně vybrané tipy nyní vyžadují aktuální bookmaker kurz. Statistiky počítají průměrný kurz, zisk v jednotkách a ROI.
+
+
+## v1.2 – celkové trhy
+Přidány Fauly celkem, Rohy celkem a Karty celkem včetně fair kurzů, ručního bookmaker kurzu a automatického profit/ROI vyhodnocení.
