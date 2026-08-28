@@ -133,8 +133,20 @@ def settle_predictions():
         line=float(r["line"])
         # Current archive contains half-lines, so there is no push.
         result="WIN" if float(actual)>line else "LOSS"
+        odds=pd.to_numeric(pd.Series([r.get("bookmaker_odds")]),errors="coerce").iloc[0]
+        stake=pd.to_numeric(pd.Series([r.get("stake_units",1.0)]),errors="coerce").iloc[0]
+        if pd.isna(stake) or stake<=0:
+            stake=1.0
+        if result=="WIN" and pd.notna(odds) and odds>1:
+            profit=float(stake)*(float(odds)-1.0)
+        elif result=="LOSS":
+            profit=-float(stake)
+        else:
+            profit=np.nan
+
         log.at[idx,"actual_value"]=float(actual)
         log.at[idx,"result"]=result
+        log.at[idx,"profit_units"]=profit
         log.at[idx,"status"]="settled"
         log.at[idx,"settled_at"]=now
         settled+=1
@@ -152,16 +164,28 @@ def summary_stats(log=None):
     if s.empty:
         return {
             "tips":0,"wins":0,"losses":0,"hit_rate":np.nan,
-            "avg_fair":np.nan
+            "avg_fair":np.nan,"avg_bookmaker_odds":np.nan,
+            "profit_units":0.0,"roi":np.nan,"staked_units":0.0
         }
+
     wins=int((s["result"]=="WIN").sum())
     losses=int((s["result"]=="LOSS").sum())
+    odds=pd.to_numeric(s["bookmaker_odds"],errors="coerce")
+    profit=pd.to_numeric(s["profit_units"],errors="coerce").fillna(0)
+    stake=pd.to_numeric(s["stake_units"],errors="coerce").fillna(1.0)
+    total_stake=float(stake.sum())
+    total_profit=float(profit.sum())
+
     return {
         "tips":len(s),
         "wins":wins,
         "losses":losses,
         "hit_rate":wins/len(s),
         "avg_fair":pd.to_numeric(s["fair_over"],errors="coerce").mean(),
+        "avg_bookmaker_odds":odds.mean(),
+        "profit_units":total_profit,
+        "staked_units":total_stake,
+        "roi":(total_profit/total_stake) if total_stake>0 else np.nan,
     }
 
 if __name__=="__main__":

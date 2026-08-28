@@ -104,9 +104,11 @@ def selectable_tip_table(x,key_prefix):
     if x is None or x.empty:
         st.info("Pro zvolený filtr nejsou žádní kandidáti.")
         return pd.DataFrame()
+
     raw=x.reset_index(drop=True).copy()
     view=pd.DataFrame({
         "Uložit":[False]*len(raw),
+        "Kurz":[np.nan]*len(raw),
         "Tým":raw.team,
         "Trh":raw.market.map(LABEL),
         "Tip":"O"+raw.line.astype(str),
@@ -114,12 +116,36 @@ def selectable_tip_table(x,key_prefix):
         "P":pd.to_numeric(raw.p_over,errors="coerce").map(pct),
         "Fair":pd.to_numeric(raw.fair_over,errors="coerce").round(2),
     })
+
     edited=st.data_editor(
-        view,use_container_width=True,hide_index=True,key=f"pick_{key_prefix}",
+        view,
+        use_container_width=True,
+        hide_index=True,
+        key=f"pick_{key_prefix}",
         disabled=["Tým","Trh","Tip","Pred.","P","Fair"],
-        column_config={"Uložit":st.column_config.CheckboxColumn("✓")}
+        column_config={
+            "Uložit":st.column_config.CheckboxColumn("✓",help="Zaškrtni jen tipy, které chceš sledovat."),
+            "Kurz":st.column_config.NumberColumn(
+                "Aktuální kurz",
+                min_value=1.01,
+                max_value=100.0,
+                step=0.01,
+                format="%.2f",
+                help="Sem zadej skutečný kurz ze sázkovky."
+            ),
+        },
     )
-    return raw.loc[edited["Uložit"].fillna(False).astype(bool).to_numpy()].copy()
+
+    mask=edited["Uložit"].fillna(False).astype(bool).to_numpy()
+    chosen=raw.loc[mask].copy()
+
+    if len(chosen):
+        chosen["bookmaker_odds"]=pd.to_numeric(
+            edited.loc[mask,"Kurz"].reset_index(drop=True),errors="coerce"
+        ).to_numpy()
+        chosen["stake_units"]=1.0
+
+    return chosen
 
 H=history()
 if H.empty:
@@ -189,12 +215,20 @@ if nav=="Kolo":
 
     if isinstance(score,pd.DataFrame) and st.session_state.get("round_no")==rnd:
         chosen=pd.concat(selected_parts,ignore_index=True) if selected_parts else pd.DataFrame()
+        invalid_odds = (
+            len(chosen)>0 and
+            ("bookmaker_odds" not in chosen.columns or
+             pd.to_numeric(chosen["bookmaker_odds"],errors="coerce").isna().any() or
+             (pd.to_numeric(chosen["bookmaker_odds"],errors="coerce")<=1.0).any())
+        )
         st.divider()
-        st.caption(f"Vybráno: {len(chosen)}. Přepočítání ani změna filtru už nic automaticky neukládá.")
+        st.caption(f"Vybráno: {len(chosen)}. U každého uloženého tipu musí být zadaný skutečný kurz.")
+        if invalid_odds:
+            st.warning("Doplň aktuální kurz u všech zaškrtnutých tipů.")
         if st.button(f"💾 Uložit vybrané tipy ({len(chosen)})",type="primary",
-                     use_container_width=True,disabled=len(chosen)==0):
-            added=archive_selected_predictions(chosen,rnd,"count-models-v1.0","manual")
-            if added: st.success(f"Uloženo {added} nových tipů.")
+                     use_container_width=True,disabled=(len(chosen)==0 or invalid_odds)):
+            added=archive_selected_predictions(chosen,rnd,"count-models-v1.1","manual")
+            if added: st.success(f"Uloženo {added} nových tipů včetně skutečných kurzů.")
             else: st.info("Vybrané tipy už jsou uložené.")
 
 
@@ -268,10 +302,15 @@ elif nav=="Tipy":
     stats=summary_stats(log)
 
     c1,c2,c3,c4=st.columns(4)
-    c1.metric("Vyhodnoceno",stats["tips"])
-    c2.metric("Výher",stats["wins"])
-    c3.metric("Proher",stats["losses"])
-    c4.metric("Úspěšnost",f'{100*stats["hit_rate"]:.1f}%' if pd.notna(stats["hit_rate"]) else "—")
+    c1.metric("Tipů",stats["tips"])
+    c2.metric("Úspěšnost",f'{100*stats["hit_rate"]:.1f}%' if pd.notna(stats["hit_rate"]) else "—")
+    c3.metric("Prům. kurz",f'{stats["avg_bookmaker_odds"]:.2f}' if pd.notna(stats["avg_bookmaker_odds"]) else "—")
+    c4.metric("Zisk",f'{stats["profit_units"]:+.2f} u')
+
+    c5,c6,c7=st.columns(3)
+    c5.metric("Výher",stats["wins"])
+    c6.metric("Proher",stats["losses"])
+    c7.metric("ROI",f'{100*stats["roi"]:+.1f}%' if pd.notna(stats["roi"]) else "—")
 
     settled=log[log["status"].eq("settled")].copy()
     pending=log[log["status"].eq("pending")].copy()
@@ -282,12 +321,18 @@ elif nav=="Tipy":
         by_market=[]
         for market,g in settled.groupby("market"):
             wins=(g.result=="WIN").sum()
+            stake=pd.to_numeric(g.stake_units,errors="coerce").fillna(1.0)
+            profit=pd.to_numeric(g.profit_units,errors="coerce").fillna(0)
+            total_stake=float(stake.sum())
+            total_profit=float(profit.sum())
             by_market.append({
                 "Trh":LABEL.get(market,market),
                 "Tipů":len(g),
                 "Výher":int(wins),
                 "Úspěšnost":f"{100*wins/len(g):.1f}%",
-                "Prům. fair":round(pd.to_numeric(g.fair_over,errors="coerce").mean(),2),
+                "Prům. kurz":round(pd.to_numeric(g.bookmaker_odds,errors="coerce").mean(),2),
+                "Zisk":round(total_profit,2),
+                "ROI":f"{100*total_profit/total_stake:+.1f}%" if total_stake else "—",
             })
         st.dataframe(pd.DataFrame(by_market),use_container_width=True,hide_index=True)
 
@@ -296,11 +341,13 @@ elif nav=="Tipy":
         h["Zápas"]=h.home_team+" – "+h.away_team
         h["Tip"]=h.team+" O"+h.line.astype(str)+" "+h.market.map(LABEL)
         h["Fair"]=pd.to_numeric(h.fair_over,errors="coerce").round(2)
+        h["Kurz"]=pd.to_numeric(h.bookmaker_odds,errors="coerce").round(2)
         h["P"]=pd.to_numeric(h.p_over,errors="coerce").map(lambda x:f"{100*x:.0f}%")
         h["Skutečnost"]=pd.to_numeric(h.actual_value,errors="coerce")
+        h["Zisk"]=pd.to_numeric(h.profit_units,errors="coerce").map(lambda x:f"{x:+.2f} u" if pd.notna(x) else "—")
         h["Výsledek"]=h.result.map({"WIN":"✅","LOSS":"❌"}).fillna(h.result)
         st.dataframe(
-            h[["match_date","Zápas","Tip","P","Fair","Skutečnost","Výsledek"]],
+            h[["match_date","Zápas","Tip","P","Fair","Kurz","Skutečnost","Výsledek","Zisk"]],
             use_container_width=True,hide_index=True,height=600
         )
     else:
@@ -313,8 +360,9 @@ elif nav=="Tipy":
             p["Tip"]=p.team+" O"+p.line.astype(str)+" "+p.market.map(LABEL)
             p["P"]=pd.to_numeric(p.p_over,errors="coerce").map(lambda x:f"{100*x:.0f}%")
             p["Fair"]=pd.to_numeric(p.fair_over,errors="coerce").round(2)
+            p["Kurz"]=pd.to_numeric(p.bookmaker_odds,errors="coerce").round(2)
             st.dataframe(
-                p[["match_date","Zápas","Tip","P","Fair"]],
+                p[["match_date","Zápas","Tip","P","Fair","Kurz"]],
                 use_container_width=True,hide_index=True
             )
 

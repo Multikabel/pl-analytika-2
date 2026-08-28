@@ -139,3 +139,7 @@ Automatické rozlosování převedeno z křehkého HTML parseru na validovaný J
 
 ## v1.0.1
 Vyčištěna historie testovacích tipů. Nová statistika začíná od nuly.
+
+
+## v1.1 – skutečné kurzy a profit
+Ručně vybrané tipy nyní vyžadují aktuální bookmaker kurz. Statistiky počítají průměrný kurz, zisk v jednotkách a ROI.
