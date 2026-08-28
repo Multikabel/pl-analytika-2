@@ -231,15 +231,21 @@ elif nav=="Zápas":
     ss=c4.text_input("Sezóna",season)
 
     auto_ref=""
-    # Try to infer round and referee from current schedule.
+    match_round=None
     try:
         sch=load_fixtures(ss,auto_sync=False)
-        q=sch[(sch.home_team==home)&(sch.away_team==away)&(sch.match_date==str(md))]
+        # Prefer exact fixture identity; date can move after TV scheduling.
+        q=sch[(sch.home_team==home)&(sch.away_team==away)]
         if len(q):
-            rr=int(q.iloc[0].match_round)
-            try: sync_officials(rr)
+            row=q.iloc[0]
+            match_round=int(row.match_round)
+            # Keep the official schedule date synced into the scoring identity.
+            official_date=pd.to_datetime(row.match_date).date()
+            if md != official_date:
+                st.caption(f"ℹ️ Rozpis: {official_date.strftime('%d.%m.%Y')} · kolo {match_round}")
+            try: sync_officials(match_round)
             except Exception: pass
-            auto_ref=referee_for_match(home,away,rr)
+            auto_ref=referee_for_match(home,away,match_round)
     except Exception:
         pass
 
@@ -257,10 +263,14 @@ elif nav=="Zápas":
     if st.button("Spočítat zápas",type="primary",use_container_width=True):
         with st.spinner("Počítám…"):
             st.session_state.single=predict_one(home,away,md,ss,ref)
+            st.session_state.single_identity=(home,away,str(md),ss,ref,match_round)
 
     scored=st.session_state.get("single")
-    if isinstance(scored,pd.DataFrame) and len(scored):
-        # compact top-line
+    identity=st.session_state.get("single_identity")
+    current_identity=(home,away,str(md),ss,ref,match_round)
+
+    if isinstance(scored,pd.DataFrame) and len(scored) and identity==current_identity:
+        # Compact expected-count overview, including match totals.
         preds=scored.groupby(["team","market"],as_index=False).prediction.first()
         for team in [home,away]:
             tx=preds[preds.team==team].set_index("market")
@@ -268,17 +278,104 @@ elif nav=="Zápas":
             for j,m in enumerate(MARKETS):
                 val=tx.loc[m,"prediction"] if m in tx.index else np.nan
                 cols[j].metric(f"{team} · {LABEL[m]}",f"{val:.2f}")
-        st.subheader("Kandidáti s fair kurzem 2,00+")
-        display_tip_table(best_high_odds_lines(scored,min_fair))
 
-        with st.expander("Všechny hranice"):
+        totals=preds[preds.team=="CELKEM"].set_index("market")
+        total_markets=["fouls_total","corners_total","yellow_cards_total"]
+        cols=st.columns(3)
+        for j,m in enumerate(total_markets):
+            val=totals.loc[m,"prediction"] if m in totals.index else np.nan
+            cols[j].metric(LABEL[m],f"{val:.2f}")
+
+        st.subheader("Hlavní kandidáti")
+        main=best_high_odds_lines(scored,min_fair)
+        display_tip_table(main)
+        st.caption("Hlavní kandidáti jsou jen rychlý přehled. Tip můžeš uložit z libovolné půlbodové hranice níže.")
+
+        st.subheader("Vybrat tip")
+        f1,f2=st.columns(2)
+        market_options=list(LABEL.keys())
+        chosen_market=f1.selectbox(
+            "Trh",
+            market_options,
+            format_func=lambda m: LABEL[m],
+            key="single_market_filter",
+        )
+
+        market_rows=scored[scored.market==chosen_market].copy()
+        team_values=market_rows.team.dropna().unique().tolist()
+        if len(team_values)>1:
+            chosen_team=f2.selectbox(
+                "Tým",
+                team_values,
+                format_func=lambda x: "Celý zápas" if x=="CELKEM" else x,
+                key="single_team_filter",
+            )
+            market_rows=market_rows[market_rows.team==chosen_team]
+        else:
+            chosen_team=team_values[0] if team_values else ""
+            f2.text_input(
+                "Výběr",
+                value=("Celý zápas" if chosen_team=="CELKEM" else chosen_team),
+                disabled=True,
+            )
+
+        market_rows=market_rows.sort_values("line").reset_index(drop=True)
+        if len(market_rows):
+            # One editable table exposes every available line for the selected market.
+            picked=selectable_tip_table(
+                market_rows,
+                f"single_{home}_{away}_{chosen_market}_{chosen_team}"
+            )
+
+            invalid_odds=(
+                len(picked)>0 and
+                ("bookmaker_odds" not in picked.columns or
+                 pd.to_numeric(picked["bookmaker_odds"],errors="coerce").isna().any() or
+                 (pd.to_numeric(picked["bookmaker_odds"],errors="coerce")<=1.0).any())
+            )
+
+            if invalid_odds:
+                st.warning("Doplň aktuální kurz u všech zaškrtnutých tipů.")
+
+            if st.button(
+                f"💾 Uložit vybrané tipy ({len(picked)})",
+                type="primary",
+                use_container_width=True,
+                disabled=(len(picked)==0 or invalid_odds),
+                key="save_single_tips",
+            ):
+                # Ensure archive identity is complete even though score_fixture already carries it.
+                picked=picked.copy()
+                picked["home_team"]=home
+                picked["away_team"]=away
+                picked["match_date"]=str(md)
+                picked["season"]=ss
+                picked["referee"]=ref
+                round_to_save=match_round if match_round is not None else 0
+                added=archive_selected_predictions(
+                    picked,
+                    match_round=round_to_save,
+                    model_version="count-models-v1.3",
+                    selection_source="manual_match",
+                )
+                if added:
+                    st.success(f"Uloženo {added} nových tipů ze stránky Zápas.")
+                else:
+                    st.info("Vybrané tipy už jsou ve statistice uložené.")
+
+        with st.expander("Všechny hranice – přehled"):
             out=scored.copy()
             out["Trh"]=out.market.map(LABEL)
+            out["Výběr"]=out.team.map(lambda x:"Celý zápas" if x=="CELKEM" else x)
             out["Tip"]="O"+out.line.astype(str)
+            out["Pred."]=pd.to_numeric(out.prediction,errors="coerce").round(2)
             out["P"]=out.p_over.map(pct)
             out["Fair"]=out.fair_over.round(2)
-            st.dataframe(out[["team","Trh","Tip","prediction","P","Fair"]],
-                         use_container_width=True,hide_index=True)
+            st.dataframe(
+                out[["Výběr","Trh","Tip","Pred.","P","Fair"]],
+                use_container_width=True,
+                hide_index=True,
+            )
 
 elif nav=="Tipy":
     st.subheader("📈 Statistika tipů")

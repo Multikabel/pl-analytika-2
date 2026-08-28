@@ -147,3 +147,7 @@ Ručně vybrané tipy nyní vyžadují aktuální bookmaker kurz. Statistiky po�
 
 ## v1.2 – celkové trhy
 Přidány Fauly celkem, Rohy celkem a Karty celkem včetně fair kurzů, ručního bookmaker kurzu a automatického profit/ROI vyhodnocení.
+
+
+## v1.3 – výběr tipů v detailu zápasu
+Ze stránky Zápas lze nově ukládat libovolné dostupné hranice všech týmových i celkových trhů, včetně ručního bookmaker kurzu.
