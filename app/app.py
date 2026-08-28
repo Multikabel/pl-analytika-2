@@ -407,8 +407,8 @@ elif nav=="Tipy":
         by_market=[]
         for market,g in settled.groupby("market"):
             wins=(g.result=="WIN").sum()
-            stake=pd.to_numeric(g.stake_units,errors="coerce").fillna(1.0)
-            profit=pd.to_numeric(g.profit_units,errors="coerce").fillna(0)
+            stake=pd.to_numeric(g.get("stake_units",pd.Series(1.0,index=g.index)),errors="coerce").fillna(1.0)
+            profit=pd.to_numeric(g.get("profit_units",pd.Series(0.0,index=g.index)),errors="coerce").fillna(0)
             total_stake=float(stake.sum())
             total_profit=float(profit.sum())
             by_market.append({
@@ -416,7 +416,7 @@ elif nav=="Tipy":
                 "Tipů":len(g),
                 "Výher":int(wins),
                 "Úspěšnost":f"{100*wins/len(g):.1f}%",
-                "Prům. kurz":round(pd.to_numeric(g.bookmaker_odds,errors="coerce").mean(),2),
+                "Prům. kurz":round(pd.to_numeric(g.get("bookmaker_odds",pd.Series(index=g.index,dtype=float)),errors="coerce").mean(),2),
                 "Zisk":round(total_profit,2),
                 "ROI":f"{100*total_profit/total_stake:+.1f}%" if total_stake else "—",
             })
@@ -427,10 +427,10 @@ elif nav=="Tipy":
         h["Zápas"]=h.home_team+" – "+h.away_team
         h["Tip"]=h.team+" O"+h.line.astype(str)+" "+h.market.map(LABEL)
         h["Fair"]=pd.to_numeric(h.fair_over,errors="coerce").round(2)
-        h["Kurz"]=pd.to_numeric(h.bookmaker_odds,errors="coerce").round(2)
+        h["Kurz"]=pd.to_numeric(h.get("bookmaker_odds",pd.Series(index=h.index,dtype=float)),errors="coerce").round(2)
         h["P"]=pd.to_numeric(h.p_over,errors="coerce").map(lambda x:f"{100*x:.0f}%")
         h["Skutečnost"]=pd.to_numeric(h.actual_value,errors="coerce")
-        h["Zisk"]=pd.to_numeric(h.profit_units,errors="coerce").map(lambda x:f"{x:+.2f} u" if pd.notna(x) else "—")
+        h["Zisk"]=pd.to_numeric(h.get("profit_units",pd.Series(index=h.index,dtype=float)),errors="coerce").map(lambda x:f"{x:+.2f} u" if pd.notna(x) else "—")
         h["Výsledek"]=h.result.map({"WIN":"✅","LOSS":"❌"}).fillna(h.result)
         st.dataframe(
             h[["match_date","Zápas","Tip","P","Fair","Kurz","Skutečnost","Výsledek","Zisk"]],
@@ -446,7 +446,7 @@ elif nav=="Tipy":
             p["Tip"]=p.team+" O"+p.line.astype(str)+" "+p.market.map(LABEL)
             p["P"]=pd.to_numeric(p.p_over,errors="coerce").map(lambda x:f"{100*x:.0f}%")
             p["Fair"]=pd.to_numeric(p.fair_over,errors="coerce").round(2)
-            p["Kurz"]=pd.to_numeric(p.bookmaker_odds,errors="coerce").round(2)
+            p["Kurz"]=pd.to_numeric(p.get("bookmaker_odds",pd.Series(index=p.index,dtype=float)),errors="coerce").round(2)
             st.dataframe(
                 p[["match_date","Zápas","Tip","P","Fair","Kurz"]],
                 use_container_width=True,hide_index=True

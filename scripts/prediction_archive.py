@@ -22,8 +22,9 @@ TOTAL_MARKETS={"fouls_total","corners_total","yellow_cards_total"}
 COLUMNS = [
     "prediction_id","created_at","season","match_round","match_date",
     "home_team","away_team","referee","team","venue","market","line",
-    "prediction","p_over","fair_over","model_version","selection_source","status",
-    "actual_value","result","settled_at"
+    "prediction","p_over","fair_over","bookmaker_odds","stake_units",
+    "model_version","selection_source","status","actual_value","result",
+    "profit_units","settled_at"
 ]
 
 def _empty_log():
@@ -85,8 +86,9 @@ def archive_selected_predictions(selected, match_round, model_version="v1.0", se
             "team":r.get("team"),"venue":r.get("venue"),"market":r.get("market"),
             "line":float(r.get("line")),"prediction":float(r.get("prediction")),
             "p_over":float(r.get("p_over")),"fair_over":float(r.get("fair_over")),
+            "bookmaker_odds":float(r.get("bookmaker_odds")),"stake_units":float(r.get("stake_units",1.0)),
             "model_version":model_version,"selection_source":selection_source,
-            "status":"pending","actual_value":np.nan,"result":"","settled_at":"",
+            "status":"pending","actual_value":np.nan,"result":"","profit_units":np.nan,"settled_at":"",
         }
         rec["prediction_id"]=_prediction_id(rec)
         rows.append(rec)
