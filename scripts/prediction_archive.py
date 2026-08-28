@@ -18,7 +18,7 @@ MARKET_TO_ACTUAL = {
 COLUMNS = [
     "prediction_id","created_at","season","match_round","match_date",
     "home_team","away_team","referee","team","venue","market","line",
-    "prediction","p_over","fair_over","model_version","status",
+    "prediction","p_over","fair_over","model_version","selection_source","status",
     "actual_value","result","settled_at"
 ]
 
@@ -66,46 +66,39 @@ def candidates_from_scored(scored, min_fair=2.0):
     ).first()
     return x
 
-def archive_predictions(scored, match_round, min_fair=2.0, model_version="v0.8"):
-    cand=candidates_from_scored(scored,min_fair=min_fair)
-    if cand.empty:
+def archive_selected_predictions(selected, match_round, model_version="v1.0", selection_source="manual"):
+    """Save only tips explicitly selected by the user."""
+    if selected is None or len(selected)==0:
         return 0
     log=load_log()
     now=datetime.now().isoformat(timespec="seconds")
     rows=[]
-    for _,r in cand.iterrows():
+    for _,r in selected.iterrows():
         rec={
-            "created_at":now,
-            "season":r.get("season"),
-            "match_round":match_round,
-            "match_date":r.get("match_date"),
-            "home_team":r.get("home_team"),
-            "away_team":r.get("away_team"),
-            "referee":r.get("referee",""),
-            "team":r.get("team"),
-            "venue":r.get("venue"),
-            "market":r.get("market"),
-            "line":float(r.get("line")),
-            "prediction":float(r.get("prediction")),
-            "p_over":float(r.get("p_over")),
-            "fair_over":float(r.get("fair_over")),
-            "model_version":model_version,
-            "status":"pending",
-            "actual_value":np.nan,
-            "result":"",
-            "settled_at":"",
+            "created_at":now,"season":r.get("season"),"match_round":match_round,
+            "match_date":r.get("match_date"),"home_team":r.get("home_team"),
+            "away_team":r.get("away_team"),"referee":r.get("referee",""),
+            "team":r.get("team"),"venue":r.get("venue"),"market":r.get("market"),
+            "line":float(r.get("line")),"prediction":float(r.get("prediction")),
+            "p_over":float(r.get("p_over")),"fair_over":float(r.get("fair_over")),
+            "model_version":model_version,"selection_source":selection_source,
+            "status":"pending","actual_value":np.nan,"result":"","settled_at":"",
         }
         rec["prediction_id"]=_prediction_id(rec)
         rows.append(rec)
-    add=pd.DataFrame(rows,columns=COLUMNS)
+    add=pd.DataFrame(rows)
+    for c in COLUMNS:
+        if c not in add.columns: add[c]=np.nan
+    add=add[COLUMNS]
     existing=set(log["prediction_id"].astype(str)) if len(log) else set()
     add=add[~add["prediction_id"].astype(str).isin(existing)]
-    if add.empty:
-        return 0
-    out=pd.concat([log,add],ignore_index=True)
-    LOG_PATH.parent.mkdir(parents=True,exist_ok=True)
-    out.to_csv(LOG_PATH,index=False,encoding="utf-8-sig")
+    if add.empty: return 0
+    pd.concat([log,add],ignore_index=True).to_csv(LOG_PATH,index=False,encoding="utf-8-sig")
     return len(add)
+
+def archive_predictions(*args, **kwargs):
+    # Legacy automatic recording is intentionally disabled.
+    return 0
 
 def settle_predictions():
     log=load_log()

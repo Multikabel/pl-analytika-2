@@ -24,9 +24,7 @@ def main():
 
     # Train models on all currently completed matches.
     run([py,"scripts/train_count_models.py"])
-
-    # Snapshot the next/current unplayed round. Duplicate prediction IDs are ignored.
-    run([py,"scripts/snapshot_next_round.py"])
+    # Tip creation is manual; automatic updates only settle existing tracked tips.
 
     print("\nAutomatic update completed.")
 

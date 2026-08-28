@@ -15,7 +15,7 @@ from fixture_features import build_fixture_rows
 from score_round import score_fixtures
 from update_fixtures import load_fixtures,current_round,sync_fixtures
 from update_officials import sync_officials,referee_for_match,referee_choices
-from prediction_archive import load_log, archive_predictions, settle_predictions, summary_stats
+from prediction_archive import load_log, archive_selected_predictions, settle_predictions, summary_stats
 
 st.set_page_config(page_title="PL Analytika 2.0",page_icon="⚽",layout="wide",initial_sidebar_state="collapsed")
 
@@ -99,6 +99,28 @@ def display_tip_table(x):
     })
     st.dataframe(out,use_container_width=True,hide_index=True)
 
+
+def selectable_tip_table(x,key_prefix):
+    if x is None or x.empty:
+        st.info("Pro zvolený filtr nejsou žádní kandidáti.")
+        return pd.DataFrame()
+    raw=x.reset_index(drop=True).copy()
+    view=pd.DataFrame({
+        "Uložit":[False]*len(raw),
+        "Tým":raw.team,
+        "Trh":raw.market.map(LABEL),
+        "Tip":"O"+raw.line.astype(str),
+        "Pred.":pd.to_numeric(raw.prediction,errors="coerce").round(2),
+        "P":pd.to_numeric(raw.p_over,errors="coerce").map(pct),
+        "Fair":pd.to_numeric(raw.fair_over,errors="coerce").round(2),
+    })
+    edited=st.data_editor(
+        view,use_container_width=True,hide_index=True,key=f"pick_{key_prefix}",
+        disabled=["Tým","Trh","Tip","Pred.","P","Fair"],
+        column_config={"Uložit":st.column_config.CheckboxColumn("✓")}
+    )
+    return raw.loc[edited["Uložit"].fillna(False).astype(bool).to_numpy()].copy()
+
 H=history()
 if H.empty:
     st.error("Chybí datové tabulky.")
@@ -146,16 +168,9 @@ if nav=="Kolo":
             with st.spinner("Počítám celé kolo…"):
                 st.session_state.round_score=score_fixtures(fixtures)
                 st.session_state.round_no=rnd
-                added=archive_predictions(
-                    st.session_state.round_score,
-                    match_round=rnd,
-                    min_fair=min_fair,
-                    model_version="count-models-v0.2",
-                )
-                if added:
-                    st.toast(f"Uloženo {added} tipů do historie.")
 
     score=st.session_state.get("round_score")
+    selected_parts=[]
     for _,r in round_df.iterrows():
         ref=referee_for_match(r.home_team,r.away_team,rnd)
         status="✅ Odehráno" if r.played else "🕒 Čeká"
@@ -169,7 +184,19 @@ if nav=="Kolo":
         if isinstance(score,pd.DataFrame) and st.session_state.get("round_no")==rnd and not r.played:
             sx=score[(score.home_team==r.home_team)&(score.away_team==r.away_team)]
             cand=best_high_odds_lines(sx,min_fair)
-            display_tip_table(cand)
+            picked=selectable_tip_table(cand,f"{rnd}_{r.home_team}_{r.away_team}")
+            if len(picked): selected_parts.append(picked)
+
+    if isinstance(score,pd.DataFrame) and st.session_state.get("round_no")==rnd:
+        chosen=pd.concat(selected_parts,ignore_index=True) if selected_parts else pd.DataFrame()
+        st.divider()
+        st.caption(f"Vybráno: {len(chosen)}. Přepočítání ani změna filtru už nic automaticky neukládá.")
+        if st.button(f"💾 Uložit vybrané tipy ({len(chosen)})",type="primary",
+                     use_container_width=True,disabled=len(chosen)==0):
+            added=archive_selected_predictions(chosen,rnd,"count-models-v1.0","manual")
+            if added: st.success(f"Uloženo {added} nových tipů.")
+            else: st.info("Vybrané tipy už jsou uložené.")
+
 
 elif nav=="Zápas":
     c1,c2=st.columns(2)
@@ -291,7 +318,7 @@ elif nav=="Tipy":
                 use_container_width=True,hide_index=True
             )
 
-    st.caption("Tip se ukládá před zápasem. Po aktualizaci výsledků se pouze vyhodnotí proti původní uložené predikci; historie se novým modelem zpětně nepřepisuje.")
+    st.caption("Statistika obsahuje pouze ručně vybrané a uložené tipy. Změna filtru ani nové přepočítání kola nic nepřidá. Po zápase se původní snapshot pouze vyhodnotí WIN/LOSS.")
 
 else:
     st.subheader("Týmy")

@@ -135,3 +135,7 @@ Rozpis se nyní skládá z live termínů + opravené 380zápasové cache, takž
 
 ## v0.9.4
 Automatické rozlosování převedeno z křehkého HTML parseru na validovaný JSON feed. Každý update musí projít kontrolou 380 zápasů / 38 kol / 20 týmů.
+
+
+## v1.0.1
+Vyčištěna historie testovacích tipů. Nová statistika začíná od nuly.
