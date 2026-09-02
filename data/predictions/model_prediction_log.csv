@@ -1,1 +1,10 @@
 ﻿model_prediction_id,created_at,season,match_round,match_date,home_team,away_team,referee,team,venue,market,prediction,test_line,status,actual_value,result,error,abs_error,bias_direction,model_version,settled_at
+018fb6fcbbde10949d53,2026-09-02T15:22:47,2026-27,3,2026-09-02,Ipswich,Liverpool,D England,CELKEM,T,corners_total,10.557386611892435,10.5,pending,,,,,,count-models-v1.5,
+a20f59f0fc74a4e772d9,2026-09-02T15:22:47,2026-27,3,2026-09-02,Ipswich,Liverpool,D England,CELKEM,T,fouls_total,24.472470103694384,24.5,pending,,,,,,count-models-v1.5,
+b62e13d382aed75ededb,2026-09-02T15:22:47,2026-27,3,2026-09-02,Ipswich,Liverpool,D England,CELKEM,T,yellow_cards_total,4.445838673052169,4.5,pending,,,,,,count-models-v1.5,
+98dfd77b8db2c0534909,2026-09-02T15:22:47,2026-27,3,2026-09-02,Ipswich,Liverpool,D England,Ipswich,H,corners,3.6529962292564897,3.5,pending,,,,,,count-models-v1.5,
+693887c511528ba5a3b3,2026-09-02T15:22:47,2026-27,3,2026-09-02,Ipswich,Liverpool,D England,Ipswich,H,fouls,12.354403036902347,12.5,pending,,,,,,count-models-v1.5,
+cf1323c0b33f6ea4fee5,2026-09-02T15:22:47,2026-27,3,2026-09-02,Ipswich,Liverpool,D England,Ipswich,H,yellow_cards,2.155012805558734,2.5,pending,,,,,,count-models-v1.5,
+2bff50d04f101f101536,2026-09-02T15:22:47,2026-27,3,2026-09-02,Ipswich,Liverpool,D England,Liverpool,A,corners,6.904390382635945,6.5,pending,,,,,,count-models-v1.5,
+439036fc43b536baf047,2026-09-02T15:22:47,2026-27,3,2026-09-02,Ipswich,Liverpool,D England,Liverpool,A,fouls,12.118067066792038,12.5,pending,,,,,,count-models-v1.5,
+5ff51090b9f5f6ab1e2a,2026-09-02T15:22:47,2026-27,3,2026-09-02,Ipswich,Liverpool,D England,Liverpool,A,yellow_cards,2.2908258674934343,2.5,pending,,,,,,count-models-v1.5,
