@@ -5,9 +5,11 @@ import json
 import math
 import numpy as np
 import pandas as pd
+from github_persistence import enabled as github_enabled, read_csv as github_read_csv, write_csv as github_write_csv, merge_append_only
 
 BASE=Path(__file__).resolve().parent.parent
 LOG_PATH=BASE/"data"/"predictions"/"model_prediction_log.csv"
+REMOTE_LOG_PATH="data/predictions/model_prediction_log.csv"
 TEAM_MATCH_PATH=BASE/"data"/"tables"/"team_match_stats.csv"
 
 MARKET_TO_ACTUAL={
@@ -28,16 +30,48 @@ COLUMNS=[
 ]
 
 def load_log():
+    # In Streamlit Cloud, always prefer the latest persistent GitHub copy.
+    if github_enabled():
+        try:
+            x,_=github_read_csv(REMOTE_LOG_PATH,COLUMNS)
+            if x is not None:
+                return x
+        except Exception:
+            pass
+
     if not LOG_PATH.exists():
         LOG_PATH.parent.mkdir(parents=True,exist_ok=True)
         x=pd.DataFrame(columns=COLUMNS)
         x.to_csv(LOG_PATH,index=False,encoding="utf-8-sig")
         return x
+
     x=pd.read_csv(LOG_PATH)
     for c in COLUMNS:
         if c not in x.columns:
             x[c]=np.nan
     return x[COLUMNS]
+
+def _save_log(log, message):
+    for c in COLUMNS:
+        if c not in log.columns:
+            log[c]=np.nan
+    log=log[COLUMNS]
+    LOG_PATH.parent.mkdir(parents=True,exist_ok=True)
+    log.to_csv(LOG_PATH,index=False,encoding="utf-8-sig")
+
+    if not github_enabled():
+        return
+
+    remote,sha=github_read_csv(REMOTE_LOG_PATH,COLUMNS)
+    merged=merge_append_only(remote,log,key="model_prediction_id")
+    ok,detail=github_write_csv(REMOTE_LOG_PATH,merged,message,sha=sha)
+    if not ok:
+        # One retry handles a simultaneous Actions/app commit.
+        remote,sha=github_read_csv(REMOTE_LOG_PATH,COLUMNS)
+        merged=merge_append_only(remote,log,key="model_prediction_id")
+        ok,detail=github_write_csv(REMOTE_LOG_PATH,merged,message,sha=sha)
+        if not ok:
+            raise RuntimeError(f"GitHub prediction-stat persistence failed: {detail}")
 
 def _id(r):
     raw="|".join([
@@ -89,7 +123,7 @@ def snapshot(scored, match_round, model_version="count-models-v1.4"):
         return 0
     out=pd.concat([log,pd.DataFrame(rows)],ignore_index=True)
     out=out[COLUMNS]
-    out.to_csv(LOG_PATH,index=False,encoding="utf-8-sig")
+    _save_log(out,"stats: archive model predictions")
     return len(rows)
 
 def settle():
@@ -148,7 +182,7 @@ def settle():
         count+=1
 
     if count:
-        log.to_csv(LOG_PATH,index=False,encoding="utf-8-sig")
+        _save_log(log,"stats: settle model predictions")
     return {"settled":count}
 
 def summary(log=None):

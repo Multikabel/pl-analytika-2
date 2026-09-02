@@ -1,2 +1,1 @@
 ﻿prediction_id,created_at,season,match_round,match_date,home_team,away_team,referee,team,venue,market,line,prediction,p_over,fair_over,bookmaker_odds,stake_units,model_version,selection_source,status,actual_value,result,profit_units,settled_at
-5724c477c02fbec03ec2,2026-09-02T14:48:10,2026-27,3,2026-09-02,Ipswich,Liverpool,D England,CELKEM,T,fouls_total,23.5,24.47247010369438,0.5650614934944618,1.7697188916834254,1.94,1.0,count-models-v1.3,manual_match,pending,,,,

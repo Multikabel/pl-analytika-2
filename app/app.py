@@ -16,7 +16,7 @@ from score_round import score_fixtures
 from update_fixtures import load_fixtures,current_round,sync_fixtures
 from update_officials import sync_officials,referee_for_match,referee_choices
 from prediction_archive import load_log, archive_selected_predictions, settle_predictions, summary_stats
-from model_prediction_stats import load_log as load_model_prediction_log, summary as model_prediction_summary
+from model_prediction_stats import load_log as load_model_prediction_log, summary as model_prediction_summary, snapshot as snapshot_model_predictions
 
 st.set_page_config(page_title="PL Analytika 2.0",page_icon="⚽",layout="wide",initial_sidebar_state="collapsed")
 
@@ -195,6 +195,16 @@ if nav=="Kolo":
             with st.spinner("Počítám celé kolo…"):
                 st.session_state.round_score=score_fixtures(fixtures)
                 st.session_state.round_no=rnd
+                try:
+                    added_stats=snapshot_model_predictions(
+                        st.session_state.round_score,
+                        match_round=rnd,
+                        model_version="count-models-v1.5",
+                    )
+                    if added_stats:
+                        st.toast(f"Do Statistik uloženo {added_stats} nových predikcí.")
+                except Exception as e:
+                    st.warning(f"Predikce byly spočítány, ale nepodařilo se uložit Statistiky: {e}")
 
     score=st.session_state.get("round_score")
     selected_parts=[]
@@ -276,6 +286,19 @@ elif nav=="Zápas":
         with st.spinner("Počítám…"):
             st.session_state.single=predict_one(home,away,md,ss,ref)
             st.session_state.single_identity=(home,away,str(md),ss,ref,match_round)
+            try:
+                round_for_stats=match_round if match_round is not None else 0
+                added_stats=snapshot_model_predictions(
+                    st.session_state.single,
+                    match_round=round_for_stats,
+                    model_version="count-models-v1.5",
+                )
+                if added_stats:
+                    st.toast(f"Do Statistik uloženo {added_stats} predikcí tohoto zápasu.")
+                else:
+                    st.toast("Predikce tohoto zápasu už jsou ve Statistikách.")
+            except Exception as e:
+                st.warning(f"Zápas byl spočítán, ale nepodařilo se uložit Statistiky: {e}")
 
     scored=st.session_state.get("single")
     identity=st.session_state.get("single_identity")
@@ -468,6 +491,7 @@ elif nav=="Tipy":
 
 elif nav=="Statistiky":
     st.subheader("📊 Úspěšnost predikcí")
+    st.caption("Predikce se uloží automaticky při výpočtu jednoho zápasu i celého kola. Opakovaný výpočet stejného zápasu nevytváří duplicity.")
     plog=load_model_prediction_log()
     ps=model_prediction_summary(plog)
 

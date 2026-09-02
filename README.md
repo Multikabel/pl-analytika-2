@@ -155,3 +155,7 @@ Ze stránky Zápas lze nově ukládat libovolné dostupné hranice všech týmov
 
 ## v1.4 – persistent Tipy + Statistika predikcí
 Tipy lze ukládat trvale přímo do GitHubu přes Streamlit Secrets. Přidána automatická auditní statistika bodových predikcí, HIT/MISS, MAE a bias.
+
+
+## v1.5 – okamžité Statistiky
+Výpočet jednoho zápasu i kola nyní okamžitě a trvale ukládá bodové predikce do Statistik. Opakovaný výpočet nevytváří duplicity.
