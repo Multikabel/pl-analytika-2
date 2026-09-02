@@ -4,9 +4,11 @@ import hashlib
 import json
 import pandas as pd
 import numpy as np
+from github_persistence import enabled as github_enabled, read_csv as github_read_csv, write_csv as github_write_csv, merge_append_only
 
 BASE = Path(__file__).resolve().parent.parent
 LOG_PATH = BASE / "data" / "predictions" / "prediction_log.csv"
+REMOTE_LOG_PATH = "data/predictions/prediction_log.csv"
 TEAM_MATCH_PATH = BASE / "data" / "tables" / "team_match_stats.csv"
 
 MARKET_TO_ACTUAL = {
@@ -31,16 +33,50 @@ def _empty_log():
     return pd.DataFrame(columns=COLUMNS)
 
 def load_log():
+    # Streamlit Cloud: GitHub is the persistent source of truth.
+    if github_enabled():
+        try:
+            x,_=github_read_csv(REMOTE_LOG_PATH,COLUMNS)
+            if x is not None:
+                return x
+        except Exception:
+            # Keep the app usable even during a temporary GitHub API issue.
+            pass
+
     if not LOG_PATH.exists():
-        LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
-        x = _empty_log()
+        LOG_PATH.parent.mkdir(parents=True,exist_ok=True)
+        x=_empty_log()
         x.to_csv(LOG_PATH,index=False,encoding="utf-8-sig")
         return x
-    x = pd.read_csv(LOG_PATH)
+
+    x=pd.read_csv(LOG_PATH)
     for c in COLUMNS:
         if c not in x.columns:
-            x[c] = np.nan
+            x[c]=np.nan
     return x[COLUMNS]
+
+def _save_log(log, message="chore: save PL Analytika tips"):
+    LOG_PATH.parent.mkdir(parents=True,exist_ok=True)
+    for c in COLUMNS:
+        if c not in log.columns:
+            log[c]=np.nan
+    log=log[COLUMNS]
+    log.to_csv(LOG_PATH,index=False,encoding="utf-8-sig")
+
+    if not github_enabled():
+        return
+
+    # Reload immediately before commit. Existing remote rows win so a stale
+    # browser session cannot revert a settlement made by GitHub Actions.
+    remote,sha=github_read_csv(REMOTE_LOG_PATH,COLUMNS)
+    merged=merge_append_only(remote,log,key="prediction_id")
+    ok,_=github_write_csv(REMOTE_LOG_PATH,merged,message,sha=sha)
+    if not ok:
+        remote,sha=github_read_csv(REMOTE_LOG_PATH,COLUMNS)
+        merged=merge_append_only(remote,log,key="prediction_id")
+        ok,detail=github_write_csv(REMOTE_LOG_PATH,merged,message,sha=sha)
+        if not ok:
+            raise RuntimeError(f"GitHub tip persistence failed: {detail}")
 
 def _prediction_id(row):
     raw = "|".join([
@@ -99,7 +135,8 @@ def archive_selected_predictions(selected, match_round, model_version="v1.0", se
     existing=set(log["prediction_id"].astype(str)) if len(log) else set()
     add=add[~add["prediction_id"].astype(str).isin(existing)]
     if add.empty: return 0
-    pd.concat([log,add],ignore_index=True).to_csv(LOG_PATH,index=False,encoding="utf-8-sig")
+    out=pd.concat([log,add],ignore_index=True)
+    _save_log(out,"tips: add manual selection")
     return len(add)
 
 def archive_predictions(*args, **kwargs):
@@ -175,7 +212,7 @@ def settle_predictions():
         losses += result=="LOSS"
 
     if settled:
-        log.to_csv(LOG_PATH,index=False,encoding="utf-8-sig")
+        _save_log(log,"tips: settle results")
     return {"settled":settled,"wins":wins,"losses":losses}
 
 def summary_stats(log=None):

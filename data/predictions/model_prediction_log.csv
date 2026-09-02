@@ -1,0 +1,1 @@
+﻿model_prediction_id,created_at,season,match_round,match_date,home_team,away_team,referee,team,venue,market,prediction,test_line,status,actual_value,result,error,abs_error,bias_direction,model_version,settled_at

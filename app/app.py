@@ -16,6 +16,7 @@ from score_round import score_fixtures
 from update_fixtures import load_fixtures,current_round,sync_fixtures
 from update_officials import sync_officials,referee_for_match,referee_choices
 from prediction_archive import load_log, archive_selected_predictions, settle_predictions, summary_stats
+from model_prediction_stats import load_log as load_model_prediction_log, summary as model_prediction_summary
 
 st.set_page_config(page_title="PL Analytika 2.0",page_icon="⚽",layout="wide",initial_sidebar_state="collapsed")
 
@@ -24,6 +25,17 @@ LABEL={"fouls":"Fauly","corners":"Rohy","yellow_cards":"ŽK",
        "fouls_total":"Fauly celkem","corners_total":"Rohy celkem",
        "yellow_cards_total":"Karty celkem"}
 IS_CLOUD=bool(os.environ.get("STREAMLIT_SHARING_MODE") or os.environ.get("STREAMLIT_SERVER_HEADLESS"))
+
+# Persistent manual tips on Streamlit Cloud.
+try:
+    if "github" in st.secrets:
+        if st.secrets["github"].get("token"):
+            os.environ["PL_ANALYTIKA_GITHUB_TOKEN"]=st.secrets["github"]["token"]
+        os.environ["PL_ANALYTIKA_GITHUB_REPO"]=st.secrets["github"].get("repo","Multikabel/pl-analytika-2")
+        os.environ["PL_ANALYTIKA_GITHUB_BRANCH"]=st.secrets["github"].get("branch","main")
+except Exception:
+    pass
+
 
 st.markdown("""
 <style>
@@ -146,7 +158,7 @@ ref_hist=sorted(H.referee.dropna().unique())
 
 st.title("⚽ PL Analytika 2.0")
 
-nav=st.segmented_control("Pohled",["Kolo","Zápas","Tipy","Týmy"],default="Kolo",label_visibility="collapsed")
+nav=st.segmented_control("Pohled",["Kolo","Zápas","Tipy","Statistiky","Týmy"],default="Kolo",label_visibility="collapsed")
 if nav is None: nav="Kolo"
 
 with st.expander("⚙️ Filtry",expanded=False):
@@ -453,6 +465,70 @@ elif nav=="Tipy":
             )
 
     st.caption("Statistika obsahuje pouze ručně vybrané a uložené tipy. Změna filtru ani nové přepočítání kola nic nepřidá. Po zápase se původní snapshot pouze vyhodnotí WIN/LOSS.")
+
+elif nav=="Statistiky":
+    st.subheader("📊 Úspěšnost predikcí")
+    plog=load_model_prediction_log()
+    ps=model_prediction_summary(plog)
+
+    c1,c2,c3,c4=st.columns(4)
+    c1.metric("Vyhodnoceno",ps["n"])
+    c2.metric("Over HIT",f'{100*ps["hit_rate"]:.1f}%' if pd.notna(ps["hit_rate"]) else "—")
+    c3.metric("MAE",f'{ps["mae"]:.2f}' if pd.notna(ps["mae"]) else "—")
+    c4.metric("Bias",f'{ps["bias"]:+.2f}' if pd.notna(ps["bias"]) else "—")
+
+    c5,c6=st.columns(2)
+    c5.metric("Model podstřelil",f'{100*ps["under_rate"]:.1f}%' if pd.notna(ps["under_rate"]) else "—")
+    c6.metric("Model přestřelil",f'{100*ps["over_rate"]:.1f}%' if pd.notna(ps["over_rate"]) else "—")
+
+    st.caption("Bias = skutečnost − predikce. Kladný bias znamená, že model dlouhodobě podstřeluje; záporný bias znamená přestřelování.")
+
+    settled=plog[plog["status"].eq("settled")].copy()
+    if len(settled):
+        rows=[]
+        for market,g in settled.groupby("market"):
+            err=pd.to_numeric(g.error,errors="coerce")
+            rows.append({
+                "Trh":LABEL.get(market,market),
+                "N":len(g),
+                "Over HIT":f"{100*(g.result=='HIT').mean():.1f}%",
+                "MAE":round(pd.to_numeric(g.abs_error,errors="coerce").mean(),2),
+                "Bias":round(err.mean(),2),
+                "Podstřeleno":f"{100*(err>0).mean():.1f}%",
+                "Přestřeleno":f"{100*(err<0).mean():.1f}%",
+                "Pred. Ø":round(pd.to_numeric(g.prediction,errors="coerce").mean(),2),
+                "Skuteč. Ø":round(pd.to_numeric(g.actual_value,errors="coerce").mean(),2),
+            })
+        st.dataframe(pd.DataFrame(rows),use_container_width=True,hide_index=True)
+
+        st.subheader("Historie predikcí")
+        h=settled.sort_values(["match_date","created_at"],ascending=False).copy()
+        h["Zápas"]=h.home_team+" – "+h.away_team
+        h["Výběr"]=h.team.map(lambda x:"Celý zápas" if x=="CELKEM" else x)
+        h["Trh"]=h.market.map(LABEL)
+        h["Pred."]=pd.to_numeric(h.prediction,errors="coerce").round(2)
+        h["Test"]="O"+pd.to_numeric(h.test_line,errors="coerce").map(lambda x:f"{x:.1f}")
+        h["Skuteč."]=pd.to_numeric(h.actual_value,errors="coerce")
+        h["Chyba"]=pd.to_numeric(h.error,errors="coerce").round(2)
+        h["Výsledek"]=h.result.map({"HIT":"✅","MISS":"❌"})
+        st.dataframe(
+            h[["match_date","Zápas","Výběr","Trh","Pred.","Test","Skuteč.","Chyba","bias_direction","Výsledek"]],
+            use_container_width=True,hide_index=True,height=620
+        )
+    else:
+        st.info("Zatím nejsou vyhodnocené žádné automaticky archivované predikce.")
+
+    pending=plog[plog["status"].eq("pending")].copy()
+    if len(pending):
+        with st.expander(f"Čekající predikce ({len(pending)})"):
+            p=pending.copy()
+            p["Zápas"]=p.home_team+" – "+p.away_team
+            p["Výběr"]=p.team.map(lambda x:"Celý zápas" if x=="CELKEM" else x)
+            p["Trh"]=p.market.map(LABEL)
+            p["Pred."]=pd.to_numeric(p.prediction,errors="coerce").round(2)
+            p["Test"]="O"+pd.to_numeric(p.test_line,errors="coerce").map(lambda x:f"{x:.1f}")
+            st.dataframe(p[["match_date","Zápas","Výběr","Trh","Pred.","Test"]],
+                         use_container_width=True,hide_index=True)
 
 else:
     st.subheader("Týmy")

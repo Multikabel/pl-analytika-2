@@ -151,3 +151,7 @@ Přidány Fauly celkem, Rohy celkem a Karty celkem včetně fair kurzů, ruční
 
 ## v1.3 – výběr tipů v detailu zápasu
 Ze stránky Zápas lze nově ukládat libovolné dostupné hranice všech týmových i celkových trhů, včetně ručního bookmaker kurzu.
+
+
+## v1.4 – persistent Tipy + Statistika predikcí
+Tipy lze ukládat trvale přímo do GitHubu přes Streamlit Secrets. Přidána automatická auditní statistika bodových predikcí, HIT/MISS, MAE a bias.

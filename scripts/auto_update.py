@@ -19,12 +19,16 @@ def main():
     # Results and generated feature tables.
     run([py,"scripts/update_data.py","--download-current"])
 
-    # Settle tips against the freshly rebuilt team_match_stats.
+    # Settle manual tips against the freshly rebuilt team_match_stats.
     run([py,"scripts/prediction_archive.py"])
+
+    # Settle point-prediction accuracy records.
+    run([py,"scripts/model_prediction_stats.py"])
 
     # Train models on all currently completed matches.
     run([py,"scripts/train_count_models.py"])
-    # Tip creation is manual; automatic updates only settle existing tracked tips.
+    # Tip creation is manual. Model-accuracy snapshots are automatic.
+    run([py,"scripts/snapshot_model_predictions.py"])
 
     print("\nAutomatic update completed.")
 
