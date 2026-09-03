@@ -3,4 +3,4 @@ data_layer_version,2.0
 feature_table,pre_match_features
 feature_policy,All non-target model features are computed from prior observations only
 source,football-data.co.uk E0.csv
-generated_at,2026-09-02T15:17:44
+generated_at,2026-09-03T00:15:13
