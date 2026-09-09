@@ -29,6 +29,11 @@ TEAM_MAP = {
     "Wolves": "Wolverhampton Wanderers",
     "Spurs": "Tottenham Hotspur",
     "Brighton": "Brighton & Hove Albion",
+    "Coventry City": "Coventry",
+    "Hull City": "Hull",
+    "Ipswich Town": "Ipswich",
+    "Leeds United": "Leeds",
+    "AFC Bournemouth": "Bournemouth",
 }
 
 CORE_COLUMNS = {
@@ -387,8 +392,10 @@ def _fallback_fpl_core(output_name):
     tr=requests.get(base+"/teams.csv",headers=headers,timeout=25)
     tr.raise_for_status()
     teams=pd.read_csv(io.BytesIO(tr.content))
-    code_to_name={int(r.code):str(r.name) for _,r in teams.iterrows() if pd.notna(r.code)}
-    # Match files use FPL team `code`, not the sequential `id`.
+    # IMPORTANT: matches.csv home_team / away_team reference teams.id,
+    # not teams.code. Using code here turns club names into bare numbers and
+    # poisons team_match_stats/model feature lookup.
+    id_to_name={int(r.id):str(r.name) for _,r in teams.iterrows() if pd.notna(r.id)}
     source_name_map={
         "Bournemouth":"Bournemouth","Brighton":"Brighton","Coventry City":"Coventry",
         "Hull City":"Hull","Ipswich Town":"Ipswich","Leeds":"Leeds",
@@ -450,9 +457,15 @@ def _fallback_fpl_core(output_name):
             print(f"Fallback schedule count warning: {e}")
 
     def team_name(v):
-        if pd.isna(v): return None
-        try: name=code_to_name.get(int(float(v)),str(v))
-        except Exception: name=str(v)
+        if pd.isna(v):
+            return None
+        try:
+            key=int(float(v))
+        except Exception:
+            raise ValueError(f"Fallback team id is not numeric: {v!r}")
+        if key not in id_to_name:
+            raise ValueError(f"Fallback team id {key} not found in teams.csv")
+        name=id_to_name[key]
         return source_name_map.get(name,name)
 
     out=pd.DataFrame()
@@ -462,6 +475,14 @@ def _fallback_fpl_core(output_name):
     out["Time"]=dt.dt.strftime("%H:%M")
     out["HomeTeam"]=x["home_team"].map(team_name).map(canonical_team)
     out["AwayTeam"]=x["away_team"].map(team_name).map(canonical_team)
+
+    # Never allow a broken ID mapping to silently create teams named "1", "2", ...
+    resolved=set(out["HomeTeam"].dropna().astype(str)) | set(out["AwayTeam"].dropna().astype(str))
+    numeric_names=sorted(n for n in resolved if n.strip().isdigit())
+    if numeric_names:
+        raise RuntimeError(f"Fallback team mapping produced numeric club names: {numeric_names[:10]}")
+    if len(resolved) < 20:
+        print(f"Fallback team mapping currently resolved {len(resolved)} clubs: {sorted(resolved)}")
 
     out["FTHG"]=pd.to_numeric(x.get("home_score"),errors="coerce")
     out["FTAG"]=pd.to_numeric(x.get("away_score"),errors="coerce")

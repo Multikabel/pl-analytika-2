@@ -1,0 +1,20 @@
+PL Analytika v1.7.5 – FPL team ID mapping fix
+
+Root cause from workflow:
+Unknown team(s): ['Coventry']
+Available example: ['0','1','10',...]
+
+FPL-Core documentation states that matches.home_team and matches.away_team
+reference teams.id. The downloader incorrectly mapped them through teams.code.
+
+Fix:
+- map match team IDs via teams.id -> teams.name
+- add promoted-club/canonical aliases
+- fail immediately if any resolved club name is purely numeric
+- keep all v1.7.4 cache-cleanup and SQLite-safe import fixes
+
+Upload only:
+scripts/update_data.py
+
+Then run the workflow again. The rebuild will replace the corrupted
+current-season numeric team names with real club names before model training.
