@@ -392,10 +392,14 @@ def _fallback_fpl_core(output_name):
     tr=requests.get(base+"/teams.csv",headers=headers,timeout=25)
     tr.raise_for_status()
     teams=pd.read_csv(io.BytesIO(tr.content))
-    # The live 2026-27 matches CSV uses FPL team CODE values in home_team /
-    # away_team (e.g. 94=Brentford), even though the upstream README currently
-    # describes these fields as teams.id. Trust the actual CSV schema.
+    # FPL-Core snapshots have used more than one representation for match-team
+    # references. Build all three mappings and choose from the actual PL rows:
+    #   id:   1..20
+    #   code: stable FPL codes such as 94
+    #   index: 0..19 positional indices seen in current By-Gameweek snapshots
+    id_to_name={int(r.id):str(r.name) for _,r in teams.iterrows() if pd.notna(r.id)}
     code_to_name={int(r.code):str(r.name) for _,r in teams.iterrows() if pd.notna(r.code)}
+    index_to_name={i:str(r["name"]) for i,(_,r) in enumerate(teams.reset_index(drop=True).iterrows())}
     source_name_map={
         "Bournemouth":"Bournemouth","Brighton":"Brighton","Coventry City":"Coventry",
         "Hull City":"Hull","Ipswich Town":"Ipswich","Leeds":"Leeds",
@@ -469,16 +473,37 @@ def _fallback_fpl_core(output_name):
         except Exception as e:
             print(f"Fallback schedule count warning: {e}")
 
+    # Detect the representation from the Premier League match rows themselves.
+    raw_team_values=pd.concat([x["home_team"],x["away_team"]],ignore_index=True)
+    raw_team_values=pd.to_numeric(raw_team_values,errors="coerce").dropna().astype(int)
+    team_keys=set(raw_team_values.tolist())
+
+    if team_keys and team_keys.issubset(set(index_to_name)):
+        active_team_map=index_to_name
+        team_ref_mode="zero-based index"
+    elif team_keys and team_keys.issubset(set(id_to_name)):
+        active_team_map=id_to_name
+        team_ref_mode="teams.id"
+    elif team_keys and team_keys.issubset(set(code_to_name)):
+        active_team_map=code_to_name
+        team_ref_mode="teams.code"
+    else:
+        raise RuntimeError(
+            "Fallback team references do not match teams.csv. "
+            f"Observed sample: {sorted(team_keys)[:20]}"
+        )
+    print(f"Fallback team reference mode: {team_ref_mode}")
+
     def team_name(v):
         if pd.isna(v):
             return None
         try:
             key=int(float(v))
         except Exception:
-            raise ValueError(f"Fallback team code is not numeric: {v!r}")
-        if key not in code_to_name:
-            raise ValueError(f"Fallback team code {key} not found in teams.csv")
-        name=code_to_name[key]
+            raise ValueError(f"Fallback team reference is not numeric: {v!r}")
+        if key not in active_team_map:
+            raise ValueError(f"Fallback team reference {key} missing from detected {team_ref_mode} map")
+        name=active_team_map[key]
         return source_name_map.get(name,name)
 
     out=pd.DataFrame()

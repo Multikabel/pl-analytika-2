@@ -1,0 +1,15 @@
+PL Analytika v1.7.7 – adaptive FPL team-reference mapping
+
+The latest workflow proved that the actual Premier League snapshot is exposing
+home_team/away_team as 0..19. Previous attempts assumed teams.id or teams.code.
+
+This hotfix no longer hard-codes one representation. After filtering to
+tournament=prem it inspects the actual values and selects one of:
+- zero-based positional index 0..19
+- teams.id
+- teams.code
+
+It prints the detected mode in the Actions log and still rejects numeric club
+names before any database rebuild.
+
+Upload only scripts/update_data.py, then rerun the workflow.
