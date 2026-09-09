@@ -480,7 +480,13 @@ def _fallback_fpl_core(output_name):
     for dst,src in mapping.items():
         out[dst]=pd.to_numeric(x[src],errors="coerce") if src in x.columns else pd.NA
 
-    # Preserve already downloaded football-data rows (including odds/referees).
+    # Preserve useful fields from the previous football-data cache, but NEVER
+    # preserve extra completed rows from that cache. A previous fallback bug
+    # could leave future rounds looking "played" (e.g. 40 instead of 30).
+    #
+    # The freshly filtered fallback `out` is the authoritative set of played
+    # fixtures. Old data is only used to enrich matching rows with columns such
+    # as odds/referee; it cannot contribute additional matches.
     target=RAW/output_name
     if target.exists():
         try:
@@ -490,28 +496,44 @@ def _fallback_fpl_core(output_name):
     else:
         old=pd.DataFrame()
 
-    if len(old):
-        for c in out.columns:
-            if c not in old.columns: old[c]=pd.NA
-        # Update an existing blank fixture row with fallback stats, otherwise append.
-        keycols=["HomeTeam","AwayTeam"]
-        old_keys={(str(r.HomeTeam),str(r.AwayTeam)):i for i,r in old.iterrows() if pd.notna(r.HomeTeam) and pd.notna(r.AwayTeam)}
-        for _,r in out.iterrows():
-            k=(str(r.HomeTeam),str(r.AwayTeam))
-            if k in old_keys:
-                i=old_keys[k]
-                for c in out.columns:
-                    if c in ("Div","HomeTeam","AwayTeam"): continue
-                    if c=="Referee" and pd.isna(r[c]): continue
-                    if pd.notna(r[c]): old.at[i,c]=r[c]
-            else:
-                row={c:pd.NA for c in old.columns}
-                for c in out.columns: row[c]=r[c]
-                old=pd.concat([old,pd.DataFrame([row])],ignore_index=True)
-        merged=old
-    else:
-        merged=out
+    merged=out.copy()
 
+    if len(old):
+        # Canonicalize keys in the old cache before enriching current fallback rows.
+        if "HomeTeam" in old.columns:
+            old["HomeTeam"]=old["HomeTeam"].map(canonical_team)
+        if "AwayTeam" in old.columns:
+            old["AwayTeam"]=old["AwayTeam"].map(canonical_team)
+
+        for c in old.columns:
+            if c not in merged.columns:
+                merged[c]=pd.NA
+
+        old_lookup={}
+        for _,r in old.iterrows():
+            if pd.notna(r.get("HomeTeam")) and pd.notna(r.get("AwayTeam")):
+                old_lookup[(str(r["HomeTeam"]),str(r["AwayTeam"]))]=r
+
+        # Only enrich rows that exist in the fresh, kickoff-filtered fallback.
+        # Core match/stat fields from fallback remain authoritative.
+        fallback_core=set(out.columns)
+        for i,r in merged.iterrows():
+            k=(str(r["HomeTeam"]),str(r["AwayTeam"]))
+            oldr=old_lookup.get(k)
+            if oldr is None:
+                continue
+            for c in old.columns:
+                if c in ("HomeTeam","AwayTeam"):
+                    continue
+                if c=="Referee":
+                    if (pd.isna(merged.at[i,c]) or not str(merged.at[i,c]).strip()) and pd.notna(oldr.get(c)):
+                        merged.at[i,c]=oldr.get(c)
+                    continue
+                # Preserve non-core extras such as bookmaker odds.
+                if c not in fallback_core and pd.notna(oldr.get(c)):
+                    merged.at[i,c]=oldr.get(c)
+
+    print(f"Fallback authoritative played rows after kickoff filter: {len(merged)}")
     # If cached official appointments exist, use them to fill missing referee names.
     officials=BASE/"data"/"fixtures"/"match_officials_2026-27.csv"
     if officials.exists() and "Referee" in merged.columns:
@@ -533,11 +555,17 @@ def _fallback_fpl_core(output_name):
     # not claim more completed matches than the validated schedule has reached
     # by today's date. A small mismatch in the other direction is acceptable
     # for postponed/incomplete matches.
-    if schedule_due_count is not None and played > schedule_due_count:
-        raise RuntimeError(
-            f"Fallback claims {played} played matches, but schedule has only "
-            f"{schedule_due_count} fixtures dated up to today"
-        )
+    if schedule_due_count is not None:
+        if played > schedule_due_count:
+            raise RuntimeError(
+                f"Fallback claims {played} played matches, but schedule has only "
+                f"{schedule_due_count} fixtures dated up to today"
+            )
+        if played < schedule_due_count:
+            raise RuntimeError(
+                f"Fallback is incomplete: {played} played matches, while schedule has "
+                f"{schedule_due_count} fixtures dated up to today"
+            )
     return raw,played
 
 

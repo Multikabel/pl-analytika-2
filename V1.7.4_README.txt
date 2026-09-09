@@ -1,0 +1,20 @@
+PL Analytika v1.7.4 – polluted fallback cache cleanup
+
+Observed:
+- football-data.co.uk still returns 503
+- FPL fallback itself is usable
+- previous fallback run polluted data/raw/2026-27.csv with 40 rows that looked completed
+- later runs merged the fresh fallback into that old cache, so the stale extra 10
+  rows survived and failed the 30-match schedule guard
+
+Fix:
+- the fresh kickoff-filtered fallback is now the authoritative list of played matches
+- the old cache may enrich matching rows with odds/referee only
+- old cache can never add extra fixtures
+- fallback row count must exactly equal the number of schedule fixtures due by today
+  before rebuilding tables
+
+Upload only:
+scripts/update_data.py
+
+Then run GitHub Action manually again.
