@@ -1,0 +1,11 @@
+PL Analytika v1.7.1 downloader hotfix
+
+Replace scripts/update_data.py with the included file.
+
+Changes:
+- football-data.co.uk: 5 attempts with backoff + descriptive User-Agent
+- validates CSV and refuses an older result set
+- if primary source remains 503, uses free FPL-Core-Insights GitHub match stats fallback
+- fallback supplies goals, xG, shots, shots on target, fouls, corners, yellow/red cards
+- preserves existing football-data rows/odds and cached referee assignments where possible
+- if both sources fail, workflow remains RED instead of silently using stale data

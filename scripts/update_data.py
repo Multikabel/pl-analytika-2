@@ -4,6 +4,8 @@ import argparse
 import hashlib
 import json
 import sqlite3
+import time
+import io
 from datetime import datetime
 
 import pandas as pd
@@ -345,13 +347,197 @@ def run(raw_dir=RAW):
     print("Database:",DB)
     con.close()
 
+def _validate_current_csv_bytes(raw, source="download"):
+    """Reject HTML/error pages and obviously stale/incomplete current-season files."""
+    try:
+        x=clean_columns(pd.read_csv(io.BytesIO(raw)))
+    except Exception as e:
+        raise ValueError(f"{source}: response is not a readable CSV ({e})")
+    needed={"HomeTeam","AwayTeam","FTHG","FTAG","HF","AF","HC","AC","HY","AY"}
+    missing=needed-set(x.columns)
+    if missing:
+        raise ValueError(f"{source}: missing required columns {sorted(missing)}")
+    played=x[pd.to_numeric(x["FTHG"],errors="coerce").notna() & pd.to_numeric(x["FTAG"],errors="coerce").notna()]
+    if played.empty:
+        raise ValueError(f"{source}: no completed matches")
+    return x, len(played)
+
+
+def _fallback_fpl_core(output_name):
+    """
+    Free secondary source used only when football-data.co.uk is unavailable.
+    FPL-Core-Insights publishes match-level PL stats on GitHub (fouls, corners,
+    cards, shots and xG). Existing football-data rows/odds are preserved and
+    only missing/new played matches are filled from the fallback.
+    """
+    base="https://raw.githubusercontent.com/olbauday/FPL-Core-Insights/main/data/2026-2027"
+    headers={"User-Agent":"PL-Analytika/2.0 (+https://github.com/Multikabel/pl-analytika-2)","Accept":"text/csv,*/*"}
+
+    tr=requests.get(base+"/teams.csv",headers=headers,timeout=25)
+    tr.raise_for_status()
+    teams=pd.read_csv(io.BytesIO(tr.content))
+    code_to_name={int(r.code):str(r.name) for _,r in teams.iterrows() if pd.notna(r.code)}
+    # Match files use FPL team `code`, not the sequential `id`.
+    source_name_map={
+        "Bournemouth":"Bournemouth","Brighton":"Brighton","Coventry City":"Coventry",
+        "Hull City":"Hull","Ipswich Town":"Ipswich","Leeds":"Leeds",
+        "Man City":"Man City","Man Utd":"Man United","Newcastle":"Newcastle",
+        "Nott'm Forest":"Nott'm Forest","Spurs":"Spurs",
+    }
+
+    frames=[]
+    failures=0
+    for gw in range(1,39):
+        url=base+f"/By%20Tournament/Premier%20League/GW{gw}/matches.csv"
+        try:
+            r=requests.get(url,headers=headers,timeout=20)
+            if r.status_code==404:
+                failures+=1
+                # Future GW folders are not required; keep scanning because the
+                # upstream repo may pre-create non-contiguous snapshots.
+                continue
+            r.raise_for_status()
+            q=pd.read_csv(io.BytesIO(r.content))
+            if "finished" in q.columns:
+                q=q[q["finished"].astype(str).str.lower().isin(["true","1"])].copy()
+            if len(q): frames.append(q)
+        except Exception as e:
+            print(f"Fallback GW{gw}: {e}")
+            failures+=1
+
+    if not frames:
+        raise RuntimeError("FPL-Core fallback returned no completed Premier League matches")
+    x=pd.concat(frames,ignore_index=True)
+    if "match_id" in x.columns:
+        x=x.drop_duplicates("match_id",keep="last")
+
+    def team_name(v):
+        if pd.isna(v): return None
+        try: name=code_to_name.get(int(float(v)),str(v))
+        except Exception: name=str(v)
+        return source_name_map.get(name,name)
+
+    out=pd.DataFrame()
+    dt=pd.to_datetime(x["kickoff_time"],errors="coerce")
+    out["Div"]="E0"
+    out["Date"]=dt.dt.strftime("%d/%m/%Y")
+    out["Time"]=dt.dt.strftime("%H:%M")
+    out["HomeTeam"]=x["home_team"].map(team_name)
+    out["AwayTeam"]=x["away_team"].map(team_name)
+    out["FTHG"]=pd.to_numeric(x.get("home_score"),errors="coerce")
+    out["FTAG"]=pd.to_numeric(x.get("away_score"),errors="coerce")
+    out["FTR"]=out.apply(lambda r: "H" if r.FTHG>r.FTAG else ("A" if r.FTHG<r.FTAG else "D"),axis=1)
+    out["HTHG"]=pd.NA; out["HTAG"]=pd.NA; out["HTR"]=pd.NA
+    out["Referee"]=pd.NA
+    mapping={
+        "HxG":"home_expected_goals_xg","AxG":"away_expected_goals_xg",
+        "HS":"home_total_shots","AS":"away_total_shots",
+        "HST":"home_shots_on_target","AST":"away_shots_on_target",
+        "HF":"home_fouls_committed","AF":"away_fouls_committed",
+        "HC":"home_corners","AC":"away_corners",
+        "HY":"home_yellow_cards","AY":"away_yellow_cards",
+        "HR":"home_red_cards","AR":"away_red_cards",
+    }
+    for dst,src in mapping.items():
+        out[dst]=pd.to_numeric(x[src],errors="coerce") if src in x.columns else pd.NA
+
+    # Preserve already downloaded football-data rows (including odds/referees).
+    target=RAW/output_name
+    if target.exists():
+        try:
+            old=read_csv_any(target)
+        except Exception:
+            old=pd.DataFrame()
+    else:
+        old=pd.DataFrame()
+
+    if len(old):
+        for c in out.columns:
+            if c not in old.columns: old[c]=pd.NA
+        # Update an existing blank fixture row with fallback stats, otherwise append.
+        keycols=["HomeTeam","AwayTeam"]
+        old_keys={(str(r.HomeTeam),str(r.AwayTeam)):i for i,r in old.iterrows() if pd.notna(r.HomeTeam) and pd.notna(r.AwayTeam)}
+        for _,r in out.iterrows():
+            k=(str(r.HomeTeam),str(r.AwayTeam))
+            if k in old_keys:
+                i=old_keys[k]
+                for c in out.columns:
+                    if c in ("Div","HomeTeam","AwayTeam"): continue
+                    if c=="Referee" and pd.isna(r[c]): continue
+                    if pd.notna(r[c]): old.at[i,c]=r[c]
+            else:
+                row={c:pd.NA for c in old.columns}
+                for c in out.columns: row[c]=r[c]
+                old=pd.concat([old,pd.DataFrame([row])],ignore_index=True)
+        merged=old
+    else:
+        merged=out
+
+    # If cached official appointments exist, use them to fill missing referee names.
+    officials=BASE/"data"/"fixtures"/"match_officials_2026-27.csv"
+    if officials.exists() and "Referee" in merged.columns:
+        try:
+            o=pd.read_csv(officials)
+            def cteam(v): return canonical_team(v)
+            refmap={(cteam(r.home_team),cteam(r.away_team)):r.referee for _,r in o.iterrows() if pd.notna(r.get("referee"))}
+            for i,r in merged.iterrows():
+                if pd.isna(r.get("Referee")) or not str(r.get("Referee","")).strip():
+                    ref=refmap.get((cteam(r.HomeTeam),cteam(r.AwayTeam)))
+                    if ref: merged.at[i,"Referee"]=ref
+        except Exception as e:
+            print(f"Fallback referee merge warning: {e}")
+
+    raw=merged.to_csv(index=False).encode("utf-8-sig")
+    _,played=_validate_current_csv_bytes(raw,"FPL-Core fallback")
+    return raw,played
+
+
 def download_current(season_code, output_name):
     url=f"https://www.football-data.co.uk/mmz4281/{season_code}/E0.csv"
-    r=requests.get(url,timeout=30)
-    r.raise_for_status()
     target=RAW/output_name
-    target.write_bytes(r.content)
-    print("Downloaded:",target)
+    headers={
+        "User-Agent":"PL-Analytika/2.0 (+https://github.com/Multikabel/pl-analytika-2)",
+        "Accept":"text/csv,text/plain;q=0.9,*/*;q=0.5",
+        "Cache-Control":"no-cache",
+    }
+    existing_played=0
+    if target.exists():
+        try:
+            old=read_csv_any(target)
+            existing_played=int((pd.to_numeric(old.get("FTHG"),errors="coerce").notna() & pd.to_numeric(old.get("FTAG"),errors="coerce").notna()).sum())
+        except Exception:
+            pass
+
+    waits=[0,5,12,25,45]
+    last_error=None
+    for attempt,wait in enumerate(waits,1):
+        if wait: time.sleep(wait)
+        try:
+            sep="&" if "?" in url else "?"
+            r=requests.get(url+f"{sep}pl_analytika_attempt={attempt}",headers=headers,timeout=35)
+            r.raise_for_status()
+            _,played=_validate_current_csv_bytes(r.content,"football-data.co.uk")
+            if played < existing_played:
+                raise ValueError(f"source is older than cache ({played} played < {existing_played})")
+            target.write_bytes(r.content)
+            print(f"Downloaded football-data.co.uk: {target} ({played} played matches)")
+            return True
+        except Exception as e:
+            last_error=e
+            print(f"football-data.co.uk attempt {attempt}/{len(waits)} failed: {e}")
+
+    print(f"Primary source unavailable after retries: {last_error}")
+    print("Trying free GitHub fallback: FPL-Core-Insights …")
+    try:
+        raw,played=_fallback_fpl_core(output_name)
+        if played < existing_played:
+            raise ValueError(f"fallback is older than cache ({played} played < {existing_played})")
+        target.write_bytes(raw)
+        print(f"Fallback downloaded: {target} ({played} played matches)")
+        return True
+    except Exception as e:
+        print(f"Fallback failed: {e}")
+        return False
 
 
 
