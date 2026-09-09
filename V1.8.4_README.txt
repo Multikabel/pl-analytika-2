@@ -1,0 +1,19 @@
+PL Analytika v1.8.4 — one-time MW4 model snapshot reset
+
+Purpose:
+Remove ONLY the original 90 model predictions for 2026-27 MW4, because that
+snapshot was created while Bournemouth-Brentford and Aston Villa-Nottingham
+Forest had swapped referees.
+
+Safety:
+- makes a backup first
+- refuses to delete unless exactly 90 target rows are found
+- does not touch prediction_log.csv (manual Tips)
+- does not change normal snapshot deduplication
+
+Run once:
+python scripts/reset_mw4_model_snapshot.py
+
+Then commit the changed model_prediction_log.csv, reload the app and use
+"Spočítat celé kolo" exactly once. The corrected MW4 snapshot should contain
+90 rows again.
