@@ -1,0 +1,14 @@
+PL Analytika v1.8.1
+
+1) Rozhodčí MW4
+- přidána ověřená záloha všech 10 delegací z oficiálního článku Premier League
+- pokud PL web v GitHub Actions znovu vrátí neparsovatelný obsah, MW4 se přesto uloží do cache
+- live parser zůstává první volbou
+
+2) Data
+- Týmy: pouze aktuální sezóna 2026/27
+- Rozhodčí: pouze aktuální sezóna 2026/27
+- tabulky i všechny grafy používají jen aktuální sezónu
+- tím zmizí 100+ historických sloupců; nyní jsou v grafu jen zápasy této sezóny
+
+Balíček neobsahuje data/ a nepřepisuje Tipy ani Statistiky.

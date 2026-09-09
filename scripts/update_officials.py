@@ -23,6 +23,24 @@ KNOWN_URLS={
     4:'https://www.premierleague.com/en/news/4711668/match-officials-for-matchweek-4',
 }
 
+# Verified against the official Premier League MW4 appointments article.
+# This is a deterministic safety net when premierleague.com renders article
+# text in a way requests/BeautifulSoup cannot parse in GitHub Actions.
+KNOWN_APPOINTMENTS={
+    4:[
+        ('Bournemouth','Brentford','Andy Madley'),
+        ('Aston Villa','Nottingham Forest','Jarred Gillett'),
+        ('Chelsea','Hull','Farai Hallam'),
+        ('Crystal Palace','Ipswich','Chris Kavanagh'),
+        ('Liverpool','Fulham','Tom Bramall'),
+        ('Tottenham','Everton','Darren England'),
+        ('Sunderland','Arsenal','John Brooks'),
+        ('Coventry','Brighton & Hove Albion','Tony Harrington'),
+        ('Manchester United','Manchester City','Michael Oliver'),
+        ('Leeds','Newcastle United','Michael Salisbury'),
+    ],
+}
+
 TEAM_MAP={
     'Coventry City':'Coventry','Hull City':'Hull','Leeds United':'Leeds',
     'Tottenham Hotspur':'Tottenham','AFC Bournemouth':'Bournemouth',
@@ -137,6 +155,18 @@ def load_cache():
         return x
     return pd.DataFrame(columns=['match_round','home_team','away_team','referee','source','synced_at'])
 
+def _known_appointments(round_no):
+    rows=KNOWN_APPOINTMENTS.get(int(round_no),[])
+    if not rows:
+        return pd.DataFrame()
+    now=datetime.now().isoformat(timespec='seconds')
+    return pd.DataFrame([
+        {'match_round':int(round_no),'home_team':canonical(h),'away_team':canonical(a),
+         'referee':canonical_referee(ref),'source':'Premier League verified appointments',
+         'synced_at':now}
+        for h,a,ref in rows
+    ])
+
 def sync_officials(round_no,force=False):
     round_no=int(round_no)
     cache=load_cache()
@@ -157,8 +187,22 @@ def sync_officials(round_no,force=False):
             cache.to_csv(CACHE,index=False,encoding='utf-8-sig')
             print(f'Officials MW{round_no}: saved {len(parsed)} appointments from {url}')
             return parsed
+        known=_known_appointments(round_no)
+        if len(known)==10:
+            cache=cache[pd.to_numeric(cache.match_round,errors='coerce')!=round_no]
+            cache=pd.concat([cache,known],ignore_index=True)
+            cache.to_csv(CACHE,index=False,encoding='utf-8-sig')
+            print(f'Officials MW{round_no}: article parser returned {len(parsed)}; saved 10 verified appointments fallback.')
+            return known
         print(f'Officials MW{round_no}: parsed only {len(parsed)} rows; keeping cache.')
     except Exception as e:
+        known=_known_appointments(round_no)
+        if len(known)==10:
+            cache=cache[pd.to_numeric(cache.match_round,errors='coerce')!=round_no]
+            cache=pd.concat([cache,known],ignore_index=True)
+            cache.to_csv(CACHE,index=False,encoding='utf-8-sig')
+            print(f'Officials MW{round_no}: live sync failed ({e}); saved 10 verified appointments fallback.')
+            return known
         print(f'Officials MW{round_no}: sync failed ({e}); keeping cache.')
     return existing.copy()
 

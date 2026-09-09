@@ -585,12 +585,14 @@ elif nav=="Statistiky":
 
 elif nav=="Data":
     st.subheader("🗂️ Data")
+    st.caption(f"Aktuální sezóna {season} · bez historických sezón")
     data_mode=st.segmented_control("Datový pohled",["Týmy","Rozhodčí"],default="Týmy",label_visibility="collapsed")
 
     if data_mode=="Týmy":
-        selected_team=st.selectbox("Tým",sorted(H.team.dropna().astype(str).unique()),key="data_team")
+        H_current=H[H.season.astype(str)==str(season)].copy()
+        selected_team=st.selectbox("Tým",sorted(H_current.team.dropna().astype(str).unique()),key="data_team")
         view=st.segmented_control("Zobrazení",["Tabulka","Grafy"],default="Tabulka",key="data_team_view")
-        g=H[H.team.astype(str)==selected_team].sort_values(["match_date","match_id"]).copy()
+        g=H_current[H_current.team.astype(str)==selected_team].sort_values(["match_date","match_id"]).copy()
         g["Datum"]=g.match_date.dt.strftime("%d.%m.%Y")
         g["Zápas"]=g.apply(lambda r: f"{r.team} – {r.opponent}" if r.venue=="H" else f"{r.opponent} – {r.team}",axis=1)
         g["Výsledek"]=g.apply(lambda r: f"{int(r.goals_for)}:{int(r.goals_against)}" if r.venue=="H" else f"{int(r.goals_against)}:{int(r.goals_for)}",axis=1)
@@ -614,6 +616,7 @@ elif nav=="Data":
 
     else:
         RM=referee_matches()
+        RM=RM[RM.season.astype(str)==str(season)].copy() if not RM.empty else RM
         if RM.empty:
             st.info("Nejsou dostupná data rozhodčích.")
         else:
@@ -641,7 +644,7 @@ elif nav=="Data":
             g["Datum"]=g.match_date.dt.strftime("%d.%m.%Y")
             g["Zápas"]=g.home_team.astype(str)+" – "+g.away_team.astype(str)
             # Score is joined from H so referee table includes the result as requested.
-            home_rows=H[H.venue=="H"][["match_id","goals_for","goals_against"]].drop_duplicates("match_id")
+            home_rows=H[(H.season.astype(str)==str(season))&(H.venue=="H")][["match_id","goals_for","goals_against"]].drop_duplicates("match_id")
             g=g.merge(home_rows,on="match_id",how="left")
             g["Výsledek"]=g.apply(lambda r: f"{int(r.goals_for)}:{int(r.goals_against)}" if pd.notna(r.goals_for) and pd.notna(r.goals_against) else "—",axis=1)
             if view=="Tabulka":
@@ -651,11 +654,11 @@ elif nav=="Data":
                     "Karty domácí":pd.to_numeric(g.home_yellow,errors="coerce"),"Karty hosté":pd.to_numeric(g.away_yellow,errors="coerce"),
                 })
                 # Corners live in the two team rows; join them for the same match-level logic.
-                corners=H.pivot_table(index="match_id",columns="venue",values="corners_for",aggfunc="first").rename(columns={"H":"Rohy domácí","A":"Rohy hosté"}).reset_index()
+                corners=H[H.season.astype(str)==str(season)].pivot_table(index="match_id",columns="venue",values="corners_for",aggfunc="first").rename(columns={"H":"Rohy domácí","A":"Rohy hosté"}).reset_index()
                 out=out.join(g[["match_id"]].reset_index(drop=True)).merge(corners,on="match_id",how="left").drop(columns="match_id")
                 st.dataframe(out,use_container_width=True,hide_index=True,height=650)
             else:
-                corners=H.pivot_table(index="match_id",columns="venue",values="corners_for",aggfunc="first")
+                corners=H[H.season.astype(str)==str(season)].pivot_table(index="match_id",columns="venue",values="corners_for",aggfunc="first")
                 g=g.join(corners,on="match_id",rsuffix="_corner")
                 g["Osa"]=g["Datum"]+" · "+g.home_team.astype(str)+"–"+g.away_team.astype(str)
                 st.markdown("#### Fauly")
