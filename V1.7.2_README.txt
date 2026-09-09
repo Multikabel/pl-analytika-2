@@ -1,0 +1,24 @@
+PL Analytika v1.7.2 downloader/import hotfix
+
+Fixes two issues seen in the GitHub Actions log:
+
+1. FPL-Core fallback rows contain pandas <NA> values for fields such as
+   half-time score/referee. sqlite3 cannot bind pandas NA directly.
+   All raw scalar fields are now converted to SQLite-safe None/Python values.
+
+2. The fallback reported 40 played matches although the app should only have
+   three completed rounds. Fallback rows are now cross-checked against the
+   validated 2026-27 fixture schedule and fixtures scheduled after today's
+   Prague date are rejected.
+
+Upload:
+- scripts/update_data.py
+
+Then manually run:
+Actions -> Update PL Analytika -> Run workflow
+
+Expected fallback path while football-data.co.uk is still returning 503:
+- five primary retries
+- FPL-Core fallback
+- fallback count should no longer include future scheduled rounds
+- database rebuild continues past INSERT OR REPLACE INTO matches

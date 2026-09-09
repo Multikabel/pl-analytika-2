@@ -77,6 +77,16 @@ def as_num(v):
         return None
     return float(x)
 
+
+def db_value(v):
+    """Return a sqlite-safe scalar. Pandas NA/NaN cannot be bound directly."""
+    if v is None or pd.isna(v):
+        return None
+    try:
+        return v.item()
+    except Exception:
+        return v
+
 def safe_sum(*vals):
     nums = [as_num(v) for v in vals]
     nums = [x for x in nums if pd.notna(x)]
@@ -125,9 +135,10 @@ def import_frame(con, df):
            home_goals,away_goals,home_ht_goals,away_ht_goals,full_time_result,half_time_result,
            source_file,imported_at)
           VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
-          (mid, r.get("Div","E0"), season, r["Date"], r.get("Time"), home, away, r.get("Referee"),
+          (mid, db_value(r.get("Div","E0")), season, db_value(r["Date"]), db_value(r.get("Time")),
+           home, away, db_value(r.get("Referee")),
            as_num(r.get("FTHG")),as_num(r.get("FTAG")),as_num(r.get("HTHG")),as_num(r.get("HTAG")),
-           r.get("FTR"),r.get("HTR"),r["_source_file"],imported_at))
+           db_value(r.get("FTR")),db_value(r.get("HTR")),db_value(r["_source_file"]),imported_at))
 
         hg, ag = as_num(r.get("FTHG")), as_num(r.get("FTAG"))
         hr, hp = result_and_points(hg, ag)
@@ -136,13 +147,13 @@ def import_frame(con, df):
             "match_id":mid,"season":season,"match_date":r["Date"],"referee":r.get("Referee")
         }
         rows = [
-          (mid,season,r["Date"],home,away,"H",r.get("Referee"),
+          (mid,season,r["Date"],home,away,"H",db_value(r.get("Referee")),
            hg,ag,as_num(r.get("HTHG")),as_num(r.get("HTAG")),
            as_num(r.get("HS")),as_num(r.get("AS")),as_num(r.get("HST")),as_num(r.get("AST")),
            as_num(r.get("HF")),as_num(r.get("AF")),as_num(r.get("HC")),as_num(r.get("AC")),
            as_num(r.get("HY")),as_num(r.get("AY")),as_num(r.get("HR")),as_num(r.get("AR")),
            as_num(r.get("HxG")),as_num(r.get("AxG")),hp,hr),
-          (mid,season,r["Date"],away,home,"A",r.get("Referee"),
+          (mid,season,r["Date"],away,home,"A",db_value(r.get("Referee")),
            ag,hg,as_num(r.get("HTAG")),as_num(r.get("HTHG")),
            as_num(r.get("AS")),as_num(r.get("HS")),as_num(r.get("AST")),as_num(r.get("HST")),
            as_num(r.get("AF")),as_num(r.get("HF")),as_num(r.get("AC")),as_num(r.get("HC")),
@@ -155,7 +166,7 @@ def import_frame(con, df):
         if pd.notna(r.get("Referee")):
             con.execute("""INSERT OR REPLACE INTO referee_match_stats VALUES
               (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
-              (mid,season,r["Date"],r.get("Referee"),home,away,
+              (mid,season,r["Date"],db_value(r.get("Referee")),home,away,
                as_num(r.get("HF")),as_num(r.get("AF")),safe_sum(r.get("HF"),r.get("AF")),
                as_num(r.get("HY")),as_num(r.get("AY")),safe_sum(r.get("HY"),r.get("AY")),
                as_num(r.get("HR")),as_num(r.get("AR")),safe_sum(r.get("HR"),r.get("AR"))))
@@ -411,6 +422,24 @@ def _fallback_fpl_core(output_name):
     if "match_id" in x.columns:
         x=x.drop_duplicates("match_id",keep="last")
 
+    # The fallback repository can pre-populate later GWs. Never let future rows
+    # masquerade as played matches. Cross-check against our validated 380-game
+    # schedule and reject any fixture scheduled after today.
+    schedule_path=BASE/"data"/"fixtures"/"premier_league_2026-27.csv"
+    allowed_pairs=None
+    if schedule_path.exists():
+        try:
+            sch=pd.read_csv(schedule_path)
+            sch["match_date"]=pd.to_datetime(sch["match_date"],errors="coerce")
+            today=pd.Timestamp.now(tz="Europe/Prague").tz_localize(None).normalize()
+            sch=sch[sch["match_date"].notna() & (sch["match_date"]<=today)].copy()
+            allowed_pairs={
+                (canonical_team(r.home_team),canonical_team(r.away_team))
+                for _,r in sch.iterrows()
+            }
+        except Exception as e:
+            print(f"Fallback schedule cross-check warning: {e}")
+
     def team_name(v):
         if pd.isna(v): return None
         try: name=code_to_name.get(int(float(v)),str(v))
@@ -422,8 +451,19 @@ def _fallback_fpl_core(output_name):
     out["Div"]="E0"
     out["Date"]=dt.dt.strftime("%d/%m/%Y")
     out["Time"]=dt.dt.strftime("%H:%M")
-    out["HomeTeam"]=x["home_team"].map(team_name)
-    out["AwayTeam"]=x["away_team"].map(team_name)
+    out["HomeTeam"]=x["home_team"].map(team_name).map(canonical_team)
+    out["AwayTeam"]=x["away_team"].map(team_name).map(canonical_team)
+
+    if allowed_pairs is not None:
+        keep=[
+            (h,a) in allowed_pairs
+            for h,a in zip(out["HomeTeam"],out["AwayTeam"])
+        ]
+        x=x.loc[keep].reset_index(drop=True)
+        out=out.loc[keep].reset_index(drop=True)
+        if out.empty:
+            raise RuntimeError("Fallback schedule cross-check rejected all rows")
+
     out["FTHG"]=pd.to_numeric(x.get("home_score"),errors="coerce")
     out["FTAG"]=pd.to_numeric(x.get("away_score"),errors="coerce")
     out["FTR"]=out.apply(lambda r: "H" if r.FTHG>r.FTAG else ("A" if r.FTHG<r.FTAG else "D"),axis=1)
@@ -488,7 +528,15 @@ def _fallback_fpl_core(output_name):
             print(f"Fallback referee merge warning: {e}")
 
     raw=merged.to_csv(index=False).encode("utf-8-sig")
-    _,played=_validate_current_csv_bytes(raw,"FPL-Core fallback")
+    checked,played=_validate_current_csv_bytes(raw,"FPL-Core fallback")
+
+    # Extra guardrail: a fallback may never claim more completed matches than
+    # the validated schedule has reached by today's date.
+    if allowed_pairs is not None and played > len(allowed_pairs):
+        raise RuntimeError(
+            f"Fallback claims {played} played matches, but schedule allows only "
+            f"{len(allowed_pairs)} fixtures up to today"
+        )
     return raw,played
 
 
