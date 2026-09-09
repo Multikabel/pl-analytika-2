@@ -1,0 +1,15 @@
+PL Analytika v1.8.3 — MW4 referee correction
+
+Corrected the two swapped MW4 verified appointments:
+- Bournemouth v Brentford: Jarred Gillett
+- Aston Villa v Nottingham Forest: Andy Madley
+
+The remaining eight MW4 assignments in the verified fallback were checked against
+the published appointment sequence / independent current appointment listings and
+remain unchanged.
+
+Important: the existing 90 archived MW4 predictions may already contain the old
+referee input for these two fixtures. Do not delete the CSV manually. After this
+patch, rerun the workflow first so the official cache is corrected. A separate
+prediction-log correction should only be done with code that preserves audit
+integrity rather than silently rewriting historical predictions.

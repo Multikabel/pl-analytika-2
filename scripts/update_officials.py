@@ -28,8 +28,8 @@ KNOWN_URLS={
 # text in a way requests/BeautifulSoup cannot parse in GitHub Actions.
 KNOWN_APPOINTMENTS={
     4:[
-        ('Bournemouth','Brentford','Andy Madley'),
-        ('Aston Villa','Nottingham Forest','Jarred Gillett'),
+        ('Bournemouth','Brentford','Jarred Gillett'),
+        ('Aston Villa','Nottingham Forest','Andy Madley'),
         ('Chelsea','Hull','Farai Hallam'),
         ('Crystal Palace','Ipswich','Chris Kavanagh'),
         ('Liverpool','Fulham','Tom Bramall'),
