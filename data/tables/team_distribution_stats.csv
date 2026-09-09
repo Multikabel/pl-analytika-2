@@ -2879,563 +2879,843 @@
 2025-26,2026-05-24,Wolverhampton Wanderers,AWAY,shots_on_target_against,19,4.947368421052632,4.0,2.296704987840099,2.0,3.0,6.0,10.0
 2025-26,2026-05-24,Wolverhampton Wanderers,AWAY,goals_for,19,0.42105263157894735,0.0,0.606976978666884,0.0,0.0,1.0,2.0
 2025-26,2026-05-24,Wolverhampton Wanderers,AWAY,goals_against,19,1.7894736842105263,2.0,1.0316624861746775,0.0,1.0,2.5,4.0
-2026-27,2026-08-21,Arsenal,ALL,fouls_committed,1,10.0,10.0,0.0,10.0,10.0,10.0,10.0
-2026-27,2026-08-21,Arsenal,ALL,fouls_suffered,1,13.0,13.0,0.0,13.0,13.0,13.0,13.0
-2026-27,2026-08-21,Arsenal,ALL,corners_for,1,8.0,8.0,0.0,8.0,8.0,8.0,8.0
-2026-27,2026-08-21,Arsenal,ALL,corners_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-21,Arsenal,ALL,yellow_cards,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-21,Arsenal,ALL,yellow_cards_opponent,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-21,Arsenal,ALL,shots_for,1,20.0,20.0,0.0,20.0,20.0,20.0,20.0
-2026-27,2026-08-21,Arsenal,ALL,shots_against,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-21,Arsenal,ALL,shots_on_target_for,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-21,Arsenal,ALL,shots_on_target_against,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-21,Arsenal,ALL,goals_for,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-21,Arsenal,ALL,goals_against,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-21,Arsenal,ALL,xg_for,1,1.88,1.88,0.0,1.88,1.88,1.88,1.88
-2026-27,2026-08-21,Arsenal,ALL,xg_against,1,0.2,0.2,0.0,0.2,0.2,0.2,0.2
-2026-27,2026-08-21,Arsenal,HOME,fouls_committed,1,10.0,10.0,0.0,10.0,10.0,10.0,10.0
-2026-27,2026-08-21,Arsenal,HOME,fouls_suffered,1,13.0,13.0,0.0,13.0,13.0,13.0,13.0
-2026-27,2026-08-21,Arsenal,HOME,corners_for,1,8.0,8.0,0.0,8.0,8.0,8.0,8.0
-2026-27,2026-08-21,Arsenal,HOME,corners_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-21,Arsenal,HOME,yellow_cards,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-21,Arsenal,HOME,yellow_cards_opponent,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-21,Arsenal,HOME,shots_for,1,20.0,20.0,0.0,20.0,20.0,20.0,20.0
-2026-27,2026-08-21,Arsenal,HOME,shots_against,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-21,Arsenal,HOME,shots_on_target_for,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-21,Arsenal,HOME,shots_on_target_against,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-21,Arsenal,HOME,goals_for,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-21,Arsenal,HOME,goals_against,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-21,Arsenal,HOME,xg_for,1,1.88,1.88,0.0,1.88,1.88,1.88,1.88
-2026-27,2026-08-21,Arsenal,HOME,xg_against,1,0.2,0.2,0.0,0.2,0.2,0.2,0.2
-2026-27,2026-08-23,Aston Villa,ALL,fouls_committed,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
-2026-27,2026-08-23,Aston Villa,ALL,fouls_suffered,1,12.0,12.0,0.0,12.0,12.0,12.0,12.0
-2026-27,2026-08-23,Aston Villa,ALL,corners_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-23,Aston Villa,ALL,corners_against,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
-2026-27,2026-08-23,Aston Villa,ALL,yellow_cards,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-23,Aston Villa,ALL,yellow_cards_opponent,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-23,Aston Villa,ALL,shots_for,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-23,Aston Villa,ALL,shots_against,1,21.0,21.0,0.0,21.0,21.0,21.0,21.0
-2026-27,2026-08-23,Aston Villa,ALL,shots_on_target_for,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-23,Aston Villa,ALL,shots_on_target_against,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-23,Aston Villa,ALL,goals_for,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-23,Aston Villa,ALL,goals_against,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-23,Aston Villa,ALL,xg_for,1,0.28,0.28,0.0,0.28,0.28,0.28,0.28
-2026-27,2026-08-23,Aston Villa,ALL,xg_against,1,3.77,3.77,0.0,3.77,3.77,3.77,3.77
-2026-27,2026-08-23,Aston Villa,AWAY,fouls_committed,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
-2026-27,2026-08-23,Aston Villa,AWAY,fouls_suffered,1,12.0,12.0,0.0,12.0,12.0,12.0,12.0
-2026-27,2026-08-23,Aston Villa,AWAY,corners_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-23,Aston Villa,AWAY,corners_against,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
-2026-27,2026-08-23,Aston Villa,AWAY,yellow_cards,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-23,Aston Villa,AWAY,yellow_cards_opponent,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-23,Aston Villa,AWAY,shots_for,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-23,Aston Villa,AWAY,shots_against,1,21.0,21.0,0.0,21.0,21.0,21.0,21.0
-2026-27,2026-08-23,Aston Villa,AWAY,shots_on_target_for,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-23,Aston Villa,AWAY,shots_on_target_against,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-23,Aston Villa,AWAY,goals_for,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-23,Aston Villa,AWAY,goals_against,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-23,Aston Villa,AWAY,xg_for,1,0.28,0.28,0.0,0.28,0.28,0.28,0.28
-2026-27,2026-08-23,Aston Villa,AWAY,xg_against,1,3.77,3.77,0.0,3.77,3.77,3.77,3.77
-2026-27,2026-08-23,Bournemouth,ALL,fouls_committed,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
-2026-27,2026-08-23,Bournemouth,ALL,fouls_suffered,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
-2026-27,2026-08-23,Bournemouth,ALL,corners_for,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-23,Bournemouth,ALL,corners_against,1,8.0,8.0,0.0,8.0,8.0,8.0,8.0
-2026-27,2026-08-23,Bournemouth,ALL,yellow_cards,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-23,Bournemouth,ALL,yellow_cards_opponent,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-23,Bournemouth,ALL,shots_for,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
-2026-27,2026-08-23,Bournemouth,ALL,shots_against,1,13.0,13.0,0.0,13.0,13.0,13.0,13.0
-2026-27,2026-08-23,Bournemouth,ALL,shots_on_target_for,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-23,Bournemouth,ALL,shots_on_target_against,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-23,Bournemouth,ALL,goals_for,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-23,Bournemouth,ALL,goals_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-23,Bournemouth,ALL,xg_for,1,0.63,0.63,0.0,0.63,0.63,0.63,0.63
-2026-27,2026-08-23,Bournemouth,ALL,xg_against,1,2.36,2.36,0.0,2.36,2.36,2.36,2.36
-2026-27,2026-08-23,Bournemouth,AWAY,fouls_committed,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
-2026-27,2026-08-23,Bournemouth,AWAY,fouls_suffered,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
-2026-27,2026-08-23,Bournemouth,AWAY,corners_for,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-23,Bournemouth,AWAY,corners_against,1,8.0,8.0,0.0,8.0,8.0,8.0,8.0
-2026-27,2026-08-23,Bournemouth,AWAY,yellow_cards,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-23,Bournemouth,AWAY,yellow_cards_opponent,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-23,Bournemouth,AWAY,shots_for,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
-2026-27,2026-08-23,Bournemouth,AWAY,shots_against,1,13.0,13.0,0.0,13.0,13.0,13.0,13.0
-2026-27,2026-08-23,Bournemouth,AWAY,shots_on_target_for,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-23,Bournemouth,AWAY,shots_on_target_against,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-23,Bournemouth,AWAY,goals_for,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-23,Bournemouth,AWAY,goals_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-23,Bournemouth,AWAY,xg_for,1,0.63,0.63,0.0,0.63,0.63,0.63,0.63
-2026-27,2026-08-23,Bournemouth,AWAY,xg_against,1,2.36,2.36,0.0,2.36,2.36,2.36,2.36
-2026-27,2026-08-22,Brentford,ALL,fouls_committed,1,17.0,17.0,0.0,17.0,17.0,17.0,17.0
-2026-27,2026-08-22,Brentford,ALL,fouls_suffered,1,14.0,14.0,0.0,14.0,14.0,14.0,14.0
-2026-27,2026-08-22,Brentford,ALL,corners_for,1,7.0,7.0,0.0,7.0,7.0,7.0,7.0
-2026-27,2026-08-22,Brentford,ALL,corners_against,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-22,Brentford,ALL,yellow_cards,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Brentford,ALL,yellow_cards_opponent,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Brentford,ALL,shots_for,1,26.0,26.0,0.0,26.0,26.0,26.0,26.0
-2026-27,2026-08-22,Brentford,ALL,shots_against,1,9.0,9.0,0.0,9.0,9.0,9.0,9.0
-2026-27,2026-08-22,Brentford,ALL,shots_on_target_for,1,8.0,8.0,0.0,8.0,8.0,8.0,8.0
-2026-27,2026-08-22,Brentford,ALL,shots_on_target_against,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-22,Brentford,ALL,goals_for,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-22,Brentford,ALL,goals_against,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-22,Brentford,ALL,xg_for,1,3.88,3.88,0.0,3.88,3.88,3.88,3.88
-2026-27,2026-08-22,Brentford,ALL,xg_against,1,0.57,0.57,0.0,0.57,0.57,0.57,0.57
-2026-27,2026-08-22,Brentford,HOME,fouls_committed,1,17.0,17.0,0.0,17.0,17.0,17.0,17.0
-2026-27,2026-08-22,Brentford,HOME,fouls_suffered,1,14.0,14.0,0.0,14.0,14.0,14.0,14.0
-2026-27,2026-08-22,Brentford,HOME,corners_for,1,7.0,7.0,0.0,7.0,7.0,7.0,7.0
-2026-27,2026-08-22,Brentford,HOME,corners_against,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-22,Brentford,HOME,yellow_cards,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Brentford,HOME,yellow_cards_opponent,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Brentford,HOME,shots_for,1,26.0,26.0,0.0,26.0,26.0,26.0,26.0
-2026-27,2026-08-22,Brentford,HOME,shots_against,1,9.0,9.0,0.0,9.0,9.0,9.0,9.0
-2026-27,2026-08-22,Brentford,HOME,shots_on_target_for,1,8.0,8.0,0.0,8.0,8.0,8.0,8.0
-2026-27,2026-08-22,Brentford,HOME,shots_on_target_against,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-22,Brentford,HOME,goals_for,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-22,Brentford,HOME,goals_against,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-22,Brentford,HOME,xg_for,1,3.88,3.88,0.0,3.88,3.88,3.88,3.88
-2026-27,2026-08-22,Brentford,HOME,xg_against,1,0.57,0.57,0.0,0.57,0.57,0.57,0.57
-2026-27,2026-08-23,Brighton & Hove Albion,ALL,fouls_committed,1,12.0,12.0,0.0,12.0,12.0,12.0,12.0
-2026-27,2026-08-23,Brighton & Hove Albion,ALL,fouls_suffered,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
-2026-27,2026-08-23,Brighton & Hove Albion,ALL,corners_for,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
-2026-27,2026-08-23,Brighton & Hove Albion,ALL,corners_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-23,Brighton & Hove Albion,ALL,yellow_cards,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-23,Brighton & Hove Albion,ALL,yellow_cards_opponent,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-23,Brighton & Hove Albion,ALL,shots_for,1,21.0,21.0,0.0,21.0,21.0,21.0,21.0
-2026-27,2026-08-23,Brighton & Hove Albion,ALL,shots_against,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-23,Brighton & Hove Albion,ALL,shots_on_target_for,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-23,Brighton & Hove Albion,ALL,shots_on_target_against,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-23,Brighton & Hove Albion,ALL,goals_for,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-23,Brighton & Hove Albion,ALL,goals_against,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-23,Brighton & Hove Albion,ALL,xg_for,1,3.77,3.77,0.0,3.77,3.77,3.77,3.77
-2026-27,2026-08-23,Brighton & Hove Albion,ALL,xg_against,1,0.28,0.28,0.0,0.28,0.28,0.28,0.28
-2026-27,2026-08-23,Brighton & Hove Albion,HOME,fouls_committed,1,12.0,12.0,0.0,12.0,12.0,12.0,12.0
-2026-27,2026-08-23,Brighton & Hove Albion,HOME,fouls_suffered,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
-2026-27,2026-08-23,Brighton & Hove Albion,HOME,corners_for,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
-2026-27,2026-08-23,Brighton & Hove Albion,HOME,corners_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-23,Brighton & Hove Albion,HOME,yellow_cards,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-23,Brighton & Hove Albion,HOME,yellow_cards_opponent,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-23,Brighton & Hove Albion,HOME,shots_for,1,21.0,21.0,0.0,21.0,21.0,21.0,21.0
-2026-27,2026-08-23,Brighton & Hove Albion,HOME,shots_against,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-23,Brighton & Hove Albion,HOME,shots_on_target_for,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-23,Brighton & Hove Albion,HOME,shots_on_target_against,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-23,Brighton & Hove Albion,HOME,goals_for,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-23,Brighton & Hove Albion,HOME,goals_against,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-23,Brighton & Hove Albion,HOME,xg_for,1,3.77,3.77,0.0,3.77,3.77,3.77,3.77
-2026-27,2026-08-23,Brighton & Hove Albion,HOME,xg_against,1,0.28,0.28,0.0,0.28,0.28,0.28,0.28
-2026-27,2026-08-24,Chelsea,ALL,fouls_committed,1,7.0,7.0,0.0,7.0,7.0,7.0,7.0
-2026-27,2026-08-24,Chelsea,ALL,fouls_suffered,1,12.0,12.0,0.0,12.0,12.0,12.0,12.0
-2026-27,2026-08-24,Chelsea,ALL,corners_for,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-24,Chelsea,ALL,corners_against,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-24,Chelsea,ALL,yellow_cards,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-24,Chelsea,ALL,yellow_cards_opponent,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-24,Chelsea,ALL,shots_for,1,18.0,18.0,0.0,18.0,18.0,18.0,18.0
-2026-27,2026-08-24,Chelsea,ALL,shots_against,1,14.0,14.0,0.0,14.0,14.0,14.0,14.0
-2026-27,2026-08-24,Chelsea,ALL,shots_on_target_for,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-24,Chelsea,ALL,shots_on_target_against,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-24,Chelsea,ALL,goals_for,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-24,Chelsea,ALL,goals_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-24,Chelsea,ALL,xg_for,1,1.7,1.7,0.0,1.7,1.7,1.7,1.7
-2026-27,2026-08-24,Chelsea,ALL,xg_against,1,1.35,1.35,0.0,1.35,1.35,1.35,1.35
-2026-27,2026-08-24,Chelsea,AWAY,fouls_committed,1,7.0,7.0,0.0,7.0,7.0,7.0,7.0
-2026-27,2026-08-24,Chelsea,AWAY,fouls_suffered,1,12.0,12.0,0.0,12.0,12.0,12.0,12.0
-2026-27,2026-08-24,Chelsea,AWAY,corners_for,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-24,Chelsea,AWAY,corners_against,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-24,Chelsea,AWAY,yellow_cards,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-24,Chelsea,AWAY,yellow_cards_opponent,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-24,Chelsea,AWAY,shots_for,1,18.0,18.0,0.0,18.0,18.0,18.0,18.0
-2026-27,2026-08-24,Chelsea,AWAY,shots_against,1,14.0,14.0,0.0,14.0,14.0,14.0,14.0
-2026-27,2026-08-24,Chelsea,AWAY,shots_on_target_for,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-24,Chelsea,AWAY,shots_on_target_against,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-24,Chelsea,AWAY,goals_for,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-24,Chelsea,AWAY,goals_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-24,Chelsea,AWAY,xg_for,1,1.7,1.7,0.0,1.7,1.7,1.7,1.7
-2026-27,2026-08-24,Chelsea,AWAY,xg_against,1,1.35,1.35,0.0,1.35,1.35,1.35,1.35
-2026-27,2026-08-21,Coventry,ALL,fouls_committed,1,13.0,13.0,0.0,13.0,13.0,13.0,13.0
-2026-27,2026-08-21,Coventry,ALL,fouls_suffered,1,10.0,10.0,0.0,10.0,10.0,10.0,10.0
-2026-27,2026-08-21,Coventry,ALL,corners_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-21,Coventry,ALL,corners_against,1,8.0,8.0,0.0,8.0,8.0,8.0,8.0
-2026-27,2026-08-21,Coventry,ALL,yellow_cards,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-21,Coventry,ALL,yellow_cards_opponent,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-21,Coventry,ALL,shots_for,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-21,Coventry,ALL,shots_against,1,20.0,20.0,0.0,20.0,20.0,20.0,20.0
-2026-27,2026-08-21,Coventry,ALL,shots_on_target_for,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-21,Coventry,ALL,shots_on_target_against,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-21,Coventry,ALL,goals_for,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-21,Coventry,ALL,goals_against,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-21,Coventry,ALL,xg_for,1,0.2,0.2,0.0,0.2,0.2,0.2,0.2
-2026-27,2026-08-21,Coventry,ALL,xg_against,1,1.88,1.88,0.0,1.88,1.88,1.88,1.88
-2026-27,2026-08-21,Coventry,AWAY,fouls_committed,1,13.0,13.0,0.0,13.0,13.0,13.0,13.0
-2026-27,2026-08-21,Coventry,AWAY,fouls_suffered,1,10.0,10.0,0.0,10.0,10.0,10.0,10.0
-2026-27,2026-08-21,Coventry,AWAY,corners_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-21,Coventry,AWAY,corners_against,1,8.0,8.0,0.0,8.0,8.0,8.0,8.0
-2026-27,2026-08-21,Coventry,AWAY,yellow_cards,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-21,Coventry,AWAY,yellow_cards_opponent,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-21,Coventry,AWAY,shots_for,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-21,Coventry,AWAY,shots_against,1,20.0,20.0,0.0,20.0,20.0,20.0,20.0
-2026-27,2026-08-21,Coventry,AWAY,shots_on_target_for,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-21,Coventry,AWAY,shots_on_target_against,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-21,Coventry,AWAY,goals_for,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-21,Coventry,AWAY,goals_against,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-21,Coventry,AWAY,xg_for,1,0.2,0.2,0.0,0.2,0.2,0.2,0.2
-2026-27,2026-08-21,Coventry,AWAY,xg_against,1,1.88,1.88,0.0,1.88,1.88,1.88,1.88
-2026-27,2026-08-22,Crystal Palace,ALL,fouls_committed,1,15.0,15.0,0.0,15.0,15.0,15.0,15.0
-2026-27,2026-08-22,Crystal Palace,ALL,fouls_suffered,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
-2026-27,2026-08-22,Crystal Palace,ALL,corners_for,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-22,Crystal Palace,ALL,corners_against,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-22,Crystal Palace,ALL,yellow_cards,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Crystal Palace,ALL,yellow_cards_opponent,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-22,Crystal Palace,ALL,shots_for,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
-2026-27,2026-08-22,Crystal Palace,ALL,shots_against,1,16.0,16.0,0.0,16.0,16.0,16.0,16.0
-2026-27,2026-08-22,Crystal Palace,ALL,shots_on_target_for,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-22,Crystal Palace,ALL,shots_on_target_against,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
-2026-27,2026-08-22,Crystal Palace,ALL,goals_for,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-22,Crystal Palace,ALL,goals_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-22,Crystal Palace,ALL,xg_for,1,1.96,1.96,0.0,1.96,1.96,1.96,1.96
-2026-27,2026-08-22,Crystal Palace,ALL,xg_against,1,1.12,1.12,0.0,1.12,1.12,1.12,1.12
-2026-27,2026-08-22,Crystal Palace,AWAY,fouls_committed,1,15.0,15.0,0.0,15.0,15.0,15.0,15.0
-2026-27,2026-08-22,Crystal Palace,AWAY,fouls_suffered,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
-2026-27,2026-08-22,Crystal Palace,AWAY,corners_for,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-22,Crystal Palace,AWAY,corners_against,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-22,Crystal Palace,AWAY,yellow_cards,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Crystal Palace,AWAY,yellow_cards_opponent,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-22,Crystal Palace,AWAY,shots_for,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
-2026-27,2026-08-22,Crystal Palace,AWAY,shots_against,1,16.0,16.0,0.0,16.0,16.0,16.0,16.0
-2026-27,2026-08-22,Crystal Palace,AWAY,shots_on_target_for,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-22,Crystal Palace,AWAY,shots_on_target_against,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
-2026-27,2026-08-22,Crystal Palace,AWAY,goals_for,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-22,Crystal Palace,AWAY,goals_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-22,Crystal Palace,AWAY,xg_for,1,1.96,1.96,0.0,1.96,1.96,1.96,1.96
-2026-27,2026-08-22,Crystal Palace,AWAY,xg_against,1,1.12,1.12,0.0,1.12,1.12,1.12,1.12
-2026-27,2026-08-22,Everton,ALL,fouls_committed,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
-2026-27,2026-08-22,Everton,ALL,fouls_suffered,1,15.0,15.0,0.0,15.0,15.0,15.0,15.0
-2026-27,2026-08-22,Everton,ALL,corners_for,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-22,Everton,ALL,corners_against,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-22,Everton,ALL,yellow_cards,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-22,Everton,ALL,yellow_cards_opponent,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Everton,ALL,shots_for,1,16.0,16.0,0.0,16.0,16.0,16.0,16.0
-2026-27,2026-08-22,Everton,ALL,shots_against,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
-2026-27,2026-08-22,Everton,ALL,shots_on_target_for,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
-2026-27,2026-08-22,Everton,ALL,shots_on_target_against,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-22,Everton,ALL,goals_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-22,Everton,ALL,goals_against,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-22,Everton,ALL,xg_for,1,1.12,1.12,0.0,1.12,1.12,1.12,1.12
-2026-27,2026-08-22,Everton,ALL,xg_against,1,1.96,1.96,0.0,1.96,1.96,1.96,1.96
-2026-27,2026-08-22,Everton,HOME,fouls_committed,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
-2026-27,2026-08-22,Everton,HOME,fouls_suffered,1,15.0,15.0,0.0,15.0,15.0,15.0,15.0
-2026-27,2026-08-22,Everton,HOME,corners_for,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-22,Everton,HOME,corners_against,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-22,Everton,HOME,yellow_cards,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-22,Everton,HOME,yellow_cards_opponent,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Everton,HOME,shots_for,1,16.0,16.0,0.0,16.0,16.0,16.0,16.0
-2026-27,2026-08-22,Everton,HOME,shots_against,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
-2026-27,2026-08-22,Everton,HOME,shots_on_target_for,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
-2026-27,2026-08-22,Everton,HOME,shots_on_target_against,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-22,Everton,HOME,goals_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-22,Everton,HOME,goals_against,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-22,Everton,HOME,xg_for,1,1.12,1.12,0.0,1.12,1.12,1.12,1.12
-2026-27,2026-08-22,Everton,HOME,xg_against,1,1.96,1.96,0.0,1.96,1.96,1.96,1.96
-2026-27,2026-08-24,Fulham,ALL,fouls_committed,1,12.0,12.0,0.0,12.0,12.0,12.0,12.0
-2026-27,2026-08-24,Fulham,ALL,fouls_suffered,1,7.0,7.0,0.0,7.0,7.0,7.0,7.0
-2026-27,2026-08-24,Fulham,ALL,corners_for,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-24,Fulham,ALL,corners_against,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-24,Fulham,ALL,yellow_cards,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-24,Fulham,ALL,yellow_cards_opponent,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-24,Fulham,ALL,shots_for,1,14.0,14.0,0.0,14.0,14.0,14.0,14.0
-2026-27,2026-08-24,Fulham,ALL,shots_against,1,18.0,18.0,0.0,18.0,18.0,18.0,18.0
-2026-27,2026-08-24,Fulham,ALL,shots_on_target_for,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-24,Fulham,ALL,shots_on_target_against,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-24,Fulham,ALL,goals_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-24,Fulham,ALL,goals_against,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-24,Fulham,ALL,xg_for,1,1.35,1.35,0.0,1.35,1.35,1.35,1.35
-2026-27,2026-08-24,Fulham,ALL,xg_against,1,1.7,1.7,0.0,1.7,1.7,1.7,1.7
-2026-27,2026-08-24,Fulham,HOME,fouls_committed,1,12.0,12.0,0.0,12.0,12.0,12.0,12.0
-2026-27,2026-08-24,Fulham,HOME,fouls_suffered,1,7.0,7.0,0.0,7.0,7.0,7.0,7.0
-2026-27,2026-08-24,Fulham,HOME,corners_for,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-24,Fulham,HOME,corners_against,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-24,Fulham,HOME,yellow_cards,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-24,Fulham,HOME,yellow_cards_opponent,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-24,Fulham,HOME,shots_for,1,14.0,14.0,0.0,14.0,14.0,14.0,14.0
-2026-27,2026-08-24,Fulham,HOME,shots_against,1,18.0,18.0,0.0,18.0,18.0,18.0,18.0
-2026-27,2026-08-24,Fulham,HOME,shots_on_target_for,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-24,Fulham,HOME,shots_on_target_against,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-24,Fulham,HOME,goals_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-24,Fulham,HOME,goals_against,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-24,Fulham,HOME,xg_for,1,1.35,1.35,0.0,1.35,1.35,1.35,1.35
-2026-27,2026-08-24,Fulham,HOME,xg_against,1,1.7,1.7,0.0,1.7,1.7,1.7,1.7
-2026-27,2026-08-22,Hull,ALL,fouls_committed,1,10.0,10.0,0.0,10.0,10.0,10.0,10.0
-2026-27,2026-08-22,Hull,ALL,fouls_suffered,1,9.0,9.0,0.0,9.0,9.0,9.0,9.0
-2026-27,2026-08-22,Hull,ALL,corners_for,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Hull,ALL,corners_against,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-22,Hull,ALL,yellow_cards,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-22,Hull,ALL,yellow_cards_opponent,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Hull,ALL,shots_for,1,8.0,8.0,0.0,8.0,8.0,8.0,8.0
-2026-27,2026-08-22,Hull,ALL,shots_against,1,21.0,21.0,0.0,21.0,21.0,21.0,21.0
-2026-27,2026-08-22,Hull,ALL,shots_on_target_for,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-22,Hull,ALL,shots_on_target_against,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
-2026-27,2026-08-22,Hull,ALL,goals_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-22,Hull,ALL,goals_against,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-22,Hull,ALL,xg_for,1,1.01,1.01,0.0,1.01,1.01,1.01,1.01
-2026-27,2026-08-22,Hull,ALL,xg_against,1,1.83,1.83,0.0,1.83,1.83,1.83,1.83
-2026-27,2026-08-22,Hull,HOME,fouls_committed,1,10.0,10.0,0.0,10.0,10.0,10.0,10.0
-2026-27,2026-08-22,Hull,HOME,fouls_suffered,1,9.0,9.0,0.0,9.0,9.0,9.0,9.0
-2026-27,2026-08-22,Hull,HOME,corners_for,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Hull,HOME,corners_against,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-22,Hull,HOME,yellow_cards,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-22,Hull,HOME,yellow_cards_opponent,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Hull,HOME,shots_for,1,8.0,8.0,0.0,8.0,8.0,8.0,8.0
-2026-27,2026-08-22,Hull,HOME,shots_against,1,21.0,21.0,0.0,21.0,21.0,21.0,21.0
-2026-27,2026-08-22,Hull,HOME,shots_on_target_for,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-22,Hull,HOME,shots_on_target_against,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
-2026-27,2026-08-22,Hull,HOME,goals_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-22,Hull,HOME,goals_against,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-22,Hull,HOME,xg_for,1,1.01,1.01,0.0,1.01,1.01,1.01,1.01
-2026-27,2026-08-22,Hull,HOME,xg_against,1,1.83,1.83,0.0,1.83,1.83,1.83,1.83
-2026-27,2026-08-22,Ipswich,ALL,fouls_committed,1,12.0,12.0,0.0,12.0,12.0,12.0,12.0
-2026-27,2026-08-22,Ipswich,ALL,fouls_suffered,1,14.0,14.0,0.0,14.0,14.0,14.0,14.0
-2026-27,2026-08-22,Ipswich,ALL,corners_for,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-22,Ipswich,ALL,corners_against,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
-2026-27,2026-08-22,Ipswich,ALL,yellow_cards,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-22,Ipswich,ALL,yellow_cards_opponent,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-22,Ipswich,ALL,shots_for,1,10.0,10.0,0.0,10.0,10.0,10.0,10.0
-2026-27,2026-08-22,Ipswich,ALL,shots_against,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
-2026-27,2026-08-22,Ipswich,ALL,shots_on_target_for,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-22,Ipswich,ALL,shots_on_target_against,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-22,Ipswich,ALL,goals_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-22,Ipswich,ALL,goals_against,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Ipswich,ALL,xg_for,1,1.8,1.8,0.0,1.8,1.8,1.8,1.8
-2026-27,2026-08-22,Ipswich,ALL,xg_against,1,0.66,0.66,0.0,0.66,0.66,0.66,0.66
-2026-27,2026-08-22,Ipswich,HOME,fouls_committed,1,12.0,12.0,0.0,12.0,12.0,12.0,12.0
-2026-27,2026-08-22,Ipswich,HOME,fouls_suffered,1,14.0,14.0,0.0,14.0,14.0,14.0,14.0
-2026-27,2026-08-22,Ipswich,HOME,corners_for,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-22,Ipswich,HOME,corners_against,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
-2026-27,2026-08-22,Ipswich,HOME,yellow_cards,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-22,Ipswich,HOME,yellow_cards_opponent,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-22,Ipswich,HOME,shots_for,1,10.0,10.0,0.0,10.0,10.0,10.0,10.0
-2026-27,2026-08-22,Ipswich,HOME,shots_against,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
-2026-27,2026-08-22,Ipswich,HOME,shots_on_target_for,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-22,Ipswich,HOME,shots_on_target_against,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-22,Ipswich,HOME,goals_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-22,Ipswich,HOME,goals_against,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Ipswich,HOME,xg_for,1,1.8,1.8,0.0,1.8,1.8,1.8,1.8
-2026-27,2026-08-22,Ipswich,HOME,xg_against,1,0.66,0.66,0.0,0.66,0.66,0.66,0.66
-2026-27,2026-08-22,Leeds,ALL,fouls_committed,1,14.0,14.0,0.0,14.0,14.0,14.0,14.0
-2026-27,2026-08-22,Leeds,ALL,fouls_suffered,1,15.0,15.0,0.0,15.0,15.0,15.0,15.0
-2026-27,2026-08-22,Leeds,ALL,corners_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-22,Leeds,ALL,corners_against,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-22,Leeds,ALL,yellow_cards,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Leeds,ALL,yellow_cards_opponent,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-22,Leeds,ALL,shots_for,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
-2026-27,2026-08-22,Leeds,ALL,shots_against,1,12.0,12.0,0.0,12.0,12.0,12.0,12.0
-2026-27,2026-08-22,Leeds,ALL,shots_on_target_for,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-22,Leeds,ALL,shots_on_target_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-22,Leeds,ALL,goals_for,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Leeds,ALL,goals_against,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-22,Leeds,ALL,xg_for,1,0.47,0.47,0.0,0.47,0.47,0.47,0.47
-2026-27,2026-08-22,Leeds,ALL,xg_against,1,0.66,0.66,0.0,0.66,0.66,0.66,0.66
-2026-27,2026-08-22,Leeds,AWAY,fouls_committed,1,14.0,14.0,0.0,14.0,14.0,14.0,14.0
-2026-27,2026-08-22,Leeds,AWAY,fouls_suffered,1,15.0,15.0,0.0,15.0,15.0,15.0,15.0
-2026-27,2026-08-22,Leeds,AWAY,corners_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-22,Leeds,AWAY,corners_against,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-22,Leeds,AWAY,yellow_cards,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Leeds,AWAY,yellow_cards_opponent,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-22,Leeds,AWAY,shots_for,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
-2026-27,2026-08-22,Leeds,AWAY,shots_against,1,12.0,12.0,0.0,12.0,12.0,12.0,12.0
-2026-27,2026-08-22,Leeds,AWAY,shots_on_target_for,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-22,Leeds,AWAY,shots_on_target_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-22,Leeds,AWAY,goals_for,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Leeds,AWAY,goals_against,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-22,Leeds,AWAY,xg_for,1,0.47,0.47,0.0,0.47,0.47,0.47,0.47
-2026-27,2026-08-22,Leeds,AWAY,xg_against,1,0.66,0.66,0.0,0.66,0.66,0.66,0.66
-2026-27,2026-08-23,Liverpool,ALL,fouls_committed,1,15.0,15.0,0.0,15.0,15.0,15.0,15.0
-2026-27,2026-08-23,Liverpool,ALL,fouls_suffered,1,16.0,16.0,0.0,16.0,16.0,16.0,16.0
-2026-27,2026-08-23,Liverpool,ALL,corners_for,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-23,Liverpool,ALL,corners_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-23,Liverpool,ALL,yellow_cards,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-23,Liverpool,ALL,yellow_cards_opponent,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
-2026-27,2026-08-23,Liverpool,ALL,shots_for,1,27.0,27.0,0.0,27.0,27.0,27.0,27.0
-2026-27,2026-08-23,Liverpool,ALL,shots_against,1,13.0,13.0,0.0,13.0,13.0,13.0,13.0
-2026-27,2026-08-23,Liverpool,ALL,shots_on_target_for,1,7.0,7.0,0.0,7.0,7.0,7.0,7.0
-2026-27,2026-08-23,Liverpool,ALL,shots_on_target_against,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-23,Liverpool,ALL,goals_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-23,Liverpool,ALL,goals_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-23,Liverpool,ALL,xg_for,1,2.98,2.98,0.0,2.98,2.98,2.98,2.98
-2026-27,2026-08-23,Liverpool,ALL,xg_against,1,1.57,1.57,0.0,1.57,1.57,1.57,1.57
-2026-27,2026-08-23,Liverpool,AWAY,fouls_committed,1,15.0,15.0,0.0,15.0,15.0,15.0,15.0
-2026-27,2026-08-23,Liverpool,AWAY,fouls_suffered,1,16.0,16.0,0.0,16.0,16.0,16.0,16.0
-2026-27,2026-08-23,Liverpool,AWAY,corners_for,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-23,Liverpool,AWAY,corners_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-23,Liverpool,AWAY,yellow_cards,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-23,Liverpool,AWAY,yellow_cards_opponent,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
-2026-27,2026-08-23,Liverpool,AWAY,shots_for,1,27.0,27.0,0.0,27.0,27.0,27.0,27.0
-2026-27,2026-08-23,Liverpool,AWAY,shots_against,1,13.0,13.0,0.0,13.0,13.0,13.0,13.0
-2026-27,2026-08-23,Liverpool,AWAY,shots_on_target_for,1,7.0,7.0,0.0,7.0,7.0,7.0,7.0
-2026-27,2026-08-23,Liverpool,AWAY,shots_on_target_against,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-23,Liverpool,AWAY,goals_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-23,Liverpool,AWAY,goals_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-23,Liverpool,AWAY,xg_for,1,2.98,2.98,0.0,2.98,2.98,2.98,2.98
-2026-27,2026-08-23,Liverpool,AWAY,xg_against,1,1.57,1.57,0.0,1.57,1.57,1.57,1.57
-2026-27,2026-08-23,Manchester City,ALL,fouls_committed,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
-2026-27,2026-08-23,Manchester City,ALL,fouls_suffered,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
-2026-27,2026-08-23,Manchester City,ALL,corners_for,1,8.0,8.0,0.0,8.0,8.0,8.0,8.0
-2026-27,2026-08-23,Manchester City,ALL,corners_against,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-23,Manchester City,ALL,yellow_cards,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-23,Manchester City,ALL,yellow_cards_opponent,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-23,Manchester City,ALL,shots_for,1,13.0,13.0,0.0,13.0,13.0,13.0,13.0
-2026-27,2026-08-23,Manchester City,ALL,shots_against,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
-2026-27,2026-08-23,Manchester City,ALL,shots_on_target_for,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-23,Manchester City,ALL,shots_on_target_against,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-23,Manchester City,ALL,goals_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-23,Manchester City,ALL,goals_against,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-23,Manchester City,ALL,xg_for,1,2.36,2.36,0.0,2.36,2.36,2.36,2.36
-2026-27,2026-08-23,Manchester City,ALL,xg_against,1,0.63,0.63,0.0,0.63,0.63,0.63,0.63
-2026-27,2026-08-23,Manchester City,HOME,fouls_committed,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
-2026-27,2026-08-23,Manchester City,HOME,fouls_suffered,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
-2026-27,2026-08-23,Manchester City,HOME,corners_for,1,8.0,8.0,0.0,8.0,8.0,8.0,8.0
-2026-27,2026-08-23,Manchester City,HOME,corners_against,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-23,Manchester City,HOME,yellow_cards,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-23,Manchester City,HOME,yellow_cards_opponent,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-23,Manchester City,HOME,shots_for,1,13.0,13.0,0.0,13.0,13.0,13.0,13.0
-2026-27,2026-08-23,Manchester City,HOME,shots_against,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
-2026-27,2026-08-23,Manchester City,HOME,shots_on_target_for,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-23,Manchester City,HOME,shots_on_target_against,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-23,Manchester City,HOME,goals_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-23,Manchester City,HOME,goals_against,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-23,Manchester City,HOME,xg_for,1,2.36,2.36,0.0,2.36,2.36,2.36,2.36
-2026-27,2026-08-23,Manchester City,HOME,xg_against,1,0.63,0.63,0.0,0.63,0.63,0.63,0.63
-2026-27,2026-08-22,Manchester United,ALL,fouls_committed,1,9.0,9.0,0.0,9.0,9.0,9.0,9.0
-2026-27,2026-08-22,Manchester United,ALL,fouls_suffered,1,10.0,10.0,0.0,10.0,10.0,10.0,10.0
-2026-27,2026-08-22,Manchester United,ALL,corners_for,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-22,Manchester United,ALL,corners_against,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Manchester United,ALL,yellow_cards,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Manchester United,ALL,yellow_cards_opponent,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-22,Manchester United,ALL,shots_for,1,21.0,21.0,0.0,21.0,21.0,21.0,21.0
-2026-27,2026-08-22,Manchester United,ALL,shots_against,1,8.0,8.0,0.0,8.0,8.0,8.0,8.0
-2026-27,2026-08-22,Manchester United,ALL,shots_on_target_for,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
-2026-27,2026-08-22,Manchester United,ALL,shots_on_target_against,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-22,Manchester United,ALL,goals_for,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-22,Manchester United,ALL,goals_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-22,Manchester United,ALL,xg_for,1,1.83,1.83,0.0,1.83,1.83,1.83,1.83
-2026-27,2026-08-22,Manchester United,ALL,xg_against,1,1.01,1.01,0.0,1.01,1.01,1.01,1.01
-2026-27,2026-08-22,Manchester United,AWAY,fouls_committed,1,9.0,9.0,0.0,9.0,9.0,9.0,9.0
-2026-27,2026-08-22,Manchester United,AWAY,fouls_suffered,1,10.0,10.0,0.0,10.0,10.0,10.0,10.0
-2026-27,2026-08-22,Manchester United,AWAY,corners_for,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-22,Manchester United,AWAY,corners_against,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Manchester United,AWAY,yellow_cards,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Manchester United,AWAY,yellow_cards_opponent,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-22,Manchester United,AWAY,shots_for,1,21.0,21.0,0.0,21.0,21.0,21.0,21.0
-2026-27,2026-08-22,Manchester United,AWAY,shots_against,1,8.0,8.0,0.0,8.0,8.0,8.0,8.0
-2026-27,2026-08-22,Manchester United,AWAY,shots_on_target_for,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
-2026-27,2026-08-22,Manchester United,AWAY,shots_on_target_against,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-22,Manchester United,AWAY,goals_for,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-22,Manchester United,AWAY,goals_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-22,Manchester United,AWAY,xg_for,1,1.83,1.83,0.0,1.83,1.83,1.83,1.83
-2026-27,2026-08-22,Manchester United,AWAY,xg_against,1,1.01,1.01,0.0,1.01,1.01,1.01,1.01
-2026-27,2026-08-23,Newcastle United,ALL,fouls_committed,1,16.0,16.0,0.0,16.0,16.0,16.0,16.0
-2026-27,2026-08-23,Newcastle United,ALL,fouls_suffered,1,15.0,15.0,0.0,15.0,15.0,15.0,15.0
-2026-27,2026-08-23,Newcastle United,ALL,corners_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-23,Newcastle United,ALL,corners_against,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-23,Newcastle United,ALL,yellow_cards,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
-2026-27,2026-08-23,Newcastle United,ALL,yellow_cards_opponent,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-23,Newcastle United,ALL,shots_for,1,13.0,13.0,0.0,13.0,13.0,13.0,13.0
-2026-27,2026-08-23,Newcastle United,ALL,shots_against,1,27.0,27.0,0.0,27.0,27.0,27.0,27.0
-2026-27,2026-08-23,Newcastle United,ALL,shots_on_target_for,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-23,Newcastle United,ALL,shots_on_target_against,1,7.0,7.0,0.0,7.0,7.0,7.0,7.0
-2026-27,2026-08-23,Newcastle United,ALL,goals_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-23,Newcastle United,ALL,goals_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-23,Newcastle United,ALL,xg_for,1,1.57,1.57,0.0,1.57,1.57,1.57,1.57
-2026-27,2026-08-23,Newcastle United,ALL,xg_against,1,2.98,2.98,0.0,2.98,2.98,2.98,2.98
-2026-27,2026-08-23,Newcastle United,HOME,fouls_committed,1,16.0,16.0,0.0,16.0,16.0,16.0,16.0
-2026-27,2026-08-23,Newcastle United,HOME,fouls_suffered,1,15.0,15.0,0.0,15.0,15.0,15.0,15.0
-2026-27,2026-08-23,Newcastle United,HOME,corners_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-23,Newcastle United,HOME,corners_against,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
-2026-27,2026-08-23,Newcastle United,HOME,yellow_cards,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
-2026-27,2026-08-23,Newcastle United,HOME,yellow_cards_opponent,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-23,Newcastle United,HOME,shots_for,1,13.0,13.0,0.0,13.0,13.0,13.0,13.0
-2026-27,2026-08-23,Newcastle United,HOME,shots_against,1,27.0,27.0,0.0,27.0,27.0,27.0,27.0
-2026-27,2026-08-23,Newcastle United,HOME,shots_on_target_for,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-23,Newcastle United,HOME,shots_on_target_against,1,7.0,7.0,0.0,7.0,7.0,7.0,7.0
-2026-27,2026-08-23,Newcastle United,HOME,goals_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-23,Newcastle United,HOME,goals_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-23,Newcastle United,HOME,xg_for,1,1.57,1.57,0.0,1.57,1.57,1.57,1.57
-2026-27,2026-08-23,Newcastle United,HOME,xg_against,1,2.98,2.98,0.0,2.98,2.98,2.98,2.98
-2026-27,2026-08-22,Nottingham Forest,ALL,fouls_committed,1,15.0,15.0,0.0,15.0,15.0,15.0,15.0
-2026-27,2026-08-22,Nottingham Forest,ALL,fouls_suffered,1,14.0,14.0,0.0,14.0,14.0,14.0,14.0
-2026-27,2026-08-22,Nottingham Forest,ALL,corners_for,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-22,Nottingham Forest,ALL,corners_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-22,Nottingham Forest,ALL,yellow_cards,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-22,Nottingham Forest,ALL,yellow_cards_opponent,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Nottingham Forest,ALL,shots_for,1,12.0,12.0,0.0,12.0,12.0,12.0,12.0
-2026-27,2026-08-22,Nottingham Forest,ALL,shots_against,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
-2026-27,2026-08-22,Nottingham Forest,ALL,shots_on_target_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-22,Nottingham Forest,ALL,shots_on_target_against,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-22,Nottingham Forest,ALL,goals_for,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-22,Nottingham Forest,ALL,goals_against,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Nottingham Forest,ALL,xg_for,1,0.66,0.66,0.0,0.66,0.66,0.66,0.66
-2026-27,2026-08-22,Nottingham Forest,ALL,xg_against,1,0.47,0.47,0.0,0.47,0.47,0.47,0.47
-2026-27,2026-08-22,Nottingham Forest,HOME,fouls_committed,1,15.0,15.0,0.0,15.0,15.0,15.0,15.0
-2026-27,2026-08-22,Nottingham Forest,HOME,fouls_suffered,1,14.0,14.0,0.0,14.0,14.0,14.0,14.0
-2026-27,2026-08-22,Nottingham Forest,HOME,corners_for,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-22,Nottingham Forest,HOME,corners_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-22,Nottingham Forest,HOME,yellow_cards,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-22,Nottingham Forest,HOME,yellow_cards_opponent,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Nottingham Forest,HOME,shots_for,1,12.0,12.0,0.0,12.0,12.0,12.0,12.0
-2026-27,2026-08-22,Nottingham Forest,HOME,shots_against,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
-2026-27,2026-08-22,Nottingham Forest,HOME,shots_on_target_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-22,Nottingham Forest,HOME,shots_on_target_against,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-22,Nottingham Forest,HOME,goals_for,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-22,Nottingham Forest,HOME,goals_against,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Nottingham Forest,HOME,xg_for,1,0.66,0.66,0.0,0.66,0.66,0.66,0.66
-2026-27,2026-08-22,Nottingham Forest,HOME,xg_against,1,0.47,0.47,0.0,0.47,0.47,0.47,0.47
-2026-27,2026-08-22,Sunderland,ALL,fouls_committed,1,14.0,14.0,0.0,14.0,14.0,14.0,14.0
-2026-27,2026-08-22,Sunderland,ALL,fouls_suffered,1,12.0,12.0,0.0,12.0,12.0,12.0,12.0
-2026-27,2026-08-22,Sunderland,ALL,corners_for,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
-2026-27,2026-08-22,Sunderland,ALL,corners_against,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-22,Sunderland,ALL,yellow_cards,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-22,Sunderland,ALL,yellow_cards_opponent,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-22,Sunderland,ALL,shots_for,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
-2026-27,2026-08-22,Sunderland,ALL,shots_against,1,10.0,10.0,0.0,10.0,10.0,10.0,10.0
-2026-27,2026-08-22,Sunderland,ALL,shots_on_target_for,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-22,Sunderland,ALL,shots_on_target_against,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-22,Sunderland,ALL,goals_for,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Sunderland,ALL,goals_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-22,Sunderland,ALL,xg_for,1,0.66,0.66,0.0,0.66,0.66,0.66,0.66
-2026-27,2026-08-22,Sunderland,ALL,xg_against,1,1.8,1.8,0.0,1.8,1.8,1.8,1.8
-2026-27,2026-08-22,Sunderland,AWAY,fouls_committed,1,14.0,14.0,0.0,14.0,14.0,14.0,14.0
-2026-27,2026-08-22,Sunderland,AWAY,fouls_suffered,1,12.0,12.0,0.0,12.0,12.0,12.0,12.0
-2026-27,2026-08-22,Sunderland,AWAY,corners_for,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
-2026-27,2026-08-22,Sunderland,AWAY,corners_against,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-22,Sunderland,AWAY,yellow_cards,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-22,Sunderland,AWAY,yellow_cards_opponent,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-22,Sunderland,AWAY,shots_for,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
-2026-27,2026-08-22,Sunderland,AWAY,shots_against,1,10.0,10.0,0.0,10.0,10.0,10.0,10.0
-2026-27,2026-08-22,Sunderland,AWAY,shots_on_target_for,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-22,Sunderland,AWAY,shots_on_target_against,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-22,Sunderland,AWAY,goals_for,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Sunderland,AWAY,goals_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
-2026-27,2026-08-22,Sunderland,AWAY,xg_for,1,0.66,0.66,0.0,0.66,0.66,0.66,0.66
-2026-27,2026-08-22,Sunderland,AWAY,xg_against,1,1.8,1.8,0.0,1.8,1.8,1.8,1.8
-2026-27,2026-08-22,Tottenham,ALL,fouls_committed,1,14.0,14.0,0.0,14.0,14.0,14.0,14.0
-2026-27,2026-08-22,Tottenham,ALL,fouls_suffered,1,17.0,17.0,0.0,17.0,17.0,17.0,17.0
-2026-27,2026-08-22,Tottenham,ALL,corners_for,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-22,Tottenham,ALL,corners_against,1,7.0,7.0,0.0,7.0,7.0,7.0,7.0
-2026-27,2026-08-22,Tottenham,ALL,yellow_cards,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Tottenham,ALL,yellow_cards_opponent,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Tottenham,ALL,shots_for,1,9.0,9.0,0.0,9.0,9.0,9.0,9.0
-2026-27,2026-08-22,Tottenham,ALL,shots_against,1,26.0,26.0,0.0,26.0,26.0,26.0,26.0
-2026-27,2026-08-22,Tottenham,ALL,shots_on_target_for,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-22,Tottenham,ALL,shots_on_target_against,1,8.0,8.0,0.0,8.0,8.0,8.0,8.0
-2026-27,2026-08-22,Tottenham,ALL,goals_for,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-22,Tottenham,ALL,goals_against,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-22,Tottenham,ALL,xg_for,1,0.57,0.57,0.0,0.57,0.57,0.57,0.57
-2026-27,2026-08-22,Tottenham,ALL,xg_against,1,3.88,3.88,0.0,3.88,3.88,3.88,3.88
-2026-27,2026-08-22,Tottenham,AWAY,fouls_committed,1,14.0,14.0,0.0,14.0,14.0,14.0,14.0
-2026-27,2026-08-22,Tottenham,AWAY,fouls_suffered,1,17.0,17.0,0.0,17.0,17.0,17.0,17.0
-2026-27,2026-08-22,Tottenham,AWAY,corners_for,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-22,Tottenham,AWAY,corners_against,1,7.0,7.0,0.0,7.0,7.0,7.0,7.0
-2026-27,2026-08-22,Tottenham,AWAY,yellow_cards,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Tottenham,AWAY,yellow_cards_opponent,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
-2026-27,2026-08-22,Tottenham,AWAY,shots_for,1,9.0,9.0,0.0,9.0,9.0,9.0,9.0
-2026-27,2026-08-22,Tottenham,AWAY,shots_against,1,26.0,26.0,0.0,26.0,26.0,26.0,26.0
-2026-27,2026-08-22,Tottenham,AWAY,shots_on_target_for,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
-2026-27,2026-08-22,Tottenham,AWAY,shots_on_target_against,1,8.0,8.0,0.0,8.0,8.0,8.0,8.0
-2026-27,2026-08-22,Tottenham,AWAY,goals_for,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-2026-27,2026-08-22,Tottenham,AWAY,goals_against,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
-2026-27,2026-08-22,Tottenham,AWAY,xg_for,1,0.57,0.57,0.0,0.57,0.57,0.57,0.57
-2026-27,2026-08-22,Tottenham,AWAY,xg_against,1,3.88,3.88,0.0,3.88,3.88,3.88,3.88
+2026-27,2026-09-06,Arsenal,ALL,fouls_committed,3,9.666666666666666,10.0,3.511884584284246,6.0,8.0,11.5,13.0
+2026-27,2026-09-06,Arsenal,ALL,fouls_suffered,3,15.333333333333334,16.0,2.0816659994661326,13.0,14.5,16.5,17.0
+2026-27,2026-09-06,Arsenal,ALL,corners_for,3,5.666666666666667,5.0,2.0816659994661326,4.0,4.5,6.5,8.0
+2026-27,2026-09-06,Arsenal,ALL,corners_against,3,2.3333333333333335,2.0,0.5773502691896258,2.0,2.0,2.5,3.0
+2026-27,2026-09-06,Arsenal,ALL,yellow_cards,3,1.3333333333333333,1.0,0.5773502691896257,1.0,1.0,1.5,2.0
+2026-27,2026-09-06,Arsenal,ALL,yellow_cards_opponent,3,2.6666666666666665,3.0,1.5275252316519465,1.0,2.0,3.5,4.0
+2026-27,2026-09-06,Arsenal,ALL,shots_for,3,14.333333333333334,16.0,6.6583281184793925,7.0,11.5,18.0,20.0
+2026-27,2026-09-06,Arsenal,ALL,shots_against,3,8.0,7.0,4.58257569495584,4.0,5.5,10.0,13.0
+2026-27,2026-09-06,Arsenal,ALL,shots_on_target_for,3,5.666666666666667,6.0,3.511884584284246,2.0,4.0,7.5,9.0
+2026-27,2026-09-06,Arsenal,ALL,shots_on_target_against,3,2.0,1.0,2.6457513110645907,0.0,0.5,3.0,5.0
+2026-27,2026-09-06,Arsenal,ALL,goals_for,3,2.0,2.0,1.0,1.0,1.5,2.5,3.0
+2026-27,2026-09-06,Arsenal,ALL,goals_against,3,0.3333333333333333,0.0,0.5773502691896258,0.0,0.0,0.5,1.0
+2026-27,2026-09-06,Arsenal,ALL,xg_for,3,1.6566666666666665,1.88,0.5407710544521898,1.04,1.46,1.9649999999999999,2.05
+2026-27,2026-09-06,Arsenal,ALL,xg_against,3,0.3066666666666667,0.33,0.0971253485622231,0.2,0.265,0.36,0.39
+2026-27,2026-09-06,Arsenal,HOME,fouls_committed,2,11.5,11.5,2.1213203435596424,10.0,10.75,12.25,13.0
+2026-27,2026-09-06,Arsenal,HOME,fouls_suffered,2,14.5,14.5,2.1213203435596424,13.0,13.75,15.25,16.0
+2026-27,2026-09-06,Arsenal,HOME,corners_for,2,6.5,6.5,2.1213203435596424,5.0,5.75,7.25,8.0
+2026-27,2026-09-06,Arsenal,HOME,corners_against,2,2.5,2.5,0.7071067811865476,2.0,2.25,2.75,3.0
+2026-27,2026-09-06,Arsenal,HOME,yellow_cards,2,1.5,1.5,0.7071067811865476,1.0,1.25,1.75,2.0
+2026-27,2026-09-06,Arsenal,HOME,yellow_cards_opponent,2,2.5,2.5,2.1213203435596424,1.0,1.75,3.25,4.0
+2026-27,2026-09-06,Arsenal,HOME,shots_for,2,18.0,18.0,2.8284271247461903,16.0,17.0,19.0,20.0
+2026-27,2026-09-06,Arsenal,HOME,shots_against,2,8.5,8.5,6.363961030678928,4.0,6.25,10.75,13.0
+2026-27,2026-09-06,Arsenal,HOME,shots_on_target_for,2,7.5,7.5,2.1213203435596424,6.0,6.75,8.25,9.0
+2026-27,2026-09-06,Arsenal,HOME,shots_on_target_against,2,3.0,3.0,2.8284271247461903,1.0,2.0,4.0,5.0
+2026-27,2026-09-06,Arsenal,HOME,goals_for,2,2.5,2.5,0.7071067811865476,2.0,2.25,2.75,3.0
+2026-27,2026-09-06,Arsenal,HOME,goals_against,2,0.5,0.5,0.7071067811865476,0.0,0.25,0.75,1.0
+2026-27,2026-09-06,Arsenal,HOME,xg_for,2,1.9649999999999999,1.9649999999999999,0.12020815280171303,1.88,1.9224999999999999,2.0075,2.05
+2026-27,2026-09-06,Arsenal,HOME,xg_against,2,0.29500000000000004,0.29500000000000004,0.13435028842544403,0.2,0.2475,0.3425,0.39
+2026-27,2026-09-06,Arsenal,AWAY,fouls_committed,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
+2026-27,2026-09-06,Arsenal,AWAY,fouls_suffered,1,17.0,17.0,0.0,17.0,17.0,17.0,17.0
+2026-27,2026-09-06,Arsenal,AWAY,corners_for,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
+2026-27,2026-09-06,Arsenal,AWAY,corners_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-06,Arsenal,AWAY,yellow_cards,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-06,Arsenal,AWAY,yellow_cards_opponent,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
+2026-27,2026-09-06,Arsenal,AWAY,shots_for,1,7.0,7.0,0.0,7.0,7.0,7.0,7.0
+2026-27,2026-09-06,Arsenal,AWAY,shots_against,1,7.0,7.0,0.0,7.0,7.0,7.0,7.0
+2026-27,2026-09-06,Arsenal,AWAY,shots_on_target_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-06,Arsenal,AWAY,shots_on_target_against,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+2026-27,2026-09-06,Arsenal,AWAY,goals_for,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-06,Arsenal,AWAY,goals_against,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+2026-27,2026-09-06,Arsenal,AWAY,xg_for,1,1.04,1.04,0.0,1.04,1.04,1.04,1.04
+2026-27,2026-09-06,Arsenal,AWAY,xg_against,1,0.33,0.33,0.0,0.33,0.33,0.33,0.33
+2026-27,2026-09-05,Aston Villa,ALL,fouls_committed,3,11.0,11.0,6.0,5.0,8.0,14.0,17.0
+2026-27,2026-09-05,Aston Villa,ALL,fouls_suffered,3,9.333333333333334,10.0,3.055050463303893,6.0,8.0,11.0,12.0
+2026-27,2026-09-05,Aston Villa,ALL,corners_for,3,2.6666666666666665,2.0,1.1547005383792515,2.0,2.0,3.0,4.0
+2026-27,2026-09-05,Aston Villa,ALL,corners_against,3,4.0,4.0,1.0,3.0,3.5,4.5,5.0
+2026-27,2026-09-05,Aston Villa,ALL,yellow_cards,3,2.0,3.0,1.7320508075688772,0.0,1.5,3.0,3.0
+2026-27,2026-09-05,Aston Villa,ALL,yellow_cards_opponent,3,1.6666666666666667,2.0,0.5773502691896257,1.0,1.5,2.0,2.0
+2026-27,2026-09-05,Aston Villa,ALL,shots_for,3,8.666666666666666,7.0,3.7859388972001824,6.0,6.5,10.0,13.0
+2026-27,2026-09-05,Aston Villa,ALL,shots_against,3,13.0,11.0,7.211102550927978,7.0,9.0,16.0,21.0
+2026-27,2026-09-05,Aston Villa,ALL,shots_on_target_for,3,0.3333333333333333,0.0,0.5773502691896258,0.0,0.0,0.5,1.0
+2026-27,2026-09-05,Aston Villa,ALL,shots_on_target_against,3,4.0,4.0,2.0,2.0,3.0,5.0,6.0
+2026-27,2026-09-05,Aston Villa,ALL,goals_for,3,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+2026-27,2026-09-05,Aston Villa,ALL,goals_against,3,1.6666666666666667,1.0,2.0816659994661326,0.0,0.5,2.5,4.0
+2026-27,2026-09-05,Aston Villa,ALL,xg_for,3,0.85,0.33,0.93552124508212,0.29,0.31,1.13,1.93
+2026-27,2026-09-05,Aston Villa,ALL,xg_against,3,1.7933333333333337,1.04,1.727898530971461,0.57,0.8049999999999999,2.4050000000000002,3.77
+2026-27,2026-09-05,Aston Villa,HOME,fouls_committed,1,17.0,17.0,0.0,17.0,17.0,17.0,17.0
+2026-27,2026-09-05,Aston Villa,HOME,fouls_suffered,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
+2026-27,2026-09-05,Aston Villa,HOME,corners_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Aston Villa,HOME,corners_against,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
+2026-27,2026-09-05,Aston Villa,HOME,yellow_cards,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
+2026-27,2026-09-05,Aston Villa,HOME,yellow_cards_opponent,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-05,Aston Villa,HOME,shots_for,1,7.0,7.0,0.0,7.0,7.0,7.0,7.0
+2026-27,2026-09-05,Aston Villa,HOME,shots_against,1,7.0,7.0,0.0,7.0,7.0,7.0,7.0
+2026-27,2026-09-05,Aston Villa,HOME,shots_on_target_for,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+2026-27,2026-09-05,Aston Villa,HOME,shots_on_target_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Aston Villa,HOME,goals_for,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+2026-27,2026-09-05,Aston Villa,HOME,goals_against,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-05,Aston Villa,HOME,xg_for,1,0.33,0.33,0.0,0.33,0.33,0.33,0.33
+2026-27,2026-09-05,Aston Villa,HOME,xg_against,1,1.04,1.04,0.0,1.04,1.04,1.04,1.04
+2026-27,2026-09-05,Aston Villa,AWAY,fouls_committed,2,8.0,8.0,4.242640687119285,5.0,6.5,9.5,11.0
+2026-27,2026-09-05,Aston Villa,AWAY,fouls_suffered,2,11.0,11.0,1.4142135623730951,10.0,10.5,11.5,12.0
+2026-27,2026-09-05,Aston Villa,AWAY,corners_for,2,3.0,3.0,1.4142135623730951,2.0,2.5,3.5,4.0
+2026-27,2026-09-05,Aston Villa,AWAY,corners_against,2,4.0,4.0,1.4142135623730951,3.0,3.5,4.5,5.0
+2026-27,2026-09-05,Aston Villa,AWAY,yellow_cards,2,1.5,1.5,2.1213203435596424,0.0,0.75,2.25,3.0
+2026-27,2026-09-05,Aston Villa,AWAY,yellow_cards_opponent,2,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Aston Villa,AWAY,shots_for,2,9.5,9.5,4.949747468305833,6.0,7.75,11.25,13.0
+2026-27,2026-09-05,Aston Villa,AWAY,shots_against,2,16.0,16.0,7.0710678118654755,11.0,13.5,18.5,21.0
+2026-27,2026-09-05,Aston Villa,AWAY,shots_on_target_for,2,0.5,0.5,0.7071067811865476,0.0,0.25,0.75,1.0
+2026-27,2026-09-05,Aston Villa,AWAY,shots_on_target_against,2,5.0,5.0,1.4142135623730951,4.0,4.5,5.5,6.0
+2026-27,2026-09-05,Aston Villa,AWAY,goals_for,2,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+2026-27,2026-09-05,Aston Villa,AWAY,goals_against,2,2.0,2.0,2.8284271247461903,0.0,1.0,3.0,4.0
+2026-27,2026-09-05,Aston Villa,AWAY,xg_for,2,1.1099999999999999,1.1099999999999999,1.1596551211459378,0.29,0.7,1.52,1.93
+2026-27,2026-09-05,Aston Villa,AWAY,xg_against,2,2.17,2.17,2.2627416997969525,0.57,1.37,2.9699999999999998,3.77
+2026-27,2026-09-05,Bournemouth,ALL,fouls_committed,3,13.0,11.0,3.4641016151377544,11.0,11.0,14.0,17.0
+2026-27,2026-09-05,Bournemouth,ALL,fouls_suffered,3,14.666666666666666,14.0,4.041451884327381,11.0,12.5,16.5,19.0
+2026-27,2026-09-05,Bournemouth,ALL,corners_for,3,5.333333333333333,3.0,4.041451884327381,3.0,3.0,6.5,10.0
+2026-27,2026-09-05,Bournemouth,ALL,corners_against,3,6.333333333333333,7.0,2.0816659994661326,4.0,5.5,7.5,8.0
+2026-27,2026-09-05,Bournemouth,ALL,yellow_cards,3,2.6666666666666665,3.0,0.5773502691896258,2.0,2.5,3.0,3.0
+2026-27,2026-09-05,Bournemouth,ALL,yellow_cards_opponent,3,1.6666666666666667,2.0,0.5773502691896257,1.0,1.5,2.0,2.0
+2026-27,2026-09-05,Bournemouth,ALL,shots_for,3,13.0,17.0,6.928203230275509,5.0,11.0,17.0,17.0
+2026-27,2026-09-05,Bournemouth,ALL,shots_against,3,11.333333333333334,13.0,2.8867513459481287,8.0,10.5,13.0,13.0
+2026-27,2026-09-05,Bournemouth,ALL,shots_on_target_for,3,4.666666666666667,5.0,0.5773502691896258,4.0,4.5,5.0,5.0
+2026-27,2026-09-05,Bournemouth,ALL,shots_on_target_against,3,5.0,6.0,2.6457513110645907,2.0,4.0,6.5,7.0
+2026-27,2026-09-05,Bournemouth,ALL,goals_for,3,1.3333333333333333,1.0,0.5773502691896257,1.0,1.0,1.5,2.0
+2026-27,2026-09-05,Bournemouth,ALL,goals_against,3,1.6666666666666667,2.0,0.5773502691896257,1.0,1.5,2.0,2.0
+2026-27,2026-09-05,Bournemouth,ALL,xg_for,3,1.3933333333333333,1.37,0.7552703710151308,0.65,1.01,1.7650000000000001,2.16
+2026-27,2026-09-05,Bournemouth,ALL,xg_against,3,1.5999999999999999,1.84,0.7975587752636165,0.71,1.275,2.045,2.25
+2026-27,2026-09-05,Bournemouth,HOME,fouls_committed,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
+2026-27,2026-09-05,Bournemouth,HOME,fouls_suffered,1,14.0,14.0,0.0,14.0,14.0,14.0,14.0
+2026-27,2026-09-05,Bournemouth,HOME,corners_for,1,10.0,10.0,0.0,10.0,10.0,10.0,10.0
+2026-27,2026-09-05,Bournemouth,HOME,corners_against,1,7.0,7.0,0.0,7.0,7.0,7.0,7.0
+2026-27,2026-09-05,Bournemouth,HOME,yellow_cards,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
+2026-27,2026-09-05,Bournemouth,HOME,yellow_cards_opponent,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Bournemouth,HOME,shots_for,1,17.0,17.0,0.0,17.0,17.0,17.0,17.0
+2026-27,2026-09-05,Bournemouth,HOME,shots_against,1,13.0,13.0,0.0,13.0,13.0,13.0,13.0
+2026-27,2026-09-05,Bournemouth,HOME,shots_on_target_for,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
+2026-27,2026-09-05,Bournemouth,HOME,shots_on_target_against,1,7.0,7.0,0.0,7.0,7.0,7.0,7.0
+2026-27,2026-09-05,Bournemouth,HOME,goals_for,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-05,Bournemouth,HOME,goals_against,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-05,Bournemouth,HOME,xg_for,1,2.16,2.16,0.0,2.16,2.16,2.16,2.16
+2026-27,2026-09-05,Bournemouth,HOME,xg_against,1,1.84,1.84,0.0,1.84,1.84,1.84,1.84
+2026-27,2026-09-05,Bournemouth,AWAY,fouls_committed,2,14.0,14.0,4.242640687119285,11.0,12.5,15.5,17.0
+2026-27,2026-09-05,Bournemouth,AWAY,fouls_suffered,2,15.0,15.0,5.656854249492381,11.0,13.0,17.0,19.0
+2026-27,2026-09-05,Bournemouth,AWAY,corners_for,2,3.0,3.0,0.0,3.0,3.0,3.0,3.0
+2026-27,2026-09-05,Bournemouth,AWAY,corners_against,2,6.0,6.0,2.8284271247461903,4.0,5.0,7.0,8.0
+2026-27,2026-09-05,Bournemouth,AWAY,yellow_cards,2,2.5,2.5,0.7071067811865476,2.0,2.25,2.75,3.0
+2026-27,2026-09-05,Bournemouth,AWAY,yellow_cards_opponent,2,1.5,1.5,0.7071067811865476,1.0,1.25,1.75,2.0
+2026-27,2026-09-05,Bournemouth,AWAY,shots_for,2,11.0,11.0,8.48528137423857,5.0,8.0,14.0,17.0
+2026-27,2026-09-05,Bournemouth,AWAY,shots_against,2,10.5,10.5,3.5355339059327378,8.0,9.25,11.75,13.0
+2026-27,2026-09-05,Bournemouth,AWAY,shots_on_target_for,2,4.5,4.5,0.7071067811865476,4.0,4.25,4.75,5.0
+2026-27,2026-09-05,Bournemouth,AWAY,shots_on_target_against,2,4.0,4.0,2.8284271247461903,2.0,3.0,5.0,6.0
+2026-27,2026-09-05,Bournemouth,AWAY,goals_for,2,1.5,1.5,0.7071067811865476,1.0,1.25,1.75,2.0
+2026-27,2026-09-05,Bournemouth,AWAY,goals_against,2,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Bournemouth,AWAY,xg_for,2,1.01,1.01,0.5091168824543143,0.65,0.8300000000000001,1.1900000000000002,1.37
+2026-27,2026-09-05,Bournemouth,AWAY,xg_against,2,1.48,1.48,1.0889444430272832,0.71,1.095,1.865,2.25
+2026-27,2026-09-05,Brentford,ALL,fouls_committed,3,16.333333333333332,17.0,3.0550504633038935,13.0,15.0,18.0,19.0
+2026-27,2026-09-05,Brentford,ALL,fouls_suffered,3,9.333333333333334,9.0,4.509249752822894,5.0,7.0,11.5,14.0
+2026-27,2026-09-05,Brentford,ALL,corners_for,3,5.666666666666667,6.0,1.5275252316519465,4.0,5.0,6.5,7.0
+2026-27,2026-09-05,Brentford,ALL,corners_against,3,3.6666666666666665,3.0,1.1547005383792515,3.0,3.0,4.0,5.0
+2026-27,2026-09-05,Brentford,ALL,yellow_cards,3,2.6666666666666665,3.0,1.5275252316519468,1.0,2.0,3.5,4.0
+2026-27,2026-09-05,Brentford,ALL,yellow_cards_opponent,3,1.0,1.0,1.0,0.0,0.5,1.5,2.0
+2026-27,2026-09-05,Brentford,ALL,shots_for,3,20.0,22.0,7.211102550927978,12.0,17.0,24.0,26.0
+2026-27,2026-09-05,Brentford,ALL,shots_against,3,11.666666666666666,12.0,2.5166114784235836,9.0,10.5,13.0,14.0
+2026-27,2026-09-05,Brentford,ALL,shots_on_target_for,3,5.0,5.0,3.0,2.0,3.5,6.5,8.0
+2026-27,2026-09-05,Brentford,ALL,shots_on_target_against,3,3.6666666666666665,4.0,1.5275252316519465,2.0,3.0,4.5,5.0
+2026-27,2026-09-05,Brentford,ALL,goals_for,3,1.6666666666666667,1.0,1.1547005383792517,1.0,1.0,2.0,3.0
+2026-27,2026-09-05,Brentford,ALL,goals_against,3,0.6666666666666666,1.0,0.5773502691896258,0.0,0.5,1.0,1.0
+2026-27,2026-09-05,Brentford,ALL,xg_for,3,2.25,1.67,1.4216891362038329,1.21,1.44,2.77,3.87
+2026-27,2026-09-05,Brentford,ALL,xg_against,3,1.2466666666666666,1.46,0.5991939029507338,0.57,1.015,1.585,1.71
+2026-27,2026-09-05,Brentford,HOME,fouls_committed,2,18.0,18.0,1.4142135623730951,17.0,17.5,18.5,19.0
+2026-27,2026-09-05,Brentford,HOME,fouls_suffered,2,11.5,11.5,3.5355339059327378,9.0,10.25,12.75,14.0
+2026-27,2026-09-05,Brentford,HOME,corners_for,2,5.5,5.5,2.1213203435596424,4.0,4.75,6.25,7.0
+2026-27,2026-09-05,Brentford,HOME,corners_against,2,3.0,3.0,0.0,3.0,3.0,3.0,3.0
+2026-27,2026-09-05,Brentford,HOME,yellow_cards,2,2.0,2.0,1.4142135623730951,1.0,1.5,2.5,3.0
+2026-27,2026-09-05,Brentford,HOME,yellow_cards_opponent,2,1.5,1.5,0.7071067811865476,1.0,1.25,1.75,2.0
+2026-27,2026-09-05,Brentford,HOME,shots_for,2,19.0,19.0,9.899494936611665,12.0,15.5,22.5,26.0
+2026-27,2026-09-05,Brentford,HOME,shots_against,2,11.5,11.5,3.5355339059327378,9.0,10.25,12.75,14.0
+2026-27,2026-09-05,Brentford,HOME,shots_on_target_for,2,5.0,5.0,4.242640687119285,2.0,3.5,6.5,8.0
+2026-27,2026-09-05,Brentford,HOME,shots_on_target_against,2,4.5,4.5,0.7071067811865476,4.0,4.25,4.75,5.0
+2026-27,2026-09-05,Brentford,HOME,goals_for,2,2.0,2.0,1.4142135623730951,1.0,1.5,2.5,3.0
+2026-27,2026-09-05,Brentford,HOME,goals_against,2,0.5,0.5,0.7071067811865476,0.0,0.25,0.75,1.0
+2026-27,2026-09-05,Brentford,HOME,xg_for,2,2.54,2.54,1.8809040379562165,1.21,1.875,3.205,3.87
+2026-27,2026-09-05,Brentford,HOME,xg_against,2,1.14,1.14,0.8061017305526642,0.57,0.855,1.4249999999999998,1.71
+2026-27,2026-09-05,Brentford,AWAY,fouls_committed,1,13.0,13.0,0.0,13.0,13.0,13.0,13.0
+2026-27,2026-09-05,Brentford,AWAY,fouls_suffered,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
+2026-27,2026-09-05,Brentford,AWAY,corners_for,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
+2026-27,2026-09-05,Brentford,AWAY,corners_against,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
+2026-27,2026-09-05,Brentford,AWAY,yellow_cards,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
+2026-27,2026-09-05,Brentford,AWAY,yellow_cards_opponent,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+2026-27,2026-09-05,Brentford,AWAY,shots_for,1,22.0,22.0,0.0,22.0,22.0,22.0,22.0
+2026-27,2026-09-05,Brentford,AWAY,shots_against,1,12.0,12.0,0.0,12.0,12.0,12.0,12.0
+2026-27,2026-09-05,Brentford,AWAY,shots_on_target_for,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
+2026-27,2026-09-05,Brentford,AWAY,shots_on_target_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Brentford,AWAY,goals_for,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-05,Brentford,AWAY,goals_against,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-05,Brentford,AWAY,xg_for,1,1.67,1.67,0.0,1.67,1.67,1.67,1.67
+2026-27,2026-09-05,Brentford,AWAY,xg_against,1,1.46,1.46,0.0,1.46,1.46,1.46,1.46
+2026-27,2026-09-05,Brighton & Hove Albion,ALL,fouls_committed,3,12.333333333333334,12.0,0.5773502691896257,12.0,12.0,12.5,13.0
+2026-27,2026-09-05,Brighton & Hove Albion,ALL,fouls_suffered,3,11.0,11.0,5.0,6.0,8.5,13.5,16.0
+2026-27,2026-09-05,Brighton & Hove Albion,ALL,corners_for,3,6.333333333333333,7.0,1.1547005383792517,5.0,6.0,7.0,7.0
+2026-27,2026-09-05,Brighton & Hove Albion,ALL,corners_against,3,4.0,4.0,2.0,2.0,3.0,5.0,6.0
+2026-27,2026-09-05,Brighton & Hove Albion,ALL,yellow_cards,3,2.6666666666666665,3.0,0.5773502691896258,2.0,2.5,3.0,3.0
+2026-27,2026-09-05,Brighton & Hove Albion,ALL,yellow_cards_opponent,3,2.3333333333333335,3.0,1.1547005383792515,1.0,2.0,3.0,3.0
+2026-27,2026-09-05,Brighton & Hove Albion,ALL,shots_for,3,18.666666666666668,20.0,3.2145502536643185,15.0,17.5,20.5,21.0
+2026-27,2026-09-05,Brighton & Hove Albion,ALL,shots_against,3,11.0,10.0,5.5677643628300215,6.0,8.0,13.5,17.0
+2026-27,2026-09-05,Brighton & Hove Albion,ALL,shots_on_target_for,3,5.666666666666667,6.0,0.5773502691896258,5.0,5.5,6.0,6.0
+2026-27,2026-09-05,Brighton & Hove Albion,ALL,shots_on_target_against,3,3.6666666666666665,5.0,3.2145502536643185,0.0,2.5,5.5,6.0
+2026-27,2026-09-05,Brighton & Hove Albion,ALL,goals_for,3,2.6666666666666665,3.0,1.5275252316519465,1.0,2.0,3.5,4.0
+2026-27,2026-09-05,Brighton & Hove Albion,ALL,goals_against,3,1.6666666666666667,1.0,2.0816659994661326,0.0,0.5,2.5,4.0
+2026-27,2026-09-05,Brighton & Hove Albion,ALL,xg_for,3,2.4566666666666666,2.19,1.2023865157815659,1.41,1.7999999999999998,2.98,3.77
+2026-27,2026-09-05,Brighton & Hove Albion,ALL,xg_against,3,1.9033333333333335,2.49,1.4144021116123,0.29,1.3900000000000001,2.71,2.93
+2026-27,2026-09-05,Brighton & Hove Albion,HOME,fouls_committed,2,12.5,12.5,0.7071067811865476,12.0,12.25,12.75,13.0
+2026-27,2026-09-05,Brighton & Hove Albion,HOME,fouls_suffered,2,13.5,13.5,3.5355339059327378,11.0,12.25,14.75,16.0
+2026-27,2026-09-05,Brighton & Hove Albion,HOME,corners_for,2,6.0,6.0,1.4142135623730951,5.0,5.5,6.5,7.0
+2026-27,2026-09-05,Brighton & Hove Albion,HOME,corners_against,2,4.0,4.0,2.8284271247461903,2.0,3.0,5.0,6.0
+2026-27,2026-09-05,Brighton & Hove Albion,HOME,yellow_cards,2,2.5,2.5,0.7071067811865476,2.0,2.25,2.75,3.0
+2026-27,2026-09-05,Brighton & Hove Albion,HOME,yellow_cards_opponent,2,3.0,3.0,0.0,3.0,3.0,3.0,3.0
+2026-27,2026-09-05,Brighton & Hove Albion,HOME,shots_for,2,20.5,20.5,0.7071067811865476,20.0,20.25,20.75,21.0
+2026-27,2026-09-05,Brighton & Hove Albion,HOME,shots_against,2,8.0,8.0,2.8284271247461903,6.0,7.0,9.0,10.0
+2026-27,2026-09-05,Brighton & Hove Albion,HOME,shots_on_target_for,2,5.5,5.5,0.7071067811865476,5.0,5.25,5.75,6.0
+2026-27,2026-09-05,Brighton & Hove Albion,HOME,shots_on_target_against,2,2.5,2.5,3.5355339059327378,0.0,1.25,3.75,5.0
+2026-27,2026-09-05,Brighton & Hove Albion,HOME,goals_for,2,2.5,2.5,2.1213203435596424,1.0,1.75,3.25,4.0
+2026-27,2026-09-05,Brighton & Hove Albion,HOME,goals_against,2,0.5,0.5,0.7071067811865476,0.0,0.25,0.75,1.0
+2026-27,2026-09-05,Brighton & Hove Albion,HOME,xg_for,2,2.98,2.98,1.1172287142747452,2.19,2.585,3.375,3.77
+2026-27,2026-09-05,Brighton & Hove Albion,HOME,xg_against,2,1.3900000000000001,1.3900000000000001,1.5556349186104046,0.29,0.8400000000000001,1.9400000000000002,2.49
+2026-27,2026-09-05,Brighton & Hove Albion,AWAY,fouls_committed,1,12.0,12.0,0.0,12.0,12.0,12.0,12.0
+2026-27,2026-09-05,Brighton & Hove Albion,AWAY,fouls_suffered,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
+2026-27,2026-09-05,Brighton & Hove Albion,AWAY,corners_for,1,7.0,7.0,0.0,7.0,7.0,7.0,7.0
+2026-27,2026-09-05,Brighton & Hove Albion,AWAY,corners_against,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
+2026-27,2026-09-05,Brighton & Hove Albion,AWAY,yellow_cards,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
+2026-27,2026-09-05,Brighton & Hove Albion,AWAY,yellow_cards_opponent,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-05,Brighton & Hove Albion,AWAY,shots_for,1,15.0,15.0,0.0,15.0,15.0,15.0,15.0
+2026-27,2026-09-05,Brighton & Hove Albion,AWAY,shots_against,1,17.0,17.0,0.0,17.0,17.0,17.0,17.0
+2026-27,2026-09-05,Brighton & Hove Albion,AWAY,shots_on_target_for,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
+2026-27,2026-09-05,Brighton & Hove Albion,AWAY,shots_on_target_against,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
+2026-27,2026-09-05,Brighton & Hove Albion,AWAY,goals_for,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
+2026-27,2026-09-05,Brighton & Hove Albion,AWAY,goals_against,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
+2026-27,2026-09-05,Brighton & Hove Albion,AWAY,xg_for,1,1.41,1.41,0.0,1.41,1.41,1.41,1.41
+2026-27,2026-09-05,Brighton & Hove Albion,AWAY,xg_against,1,2.93,2.93,0.0,2.93,2.93,2.93,2.93
+2026-27,2026-09-06,Chelsea,ALL,fouls_committed,3,9.666666666666666,7.0,5.507570547286102,6.0,6.5,11.5,16.0
+2026-27,2026-09-06,Chelsea,ALL,fouls_suffered,3,12.333333333333334,12.0,0.5773502691896257,12.0,12.0,12.5,13.0
+2026-27,2026-09-06,Chelsea,ALL,corners_for,3,3.6666666666666665,4.0,0.5773502691896258,3.0,3.5,4.0,4.0
+2026-27,2026-09-06,Chelsea,ALL,corners_against,3,6.0,6.0,1.0,5.0,5.5,6.5,7.0
+2026-27,2026-09-06,Chelsea,ALL,yellow_cards,3,2.6666666666666665,3.0,1.5275252316519465,1.0,2.0,3.5,4.0
+2026-27,2026-09-06,Chelsea,ALL,yellow_cards_opponent,3,2.3333333333333335,2.0,0.5773502691896258,2.0,2.0,2.5,3.0
+2026-27,2026-09-06,Chelsea,ALL,shots_for,3,16.0,17.0,2.6457513110645907,13.0,15.0,17.5,18.0
+2026-27,2026-09-06,Chelsea,ALL,shots_against,3,15.0,15.0,1.0,14.0,14.5,15.5,16.0
+2026-27,2026-09-06,Chelsea,ALL,shots_on_target_for,3,5.666666666666667,6.0,0.5773502691896258,5.0,5.5,6.0,6.0
+2026-27,2026-09-06,Chelsea,ALL,shots_on_target_against,3,7.0,6.0,1.7320508075688772,6.0,6.0,7.5,9.0
+2026-27,2026-09-06,Chelsea,ALL,goals_for,3,2.6666666666666665,3.0,1.5275252316519465,1.0,2.0,3.5,4.0
+2026-27,2026-09-06,Chelsea,ALL,goals_against,3,2.3333333333333335,2.0,0.5773502691896258,2.0,2.0,2.5,3.0
+2026-27,2026-09-06,Chelsea,ALL,xg_for,3,1.8533333333333333,2.24,1.3134052433781942,0.39,1.3150000000000002,2.585,2.93
+2026-27,2026-09-06,Chelsea,ALL,xg_against,3,1.5966666666666667,1.41,0.39463062898529966,1.33,1.37,1.73,2.05
+2026-27,2026-09-06,Chelsea,HOME,fouls_committed,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
+2026-27,2026-09-06,Chelsea,HOME,fouls_suffered,1,12.0,12.0,0.0,12.0,12.0,12.0,12.0
+2026-27,2026-09-06,Chelsea,HOME,corners_for,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
+2026-27,2026-09-06,Chelsea,HOME,corners_against,1,7.0,7.0,0.0,7.0,7.0,7.0,7.0
+2026-27,2026-09-06,Chelsea,HOME,yellow_cards,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-06,Chelsea,HOME,yellow_cards_opponent,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
+2026-27,2026-09-06,Chelsea,HOME,shots_for,1,17.0,17.0,0.0,17.0,17.0,17.0,17.0
+2026-27,2026-09-06,Chelsea,HOME,shots_against,1,15.0,15.0,0.0,15.0,15.0,15.0,15.0
+2026-27,2026-09-06,Chelsea,HOME,shots_on_target_for,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
+2026-27,2026-09-06,Chelsea,HOME,shots_on_target_against,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
+2026-27,2026-09-06,Chelsea,HOME,goals_for,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
+2026-27,2026-09-06,Chelsea,HOME,goals_against,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
+2026-27,2026-09-06,Chelsea,HOME,xg_for,1,2.93,2.93,0.0,2.93,2.93,2.93,2.93
+2026-27,2026-09-06,Chelsea,HOME,xg_against,1,1.41,1.41,0.0,1.41,1.41,1.41,1.41
+2026-27,2026-09-06,Chelsea,AWAY,fouls_committed,2,11.5,11.5,6.363961030678928,7.0,9.25,13.75,16.0
+2026-27,2026-09-06,Chelsea,AWAY,fouls_suffered,2,12.5,12.5,0.7071067811865476,12.0,12.25,12.75,13.0
+2026-27,2026-09-06,Chelsea,AWAY,corners_for,2,3.5,3.5,0.7071067811865476,3.0,3.25,3.75,4.0
+2026-27,2026-09-06,Chelsea,AWAY,corners_against,2,5.5,5.5,0.7071067811865476,5.0,5.25,5.75,6.0
+2026-27,2026-09-06,Chelsea,AWAY,yellow_cards,2,3.5,3.5,0.7071067811865476,3.0,3.25,3.75,4.0
+2026-27,2026-09-06,Chelsea,AWAY,yellow_cards_opponent,2,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-06,Chelsea,AWAY,shots_for,2,15.5,15.5,3.5355339059327378,13.0,14.25,16.75,18.0
+2026-27,2026-09-06,Chelsea,AWAY,shots_against,2,15.0,15.0,1.4142135623730951,14.0,14.5,15.5,16.0
+2026-27,2026-09-06,Chelsea,AWAY,shots_on_target_for,2,5.5,5.5,0.7071067811865476,5.0,5.25,5.75,6.0
+2026-27,2026-09-06,Chelsea,AWAY,shots_on_target_against,2,7.5,7.5,2.1213203435596424,6.0,6.75,8.25,9.0
+2026-27,2026-09-06,Chelsea,AWAY,goals_for,2,2.0,2.0,1.4142135623730951,1.0,1.5,2.5,3.0
+2026-27,2026-09-06,Chelsea,AWAY,goals_against,2,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-06,Chelsea,AWAY,xg_for,2,1.3150000000000002,1.3150000000000002,1.308147545195113,0.39,0.8525,1.7775000000000003,2.24
+2026-27,2026-09-06,Chelsea,AWAY,xg_against,2,1.69,1.69,0.5091168824543141,1.33,1.51,1.8699999999999999,2.05
+2026-27,2026-09-05,Coventry,ALL,fouls_committed,3,13.666666666666666,13.0,3.055050463303893,11.0,12.0,15.0,17.0
+2026-27,2026-09-05,Coventry,ALL,fouls_suffered,3,8.333333333333334,8.0,1.5275252316519468,7.0,7.5,9.0,10.0
+2026-27,2026-09-05,Coventry,ALL,corners_for,3,4.333333333333333,5.0,2.0816659994661326,2.0,3.5,5.5,6.0
+2026-27,2026-09-05,Coventry,ALL,corners_against,3,4.666666666666667,4.0,3.0550504633038935,2.0,3.0,6.0,8.0
+2026-27,2026-09-05,Coventry,ALL,yellow_cards,3,1.3333333333333333,1.0,0.5773502691896257,1.0,1.0,1.5,2.0
+2026-27,2026-09-05,Coventry,ALL,yellow_cards_opponent,3,2.0,1.0,1.7320508075688772,1.0,1.0,2.5,4.0
+2026-27,2026-09-05,Coventry,ALL,shots_for,3,9.0,11.0,4.358898943540674,4.0,7.5,11.5,12.0
+2026-27,2026-09-05,Coventry,ALL,shots_against,3,13.666666666666666,15.0,7.094598884597588,6.0,10.5,17.5,20.0
+2026-27,2026-09-05,Coventry,ALL,shots_on_target_for,3,2.3333333333333335,3.0,1.1547005383792515,1.0,2.0,3.0,3.0
+2026-27,2026-09-05,Coventry,ALL,shots_on_target_against,3,4.0,4.0,2.0,2.0,3.0,5.0,6.0
+2026-27,2026-09-05,Coventry,ALL,goals_for,3,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+2026-27,2026-09-05,Coventry,ALL,goals_against,3,1.6666666666666667,1.0,1.1547005383792517,1.0,1.0,2.0,3.0
+2026-27,2026-09-05,Coventry,ALL,xg_for,3,0.9533333333333335,1.29,0.6536308846232202,0.2,0.745,1.33,1.37
+2026-27,2026-09-05,Coventry,ALL,xg_against,3,1.5733333333333333,1.88,0.7486877408728778,0.72,1.2999999999999998,2.0,2.12
+2026-27,2026-09-05,Coventry,HOME,fouls_committed,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
+2026-27,2026-09-05,Coventry,HOME,fouls_suffered,1,8.0,8.0,0.0,8.0,8.0,8.0,8.0
+2026-27,2026-09-05,Coventry,HOME,corners_for,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
+2026-27,2026-09-05,Coventry,HOME,corners_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Coventry,HOME,yellow_cards,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-05,Coventry,HOME,yellow_cards_opponent,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
+2026-27,2026-09-05,Coventry,HOME,shots_for,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
+2026-27,2026-09-05,Coventry,HOME,shots_against,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
+2026-27,2026-09-05,Coventry,HOME,shots_on_target_for,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
+2026-27,2026-09-05,Coventry,HOME,shots_on_target_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Coventry,HOME,goals_for,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+2026-27,2026-09-05,Coventry,HOME,goals_against,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-05,Coventry,HOME,xg_for,1,1.29,1.29,0.0,1.29,1.29,1.29,1.29
+2026-27,2026-09-05,Coventry,HOME,xg_against,1,0.72,0.72,0.0,0.72,0.72,0.72,0.72
+2026-27,2026-09-05,Coventry,AWAY,fouls_committed,2,15.0,15.0,2.8284271247461903,13.0,14.0,16.0,17.0
+2026-27,2026-09-05,Coventry,AWAY,fouls_suffered,2,8.5,8.5,2.1213203435596424,7.0,7.75,9.25,10.0
+2026-27,2026-09-05,Coventry,AWAY,corners_for,2,3.5,3.5,2.1213203435596424,2.0,2.75,4.25,5.0
+2026-27,2026-09-05,Coventry,AWAY,corners_against,2,6.0,6.0,2.8284271247461903,4.0,5.0,7.0,8.0
+2026-27,2026-09-05,Coventry,AWAY,yellow_cards,2,1.5,1.5,0.7071067811865476,1.0,1.25,1.75,2.0
+2026-27,2026-09-05,Coventry,AWAY,yellow_cards_opponent,2,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-05,Coventry,AWAY,shots_for,2,8.0,8.0,5.656854249492381,4.0,6.0,10.0,12.0
+2026-27,2026-09-05,Coventry,AWAY,shots_against,2,17.5,17.5,3.5355339059327378,15.0,16.25,18.75,20.0
+2026-27,2026-09-05,Coventry,AWAY,shots_on_target_for,2,2.0,2.0,1.4142135623730951,1.0,1.5,2.5,3.0
+2026-27,2026-09-05,Coventry,AWAY,shots_on_target_against,2,5.0,5.0,1.4142135623730951,4.0,4.5,5.5,6.0
+2026-27,2026-09-05,Coventry,AWAY,goals_for,2,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+2026-27,2026-09-05,Coventry,AWAY,goals_against,2,2.0,2.0,1.4142135623730951,1.0,1.5,2.5,3.0
+2026-27,2026-09-05,Coventry,AWAY,xg_for,2,0.785,0.785,0.8273149339882606,0.2,0.49250000000000005,1.0775000000000001,1.37
+2026-27,2026-09-05,Coventry,AWAY,xg_against,2,2.0,2.0,0.16970562748477155,1.88,1.94,2.06,2.12
+2026-27,2026-09-05,Crystal Palace,ALL,fouls_committed,3,10.0,8.0,4.358898943540674,7.0,7.5,11.5,15.0
+2026-27,2026-09-05,Crystal Palace,ALL,fouls_suffered,3,7.333333333333333,6.0,3.2145502536643185,5.0,5.5,8.5,11.0
+2026-27,2026-09-05,Crystal Palace,ALL,corners_for,3,1.0,1.0,1.0,0.0,0.5,1.5,2.0
+2026-27,2026-09-05,Crystal Palace,ALL,corners_against,3,5.666666666666667,6.0,1.5275252316519465,4.0,5.0,6.5,7.0
+2026-27,2026-09-05,Crystal Palace,ALL,yellow_cards,3,0.6666666666666666,1.0,0.5773502691896258,0.0,0.5,1.0,1.0
+2026-27,2026-09-05,Crystal Palace,ALL,yellow_cards_opponent,3,0.6666666666666666,0.0,1.1547005383792517,0.0,0.0,1.0,2.0
+2026-27,2026-09-05,Crystal Palace,ALL,shots_for,3,10.0,10.0,1.0,9.0,9.5,10.5,11.0
+2026-27,2026-09-05,Crystal Palace,ALL,shots_against,3,19.666666666666668,18.0,4.725815626252609,16.0,17.0,21.5,25.0
+2026-27,2026-09-05,Crystal Palace,ALL,shots_on_target_for,3,3.3333333333333335,4.0,2.081665999466133,1.0,2.5,4.5,5.0
+2026-27,2026-09-05,Crystal Palace,ALL,shots_on_target_against,3,6.666666666666667,6.0,2.0816659994661326,5.0,5.5,7.5,9.0
+2026-27,2026-09-05,Crystal Palace,ALL,goals_for,3,1.3333333333333333,1.0,1.5275252316519468,0.0,0.5,2.0,3.0
+2026-27,2026-09-05,Crystal Palace,ALL,goals_against,3,2.6666666666666665,2.0,1.1547005383792515,2.0,2.0,3.0,4.0
+2026-27,2026-09-05,Crystal Palace,ALL,xg_for,3,1.53,1.96,0.7534586916347836,0.66,1.31,1.9649999999999999,1.97
+2026-27,2026-09-05,Crystal Palace,ALL,xg_against,3,2.1566666666666667,2.21,1.01105555402922,1.12,1.665,2.675,3.14
+2026-27,2026-09-05,Crystal Palace,HOME,fouls_committed,1,8.0,8.0,0.0,8.0,8.0,8.0,8.0
+2026-27,2026-09-05,Crystal Palace,HOME,fouls_suffered,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
+2026-27,2026-09-05,Crystal Palace,HOME,corners_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Crystal Palace,HOME,corners_against,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
+2026-27,2026-09-05,Crystal Palace,HOME,yellow_cards,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-05,Crystal Palace,HOME,yellow_cards_opponent,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Crystal Palace,HOME,shots_for,1,9.0,9.0,0.0,9.0,9.0,9.0,9.0
+2026-27,2026-09-05,Crystal Palace,HOME,shots_against,1,18.0,18.0,0.0,18.0,18.0,18.0,18.0
+2026-27,2026-09-05,Crystal Palace,HOME,shots_on_target_for,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-05,Crystal Palace,HOME,shots_on_target_against,1,9.0,9.0,0.0,9.0,9.0,9.0,9.0
+2026-27,2026-09-05,Crystal Palace,HOME,goals_for,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-05,Crystal Palace,HOME,goals_against,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
+2026-27,2026-09-05,Crystal Palace,HOME,xg_for,1,0.66,0.66,0.0,0.66,0.66,0.66,0.66
+2026-27,2026-09-05,Crystal Palace,HOME,xg_against,1,2.21,2.21,0.0,2.21,2.21,2.21,2.21
+2026-27,2026-09-05,Crystal Palace,AWAY,fouls_committed,2,11.0,11.0,5.656854249492381,7.0,9.0,13.0,15.0
+2026-27,2026-09-05,Crystal Palace,AWAY,fouls_suffered,2,5.5,5.5,0.7071067811865476,5.0,5.25,5.75,6.0
+2026-27,2026-09-05,Crystal Palace,AWAY,corners_for,2,0.5,0.5,0.7071067811865476,0.0,0.25,0.75,1.0
+2026-27,2026-09-05,Crystal Palace,AWAY,corners_against,2,5.5,5.5,2.1213203435596424,4.0,4.75,6.25,7.0
+2026-27,2026-09-05,Crystal Palace,AWAY,yellow_cards,2,0.5,0.5,0.7071067811865476,0.0,0.25,0.75,1.0
+2026-27,2026-09-05,Crystal Palace,AWAY,yellow_cards_opponent,2,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+2026-27,2026-09-05,Crystal Palace,AWAY,shots_for,2,10.5,10.5,0.7071067811865476,10.0,10.25,10.75,11.0
+2026-27,2026-09-05,Crystal Palace,AWAY,shots_against,2,20.5,20.5,6.363961030678928,16.0,18.25,22.75,25.0
+2026-27,2026-09-05,Crystal Palace,AWAY,shots_on_target_for,2,4.5,4.5,0.7071067811865476,4.0,4.25,4.75,5.0
+2026-27,2026-09-05,Crystal Palace,AWAY,shots_on_target_against,2,5.5,5.5,0.7071067811865476,5.0,5.25,5.75,6.0
+2026-27,2026-09-05,Crystal Palace,AWAY,goals_for,2,1.5,1.5,2.1213203435596424,0.0,0.75,2.25,3.0
+2026-27,2026-09-05,Crystal Palace,AWAY,goals_against,2,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Crystal Palace,AWAY,xg_for,2,1.9649999999999999,1.9649999999999999,0.007071067811865481,1.96,1.9625,1.9675,1.97
+2026-27,2026-09-05,Crystal Palace,AWAY,xg_against,2,2.13,2.13,1.428355697996826,1.12,1.625,2.6350000000000002,3.14
+2026-27,2026-09-06,Everton,ALL,fouls_committed,3,8.666666666666666,7.0,4.725815626252608,5.0,6.0,10.5,14.0
+2026-27,2026-09-06,Everton,ALL,fouls_suffered,3,12.333333333333334,11.0,2.3094010767585034,11.0,11.0,13.0,15.0
+2026-27,2026-09-06,Everton,ALL,corners_for,3,5.0,4.0,1.7320508075688772,4.0,4.0,5.5,7.0
+2026-27,2026-09-06,Everton,ALL,corners_against,3,4.333333333333333,3.0,5.131601439446884,0.0,1.5,6.5,10.0
+2026-27,2026-09-06,Everton,ALL,yellow_cards,3,1.6666666666666667,2.0,1.5275252316519468,0.0,1.0,2.5,3.0
+2026-27,2026-09-06,Everton,ALL,yellow_cards_opponent,3,2.3333333333333335,3.0,1.1547005383792515,1.0,2.0,3.0,3.0
+2026-27,2026-09-06,Everton,ALL,shots_for,3,15.666666666666666,16.0,2.5166114784235836,13.0,14.5,17.0,18.0
+2026-27,2026-09-06,Everton,ALL,shots_against,3,14.0,14.0,3.0,11.0,12.5,15.5,17.0
+2026-27,2026-09-06,Everton,ALL,shots_on_target_for,3,6.0,6.0,1.0,5.0,5.5,6.5,7.0
+2026-27,2026-09-06,Everton,ALL,shots_on_target_against,3,4.0,4.0,1.0,3.0,3.5,4.5,5.0
+2026-27,2026-09-06,Everton,ALL,goals_for,3,1.6666666666666667,2.0,0.5773502691896257,1.0,1.5,2.0,2.0
+2026-27,2026-09-06,Everton,ALL,goals_against,3,1.0,1.0,1.0,0.0,0.5,1.5,2.0
+2026-27,2026-09-06,Everton,ALL,xg_for,3,1.3233333333333333,1.12,0.4508140784551136,1.01,1.065,1.48,1.84
+2026-27,2026-09-06,Everton,ALL,xg_against,3,1.6033333333333335,1.96,0.7972661621650159,0.69,1.325,2.06,2.16
+2026-27,2026-09-06,Everton,HOME,fouls_committed,2,6.0,6.0,1.4142135623730951,5.0,5.5,6.5,7.0
+2026-27,2026-09-06,Everton,HOME,fouls_suffered,2,13.0,13.0,2.8284271247461903,11.0,12.0,14.0,15.0
+2026-27,2026-09-06,Everton,HOME,corners_for,2,4.0,4.0,0.0,4.0,4.0,4.0,4.0
+2026-27,2026-09-06,Everton,HOME,corners_against,2,1.5,1.5,2.1213203435596424,0.0,0.75,2.25,3.0
+2026-27,2026-09-06,Everton,HOME,yellow_cards,2,1.5,1.5,2.1213203435596424,0.0,0.75,2.25,3.0
+2026-27,2026-09-06,Everton,HOME,yellow_cards_opponent,2,2.0,2.0,1.4142135623730951,1.0,1.5,2.5,3.0
+2026-27,2026-09-06,Everton,HOME,shots_for,2,17.0,17.0,1.4142135623730951,16.0,16.5,17.5,18.0
+2026-27,2026-09-06,Everton,HOME,shots_against,2,12.5,12.5,2.1213203435596424,11.0,11.75,13.25,14.0
+2026-27,2026-09-06,Everton,HOME,shots_on_target_for,2,5.5,5.5,0.7071067811865476,5.0,5.25,5.75,6.0
+2026-27,2026-09-06,Everton,HOME,shots_on_target_against,2,3.5,3.5,0.7071067811865476,3.0,3.25,3.75,4.0
+2026-27,2026-09-06,Everton,HOME,goals_for,2,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-06,Everton,HOME,goals_against,2,1.0,1.0,1.4142135623730951,0.0,0.5,1.5,2.0
+2026-27,2026-09-06,Everton,HOME,xg_for,2,1.065,1.065,0.0777817459305203,1.01,1.0375,1.0925,1.12
+2026-27,2026-09-06,Everton,HOME,xg_against,2,1.325,1.325,0.8980256121069153,0.69,1.0074999999999998,1.6425,1.96
+2026-27,2026-09-06,Everton,AWAY,fouls_committed,1,14.0,14.0,0.0,14.0,14.0,14.0,14.0
+2026-27,2026-09-06,Everton,AWAY,fouls_suffered,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
+2026-27,2026-09-06,Everton,AWAY,corners_for,1,7.0,7.0,0.0,7.0,7.0,7.0,7.0
+2026-27,2026-09-06,Everton,AWAY,corners_against,1,10.0,10.0,0.0,10.0,10.0,10.0,10.0
+2026-27,2026-09-06,Everton,AWAY,yellow_cards,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-06,Everton,AWAY,yellow_cards_opponent,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
+2026-27,2026-09-06,Everton,AWAY,shots_for,1,13.0,13.0,0.0,13.0,13.0,13.0,13.0
+2026-27,2026-09-06,Everton,AWAY,shots_against,1,17.0,17.0,0.0,17.0,17.0,17.0,17.0
+2026-27,2026-09-06,Everton,AWAY,shots_on_target_for,1,7.0,7.0,0.0,7.0,7.0,7.0,7.0
+2026-27,2026-09-06,Everton,AWAY,shots_on_target_against,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
+2026-27,2026-09-06,Everton,AWAY,goals_for,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-06,Everton,AWAY,goals_against,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-06,Everton,AWAY,xg_for,1,1.84,1.84,0.0,1.84,1.84,1.84,1.84
+2026-27,2026-09-06,Everton,AWAY,xg_against,1,2.16,2.16,0.0,2.16,2.16,2.16,2.16
+2026-27,2026-09-05,Fulham,ALL,fouls_committed,3,11.0,12.0,4.58257569495584,6.0,9.0,13.5,15.0
+2026-27,2026-09-05,Fulham,ALL,fouls_suffered,3,8.0,7.0,1.7320508075688772,7.0,7.0,8.5,10.0
+2026-27,2026-09-05,Fulham,ALL,corners_for,3,5.666666666666667,6.0,1.5275252316519465,4.0,5.0,6.5,7.0
+2026-27,2026-09-05,Fulham,ALL,corners_against,3,2.6666666666666665,3.0,1.5275252316519465,1.0,2.0,3.5,4.0
+2026-27,2026-09-05,Fulham,ALL,yellow_cards,3,1.3333333333333333,2.0,1.1547005383792517,0.0,1.0,2.0,2.0
+2026-27,2026-09-05,Fulham,ALL,yellow_cards_opponent,3,1.0,0.0,1.7320508075688772,0.0,0.0,1.5,3.0
+2026-27,2026-09-05,Fulham,ALL,shots_for,3,16.666666666666668,14.0,7.371114795831994,11.0,12.5,19.5,25.0
+2026-27,2026-09-05,Fulham,ALL,shots_against,3,13.333333333333334,12.0,4.163331998932265,10.0,11.0,15.0,18.0
+2026-27,2026-09-05,Fulham,ALL,shots_on_target_for,3,4.0,6.0,3.4641016151377544,0.0,3.0,6.0,6.0
+2026-27,2026-09-05,Fulham,ALL,shots_on_target_against,3,5.0,5.0,1.0,4.0,4.5,5.5,6.0
+2026-27,2026-09-05,Fulham,ALL,goals_for,3,1.3333333333333333,2.0,1.1547005383792517,0.0,1.0,2.0,2.0
+2026-27,2026-09-05,Fulham,ALL,goals_against,3,2.3333333333333335,3.0,1.1547005383792515,1.0,2.0,3.0,3.0
+2026-27,2026-09-05,Fulham,ALL,xg_for,3,1.8066666666666666,1.33,1.170227898032402,0.95,1.1400000000000001,2.2350000000000003,3.14
+2026-27,2026-09-05,Fulham,ALL,xg_against,3,2.0766666666666667,2.02,0.14364307617610175,1.97,1.995,2.13,2.24
+2026-27,2026-09-05,Fulham,HOME,fouls_committed,2,9.0,9.0,4.242640687119285,6.0,7.5,10.5,12.0
+2026-27,2026-09-05,Fulham,HOME,fouls_suffered,2,7.0,7.0,0.0,7.0,7.0,7.0,7.0
+2026-27,2026-09-05,Fulham,HOME,corners_for,2,6.5,6.5,0.7071067811865476,6.0,6.25,6.75,7.0
+2026-27,2026-09-05,Fulham,HOME,corners_against,2,2.5,2.5,2.1213203435596424,1.0,1.75,3.25,4.0
+2026-27,2026-09-05,Fulham,HOME,yellow_cards,2,1.0,1.0,1.4142135623730951,0.0,0.5,1.5,2.0
+2026-27,2026-09-05,Fulham,HOME,yellow_cards_opponent,2,1.5,1.5,2.1213203435596424,0.0,0.75,2.25,3.0
+2026-27,2026-09-05,Fulham,HOME,shots_for,2,19.5,19.5,7.7781745930520225,14.0,16.75,22.25,25.0
+2026-27,2026-09-05,Fulham,HOME,shots_against,2,14.0,14.0,5.656854249492381,10.0,12.0,16.0,18.0
+2026-27,2026-09-05,Fulham,HOME,shots_on_target_for,2,6.0,6.0,0.0,6.0,6.0,6.0,6.0
+2026-27,2026-09-05,Fulham,HOME,shots_on_target_against,2,5.5,5.5,0.7071067811865476,5.0,5.25,5.75,6.0
+2026-27,2026-09-05,Fulham,HOME,goals_for,2,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Fulham,HOME,goals_against,2,3.0,3.0,0.0,3.0,3.0,3.0,3.0
+2026-27,2026-09-05,Fulham,HOME,xg_for,2,2.2350000000000003,2.2350000000000003,1.2798632739476512,1.33,1.7825000000000002,2.6875,3.14
+2026-27,2026-09-05,Fulham,HOME,xg_against,2,2.105,2.105,0.19091883092036802,1.97,2.0375,2.1725000000000003,2.24
+2026-27,2026-09-05,Fulham,AWAY,fouls_committed,1,15.0,15.0,0.0,15.0,15.0,15.0,15.0
+2026-27,2026-09-05,Fulham,AWAY,fouls_suffered,1,10.0,10.0,0.0,10.0,10.0,10.0,10.0
+2026-27,2026-09-05,Fulham,AWAY,corners_for,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
+2026-27,2026-09-05,Fulham,AWAY,corners_against,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
+2026-27,2026-09-05,Fulham,AWAY,yellow_cards,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Fulham,AWAY,yellow_cards_opponent,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+2026-27,2026-09-05,Fulham,AWAY,shots_for,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
+2026-27,2026-09-05,Fulham,AWAY,shots_against,1,12.0,12.0,0.0,12.0,12.0,12.0,12.0
+2026-27,2026-09-05,Fulham,AWAY,shots_on_target_for,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+2026-27,2026-09-05,Fulham,AWAY,shots_on_target_against,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
+2026-27,2026-09-05,Fulham,AWAY,goals_for,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+2026-27,2026-09-05,Fulham,AWAY,goals_against,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-05,Fulham,AWAY,xg_for,1,0.95,0.95,0.0,0.95,0.95,0.95,0.95
+2026-27,2026-09-05,Fulham,AWAY,xg_against,1,2.02,2.02,0.0,2.02,2.02,2.02,2.02
+2026-27,2026-09-05,Hull,ALL,fouls_committed,3,9.333333333333334,10.0,1.1547005383792517,8.0,9.0,10.0,10.0
+2026-27,2026-09-05,Hull,ALL,fouls_suffered,3,8.333333333333334,9.0,3.055050463303893,5.0,7.0,10.0,11.0
+2026-27,2026-09-05,Hull,ALL,corners_for,3,2.0,2.0,1.0,1.0,1.5,2.5,3.0
+2026-27,2026-09-05,Hull,ALL,corners_against,3,5.333333333333333,6.0,1.1547005383792517,4.0,5.0,6.0,6.0
+2026-27,2026-09-05,Hull,ALL,yellow_cards,3,2.6666666666666665,2.0,1.1547005383792515,2.0,2.0,3.0,4.0
+2026-27,2026-09-05,Hull,ALL,yellow_cards_opponent,3,0.6666666666666666,1.0,0.5773502691896258,0.0,0.5,1.0,1.0
+2026-27,2026-09-05,Hull,ALL,shots_for,3,8.333333333333334,8.0,2.5166114784235836,6.0,7.0,9.5,11.0
+2026-27,2026-09-05,Hull,ALL,shots_against,3,15.0,13.0,5.291502622129181,11.0,12.0,17.0,21.0
+2026-27,2026-09-05,Hull,ALL,shots_on_target_for,3,3.3333333333333335,4.0,1.1547005383792515,2.0,3.0,4.0,4.0
+2026-27,2026-09-05,Hull,ALL,shots_on_target_against,3,3.0,3.0,2.0,1.0,2.0,4.0,5.0
+2026-27,2026-09-05,Hull,ALL,goals_for,3,1.0,1.0,1.0,0.0,0.5,1.5,2.0
+2026-27,2026-09-05,Hull,ALL,goals_against,3,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+2026-27,2026-09-05,Hull,ALL,xg_for,3,0.7666666666666666,0.72,0.22368132093076826,0.57,0.645,0.865,1.01
+2026-27,2026-09-05,Hull,ALL,xg_against,3,1.6833333333333333,1.83,0.34428670223134283,1.29,1.56,1.88,1.93
+2026-27,2026-09-05,Hull,HOME,fouls_committed,2,10.0,10.0,0.0,10.0,10.0,10.0,10.0
+2026-27,2026-09-05,Hull,HOME,fouls_suffered,2,7.0,7.0,2.8284271247461903,5.0,6.0,8.0,9.0
+2026-27,2026-09-05,Hull,HOME,corners_for,2,2.0,2.0,1.4142135623730951,1.0,1.5,2.5,3.0
+2026-27,2026-09-05,Hull,HOME,corners_against,2,5.0,5.0,1.4142135623730951,4.0,4.5,5.5,6.0
+2026-27,2026-09-05,Hull,HOME,yellow_cards,2,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Hull,HOME,yellow_cards_opponent,2,0.5,0.5,0.7071067811865476,0.0,0.25,0.75,1.0
+2026-27,2026-09-05,Hull,HOME,shots_for,2,9.5,9.5,2.1213203435596424,8.0,8.75,10.25,11.0
+2026-27,2026-09-05,Hull,HOME,shots_against,2,17.0,17.0,5.656854249492381,13.0,15.0,19.0,21.0
+2026-27,2026-09-05,Hull,HOME,shots_on_target_for,2,4.0,4.0,0.0,4.0,4.0,4.0,4.0
+2026-27,2026-09-05,Hull,HOME,shots_on_target_against,2,3.0,3.0,2.8284271247461903,1.0,2.0,4.0,5.0
+2026-27,2026-09-05,Hull,HOME,goals_for,2,1.0,1.0,1.4142135623730951,0.0,0.5,1.5,2.0
+2026-27,2026-09-05,Hull,HOME,goals_against,2,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+2026-27,2026-09-05,Hull,HOME,xg_for,2,0.79,0.79,0.311126983722081,0.57,0.6799999999999999,0.9,1.01
+2026-27,2026-09-05,Hull,HOME,xg_against,2,1.88,1.88,0.07071067811865465,1.83,1.855,1.905,1.93
+2026-27,2026-09-05,Hull,AWAY,fouls_committed,1,8.0,8.0,0.0,8.0,8.0,8.0,8.0
+2026-27,2026-09-05,Hull,AWAY,fouls_suffered,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
+2026-27,2026-09-05,Hull,AWAY,corners_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Hull,AWAY,corners_against,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
+2026-27,2026-09-05,Hull,AWAY,yellow_cards,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
+2026-27,2026-09-05,Hull,AWAY,yellow_cards_opponent,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-05,Hull,AWAY,shots_for,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
+2026-27,2026-09-05,Hull,AWAY,shots_against,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
+2026-27,2026-09-05,Hull,AWAY,shots_on_target_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Hull,AWAY,shots_on_target_against,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
+2026-27,2026-09-05,Hull,AWAY,goals_for,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-05,Hull,AWAY,goals_against,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+2026-27,2026-09-05,Hull,AWAY,xg_for,1,0.72,0.72,0.0,0.72,0.72,0.72,0.72
+2026-27,2026-09-05,Hull,AWAY,xg_against,1,1.29,1.29,0.0,1.29,1.29,1.29,1.29
+2026-27,2026-09-04,Ipswich,ALL,fouls_committed,3,10.0,12.0,3.4641016151377544,6.0,9.0,12.0,12.0
+2026-27,2026-09-04,Ipswich,ALL,fouls_suffered,3,11.333333333333334,13.0,3.7859388972001824,7.0,10.0,13.5,14.0
+2026-27,2026-09-04,Ipswich,ALL,corners_for,3,3.6666666666666665,4.0,0.5773502691896258,3.0,3.5,4.0,4.0
+2026-27,2026-09-04,Ipswich,ALL,corners_against,3,5.333333333333333,5.0,2.516611478423583,3.0,4.0,6.5,8.0
+2026-27,2026-09-04,Ipswich,ALL,yellow_cards,3,1.3333333333333333,1.0,1.5275252316519465,0.0,0.5,2.0,3.0
+2026-27,2026-09-04,Ipswich,ALL,yellow_cards_opponent,3,2.3333333333333335,3.0,1.1547005383792515,1.0,2.0,3.0,3.0
+2026-27,2026-09-04,Ipswich,ALL,shots_for,3,11.0,10.0,2.6457513110645907,9.0,9.5,12.0,14.0
+2026-27,2026-09-04,Ipswich,ALL,shots_against,3,18.0,11.0,13.0,10.0,10.5,22.0,33.0
+2026-27,2026-09-04,Ipswich,ALL,shots_on_target_for,3,4.333333333333333,5.0,1.1547005383792517,3.0,4.0,5.0,5.0
+2026-27,2026-09-04,Ipswich,ALL,shots_on_target_against,3,7.333333333333333,7.0,3.5118845842842465,4.0,5.5,9.0,11.0
+2026-27,2026-09-04,Ipswich,ALL,goals_for,3,1.3333333333333333,2.0,1.1547005383792517,0.0,1.0,2.0,2.0
+2026-27,2026-09-04,Ipswich,ALL,goals_against,3,2.6666666666666665,2.0,2.081665999466133,1.0,1.5,3.5,5.0
+2026-27,2026-09-04,Ipswich,ALL,xg_for,3,1.5366666666666668,1.8,0.693565666201358,0.75,1.275,1.9300000000000002,2.06
+2026-27,2026-09-04,Ipswich,ALL,xg_against,3,2.0399999999999996,0.69,2.3642969356660766,0.66,0.675,2.7299999999999995,4.77
+2026-27,2026-09-04,Ipswich,HOME,fouls_committed,2,9.0,9.0,4.242640687119285,6.0,7.5,10.5,12.0
+2026-27,2026-09-04,Ipswich,HOME,fouls_suffered,2,13.5,13.5,0.7071067811865476,13.0,13.25,13.75,14.0
+2026-27,2026-09-04,Ipswich,HOME,corners_for,2,3.5,3.5,0.7071067811865476,3.0,3.25,3.75,4.0
+2026-27,2026-09-04,Ipswich,HOME,corners_against,2,4.0,4.0,1.4142135623730951,3.0,3.5,4.5,5.0
+2026-27,2026-09-04,Ipswich,HOME,yellow_cards,2,0.5,0.5,0.7071067811865476,0.0,0.25,0.75,1.0
+2026-27,2026-09-04,Ipswich,HOME,yellow_cards_opponent,2,3.0,3.0,0.0,3.0,3.0,3.0,3.0
+2026-27,2026-09-04,Ipswich,HOME,shots_for,2,12.0,12.0,2.8284271247461903,10.0,11.0,13.0,14.0
+2026-27,2026-09-04,Ipswich,HOME,shots_against,2,10.5,10.5,0.7071067811865476,10.0,10.25,10.75,11.0
+2026-27,2026-09-04,Ipswich,HOME,shots_on_target_for,2,4.0,4.0,1.4142135623730951,3.0,3.5,4.5,5.0
+2026-27,2026-09-04,Ipswich,HOME,shots_on_target_against,2,5.5,5.5,2.1213203435596424,4.0,4.75,6.25,7.0
+2026-27,2026-09-04,Ipswich,HOME,goals_for,2,1.0,1.0,1.4142135623730951,0.0,0.5,1.5,2.0
+2026-27,2026-09-04,Ipswich,HOME,goals_against,2,1.5,1.5,0.7071067811865476,1.0,1.25,1.75,2.0
+2026-27,2026-09-04,Ipswich,HOME,xg_for,2,1.275,1.275,0.7424621202458749,0.75,1.0125,1.5375,1.8
+2026-27,2026-09-04,Ipswich,HOME,xg_against,2,0.675,0.675,0.021213203435596368,0.66,0.6675,0.6825,0.69
+2026-27,2026-09-04,Ipswich,AWAY,fouls_committed,1,12.0,12.0,0.0,12.0,12.0,12.0,12.0
+2026-27,2026-09-04,Ipswich,AWAY,fouls_suffered,1,7.0,7.0,0.0,7.0,7.0,7.0,7.0
+2026-27,2026-09-04,Ipswich,AWAY,corners_for,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
+2026-27,2026-09-04,Ipswich,AWAY,corners_against,1,8.0,8.0,0.0,8.0,8.0,8.0,8.0
+2026-27,2026-09-04,Ipswich,AWAY,yellow_cards,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
+2026-27,2026-09-04,Ipswich,AWAY,yellow_cards_opponent,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-04,Ipswich,AWAY,shots_for,1,9.0,9.0,0.0,9.0,9.0,9.0,9.0
+2026-27,2026-09-04,Ipswich,AWAY,shots_against,1,33.0,33.0,0.0,33.0,33.0,33.0,33.0
+2026-27,2026-09-04,Ipswich,AWAY,shots_on_target_for,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
+2026-27,2026-09-04,Ipswich,AWAY,shots_on_target_against,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
+2026-27,2026-09-04,Ipswich,AWAY,goals_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-04,Ipswich,AWAY,goals_against,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
+2026-27,2026-09-04,Ipswich,AWAY,xg_for,1,2.06,2.06,0.0,2.06,2.06,2.06,2.06
+2026-27,2026-09-04,Ipswich,AWAY,xg_against,1,4.77,4.77,0.0,4.77,4.77,4.77,4.77
+2026-27,2026-09-05,Leeds,ALL,fouls_committed,3,11.666666666666666,14.0,5.8594652770823155,5.0,9.5,15.0,16.0
+2026-27,2026-09-05,Leeds,ALL,fouls_suffered,3,13.666666666666666,13.0,1.1547005383792517,13.0,13.0,14.0,15.0
+2026-27,2026-09-05,Leeds,ALL,corners_for,3,4.333333333333333,5.0,2.0816659994661326,2.0,3.5,5.5,6.0
+2026-27,2026-09-05,Leeds,ALL,corners_against,3,5.333333333333333,6.0,2.0816659994661326,3.0,4.5,6.5,7.0
+2026-27,2026-09-05,Leeds,ALL,yellow_cards,3,1.3333333333333333,1.0,1.5275252316519468,0.0,0.5,2.0,3.0
+2026-27,2026-09-05,Leeds,ALL,yellow_cards_opponent,3,3.0,3.0,1.0,2.0,2.5,3.5,4.0
+2026-27,2026-09-05,Leeds,ALL,shots_for,3,11.0,11.0,1.0,10.0,10.5,11.5,12.0
+2026-27,2026-09-05,Leeds,ALL,shots_against,3,18.0,20.0,5.291502622129181,12.0,16.0,21.0,22.0
+2026-27,2026-09-05,Leeds,ALL,shots_on_target_for,3,3.3333333333333335,3.0,1.5275252316519465,2.0,2.5,4.0,5.0
+2026-27,2026-09-05,Leeds,ALL,shots_on_target_against,3,4.0,5.0,1.7320508075688772,2.0,3.5,5.0,5.0
+2026-27,2026-09-05,Leeds,ALL,goals_for,3,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-05,Leeds,ALL,goals_against,3,0.6666666666666666,1.0,0.5773502691896258,0.0,0.5,1.0,1.0
+2026-27,2026-09-05,Leeds,ALL,xg_for,3,1.4733333333333334,1.46,1.010066004443934,0.47,0.965,1.975,2.49
+2026-27,2026-09-05,Leeds,ALL,xg_against,3,1.5066666666666666,1.67,0.7779674371934427,0.66,1.165,1.93,2.19
+2026-27,2026-09-05,Leeds,HOME,fouls_committed,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
+2026-27,2026-09-05,Leeds,HOME,fouls_suffered,1,13.0,13.0,0.0,13.0,13.0,13.0,13.0
+2026-27,2026-09-05,Leeds,HOME,corners_for,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
+2026-27,2026-09-05,Leeds,HOME,corners_against,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
+2026-27,2026-09-05,Leeds,HOME,yellow_cards,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+2026-27,2026-09-05,Leeds,HOME,yellow_cards_opponent,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
+2026-27,2026-09-05,Leeds,HOME,shots_for,1,12.0,12.0,0.0,12.0,12.0,12.0,12.0
+2026-27,2026-09-05,Leeds,HOME,shots_against,1,22.0,22.0,0.0,22.0,22.0,22.0,22.0
+2026-27,2026-09-05,Leeds,HOME,shots_on_target_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Leeds,HOME,shots_on_target_against,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
+2026-27,2026-09-05,Leeds,HOME,goals_for,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-05,Leeds,HOME,goals_against,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-05,Leeds,HOME,xg_for,1,1.46,1.46,0.0,1.46,1.46,1.46,1.46
+2026-27,2026-09-05,Leeds,HOME,xg_against,1,1.67,1.67,0.0,1.67,1.67,1.67,1.67
+2026-27,2026-09-05,Leeds,AWAY,fouls_committed,2,15.0,15.0,1.4142135623730951,14.0,14.5,15.5,16.0
+2026-27,2026-09-05,Leeds,AWAY,fouls_suffered,2,14.0,14.0,1.4142135623730951,13.0,13.5,14.5,15.0
+2026-27,2026-09-05,Leeds,AWAY,corners_for,2,4.0,4.0,2.8284271247461903,2.0,3.0,5.0,6.0
+2026-27,2026-09-05,Leeds,AWAY,corners_against,2,5.0,5.0,2.8284271247461903,3.0,4.0,6.0,7.0
+2026-27,2026-09-05,Leeds,AWAY,yellow_cards,2,2.0,2.0,1.4142135623730951,1.0,1.5,2.5,3.0
+2026-27,2026-09-05,Leeds,AWAY,yellow_cards_opponent,2,2.5,2.5,0.7071067811865476,2.0,2.25,2.75,3.0
+2026-27,2026-09-05,Leeds,AWAY,shots_for,2,10.5,10.5,0.7071067811865476,10.0,10.25,10.75,11.0
+2026-27,2026-09-05,Leeds,AWAY,shots_against,2,16.0,16.0,5.656854249492381,12.0,14.0,18.0,20.0
+2026-27,2026-09-05,Leeds,AWAY,shots_on_target_for,2,4.0,4.0,1.4142135623730951,3.0,3.5,4.5,5.0
+2026-27,2026-09-05,Leeds,AWAY,shots_on_target_against,2,3.5,3.5,2.1213203435596424,2.0,2.75,4.25,5.0
+2026-27,2026-09-05,Leeds,AWAY,goals_for,2,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-05,Leeds,AWAY,goals_against,2,0.5,0.5,0.7071067811865476,0.0,0.25,0.75,1.0
+2026-27,2026-09-05,Leeds,AWAY,xg_for,2,1.48,1.48,1.4283556979968262,0.47,0.9750000000000001,1.985,2.49
+2026-27,2026-09-05,Leeds,AWAY,xg_against,2,1.425,1.425,1.0818733752154177,0.66,1.0425,1.8075,2.19
+2026-27,2026-09-04,Liverpool,ALL,fouls_committed,3,13.666666666666666,13.0,1.1547005383792517,13.0,13.0,14.0,15.0
+2026-27,2026-09-04,Liverpool,ALL,fouls_suffered,3,10.666666666666666,10.0,5.033222956847166,6.0,8.0,13.0,16.0
+2026-27,2026-09-04,Liverpool,ALL,corners_for,3,4.0,3.0,1.7320508075688772,3.0,3.0,4.5,6.0
+2026-27,2026-09-04,Liverpool,ALL,corners_against,3,3.6666666666666665,4.0,1.5275252316519468,2.0,3.0,4.5,5.0
+2026-27,2026-09-04,Liverpool,ALL,yellow_cards,3,3.3333333333333335,3.0,0.5773502691896258,3.0,3.0,3.5,4.0
+2026-27,2026-09-04,Liverpool,ALL,yellow_cards_opponent,3,2.6666666666666665,2.0,2.081665999466133,1.0,1.5,3.5,5.0
+2026-27,2026-09-04,Liverpool,ALL,shots_for,3,16.666666666666668,13.0,9.073771725877467,10.0,11.5,20.0,27.0
+2026-27,2026-09-04,Liverpool,ALL,shots_against,3,13.0,13.0,1.0,12.0,12.5,13.5,14.0
+2026-27,2026-09-04,Liverpool,ALL,shots_on_target_for,3,6.0,7.0,1.7320508075688772,4.0,5.5,7.0,7.0
+2026-27,2026-09-04,Liverpool,ALL,shots_on_target_against,3,4.0,4.0,1.0,3.0,3.5,4.5,5.0
+2026-27,2026-09-04,Liverpool,ALL,goals_for,3,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-04,Liverpool,ALL,goals_against,3,1.3333333333333333,2.0,1.1547005383792517,0.0,1.0,2.0,2.0
+2026-27,2026-09-04,Liverpool,ALL,xg_for,3,1.8066666666666666,1.75,1.1460511914104594,0.69,1.22,2.365,2.98
+2026-27,2026-09-04,Liverpool,ALL,xg_against,3,1.5433333333333332,1.58,0.7756502648316013,0.75,1.165,1.94,2.3
+2026-27,2026-09-04,Liverpool,HOME,fouls_committed,1,13.0,13.0,0.0,13.0,13.0,13.0,13.0
+2026-27,2026-09-04,Liverpool,HOME,fouls_suffered,1,10.0,10.0,0.0,10.0,10.0,10.0,10.0
+2026-27,2026-09-04,Liverpool,HOME,corners_for,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
+2026-27,2026-09-04,Liverpool,HOME,corners_against,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
+2026-27,2026-09-04,Liverpool,HOME,yellow_cards,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
+2026-27,2026-09-04,Liverpool,HOME,yellow_cards_opponent,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-04,Liverpool,HOME,shots_for,1,13.0,13.0,0.0,13.0,13.0,13.0,13.0
+2026-27,2026-09-04,Liverpool,HOME,shots_against,1,12.0,12.0,0.0,12.0,12.0,12.0,12.0
+2026-27,2026-09-04,Liverpool,HOME,shots_on_target_for,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
+2026-27,2026-09-04,Liverpool,HOME,shots_on_target_against,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
+2026-27,2026-09-04,Liverpool,HOME,goals_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-04,Liverpool,HOME,goals_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-04,Liverpool,HOME,xg_for,1,1.75,1.75,0.0,1.75,1.75,1.75,1.75
+2026-27,2026-09-04,Liverpool,HOME,xg_against,1,2.3,2.3,0.0,2.3,2.3,2.3,2.3
+2026-27,2026-09-04,Liverpool,AWAY,fouls_committed,2,14.0,14.0,1.4142135623730951,13.0,13.5,14.5,15.0
+2026-27,2026-09-04,Liverpool,AWAY,fouls_suffered,2,11.0,11.0,7.0710678118654755,6.0,8.5,13.5,16.0
+2026-27,2026-09-04,Liverpool,AWAY,corners_for,2,4.5,4.5,2.1213203435596424,3.0,3.75,5.25,6.0
+2026-27,2026-09-04,Liverpool,AWAY,corners_against,2,3.0,3.0,1.4142135623730951,2.0,2.5,3.5,4.0
+2026-27,2026-09-04,Liverpool,AWAY,yellow_cards,2,3.0,3.0,0.0,3.0,3.0,3.0,3.0
+2026-27,2026-09-04,Liverpool,AWAY,yellow_cards_opponent,2,3.0,3.0,2.8284271247461903,1.0,2.0,4.0,5.0
+2026-27,2026-09-04,Liverpool,AWAY,shots_for,2,18.5,18.5,12.020815280171307,10.0,14.25,22.75,27.0
+2026-27,2026-09-04,Liverpool,AWAY,shots_against,2,13.5,13.5,0.7071067811865476,13.0,13.25,13.75,14.0
+2026-27,2026-09-04,Liverpool,AWAY,shots_on_target_for,2,7.0,7.0,0.0,7.0,7.0,7.0,7.0
+2026-27,2026-09-04,Liverpool,AWAY,shots_on_target_against,2,4.5,4.5,0.7071067811865476,4.0,4.25,4.75,5.0
+2026-27,2026-09-04,Liverpool,AWAY,goals_for,2,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-04,Liverpool,AWAY,goals_against,2,1.0,1.0,1.4142135623730951,0.0,0.5,1.5,2.0
+2026-27,2026-09-04,Liverpool,AWAY,xg_for,2,1.835,1.835,1.619274528917194,0.69,1.2625,2.4074999999999998,2.98
+2026-27,2026-09-04,Liverpool,AWAY,xg_against,2,1.165,1.165,0.5868986283848344,0.75,0.9575,1.3725,1.58
+2026-27,2026-09-05,Manchester City,ALL,fouls_committed,3,9.666666666666666,11.0,2.3094010767585034,7.0,9.0,11.0,11.0
+2026-27,2026-09-05,Manchester City,ALL,fouls_suffered,3,12.0,11.0,4.58257569495584,8.0,9.5,14.0,17.0
+2026-27,2026-09-05,Manchester City,ALL,corners_for,3,6.0,6.0,2.0,4.0,5.0,7.0,8.0
+2026-27,2026-09-05,Manchester City,ALL,corners_against,3,3.3333333333333335,3.0,1.5275252316519465,2.0,2.5,4.0,5.0
+2026-27,2026-09-05,Manchester City,ALL,yellow_cards,3,1.3333333333333333,1.0,0.5773502691896257,1.0,1.0,1.5,2.0
+2026-27,2026-09-05,Manchester City,ALL,yellow_cards_opponent,3,1.6666666666666667,2.0,0.5773502691896257,1.0,1.5,2.0,2.0
+2026-27,2026-09-05,Manchester City,ALL,shots_for,3,15.333333333333334,15.0,2.516611478423583,13.0,14.0,16.5,18.0
+2026-27,2026-09-05,Manchester City,ALL,shots_against,3,8.666666666666666,9.0,3.511884584284246,5.0,7.0,10.5,12.0
+2026-27,2026-09-05,Manchester City,ALL,shots_on_target_for,3,6.333333333333333,6.0,2.516611478423583,4.0,5.0,7.5,9.0
+2026-27,2026-09-05,Manchester City,ALL,shots_on_target_against,3,2.6666666666666665,3.0,1.5275252316519468,1.0,2.0,3.5,4.0
+2026-27,2026-09-05,Manchester City,ALL,goals_for,3,2.3333333333333335,2.0,1.5275252316519465,1.0,1.5,3.0,4.0
+2026-27,2026-09-05,Manchester City,ALL,goals_against,3,0.6666666666666666,1.0,0.5773502691896258,0.0,0.5,1.0,1.0
+2026-27,2026-09-05,Manchester City,ALL,xg_for,3,2.1933333333333334,2.21,0.06658328118479387,2.12,2.165,2.23,2.25
+2026-27,2026-09-05,Manchester City,ALL,xg_against,3,0.8933333333333334,0.66,0.4128357219685978,0.65,0.655,1.0150000000000001,1.37
+2026-27,2026-09-05,Manchester City,HOME,fouls_committed,2,9.0,9.0,2.8284271247461903,7.0,8.0,10.0,11.0
+2026-27,2026-09-05,Manchester City,HOME,fouls_suffered,2,14.0,14.0,4.242640687119285,11.0,12.5,15.5,17.0
+2026-27,2026-09-05,Manchester City,HOME,corners_for,2,6.0,6.0,2.8284271247461903,4.0,5.0,7.0,8.0
+2026-27,2026-09-05,Manchester City,HOME,corners_against,2,4.0,4.0,1.4142135623730951,3.0,3.5,4.5,5.0
+2026-27,2026-09-05,Manchester City,HOME,yellow_cards,2,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-05,Manchester City,HOME,yellow_cards_opponent,2,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Manchester City,HOME,shots_for,2,14.0,14.0,1.4142135623730951,13.0,13.5,14.5,15.0
+2026-27,2026-09-05,Manchester City,HOME,shots_against,2,8.5,8.5,4.949747468305833,5.0,6.75,10.25,12.0
+2026-27,2026-09-05,Manchester City,HOME,shots_on_target_for,2,5.0,5.0,1.4142135623730951,4.0,4.5,5.5,6.0
+2026-27,2026-09-05,Manchester City,HOME,shots_on_target_against,2,3.5,3.5,0.7071067811865476,3.0,3.25,3.75,4.0
+2026-27,2026-09-05,Manchester City,HOME,goals_for,2,1.5,1.5,0.7071067811865476,1.0,1.25,1.75,2.0
+2026-27,2026-09-05,Manchester City,HOME,goals_against,2,0.5,0.5,0.7071067811865476,0.0,0.25,0.75,1.0
+2026-27,2026-09-05,Manchester City,HOME,xg_for,2,2.185,2.185,0.0919238815542511,2.12,2.1525,2.2175000000000002,2.25
+2026-27,2026-09-05,Manchester City,HOME,xg_against,2,1.01,1.01,0.5091168824543143,0.65,0.8300000000000001,1.1900000000000002,1.37
+2026-27,2026-09-05,Manchester City,AWAY,fouls_committed,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
+2026-27,2026-09-05,Manchester City,AWAY,fouls_suffered,1,8.0,8.0,0.0,8.0,8.0,8.0,8.0
+2026-27,2026-09-05,Manchester City,AWAY,corners_for,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
+2026-27,2026-09-05,Manchester City,AWAY,corners_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Manchester City,AWAY,yellow_cards,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Manchester City,AWAY,yellow_cards_opponent,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-05,Manchester City,AWAY,shots_for,1,18.0,18.0,0.0,18.0,18.0,18.0,18.0
+2026-27,2026-09-05,Manchester City,AWAY,shots_against,1,9.0,9.0,0.0,9.0,9.0,9.0,9.0
+2026-27,2026-09-05,Manchester City,AWAY,shots_on_target_for,1,9.0,9.0,0.0,9.0,9.0,9.0,9.0
+2026-27,2026-09-05,Manchester City,AWAY,shots_on_target_against,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-05,Manchester City,AWAY,goals_for,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
+2026-27,2026-09-05,Manchester City,AWAY,goals_against,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-05,Manchester City,AWAY,xg_for,1,2.21,2.21,0.0,2.21,2.21,2.21,2.21
+2026-27,2026-09-05,Manchester City,AWAY,xg_against,1,0.66,0.66,0.0,0.66,0.66,0.66,0.66
+2026-27,2026-09-06,Manchester United,ALL,fouls_committed,3,9.0,9.0,2.0,7.0,8.0,10.0,11.0
+2026-27,2026-09-06,Manchester United,ALL,fouls_suffered,3,9.666666666666666,10.0,2.5166114784235836,7.0,8.5,11.0,12.0
+2026-27,2026-09-06,Manchester United,ALL,corners_for,3,5.666666666666667,6.0,2.516611478423583,3.0,4.5,7.0,8.0
+2026-27,2026-09-06,Manchester United,ALL,corners_against,3,3.0,4.0,1.7320508075688772,1.0,2.5,4.0,4.0
+2026-27,2026-09-06,Manchester United,ALL,yellow_cards,3,1.6666666666666667,1.0,1.1547005383792517,1.0,1.0,2.0,3.0
+2026-27,2026-09-06,Manchester United,ALL,yellow_cards_opponent,3,2.6666666666666665,3.0,0.5773502691896258,2.0,2.5,3.0,3.0
+2026-27,2026-09-06,Manchester United,ALL,shots_for,3,22.666666666666668,21.0,9.60902353693305,14.0,17.5,27.0,33.0
+2026-27,2026-09-06,Manchester United,ALL,shots_against,3,11.666666666666666,9.0,5.507570547286102,8.0,8.5,13.5,18.0
+2026-27,2026-09-06,Manchester United,ALL,shots_on_target_for,3,6.333333333333333,5.0,4.163331998932266,3.0,4.0,8.0,11.0
+2026-27,2026-09-06,Manchester United,ALL,shots_on_target_against,3,5.0,5.0,1.0,4.0,4.5,5.5,6.0
+2026-27,2026-09-06,Manchester United,ALL,goals_for,3,2.3333333333333335,2.0,2.5166114784235836,0.0,1.0,3.5,5.0
+2026-27,2026-09-06,Manchester United,ALL,goals_against,3,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-06,Manchester United,ALL,xg_for,3,2.4299999999999997,1.83,2.10513657514186,0.69,1.26,3.3,4.77
+2026-27,2026-09-06,Manchester United,ALL,xg_against,3,1.36,1.01,0.6062177826491071,1.01,1.01,1.5350000000000001,2.06
+2026-27,2026-09-06,Manchester United,HOME,fouls_committed,1,7.0,7.0,0.0,7.0,7.0,7.0,7.0
+2026-27,2026-09-06,Manchester United,HOME,fouls_suffered,1,12.0,12.0,0.0,12.0,12.0,12.0,12.0
+2026-27,2026-09-06,Manchester United,HOME,corners_for,1,8.0,8.0,0.0,8.0,8.0,8.0,8.0
+2026-27,2026-09-06,Manchester United,HOME,corners_against,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
+2026-27,2026-09-06,Manchester United,HOME,yellow_cards,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-06,Manchester United,HOME,yellow_cards_opponent,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
+2026-27,2026-09-06,Manchester United,HOME,shots_for,1,33.0,33.0,0.0,33.0,33.0,33.0,33.0
+2026-27,2026-09-06,Manchester United,HOME,shots_against,1,9.0,9.0,0.0,9.0,9.0,9.0,9.0
+2026-27,2026-09-06,Manchester United,HOME,shots_on_target_for,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
+2026-27,2026-09-06,Manchester United,HOME,shots_on_target_against,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
+2026-27,2026-09-06,Manchester United,HOME,goals_for,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
+2026-27,2026-09-06,Manchester United,HOME,goals_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-06,Manchester United,HOME,xg_for,1,4.77,4.77,0.0,4.77,4.77,4.77,4.77
+2026-27,2026-09-06,Manchester United,HOME,xg_against,1,2.06,2.06,0.0,2.06,2.06,2.06,2.06
+2026-27,2026-09-06,Manchester United,AWAY,fouls_committed,2,10.0,10.0,1.4142135623730951,9.0,9.5,10.5,11.0
+2026-27,2026-09-06,Manchester United,AWAY,fouls_suffered,2,8.5,8.5,2.1213203435596424,7.0,7.75,9.25,10.0
+2026-27,2026-09-06,Manchester United,AWAY,corners_for,2,4.5,4.5,2.1213203435596424,3.0,3.75,5.25,6.0
+2026-27,2026-09-06,Manchester United,AWAY,corners_against,2,2.5,2.5,2.1213203435596424,1.0,1.75,3.25,4.0
+2026-27,2026-09-06,Manchester United,AWAY,yellow_cards,2,2.0,2.0,1.4142135623730951,1.0,1.5,2.5,3.0
+2026-27,2026-09-06,Manchester United,AWAY,yellow_cards_opponent,2,2.5,2.5,0.7071067811865476,2.0,2.25,2.75,3.0
+2026-27,2026-09-06,Manchester United,AWAY,shots_for,2,17.5,17.5,4.949747468305833,14.0,15.75,19.25,21.0
+2026-27,2026-09-06,Manchester United,AWAY,shots_against,2,13.0,13.0,7.0710678118654755,8.0,10.5,15.5,18.0
+2026-27,2026-09-06,Manchester United,AWAY,shots_on_target_for,2,4.0,4.0,1.4142135623730951,3.0,3.5,4.5,5.0
+2026-27,2026-09-06,Manchester United,AWAY,shots_on_target_against,2,5.0,5.0,1.4142135623730951,4.0,4.5,5.5,6.0
+2026-27,2026-09-06,Manchester United,AWAY,goals_for,2,1.0,1.0,1.4142135623730951,0.0,0.5,1.5,2.0
+2026-27,2026-09-06,Manchester United,AWAY,goals_against,2,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-06,Manchester United,AWAY,xg_for,2,1.26,1.26,0.8061017305526643,0.69,0.975,1.545,1.83
+2026-27,2026-09-06,Manchester United,AWAY,xg_against,2,1.01,1.01,0.0,1.01,1.01,1.01,1.01
+2026-27,2026-09-05,Newcastle United,ALL,fouls_committed,3,14.666666666666666,16.0,5.131601439446884,9.0,12.5,17.5,19.0
+2026-27,2026-09-05,Newcastle United,ALL,fouls_suffered,3,15.666666666666666,15.0,1.1547005383792517,15.0,15.0,16.0,17.0
+2026-27,2026-09-05,Newcastle United,ALL,corners_for,3,4.333333333333333,4.0,2.516611478423583,2.0,3.0,5.5,7.0
+2026-27,2026-09-05,Newcastle United,ALL,corners_against,3,6.0,6.0,3.0,3.0,4.5,7.5,9.0
+2026-27,2026-09-05,Newcastle United,ALL,yellow_cards,3,3.0,2.0,1.7320508075688772,2.0,2.0,3.5,5.0
+2026-27,2026-09-05,Newcastle United,ALL,yellow_cards_opponent,3,2.3333333333333335,3.0,1.1547005383792515,1.0,2.0,3.0,3.0
+2026-27,2026-09-05,Newcastle United,ALL,shots_for,3,10.666666666666666,11.0,2.5166114784235836,8.0,9.5,12.0,13.0
+2026-27,2026-09-05,Newcastle United,ALL,shots_against,3,20.333333333333332,17.0,5.773502691896257,17.0,17.0,22.0,27.0
+2026-27,2026-09-05,Newcastle United,ALL,shots_on_target_for,3,2.6666666666666665,2.0,1.1547005383792515,2.0,2.0,3.0,4.0
+2026-27,2026-09-05,Newcastle United,ALL,shots_on_target_against,3,6.0,6.0,1.0,5.0,5.5,6.5,7.0
+2026-27,2026-09-05,Newcastle United,ALL,goals_for,3,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Newcastle United,ALL,goals_against,3,1.3333333333333333,2.0,1.1547005383792517,0.0,1.0,2.0,2.0
+2026-27,2026-09-05,Newcastle United,ALL,xg_for,3,1.0033333333333332,0.72,0.49943301185778,0.71,0.715,1.15,1.58
+2026-27,2026-09-05,Newcastle United,ALL,xg_against,3,1.8233333333333333,1.37,1.0094718090830141,1.12,1.245,2.175,2.98
+2026-27,2026-09-05,Newcastle United,HOME,fouls_committed,2,17.5,17.5,2.1213203435596424,16.0,16.75,18.25,19.0
+2026-27,2026-09-05,Newcastle United,HOME,fouls_suffered,2,16.0,16.0,1.4142135623730951,15.0,15.5,16.5,17.0
+2026-27,2026-09-05,Newcastle United,HOME,corners_for,2,3.0,3.0,1.4142135623730951,2.0,2.5,3.5,4.0
+2026-27,2026-09-05,Newcastle United,HOME,corners_against,2,4.5,4.5,2.1213203435596424,3.0,3.75,5.25,6.0
+2026-27,2026-09-05,Newcastle United,HOME,yellow_cards,2,3.5,3.5,2.1213203435596424,2.0,2.75,4.25,5.0
+2026-27,2026-09-05,Newcastle United,HOME,yellow_cards_opponent,2,3.0,3.0,0.0,3.0,3.0,3.0,3.0
+2026-27,2026-09-05,Newcastle United,HOME,shots_for,2,10.5,10.5,3.5355339059327378,8.0,9.25,11.75,13.0
+2026-27,2026-09-05,Newcastle United,HOME,shots_against,2,22.0,22.0,7.0710678118654755,17.0,19.5,24.5,27.0
+2026-27,2026-09-05,Newcastle United,HOME,shots_on_target_for,2,3.0,3.0,1.4142135623730951,2.0,2.5,3.5,4.0
+2026-27,2026-09-05,Newcastle United,HOME,shots_on_target_against,2,6.0,6.0,1.4142135623730951,5.0,5.5,6.5,7.0
+2026-27,2026-09-05,Newcastle United,HOME,goals_for,2,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Newcastle United,HOME,goals_against,2,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Newcastle United,HOME,xg_for,2,1.145,1.145,0.6151828996322964,0.71,0.9275,1.3625,1.58
+2026-27,2026-09-05,Newcastle United,HOME,xg_against,2,2.175,2.175,1.1384419177103413,1.37,1.7725,2.5775,2.98
+2026-27,2026-09-05,Newcastle United,AWAY,fouls_committed,1,9.0,9.0,0.0,9.0,9.0,9.0,9.0
+2026-27,2026-09-05,Newcastle United,AWAY,fouls_suffered,1,15.0,15.0,0.0,15.0,15.0,15.0,15.0
+2026-27,2026-09-05,Newcastle United,AWAY,corners_for,1,7.0,7.0,0.0,7.0,7.0,7.0,7.0
+2026-27,2026-09-05,Newcastle United,AWAY,corners_against,1,9.0,9.0,0.0,9.0,9.0,9.0,9.0
+2026-27,2026-09-05,Newcastle United,AWAY,yellow_cards,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Newcastle United,AWAY,yellow_cards_opponent,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-05,Newcastle United,AWAY,shots_for,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
+2026-27,2026-09-05,Newcastle United,AWAY,shots_against,1,17.0,17.0,0.0,17.0,17.0,17.0,17.0
+2026-27,2026-09-05,Newcastle United,AWAY,shots_on_target_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Newcastle United,AWAY,shots_on_target_against,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
+2026-27,2026-09-05,Newcastle United,AWAY,goals_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Newcastle United,AWAY,goals_against,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+2026-27,2026-09-05,Newcastle United,AWAY,xg_for,1,0.72,0.72,0.0,0.72,0.72,0.72,0.72
+2026-27,2026-09-05,Newcastle United,AWAY,xg_against,1,1.12,1.12,0.0,1.12,1.12,1.12,1.12
+2026-27,2026-09-05,Nottingham Forest,ALL,fouls_committed,3,15.666666666666666,15.0,6.027713773341708,10.0,12.5,18.5,22.0
+2026-27,2026-09-05,Nottingham Forest,ALL,fouls_suffered,3,13.666666666666666,14.0,0.5773502691896257,13.0,13.5,14.0,14.0
+2026-27,2026-09-05,Nottingham Forest,ALL,corners_for,3,3.3333333333333335,3.0,1.5275252316519465,2.0,2.5,4.0,5.0
+2026-27,2026-09-05,Nottingham Forest,ALL,corners_against,3,5.0,3.0,4.358898943540674,2.0,2.5,6.5,10.0
+2026-27,2026-09-05,Nottingham Forest,ALL,yellow_cards,3,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Nottingham Forest,ALL,yellow_cards_opponent,3,2.3333333333333335,2.0,1.5275252316519468,1.0,1.5,3.0,4.0
+2026-27,2026-09-05,Nottingham Forest,ALL,shots_for,3,12.0,12.0,0.0,12.0,12.0,12.0,12.0
+2026-27,2026-09-05,Nottingham Forest,ALL,shots_against,3,11.666666666666666,11.0,1.1547005383792517,11.0,11.0,12.0,13.0
+2026-27,2026-09-05,Nottingham Forest,ALL,shots_on_target_for,3,2.3333333333333335,2.0,0.5773502691896258,2.0,2.0,2.5,3.0
+2026-27,2026-09-05,Nottingham Forest,ALL,shots_on_target_against,3,2.3333333333333335,3.0,2.081665999466133,0.0,1.5,3.5,4.0
+2026-27,2026-09-05,Nottingham Forest,ALL,goals_for,3,0.6666666666666666,0.0,1.1547005383792517,0.0,0.0,1.0,2.0
+2026-27,2026-09-05,Nottingham Forest,ALL,goals_against,3,1.0,1.0,1.0,0.0,0.5,1.5,2.0
+2026-27,2026-09-05,Nottingham Forest,ALL,xg_for,3,1.2933333333333332,0.92,0.8814382186706753,0.66,0.79,1.6099999999999999,2.3
+2026-27,2026-09-05,Nottingham Forest,ALL,xg_against,3,1.0933333333333333,1.06,0.6406507108661734,0.47,0.765,1.405,1.75
+2026-27,2026-09-05,Nottingham Forest,HOME,fouls_committed,2,18.5,18.5,4.949747468305833,15.0,16.75,20.25,22.0
+2026-27,2026-09-05,Nottingham Forest,HOME,fouls_suffered,2,14.0,14.0,0.0,14.0,14.0,14.0,14.0
+2026-27,2026-09-05,Nottingham Forest,HOME,corners_for,2,2.5,2.5,0.7071067811865476,2.0,2.25,2.75,3.0
+2026-27,2026-09-05,Nottingham Forest,HOME,corners_against,2,6.0,6.0,5.656854249492381,2.0,4.0,8.0,10.0
+2026-27,2026-09-05,Nottingham Forest,HOME,yellow_cards,2,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Nottingham Forest,HOME,yellow_cards_opponent,2,1.5,1.5,0.7071067811865476,1.0,1.25,1.75,2.0
+2026-27,2026-09-05,Nottingham Forest,HOME,shots_for,2,12.0,12.0,0.0,12.0,12.0,12.0,12.0
+2026-27,2026-09-05,Nottingham Forest,HOME,shots_against,2,11.0,11.0,0.0,11.0,11.0,11.0,11.0
+2026-27,2026-09-05,Nottingham Forest,HOME,shots_on_target_for,2,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Nottingham Forest,HOME,shots_on_target_against,2,1.5,1.5,2.1213203435596424,0.0,0.75,2.25,3.0
+2026-27,2026-09-05,Nottingham Forest,HOME,goals_for,2,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+2026-27,2026-09-05,Nottingham Forest,HOME,goals_against,2,0.5,0.5,0.7071067811865476,0.0,0.25,0.75,1.0
+2026-27,2026-09-05,Nottingham Forest,HOME,xg_for,2,0.79,0.79,0.18384776310850237,0.66,0.7250000000000001,0.855,0.92
+2026-27,2026-09-05,Nottingham Forest,HOME,xg_against,2,0.765,0.765,0.41719300090006306,0.47,0.6174999999999999,0.9125000000000001,1.06
+2026-27,2026-09-05,Nottingham Forest,AWAY,fouls_committed,1,10.0,10.0,0.0,10.0,10.0,10.0,10.0
+2026-27,2026-09-05,Nottingham Forest,AWAY,fouls_suffered,1,13.0,13.0,0.0,13.0,13.0,13.0,13.0
+2026-27,2026-09-05,Nottingham Forest,AWAY,corners_for,1,5.0,5.0,0.0,5.0,5.0,5.0,5.0
+2026-27,2026-09-05,Nottingham Forest,AWAY,corners_against,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
+2026-27,2026-09-05,Nottingham Forest,AWAY,yellow_cards,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Nottingham Forest,AWAY,yellow_cards_opponent,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
+2026-27,2026-09-05,Nottingham Forest,AWAY,shots_for,1,12.0,12.0,0.0,12.0,12.0,12.0,12.0
+2026-27,2026-09-05,Nottingham Forest,AWAY,shots_against,1,13.0,13.0,0.0,13.0,13.0,13.0,13.0
+2026-27,2026-09-05,Nottingham Forest,AWAY,shots_on_target_for,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
+2026-27,2026-09-05,Nottingham Forest,AWAY,shots_on_target_against,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
+2026-27,2026-09-05,Nottingham Forest,AWAY,goals_for,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Nottingham Forest,AWAY,goals_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Nottingham Forest,AWAY,xg_for,1,2.3,2.3,0.0,2.3,2.3,2.3,2.3
+2026-27,2026-09-05,Nottingham Forest,AWAY,xg_against,1,1.75,1.75,0.0,1.75,1.75,1.75,1.75
+2026-27,2026-09-05,Sunderland,ALL,fouls_committed,3,11.0,10.0,2.6457513110645907,9.0,9.5,12.0,14.0
+2026-27,2026-09-05,Sunderland,ALL,fouls_suffered,3,15.333333333333334,15.0,3.511884584284246,12.0,13.5,17.0,19.0
+2026-27,2026-09-05,Sunderland,ALL,corners_for,3,3.6666666666666665,3.0,1.1547005383792515,3.0,3.0,4.0,5.0
+2026-27,2026-09-05,Sunderland,ALL,corners_against,3,3.6666666666666665,4.0,0.5773502691896258,3.0,3.5,4.0,4.0
+2026-27,2026-09-05,Sunderland,ALL,yellow_cards,3,1.6666666666666667,2.0,1.5275252316519465,0.0,1.0,2.5,3.0
+2026-27,2026-09-05,Sunderland,ALL,yellow_cards_opponent,3,1.6666666666666667,2.0,1.5275252316519468,0.0,1.0,2.5,3.0
+2026-27,2026-09-05,Sunderland,ALL,shots_for,3,12.333333333333334,12.0,1.5275252316519468,11.0,11.5,13.0,14.0
+2026-27,2026-09-05,Sunderland,ALL,shots_against,3,11.0,11.0,1.0,10.0,10.5,11.5,12.0
+2026-27,2026-09-05,Sunderland,ALL,shots_on_target_for,3,4.333333333333333,4.0,0.5773502691896258,4.0,4.0,4.5,5.0
+2026-27,2026-09-05,Sunderland,ALL,shots_on_target_against,3,1.6666666666666667,2.0,1.5275252316519465,0.0,1.0,2.5,3.0
+2026-27,2026-09-05,Sunderland,ALL,goals_for,3,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-05,Sunderland,ALL,goals_against,3,1.0,1.0,1.0,0.0,0.5,1.5,2.0
+2026-27,2026-09-05,Sunderland,ALL,xg_for,3,1.4633333333333336,1.71,0.7127645707618564,0.66,1.185,1.865,2.02
+2026-27,2026-09-05,Sunderland,ALL,xg_against,3,1.32,1.21,0.4355456348076514,0.95,1.08,1.505,1.8
+2026-27,2026-09-05,Sunderland,HOME,fouls_committed,1,10.0,10.0,0.0,10.0,10.0,10.0,10.0
+2026-27,2026-09-05,Sunderland,HOME,fouls_suffered,1,15.0,15.0,0.0,15.0,15.0,15.0,15.0
+2026-27,2026-09-05,Sunderland,HOME,corners_for,1,3.0,3.0,0.0,3.0,3.0,3.0,3.0
+2026-27,2026-09-05,Sunderland,HOME,corners_against,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
+2026-27,2026-09-05,Sunderland,HOME,yellow_cards,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+2026-27,2026-09-05,Sunderland,HOME,yellow_cards_opponent,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Sunderland,HOME,shots_for,1,12.0,12.0,0.0,12.0,12.0,12.0,12.0
+2026-27,2026-09-05,Sunderland,HOME,shots_against,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
+2026-27,2026-09-05,Sunderland,HOME,shots_on_target_for,1,4.0,4.0,0.0,4.0,4.0,4.0,4.0
+2026-27,2026-09-05,Sunderland,HOME,shots_on_target_against,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+2026-27,2026-09-05,Sunderland,HOME,goals_for,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-05,Sunderland,HOME,goals_against,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+2026-27,2026-09-05,Sunderland,HOME,xg_for,1,2.02,2.02,0.0,2.02,2.02,2.02,2.02
+2026-27,2026-09-05,Sunderland,HOME,xg_against,1,0.95,0.95,0.0,0.95,0.95,0.95,0.95
+2026-27,2026-09-05,Sunderland,AWAY,fouls_committed,2,11.5,11.5,3.5355339059327378,9.0,10.25,12.75,14.0
+2026-27,2026-09-05,Sunderland,AWAY,fouls_suffered,2,15.5,15.5,4.949747468305833,12.0,13.75,17.25,19.0
+2026-27,2026-09-05,Sunderland,AWAY,corners_for,2,4.0,4.0,1.4142135623730951,3.0,3.5,4.5,5.0
+2026-27,2026-09-05,Sunderland,AWAY,corners_against,2,3.5,3.5,0.7071067811865476,3.0,3.25,3.75,4.0
+2026-27,2026-09-05,Sunderland,AWAY,yellow_cards,2,2.5,2.5,0.7071067811865476,2.0,2.25,2.75,3.0
+2026-27,2026-09-05,Sunderland,AWAY,yellow_cards_opponent,2,1.5,1.5,2.1213203435596424,0.0,0.75,2.25,3.0
+2026-27,2026-09-05,Sunderland,AWAY,shots_for,2,12.5,12.5,2.1213203435596424,11.0,11.75,13.25,14.0
+2026-27,2026-09-05,Sunderland,AWAY,shots_against,2,11.0,11.0,1.4142135623730951,10.0,10.5,11.5,12.0
+2026-27,2026-09-05,Sunderland,AWAY,shots_on_target_for,2,4.5,4.5,0.7071067811865476,4.0,4.25,4.75,5.0
+2026-27,2026-09-05,Sunderland,AWAY,shots_on_target_against,2,2.5,2.5,0.7071067811865476,2.0,2.25,2.75,3.0
+2026-27,2026-09-05,Sunderland,AWAY,goals_for,2,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-05,Sunderland,AWAY,goals_against,2,1.5,1.5,0.7071067811865476,1.0,1.25,1.75,2.0
+2026-27,2026-09-05,Sunderland,AWAY,xg_for,2,1.185,1.185,0.7424621202458749,0.66,0.9225,1.4475,1.71
+2026-27,2026-09-05,Sunderland,AWAY,xg_against,2,1.505,1.505,0.41719300090006306,1.21,1.3575,1.6525,1.8
+2026-27,2026-09-05,Tottenham,ALL,fouls_committed,3,14.333333333333334,14.0,0.5773502691896257,14.0,14.0,14.5,15.0
+2026-27,2026-09-05,Tottenham,ALL,fouls_suffered,3,16.0,17.0,6.557438524302,9.0,13.0,19.5,22.0
+2026-27,2026-09-05,Tottenham,ALL,corners_for,3,7.333333333333333,9.0,3.7859388972001824,3.0,6.0,9.5,10.0
+2026-27,2026-09-05,Tottenham,ALL,corners_against,3,5.333333333333333,7.0,2.8867513459481287,2.0,4.5,7.0,7.0
+2026-27,2026-09-05,Tottenham,ALL,yellow_cards,3,1.3333333333333333,1.0,0.5773502691896257,1.0,1.0,1.5,2.0
+2026-27,2026-09-05,Tottenham,ALL,yellow_cards_opponent,3,1.6666666666666667,2.0,0.5773502691896257,1.0,1.5,2.0,2.0
+2026-27,2026-09-05,Tottenham,ALL,shots_for,3,12.333333333333334,11.0,4.163331998932265,9.0,10.0,14.0,17.0
+2026-27,2026-09-05,Tottenham,ALL,shots_against,3,16.333333333333332,12.0,8.386497083606082,11.0,11.5,19.0,26.0
+2026-27,2026-09-05,Tottenham,ALL,shots_on_target_for,3,3.3333333333333335,4.0,3.0550504633038935,0.0,2.0,5.0,6.0
+2026-27,2026-09-05,Tottenham,ALL,shots_on_target_against,3,4.0,2.0,3.4641016151377544,2.0,2.0,5.0,8.0
+2026-27,2026-09-05,Tottenham,ALL,goals_for,3,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+2026-27,2026-09-05,Tottenham,ALL,goals_against,3,1.6666666666666667,2.0,1.5275252316519468,0.0,1.0,2.5,3.0
+2026-27,2026-09-05,Tottenham,ALL,xg_for,3,0.9166666666666666,1.06,0.3017173069834301,0.57,0.815,1.09,1.12
+2026-27,2026-09-05,Tottenham,ALL,xg_against,3,1.8366666666666667,0.92,1.7637554630201244,0.72,0.8200000000000001,2.395,3.87
+2026-27,2026-09-05,Tottenham,HOME,fouls_committed,1,15.0,15.0,0.0,15.0,15.0,15.0,15.0
+2026-27,2026-09-05,Tottenham,HOME,fouls_suffered,1,9.0,9.0,0.0,9.0,9.0,9.0,9.0
+2026-27,2026-09-05,Tottenham,HOME,corners_for,1,9.0,9.0,0.0,9.0,9.0,9.0,9.0
+2026-27,2026-09-05,Tottenham,HOME,corners_against,1,7.0,7.0,0.0,7.0,7.0,7.0,7.0
+2026-27,2026-09-05,Tottenham,HOME,yellow_cards,1,1.0,1.0,0.0,1.0,1.0,1.0,1.0
+2026-27,2026-09-05,Tottenham,HOME,yellow_cards_opponent,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Tottenham,HOME,shots_for,1,17.0,17.0,0.0,17.0,17.0,17.0,17.0
+2026-27,2026-09-05,Tottenham,HOME,shots_against,1,11.0,11.0,0.0,11.0,11.0,11.0,11.0
+2026-27,2026-09-05,Tottenham,HOME,shots_on_target_for,1,6.0,6.0,0.0,6.0,6.0,6.0,6.0
+2026-27,2026-09-05,Tottenham,HOME,shots_on_target_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Tottenham,HOME,goals_for,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+2026-27,2026-09-05,Tottenham,HOME,goals_against,1,2.0,2.0,0.0,2.0,2.0,2.0,2.0
+2026-27,2026-09-05,Tottenham,HOME,xg_for,1,1.12,1.12,0.0,1.12,1.12,1.12,1.12
+2026-27,2026-09-05,Tottenham,HOME,xg_against,1,0.72,0.72,0.0,0.72,0.72,0.72,0.72
+2026-27,2026-09-05,Tottenham,AWAY,fouls_committed,2,14.0,14.0,0.0,14.0,14.0,14.0,14.0
+2026-27,2026-09-05,Tottenham,AWAY,fouls_suffered,2,19.5,19.5,3.5355339059327378,17.0,18.25,20.75,22.0
+2026-27,2026-09-05,Tottenham,AWAY,corners_for,2,6.5,6.5,4.949747468305833,3.0,4.75,8.25,10.0
+2026-27,2026-09-05,Tottenham,AWAY,corners_against,2,4.5,4.5,3.5355339059327378,2.0,3.25,5.75,7.0
+2026-27,2026-09-05,Tottenham,AWAY,yellow_cards,2,1.5,1.5,0.7071067811865476,1.0,1.25,1.75,2.0
+2026-27,2026-09-05,Tottenham,AWAY,yellow_cards_opponent,2,1.5,1.5,0.7071067811865476,1.0,1.25,1.75,2.0
+2026-27,2026-09-05,Tottenham,AWAY,shots_for,2,10.0,10.0,1.4142135623730951,9.0,9.5,10.5,11.0
+2026-27,2026-09-05,Tottenham,AWAY,shots_against,2,19.0,19.0,9.899494936611665,12.0,15.5,22.5,26.0
+2026-27,2026-09-05,Tottenham,AWAY,shots_on_target_for,2,2.0,2.0,2.8284271247461903,0.0,1.0,3.0,4.0
+2026-27,2026-09-05,Tottenham,AWAY,shots_on_target_against,2,5.0,5.0,4.242640687119285,2.0,3.5,6.5,8.0
+2026-27,2026-09-05,Tottenham,AWAY,goals_for,2,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+2026-27,2026-09-05,Tottenham,AWAY,goals_against,2,1.5,1.5,2.1213203435596424,0.0,0.75,2.25,3.0
+2026-27,2026-09-05,Tottenham,AWAY,xg_for,2,0.815,0.815,0.34648232278140834,0.57,0.6925,0.9375,1.06
+2026-27,2026-09-05,Tottenham,AWAY,xg_against,2,2.395,2.395,2.085965004500315,0.92,1.6575000000000002,3.1325000000000003,3.87
