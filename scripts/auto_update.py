@@ -14,19 +14,17 @@ def run(args, required=True):
 
 def main():
     py=sys.executable
-    # External schedule/official feeds must never block result updates.
-    run([py,"scripts/update_fixtures.py","--season","2026-27","--force"], required=False)
+    # Schedule is required for correct current-round identity.
+    run([py,"scripts/update_fixtures.py","--season","2026-27","--force"], required=True)
+    # Results are critical: never report a green workflow with stale cached results.
     run([py,"scripts/update_data.py","--download-current"], required=True)
+    # Officials may legitimately not be published yet, so this one is non-fatal.
     run([py,"scripts/update_officials.py","--force"], required=False)
-
-    # Settlement failures are isolated so the rest of the daily refresh still runs.
-    run([py,"scripts/prediction_archive.py"], required=False)
-    run([py,"scripts/model_prediction_stats.py"], required=False)
-
-    # Rebuild model; if a transient modelling/snapshot issue appears, generated data
-    # tables and results are still allowed to be committed.
-    run([py,"scripts/train_count_models.py"], required=False)
-    run([py,"scripts/snapshot_model_predictions.py"], required=False)
-    print("\nAutomatic update completed.")
+    # Settlement is critical. If either fails, the workflow must be red.
+    run([py,"scripts/prediction_archive.py"], required=True)
+    run([py,"scripts/model_prediction_stats.py"], required=True)
+    run([py,"scripts/train_count_models.py"], required=True)
+    run([py,"scripts/snapshot_model_predictions.py"], required=True)
+    print("\nAutomatic update completed successfully.")
 
 if __name__=="__main__": main()

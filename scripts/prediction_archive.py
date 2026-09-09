@@ -164,8 +164,8 @@ def settle_predictions():
         if market in TOTAL_MARKETS:
             q=tm[
                 (tm["season"].astype(str)==str(r["season"])) &
-                (tm["match_date"].astype(str)==str(r["match_date"])) &
-                (tm["team"].astype(str).isin([str(r["home_team"]),str(r["away_team"])]))
+                (tm["team"].astype(str).isin([str(r["home_team"]),str(r["away_team"])])) &
+                (tm["opponent"].astype(str).isin([str(r["home_team"]),str(r["away_team"])]))
             ]
             if len(q)<2:
                 continue
@@ -176,7 +176,6 @@ def settle_predictions():
         else:
             q=tm[
                 (tm["season"].astype(str)==str(r["season"])) &
-                (tm["match_date"].astype(str)==str(r["match_date"])) &
                 (tm["team"].astype(str)==str(r["team"])) &
                 (tm["opponent"].astype(str)==(
                     str(r["away_team"]) if str(r["team"])==str(r["home_team"]) else str(r["home_team"])

@@ -5,6 +5,7 @@ import joblib
 import numpy as np
 import pandas as pd
 import streamlit as st
+import matplotlib.pyplot as plt
 
 BASE=Path(__file__).resolve().parent.parent
 SCRIPTS=BASE/"scripts"; MODELS=BASE/"models"; TABLES=BASE/"data"/"tables"
@@ -76,6 +77,22 @@ def models():
         p=MODELS/f"{m}_model.joblib"
         if p.exists(): out[m]=joblib.load(p)
     return out
+
+
+def paired_bar_chart(df, index_col, col_a, col_b, label_a, label_b):
+    plot=df[[index_col,col_a,col_b]].copy()
+    plot[col_a]=pd.to_numeric(plot[col_a],errors="coerce").fillna(0)
+    plot[col_b]=pd.to_numeric(plot[col_b],errors="coerce").fillna(0)
+    labels=plot[index_col].astype(str).tolist()
+    x=np.arange(len(plot)); width=.38
+    fig,ax=plt.subplots(figsize=(max(8,len(plot)*0.52),4.2))
+    ax.bar(x-width/2,plot[col_a].to_numpy(),width,label=label_a)
+    ax.bar(x+width/2,plot[col_b].to_numpy(),width,label=label_b)
+    ax.set_xticks(x); ax.set_xticklabels(labels,rotation=65,ha="right",fontsize=8)
+    ax.set_ylabel("Počet"); ax.legend(); ax.margins(x=.01)
+    fig.tight_layout()
+    st.pyplot(fig,use_container_width=True)
+    plt.close(fig)
 
 def pct(x): return f"{100*x:.0f}%"
 def fmt_odds(x): return f"{x:.2f}" if np.isfinite(x) else "—"
@@ -588,11 +605,11 @@ elif nav=="Data":
         else:
             chart=g.copy(); chart["Osa"]=chart["Datum"]+" · "+chart.opponent.astype(str)
             st.markdown("#### Fauly")
-            st.bar_chart(chart.set_index("Osa")[["fouls_committed","fouls_suffered"]].rename(columns={"fouls_committed":"Pro","fouls_suffered":"Proti"}),use_container_width=True)
+            paired_bar_chart(chart,"Osa","fouls_committed","fouls_suffered","Pro","Proti")
             st.markdown("#### Karty")
-            st.bar_chart(chart.set_index("Osa")[["yellow_cards","yellow_cards_opponent"]].rename(columns={"yellow_cards":"Pro","yellow_cards_opponent":"Proti"}),use_container_width=True)
+            paired_bar_chart(chart,"Osa","yellow_cards","yellow_cards_opponent","Pro","Proti")
             st.markdown("#### Rohy")
-            st.bar_chart(chart.set_index("Osa")[["corners_for","corners_against"]].rename(columns={"corners_for":"Pro","corners_against":"Proti"}),use_container_width=True)
+            paired_bar_chart(chart,"Osa","corners_for","corners_against","Pro","Proti")
             st.caption("Zápasy jsou zleva od nejstaršího po nejnovější. Dvě barvy oddělují hodnoty Pro a Proti.")
 
     else:
@@ -642,12 +659,12 @@ elif nav=="Data":
                 g=g.join(corners,on="match_id",rsuffix="_corner")
                 g["Osa"]=g["Datum"]+" · "+g.home_team.astype(str)+"–"+g.away_team.astype(str)
                 st.markdown("#### Fauly")
-                st.bar_chart(g.set_index("Osa")[["home_fouls","away_fouls"]].rename(columns={"home_fouls":"Domácí","away_fouls":"Hosté"}),use_container_width=True)
+                paired_bar_chart(g,"Osa","home_fouls","away_fouls","Domácí","Hosté")
                 st.markdown("#### Karty")
-                st.bar_chart(g.set_index("Osa")[["home_yellow","away_yellow"]].rename(columns={"home_yellow":"Domácí","away_yellow":"Hosté"}),use_container_width=True)
+                paired_bar_chart(g,"Osa","home_yellow","away_yellow","Domácí","Hosté")
                 if "H" in g.columns and "A" in g.columns:
                     st.markdown("#### Rohy")
-                    st.bar_chart(g.set_index("Osa")[["H","A"]].rename(columns={"H":"Domácí","A":"Hosté"}),use_container_width=True)
+                    paired_bar_chart(g,"Osa","H","A","Domácí","Hosté")
                 st.caption("Zápasy jsou zleva od nejstaršího po nejnovější.")
 
 st.caption("Fair kurz = modelový kurz, nikoli aktuální nabídka bookmakera. Bookmaker value scanner bude další vrstva.")

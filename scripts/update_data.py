@@ -347,31 +347,11 @@ def run(raw_dir=RAW):
 
 def download_current(season_code, output_name):
     url=f"https://www.football-data.co.uk/mmz4281/{season_code}/E0.csv"
+    r=requests.get(url,timeout=30)
+    r.raise_for_status()
     target=RAW/output_name
-    try:
-        r=requests.get(url,headers={"User-Agent":"Mozilla/5.0 PL-Analytika/2.0"},timeout=30)
-        r.raise_for_status()
-        # Validate before replacing the last known-good file.
-        tmp=target.with_suffix(".download.csv")
-        tmp.write_bytes(r.content)
-        chk=read_csv_any(tmp)
-        required={"HomeTeam","AwayTeam","FTHG","FTAG"}
-        if not required.issubset(chk.columns):
-            raise ValueError(f"Downloaded E0.csv missing {sorted(required-set(chk.columns))}")
-        if len(chk)==0:
-            raise ValueError("Downloaded E0.csv is empty")
-        tmp.replace(target)
-        print("Downloaded:",target)
-        return True
-    except Exception as e:
-        try:
-            if 'tmp' in locals() and tmp.exists(): tmp.unlink()
-        except Exception:
-            pass
-        if target.exists():
-            print(f"WARNING: current-season download failed ({e}); using cached {target}.")
-            return False
-        raise
+    target.write_bytes(r.content)
+    print("Downloaded:",target)
 
 
 
@@ -837,5 +817,7 @@ if __name__=="__main__":
     p.add_argument("--output-name",default="2026-27.csv")
     args=p.parse_args()
     if args.download_current:
-        download_current(args.season_code,args.output_name)
+        ok=download_current(args.season_code,args.output_name)
+        if not ok:
+            raise SystemExit("Current-season download failed; refusing to rebuild/commit stale results.")
     run()

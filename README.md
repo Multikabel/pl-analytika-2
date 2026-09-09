@@ -159,3 +159,11 @@ Tipy lze ukládat trvale přímo do GitHubu přes Streamlit Secrets. Přidána a
 
 ## v1.5 – okamžité Statistiky
 Výpočet jednoho zápasu i kola nyní okamžitě a trvale ukládá bodové predikce do Statistik. Opakovaný výpočet nevytváří duplicity.
+
+## v1.7 hotfix
+- Workflow is strict again for fixture sync, current result download, tip settlement, model-stat settlement, training and snapshot. A stale current-season download can no longer produce a green workflow.
+- Current-season download refuses to rebuild from cache when the network refresh failed.
+- Workflow validates that current-season team-match rows equal exactly twice the number of completed raw matches.
+- Manual tip settlement identifies a match by season + home/away pairing rather than prediction date, so rescheduled/mistyped dates do not block settlement.
+- Data charts use Matplotlib instead of Streamlit's Altair-backed `st.bar_chart`, avoiding the Python 3.14 / Altair crash seen on Streamlit Cloud.
+- v1.6 referee parsing, referee impact metrics, Data tab and model-stat deduplication are retained.
