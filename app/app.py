@@ -17,6 +17,7 @@ from update_fixtures import load_fixtures,current_round,sync_fixtures
 from update_officials import sync_officials,referee_for_match,referee_choices
 from prediction_archive import load_log, archive_selected_predictions, settle_predictions, summary_stats
 from model_prediction_stats import load_log as load_model_prediction_log, summary as model_prediction_summary, snapshot as snapshot_model_predictions
+from referee_impact import impact_lookup, referee_display, canonical_referee
 
 st.set_page_config(page_title="PL Analytika 2.0",page_icon="⚽",layout="wide",initial_sidebar_state="collapsed")
 
@@ -58,6 +59,14 @@ def history():
     p=TABLES/"team_match_stats.csv"
     if not p.exists(): return pd.DataFrame()
     x=pd.read_csv(p); x["match_date"]=pd.to_datetime(x.match_date,errors="coerce")
+    return x
+
+@st.cache_data(show_spinner=False)
+def referee_matches():
+    p=TABLES/"referee_match_stats.csv"
+    if not p.exists(): return pd.DataFrame()
+    x=pd.read_csv(p); x["match_date"]=pd.to_datetime(x.match_date,errors="coerce")
+    x["referee_key"]=x.referee.map(canonical_referee)
     return x
 
 @st.cache_resource(show_spinner=False)
@@ -154,11 +163,12 @@ if H.empty:
     st.stop()
 teams=sorted(H.team.dropna().unique())
 season=sorted(H.season.dropna().unique())[-1]
-ref_hist=sorted(H.referee.dropna().unique())
+ref_hist=sorted({canonical_referee(x) for x in H.referee.dropna().unique()})
+REF_IMPACTS=impact_lookup(season)
 
 st.title("⚽ PL Analytika 2.0")
 
-nav=st.segmented_control("Pohled",["Kolo","Zápas","Tipy","Statistiky","Týmy"],default="Kolo",label_visibility="collapsed")
+nav=st.segmented_control("Pohled",["Kolo","Zápas","Tipy","Statistiky","Data"],default="Kolo",label_visibility="collapsed")
 if nav is None: nav="Kolo"
 
 with st.expander("⚙️ Filtry",expanded=False):
@@ -199,7 +209,7 @@ if nav=="Kolo":
                     added_stats=snapshot_model_predictions(
                         st.session_state.round_score,
                         match_round=rnd,
-                        model_version="count-models-v1.5",
+                        model_version="count-models-v1.6",
                     )
                     if added_stats:
                         st.toast(f"Do Statistik uloženo {added_stats} nových predikcí.")
@@ -215,7 +225,7 @@ if nav=="Kolo":
             f'<div class="match-card"><b>{r.home_team} – {r.away_team}</b><br>'
             f'<span class="muted">{pd.to_datetime(r.match_date).strftime("%d.%m. %Y")} · '
             f'{r.kickoff_time if pd.notna(r.kickoff_time) and r.kickoff_time else ""} · {status}<br>'
-            f'👨‍⚖️ {ref or "Rozhodčí zatím neurčen"}</span></div>',
+            f'👨‍⚖️ {referee_display(ref,REF_IMPACTS)}</span></div>',
             unsafe_allow_html=True
         )
         if isinstance(score,pd.DataFrame) and st.session_state.get("round_no")==rnd and not r.played:
@@ -271,27 +281,29 @@ elif nav=="Zápas":
     except Exception:
         pass
 
+    score_date=official_date if "official_date" in locals() and match_round is not None else md
     choices=referee_choices(ref_hist,auto_ref)
     if auto_ref:
         ref=st.selectbox("Rozhodčí",choices,index=choices.index(auto_ref),
+                         format_func=lambda x: referee_display(x,REF_IMPACTS),
                          help="Automaticky načtený z delegace. Můžeš ho ručně změnit.")
         st.caption("✓ Rozhodčí doplněn automaticky")
     else:
         opts=["— zatím neurčen —"]+choices
-        selected=st.selectbox("Rozhodčí",opts,index=0)
+        selected=st.selectbox("Rozhodčí",opts,index=0,format_func=lambda x: x if x.startswith("—") else referee_display(x,REF_IMPACTS))
         ref="" if selected.startswith("—") else selected
         st.caption("Delegace zatím nebyla nalezena. Model použije neutrální doplnění chybějících referee metrik.")
 
     if st.button("Spočítat zápas",type="primary",use_container_width=True):
         with st.spinner("Počítám…"):
-            st.session_state.single=predict_one(home,away,md,ss,ref)
-            st.session_state.single_identity=(home,away,str(md),ss,ref,match_round)
+            st.session_state.single=predict_one(home,away,score_date,ss,ref)
+            st.session_state.single_identity=(home,away,str(score_date),ss,ref,match_round)
             try:
                 round_for_stats=match_round if match_round is not None else 0
                 added_stats=snapshot_model_predictions(
                     st.session_state.single,
                     match_round=round_for_stats,
-                    model_version="count-models-v1.5",
+                    model_version="count-models-v1.6",
                 )
                 if added_stats:
                     st.toast(f"Do Statistik uloženo {added_stats} predikcí tohoto zápasu.")
@@ -302,7 +314,7 @@ elif nav=="Zápas":
 
     scored=st.session_state.get("single")
     identity=st.session_state.get("single_identity")
-    current_identity=(home,away,str(md),ss,ref,match_round)
+    current_identity=(home,away,str(score_date),ss,ref,match_round)
 
     if isinstance(scored,pd.DataFrame) and len(scored) and identity==current_identity:
         # Compact expected-count overview, including match totals.
@@ -383,7 +395,7 @@ elif nav=="Zápas":
                 picked=picked.copy()
                 picked["home_team"]=home
                 picked["away_team"]=away
-                picked["match_date"]=str(md)
+                picked["match_date"]=str(score_date)
                 picked["season"]=ss
                 picked["referee"]=ref
                 round_to_save=match_round if match_round is not None else 0
@@ -554,16 +566,88 @@ elif nav=="Statistiky":
             st.dataframe(p[["match_date","Zápas","Výběr","Trh","Pred.","Test"]],
                          use_container_width=True,hide_index=True)
 
-else:
-    st.subheader("Týmy")
-    cur=H[H.season==season]
-    agg=cur.groupby("team").agg(
-        Z=("match_id","count"),Body=("points","sum"),
-        Fauly=("fouls_committed","mean"),Fauly_proti=("fouls_suffered","mean"),
-        Rohy=("corners_for","mean"),Rohy_proti=("corners_against","mean"),
-        ŽK=("yellow_cards","mean"),Střely=("shots_for","mean")
-    ).reset_index().rename(columns={"team":"Tým"})
-    for c in ["Fauly","Fauly_proti","Rohy","Rohy_proti","ŽK","Střely"]:agg[c]=agg[c].round(2)
-    st.dataframe(agg.sort_values("Body",ascending=False),use_container_width=True,hide_index=True,height=700)
+elif nav=="Data":
+    st.subheader("🗂️ Data")
+    data_mode=st.segmented_control("Datový pohled",["Týmy","Rozhodčí"],default="Týmy",label_visibility="collapsed")
+
+    if data_mode=="Týmy":
+        selected_team=st.selectbox("Tým",sorted(H.team.dropna().astype(str).unique()),key="data_team")
+        view=st.segmented_control("Zobrazení",["Tabulka","Grafy"],default="Tabulka",key="data_team_view")
+        g=H[H.team.astype(str)==selected_team].sort_values(["match_date","match_id"]).copy()
+        g["Datum"]=g.match_date.dt.strftime("%d.%m.%Y")
+        g["Zápas"]=g.apply(lambda r: f"{r.team} – {r.opponent}" if r.venue=="H" else f"{r.opponent} – {r.team}",axis=1)
+        g["Výsledek"]=g.apply(lambda r: f"{int(r.goals_for)}:{int(r.goals_against)}" if r.venue=="H" else f"{int(r.goals_against)}:{int(r.goals_for)}",axis=1)
+        if view=="Tabulka":
+            out=pd.DataFrame({
+                "Datum":g["Datum"],"Sezóna":g.season,"Zápas":g["Zápas"],"Výsledek":g["Výsledek"],
+                "Fauly pro":pd.to_numeric(g.fouls_committed,errors="coerce"),"Fauly proti":pd.to_numeric(g.fouls_suffered,errors="coerce"),
+                "Karty pro":pd.to_numeric(g.yellow_cards,errors="coerce"),"Karty proti":pd.to_numeric(g.yellow_cards_opponent,errors="coerce"),
+                "Rohy pro":pd.to_numeric(g.corners_for,errors="coerce"),"Rohy proti":pd.to_numeric(g.corners_against,errors="coerce"),
+            })
+            st.dataframe(out,use_container_width=True,hide_index=True,height=650)
+        else:
+            chart=g.copy(); chart["Osa"]=chart["Datum"]+" · "+chart.opponent.astype(str)
+            st.markdown("#### Fauly")
+            st.bar_chart(chart.set_index("Osa")[["fouls_committed","fouls_suffered"]].rename(columns={"fouls_committed":"Pro","fouls_suffered":"Proti"}),use_container_width=True)
+            st.markdown("#### Karty")
+            st.bar_chart(chart.set_index("Osa")[["yellow_cards","yellow_cards_opponent"]].rename(columns={"yellow_cards":"Pro","yellow_cards_opponent":"Proti"}),use_container_width=True)
+            st.markdown("#### Rohy")
+            st.bar_chart(chart.set_index("Osa")[["corners_for","corners_against"]].rename(columns={"corners_for":"Pro","corners_against":"Proti"}),use_container_width=True)
+            st.caption("Zápasy jsou zleva od nejstaršího po nejnovější. Dvě barvy oddělují hodnoty Pro a Proti.")
+
+    else:
+        RM=referee_matches()
+        if RM.empty:
+            st.info("Nejsou dostupná data rozhodčích.")
+        else:
+            refs=sorted(RM.referee_key.dropna().astype(str).unique())
+            selected_ref=st.selectbox("Rozhodčí",refs,format_func=lambda x: referee_display(x,REF_IMPACTS),key="data_ref")
+            imp=REF_IMPACTS.get(selected_ref)
+            if imp is not None:
+                c1,c2=st.columns(2)
+                c1.metric("Dopad na fauly",f"{float(imp['fouls_impact']):+.1f}".replace('.',','))
+                c2.metric("Dopad na karty",f"{float(imp['cards_impact']):+.1f}".replace('.',','))
+                detail=pd.DataFrame(imp.get("season_detail",[]))
+                if len(detail):
+                    detail=detail.sort_values("season")
+                    dd=pd.DataFrame({
+                        "Sezóna":detail.season,"Zápasů":detail.matches,
+                        "Fauly rozhodčí Ø":detail.fouls_avg.round(2),"Liga Ø":detail.league_fouls_avg.round(2),"Rozdíl fauly":detail.fouls_delta.round(2),
+                        "Karty rozhodčí Ø":detail.cards_avg.round(2),"Liga karty Ø":detail.league_cards_avg.round(2),"Rozdíl karty":detail.cards_delta.round(2),
+                    })
+                    with st.expander("Výpočet po sezónách"):
+                        st.dataframe(dd,use_container_width=True,hide_index=True)
+                        st.caption("Celkový dopad používá váhy 50 % aktuální sezóna, 30 % minulá, 20 % předminulá. Pokud sezóna chybí, dostupné váhy se poměrně přepočítají.")
+
+            view=st.segmented_control("Zobrazení",["Tabulka","Grafy"],default="Tabulka",key="data_ref_view")
+            g=RM[RM.referee_key==selected_ref].sort_values(["match_date","match_id"]).copy()
+            g["Datum"]=g.match_date.dt.strftime("%d.%m.%Y")
+            g["Zápas"]=g.home_team.astype(str)+" – "+g.away_team.astype(str)
+            # Score is joined from H so referee table includes the result as requested.
+            home_rows=H[H.venue=="H"][["match_id","goals_for","goals_against"]].drop_duplicates("match_id")
+            g=g.merge(home_rows,on="match_id",how="left")
+            g["Výsledek"]=g.apply(lambda r: f"{int(r.goals_for)}:{int(r.goals_against)}" if pd.notna(r.goals_for) and pd.notna(r.goals_against) else "—",axis=1)
+            if view=="Tabulka":
+                out=pd.DataFrame({
+                    "Datum":g["Datum"],"Sezóna":g.season,"Zápas":g["Zápas"],"Výsledek":g["Výsledek"],
+                    "Fauly domácí":pd.to_numeric(g.home_fouls,errors="coerce"),"Fauly hosté":pd.to_numeric(g.away_fouls,errors="coerce"),
+                    "Karty domácí":pd.to_numeric(g.home_yellow,errors="coerce"),"Karty hosté":pd.to_numeric(g.away_yellow,errors="coerce"),
+                })
+                # Corners live in the two team rows; join them for the same match-level logic.
+                corners=H.pivot_table(index="match_id",columns="venue",values="corners_for",aggfunc="first").rename(columns={"H":"Rohy domácí","A":"Rohy hosté"}).reset_index()
+                out=out.join(g[["match_id"]].reset_index(drop=True)).merge(corners,on="match_id",how="left").drop(columns="match_id")
+                st.dataframe(out,use_container_width=True,hide_index=True,height=650)
+            else:
+                corners=H.pivot_table(index="match_id",columns="venue",values="corners_for",aggfunc="first")
+                g=g.join(corners,on="match_id",rsuffix="_corner")
+                g["Osa"]=g["Datum"]+" · "+g.home_team.astype(str)+"–"+g.away_team.astype(str)
+                st.markdown("#### Fauly")
+                st.bar_chart(g.set_index("Osa")[["home_fouls","away_fouls"]].rename(columns={"home_fouls":"Domácí","away_fouls":"Hosté"}),use_container_width=True)
+                st.markdown("#### Karty")
+                st.bar_chart(g.set_index("Osa")[["home_yellow","away_yellow"]].rename(columns={"home_yellow":"Domácí","away_yellow":"Hosté"}),use_container_width=True)
+                if "H" in g.columns and "A" in g.columns:
+                    st.markdown("#### Rohy")
+                    st.bar_chart(g.set_index("Osa")[["H","A"]].rename(columns={"H":"Domácí","A":"Hosté"}),use_container_width=True)
+                st.caption("Zápasy jsou zleva od nejstaršího po nejnovější.")
 
 st.caption("Fair kurz = modelový kurz, nikoli aktuální nabídka bookmakera. Bookmaker value scanner bude další vrstva.")

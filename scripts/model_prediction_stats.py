@@ -35,7 +35,7 @@ def load_log():
         try:
             x,_=github_read_csv(REMOTE_LOG_PATH,COLUMNS)
             if x is not None:
-                return x
+                return _dedupe_log(x)
         except Exception:
             pass
 
@@ -49,13 +49,13 @@ def load_log():
     for c in COLUMNS:
         if c not in x.columns:
             x[c]=np.nan
-    return x[COLUMNS]
+    return _dedupe_log(x[COLUMNS])
 
 def _save_log(log, message):
     for c in COLUMNS:
         if c not in log.columns:
             log[c]=np.nan
-    log=log[COLUMNS]
+    log=_dedupe_log(log[COLUMNS])
     LOG_PATH.parent.mkdir(parents=True,exist_ok=True)
     log.to_csv(LOG_PATH,index=False,encoding="utf-8-sig")
 
@@ -63,23 +63,58 @@ def _save_log(log, message):
         return
 
     remote,sha=github_read_csv(REMOTE_LOG_PATH,COLUMNS)
-    merged=merge_append_only(remote,log,key="model_prediction_id")
+    remote_raw=remote.copy() if remote is not None else pd.DataFrame(columns=COLUMNS)
+    merged=_dedupe_log(pd.concat([remote_raw,log],ignore_index=True))
+    # Avoid a GitHub commit when normalization/settlement changed nothing.
+    try:
+        before=remote_raw[COLUMNS].to_csv(index=False)
+        after=merged[COLUMNS].to_csv(index=False)
+        if before==after:
+            return
+    except Exception:
+        pass
     ok,detail=github_write_csv(REMOTE_LOG_PATH,merged,message,sha=sha)
     if not ok:
         # One retry handles a simultaneous Actions/app commit.
         remote,sha=github_read_csv(REMOTE_LOG_PATH,COLUMNS)
-        merged=merge_append_only(remote,log,key="model_prediction_id")
+        remote=pd.DataFrame(columns=COLUMNS) if remote is None else remote
+        merged=_dedupe_log(pd.concat([remote,log],ignore_index=True))
         ok,detail=github_write_csv(REMOTE_LOG_PATH,merged,message,sha=sha)
         if not ok:
             raise RuntimeError(f"GitHub prediction-stat persistence failed: {detail}")
 
-def _id(r):
-    raw="|".join([
-        str(r.get("season","")),str(r.get("match_date","")),
+def _semantic_key(r):
+    return "|".join([
+        str(r.get("season","")),
         str(r.get("home_team","")),str(r.get("away_team","")),
         str(r.get("team","")),str(r.get("market","")),
     ])
-    return hashlib.sha1(raw.encode("utf-8")).hexdigest()[:20]
+
+def _id(r):
+    # Match date is intentionally NOT part of the identity. Fixture dates can move
+    # and a manual date mismatch must never create a second audit record.
+    return hashlib.sha1(_semantic_key(r).encode("utf-8")).hexdigest()[:20]
+
+def _dedupe_log(x):
+    if x is None or x.empty:
+        return x
+    x=x.copy()
+    for c in COLUMNS:
+        if c not in x.columns: x[c]=np.nan
+    x["_key"]=x.apply(_semantic_key,axis=1)
+    x["_created"]=pd.to_datetime(x["created_at"],errors="coerce")
+    rows=[]
+    for _,g in x.sort_values("_created",na_position="last").groupby("_key",sort=False):
+        keep=g.iloc[0].copy()
+        settled=g[g["status"].astype(str).eq("settled")]
+        if len(settled):
+            s=settled.sort_values("_created",na_position="last").iloc[0]
+            for c in ["status","actual_value","result","error","abs_error","bias_direction","settled_at","match_date","match_round"]:
+                keep[c]=s[c]
+        keep["model_prediction_id"]=_id(keep)
+        rows.append(keep)
+    out=pd.DataFrame(rows).drop(columns=["_key","_created"],errors="ignore")
+    return out[COLUMNS].reset_index(drop=True)
 
 def prediction_test_line(prediction):
     """
@@ -95,7 +130,7 @@ def snapshot(scored, match_round, model_version="count-models-v1.4"):
     # score_fixture contains many betting lines; point prediction is identical
     # within each team/market, so archive it exactly once.
     x=scored.sort_values("line").groupby(
-        ["season","match_date","home_team","away_team","team","market"],
+        ["season","home_team","away_team","team","market"],
         as_index=False
     ).first()
 
@@ -120,6 +155,9 @@ def snapshot(scored, match_round, model_version="count-models-v1.4"):
             rows.append(rec)
 
     if not rows:
+        # Also acts as a one-time migration: old date-based duplicate IDs are
+        # collapsed in the persistent GitHub log even when this fixture was already saved.
+        _save_log(log,"stats: normalize prediction identities")
         return 0
     out=pd.concat([log,pd.DataFrame(rows)],ignore_index=True)
     out=out[COLUMNS]
@@ -141,30 +179,33 @@ def settle():
         if not actual_col or actual_col not in tm.columns:
             continue
 
+        # Settle by season + fixture identity, not predicted date. Dates can move.
+        home_q=tm[(tm.season.astype(str)==str(r.season)) &
+                  (tm.team.astype(str)==str(r.home_team)) &
+                  (tm.opponent.astype(str)==str(r.away_team)) &
+                  (tm.venue.astype(str)=="H")]
+        if home_q.empty:
+            continue
+        actual_match_date=str(home_q.iloc[-1].match_date)
+
         if market in TOTAL_MARKETS:
-            q=tm[
-                (tm.season.astype(str)==str(r.season)) &
-                (tm.match_date.astype(str)==str(r.match_date)) &
-                (tm.team.astype(str).isin([str(r.home_team),str(r.away_team)]))
-            ]
-            if len(q)<2:
-                continue
+            mid=str(home_q.iloc[-1].match_id)
+            q=tm[tm.match_id.astype(str)==mid]
+            if len(q)<2: continue
             vals=pd.to_numeric(q[actual_col],errors="coerce")
-            if vals.isna().any():
-                continue
+            if vals.isna().any(): continue
             actual=float(vals.sum())
         else:
-            q=tm[
-                (tm.season.astype(str)==str(r.season)) &
-                (tm.match_date.astype(str)==str(r.match_date)) &
-                (tm.team.astype(str)==str(r.team))
-            ]
-            if q.empty:
-                continue
-            actual=pd.to_numeric(q.iloc[0][actual_col],errors="coerce")
-            if pd.isna(actual):
-                continue
+            opponent=str(r.away_team) if str(r.team)==str(r.home_team) else str(r.home_team)
+            q=tm[(tm.season.astype(str)==str(r.season)) &
+                 (tm.team.astype(str)==str(r.team)) &
+                 (tm.opponent.astype(str)==opponent)]
+            if q.empty: continue
+            actual=pd.to_numeric(q.iloc[-1][actual_col],errors="coerce")
+            if pd.isna(actual): continue
             actual=float(actual)
+
+        log.at[idx,"match_date"]=actual_match_date
 
         pred=float(r.prediction)
         line=float(r.test_line)
@@ -203,4 +244,7 @@ def summary(log=None):
     }
 
 if __name__=="__main__":
-    print(json.dumps(settle(),indent=2,ensure_ascii=False))
+    result=settle()
+    # Persist semantic-ID migration/deduplication even when nothing was settled.
+    _save_log(load_log(),"stats: normalize prediction identities")
+    print(json.dumps(result,indent=2,ensure_ascii=False))
