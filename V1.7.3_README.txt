@@ -1,0 +1,15 @@
+PL Analytika v1.7.3 fallback cross-check hotfix
+
+Fixes: Fallback schedule cross-check rejected all rows.
+
+Cause:
+The FPL fallback and fixture schedule use different team identifiers/naming,
+so exact (home, away) pair matching rejected valid matches.
+
+New logic:
+- fallback rows are filtered by actual kickoff_time <= current UTC time
+- future or unparseable rows are rejected
+- the validated 380-match schedule is used only as a maximum-count sanity check
+- SQLite pd.NA safety from v1.7.2 is retained
+
+Upload scripts/update_data.py, then run the workflow manually.

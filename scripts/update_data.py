@@ -422,23 +422,32 @@ def _fallback_fpl_core(output_name):
     if "match_id" in x.columns:
         x=x.drop_duplicates("match_id",keep="last")
 
-    # The fallback repository can pre-populate later GWs. Never let future rows
-    # masquerade as played matches. Cross-check against our validated 380-game
-    # schedule and reject any fixture scheduled after today.
+    # The fallback repository can pre-populate later GWs and can mark rows in a
+    # way that is not reliable enough for "played" detection. The robust guard
+    # is the fixture kickoff itself: never import a match whose kickoff is in
+    # the future. We also use the validated 380-game schedule only as a COUNT
+    # sanity-check, not for exact team-pair matching (the two sources use
+    # different team identifiers/names).
+    now_utc=pd.Timestamp.now(tz="UTC")
+    kickoff_utc=pd.to_datetime(x.get("kickoff_time"),errors="coerce",utc=True)
+    date_keep=kickoff_utc.notna() & (kickoff_utc <= now_utc)
+    rejected_future=int((~date_keep).sum())
+    if rejected_future:
+        print(f"Fallback: rejected {rejected_future} future/unparseable fixture rows by kickoff time")
+    x=x.loc[date_keep].reset_index(drop=True)
+    if x.empty:
+        raise RuntimeError("Fallback date guard rejected all rows")
+
     schedule_path=BASE/"data"/"fixtures"/"premier_league_2026-27.csv"
-    allowed_pairs=None
+    schedule_due_count=None
     if schedule_path.exists():
         try:
             sch=pd.read_csv(schedule_path)
-            sch["match_date"]=pd.to_datetime(sch["match_date"],errors="coerce")
-            today=pd.Timestamp.now(tz="Europe/Prague").tz_localize(None).normalize()
-            sch=sch[sch["match_date"].notna() & (sch["match_date"]<=today)].copy()
-            allowed_pairs={
-                (canonical_team(r.home_team),canonical_team(r.away_team))
-                for _,r in sch.iterrows()
-            }
+            sch_dt=pd.to_datetime(sch["match_date"],errors="coerce")
+            today_prague=pd.Timestamp.now(tz="Europe/Prague").tz_localize(None).normalize()
+            schedule_due_count=int((sch_dt.notna() & (sch_dt<=today_prague)).sum())
         except Exception as e:
-            print(f"Fallback schedule cross-check warning: {e}")
+            print(f"Fallback schedule count warning: {e}")
 
     def team_name(v):
         if pd.isna(v): return None
@@ -453,16 +462,6 @@ def _fallback_fpl_core(output_name):
     out["Time"]=dt.dt.strftime("%H:%M")
     out["HomeTeam"]=x["home_team"].map(team_name).map(canonical_team)
     out["AwayTeam"]=x["away_team"].map(team_name).map(canonical_team)
-
-    if allowed_pairs is not None:
-        keep=[
-            (h,a) in allowed_pairs
-            for h,a in zip(out["HomeTeam"],out["AwayTeam"])
-        ]
-        x=x.loc[keep].reset_index(drop=True)
-        out=out.loc[keep].reset_index(drop=True)
-        if out.empty:
-            raise RuntimeError("Fallback schedule cross-check rejected all rows")
 
     out["FTHG"]=pd.to_numeric(x.get("home_score"),errors="coerce")
     out["FTAG"]=pd.to_numeric(x.get("away_score"),errors="coerce")
@@ -530,12 +529,14 @@ def _fallback_fpl_core(output_name):
     raw=merged.to_csv(index=False).encode("utf-8-sig")
     checked,played=_validate_current_csv_bytes(raw,"FPL-Core fallback")
 
-    # Extra guardrail: a fallback may never claim more completed matches than
-    # the validated schedule has reached by today's date.
-    if allowed_pairs is not None and played > len(allowed_pairs):
+    # Extra guardrail: after removing future kickoffs, the fallback still may
+    # not claim more completed matches than the validated schedule has reached
+    # by today's date. A small mismatch in the other direction is acceptable
+    # for postponed/incomplete matches.
+    if schedule_due_count is not None and played > schedule_due_count:
         raise RuntimeError(
-            f"Fallback claims {played} played matches, but schedule allows only "
-            f"{len(allowed_pairs)} fixtures up to today"
+            f"Fallback claims {played} played matches, but schedule has only "
+            f"{schedule_due_count} fixtures dated up to today"
         )
     return raw,played
 
