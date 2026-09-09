@@ -27,7 +27,8 @@ TEAM_MAP = {
     "Newcastle": "Newcastle United",
     "West Ham": "West Ham United",
     "Wolves": "Wolverhampton Wanderers",
-    "Spurs": "Tottenham Hotspur",
+    "Spurs": "Tottenham",
+    "Tottenham Hotspur": "Tottenham",
     "Brighton": "Brighton & Hove Albion",
     "Coventry City": "Coventry",
     "Hull City": "Hull",
@@ -389,23 +390,39 @@ def _fallback_fpl_core(output_name):
     base="https://raw.githubusercontent.com/olbauday/FPL-Core-Insights/main/data/2026-2027"
     headers={"User-Agent":"PL-Analytika/2.0 (+https://github.com/Multikabel/pl-analytika-2)","Accept":"text/csv,*/*"}
 
-    tr=requests.get(base+"/teams.csv",headers=headers,timeout=25)
-    tr.raise_for_status()
-    teams=pd.read_csv(io.BytesIO(tr.content))
-    # FPL-Core snapshots have used more than one representation for match-team
-    # references. Build all three mappings and choose from the actual PL rows:
-    #   id:   1..20
-    #   code: stable FPL codes such as 94
-    #   index: 0..19 positional indices seen in current By-Gameweek snapshots
-    id_to_name={int(r.id):str(r.name) for _,r in teams.iterrows() if pd.notna(r.id)}
-    code_to_name={int(r.code):str(r.name) for _,r in teams.iterrows() if pd.notna(r.code)}
-    index_to_name={i:str(r["name"]) for i,(_,r) in enumerate(teams.reset_index(drop=True).iterrows())}
+    # Current FPL-Core Premier League match files use the stable FPL `code`
+    # values in home_team/away_team. Keep an explicit season map here so the
+    # updater does not depend on an ambiguous/changed teams.csv relationship.
+    # These codes are also validated against teams.csv when that endpoint is available.
+    code_to_name={
+        3:"Arsenal",7:"Aston Villa",91:"Bournemouth",94:"Brentford",
+        36:"Brighton",8:"Chelsea",9:"Coventry City",31:"Crystal Palace",
+        11:"Everton",54:"Fulham",88:"Hull City",40:"Ipswich Town",
+        2:"Leeds",14:"Liverpool",43:"Man City",1:"Man Utd",
+        4:"Newcastle",17:"Nott'm Forest",6:"Spurs",56:"Sunderland",
+    }
     source_name_map={
         "Bournemouth":"Bournemouth","Brighton":"Brighton","Coventry City":"Coventry",
         "Hull City":"Hull","Ipswich Town":"Ipswich","Leeds":"Leeds",
         "Man City":"Man City","Man Utd":"Man United","Newcastle":"Newcastle",
         "Nott'm Forest":"Nott'm Forest","Spurs":"Spurs",
     }
+
+    # Best-effort upstream validation. A schema/documentation change must not
+    # silently remap clubs; if the endpoint disagrees, fail loudly.
+    try:
+        tr=requests.get(base+"/teams.csv",headers=headers,timeout=25)
+        tr.raise_for_status()
+        teams=pd.read_csv(io.BytesIO(tr.content))
+        if {"code","name"}.issubset(teams.columns):
+            upstream={int(r.code):str(r.name) for _,r in teams.iterrows() if pd.notna(r.code)}
+            missing_codes=sorted(set(code_to_name)-set(upstream))
+            if missing_codes:
+                raise RuntimeError(f"FPL-Core teams.csv missing expected PL codes: {missing_codes}")
+    except RuntimeError:
+        raise
+    except Exception as e:
+        print(f"Fallback teams.csv validation warning: {e}")
 
     frames=[]
     failures=0
@@ -415,8 +432,6 @@ def _fallback_fpl_core(output_name):
             r=requests.get(url,headers=headers,timeout=20)
             if r.status_code==404:
                 failures+=1
-                # Future GW folders are not required; keep scanning because the
-                # upstream repo may pre-create non-contiguous snapshots.
                 continue
             r.raise_for_status()
             q=pd.read_csv(io.BytesIO(r.content))
@@ -433,9 +448,6 @@ def _fallback_fpl_core(output_name):
     if "match_id" in x.columns:
         x=x.drop_duplicates("match_id",keep="last")
 
-    # By-Gameweek snapshots can contain cup/European/friendly matches too.
-    # This app is Premier League-only, so filter competition before resolving
-    # team codes. In the current source PL rows use tournament="prem".
     if "tournament" in x.columns:
         tour=x["tournament"].astype("string").str.strip().str.lower()
         prem_mask=tour.isin(["prem","premier league","epl"])
@@ -446,12 +458,6 @@ def _fallback_fpl_core(output_name):
     if x.empty:
         raise RuntimeError("Fallback contains no Premier League rows after tournament filter")
 
-    # The fallback repository can pre-populate later GWs and can mark rows in a
-    # way that is not reliable enough for "played" detection. The robust guard
-    # is the fixture kickoff itself: never import a match whose kickoff is in
-    # the future. We also use the validated 380-game schedule only as a COUNT
-    # sanity-check, not for exact team-pair matching (the two sources use
-    # different team identifiers/names).
     now_utc=pd.Timestamp.now(tz="UTC")
     kickoff_utc=pd.to_datetime(x.get("kickoff_time"),errors="coerce",utc=True)
     date_keep=kickoff_utc.notna() & (kickoff_utc <= now_utc)
@@ -465,34 +471,10 @@ def _fallback_fpl_core(output_name):
     schedule_path=BASE/"data"/"fixtures"/"premier_league_2026-27.csv"
     schedule_due_count=None
     if schedule_path.exists():
-        try:
-            sch=pd.read_csv(schedule_path)
-            sch_dt=pd.to_datetime(sch["match_date"],errors="coerce")
-            today_prague=pd.Timestamp.now(tz="Europe/Prague").tz_localize(None).normalize()
-            schedule_due_count=int((sch_dt.notna() & (sch_dt<=today_prague)).sum())
-        except Exception as e:
-            print(f"Fallback schedule count warning: {e}")
-
-    # Detect the representation from the Premier League match rows themselves.
-    raw_team_values=pd.concat([x["home_team"],x["away_team"]],ignore_index=True)
-    raw_team_values=pd.to_numeric(raw_team_values,errors="coerce").dropna().astype(int)
-    team_keys=set(raw_team_values.tolist())
-
-    if team_keys and team_keys.issubset(set(index_to_name)):
-        active_team_map=index_to_name
-        team_ref_mode="zero-based index"
-    elif team_keys and team_keys.issubset(set(id_to_name)):
-        active_team_map=id_to_name
-        team_ref_mode="teams.id"
-    elif team_keys and team_keys.issubset(set(code_to_name)):
-        active_team_map=code_to_name
-        team_ref_mode="teams.code"
-    else:
-        raise RuntimeError(
-            "Fallback team references do not match teams.csv. "
-            f"Observed sample: {sorted(team_keys)[:20]}"
-        )
-    print(f"Fallback team reference mode: {team_ref_mode}")
+        sch=pd.read_csv(schedule_path)
+        sch_dt=pd.to_datetime(sch["match_date"],errors="coerce")
+        today_prague=pd.Timestamp.now(tz="Europe/Prague").tz_localize(None).normalize()
+        schedule_due_count=int((sch_dt.notna() & (sch_dt<=today_prague)).sum())
 
     def team_name(v):
         if pd.isna(v):
@@ -500,14 +482,15 @@ def _fallback_fpl_core(output_name):
         try:
             key=int(float(v))
         except Exception:
-            raise ValueError(f"Fallback team reference is not numeric: {v!r}")
-        if key not in active_team_map:
-            raise ValueError(f"Fallback team reference {key} missing from detected {team_ref_mode} map")
-        name=active_team_map[key]
+            raise ValueError(f"Fallback team code is not numeric: {v!r}")
+        if key not in code_to_name:
+            raise ValueError(f"Fallback team code {key} is not a current Premier League club")
+        name=code_to_name[key]
         return source_name_map.get(name,name)
 
     out=pd.DataFrame()
-    dt=pd.to_datetime(x["kickoff_time"],errors="coerce")
+    # FPL-Core kickoff timestamps are UTC; store football-data-compatible UK local time.
+    dt=pd.to_datetime(x["kickoff_time"],errors="coerce",utc=True).dt.tz_convert("Europe/London")
     out["Div"]="E0"
     out["Date"]=dt.dt.strftime("%d/%m/%Y")
     out["Time"]=dt.dt.strftime("%H:%M")
@@ -519,12 +502,22 @@ def _fallback_fpl_core(output_name):
     numeric_names=sorted(n for n in resolved if n.strip().isdigit())
     if numeric_names:
         raise RuntimeError(f"Fallback team mapping produced numeric club names: {numeric_names[:10]}")
-    expected_clubs={canonical_team(source_name_map.get(str(n),str(n))) for n in teams["name"].dropna()}
+    expected_clubs={canonical_team(source_name_map.get(n,n)) for n in code_to_name.values()}
     unknown_clubs=sorted(resolved-expected_clubs)
     if unknown_clubs:
         raise RuntimeError(f"Fallback resolved clubs outside current PL teams: {unknown_clubs}")
     if len(resolved) < 20:
         print(f"Fallback team mapping currently resolved {len(resolved)} clubs: {sorted(resolved)}")
+
+    # Every imported result must be a real fixture from the validated PL schedule.
+    if schedule_path.exists():
+        sch=pd.read_csv(schedule_path)
+        allowed={(canonical_team(h),canonical_team(a)) for h,a in zip(sch["home_team"],sch["away_team"])}
+        bad=[(h,a) for h,a in zip(out["HomeTeam"],out["AwayTeam"]) if (h,a) not in allowed]
+        if bad:
+            raise RuntimeError(f"Fallback contains fixtures outside validated schedule: {bad[:5]}")
+        if out.duplicated(["HomeTeam","AwayTeam"]).any():
+            raise RuntimeError("Fallback contains duplicate Premier League fixtures")
 
     out["FTHG"]=pd.to_numeric(x.get("home_score"),errors="coerce")
     out["FTAG"]=pd.to_numeric(x.get("away_score"),errors="coerce")
@@ -622,11 +615,6 @@ def _fallback_fpl_core(output_name):
         if played > schedule_due_count:
             raise RuntimeError(
                 f"Fallback claims {played} played matches, but schedule has only "
-                f"{schedule_due_count} fixtures dated up to today"
-            )
-        if played < schedule_due_count:
-            raise RuntimeError(
-                f"Fallback is incomplete: {played} played matches, while schedule has "
                 f"{schedule_due_count} fixtures dated up to today"
             )
     return raw,played

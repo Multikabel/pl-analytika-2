@@ -1,5 +1,6 @@
 from pathlib import Path
 import re
+import html as html_lib
 import argparse
 from datetime import datetime
 import pandas as pd
@@ -101,6 +102,21 @@ def _parse_article(html,round_no):
                             'referee':ref,'source':'premierleague.com','synced_at':datetime.now().isoformat(timespec='seconds')})
                 current=None
 
+    # Some PL responses keep article text inside serialized HTML/JSON rather than
+    # visible DOM nodes. If BeautifulSoup found too few appointments, scan the raw
+    # response as well. This keeps the official PL page as the only source.
+    if len(ordered_refs)<10:
+        raw=html_lib.unescape(html)
+        raw=raw.replace('\\u003A', ':').replace('\\u002E', '.').replace('\\"', '"')
+        raw_refs=[canonical_referee(x.strip()) for x in re.findall(r'Referee:\s*([^.<"\\]{2,80})',raw,re.I)]
+        # Preserve order while removing accidental duplicates from serialized copies.
+        dedup=[]
+        for ref in raw_refs:
+            if ref and (not dedup or ref!=dedup[-1]):
+                dedup.append(ref)
+        if len(dedup)>=10:
+            ordered_refs=dedup[:10]
+
     # New PL article rendering often omits fixture headings from plain text while
     # retaining referee paragraphs in fixture order. Safely map the 10 appointments
     # onto the validated 10-match round schedule.
@@ -173,5 +189,12 @@ def current_round_number():
 
 if __name__=='__main__':
     ap=argparse.ArgumentParser(); ap.add_argument('--round',type=int); ap.add_argument('--force',action='store_true')
-    args=ap.parse_args(); rnd=args.round or current_round_number(); x=sync_officials(rnd,force=args.force)
-    print(f'MW{rnd}: {len(x)} officials available')
+    args=ap.parse_args()
+    if args.round:
+        rounds=[args.round]
+    else:
+        current=current_round_number()
+        rounds=list(range(1,current+1))
+    for rnd in rounds:
+        x=sync_officials(rnd,force=args.force)
+        print(f'MW{rnd}: {len(x)} officials available')

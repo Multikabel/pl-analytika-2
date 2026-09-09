@@ -1,0 +1,50 @@
+PL Analytika 2.0 — consolidated repair v1.8.0
+Date: 2026-09-09
+
+Built from the complete GitHub ZIP supplied by the user.
+
+REPAIRS
+1. FPL-Core fallback
+- Uses verified 2026/27 FPL team codes directly.
+- Unifies team names with the fixture schedule, including Tottenham.
+- Filters Premier League only.
+- Rejects future fixtures, unknown clubs, duplicates and fixtures outside the validated schedule.
+- Converts UTC kickoff timestamps to Europe/London.
+- Fresh fallback results are authoritative; stale cache cannot add fake completed matches.
+- Old football-data cache can only enrich matching fixtures with referee/odds fields.
+
+2. Pipeline validation
+- After rebuild, verifies 20 current PL teams.
+- Rejects teams outside the schedule and duplicate current-season fixtures.
+
+3. Officials
+- Adds raw HTML/serialized-text parsing fallback for official Premier League articles.
+- With no --round argument, syncs MW1 through the current round.
+
+4. Settlement
+- Manual tips settle by fixture identity rather than the manually entered date.
+- Settlement corrects the stored date to the real match date.
+
+5. Persistence
+- GitHub Actions commits data/raw/2026-27.csv.
+- GitHub Actions commits prediction_log.csv and model_prediction_log.csv.
+
+LOCAL VERIFICATION
+- 30-match current-season rebuild: PASS
+- 1550 total matches / 3100 team-match rows: PASS
+- 30 current played matches / 20 teams / no duplicate fixtures: PASS
+- Fouls, corners and yellow-card model training: PASS
+- MW4 fixture scoring after rebuild: PASS
+- Model snapshot: 9 audit records per fixture: PASS
+- Manual settlement with deliberately wrong predicted date: PASS
+- Model-stat settlement with deliberately wrong predicted date: PASS
+- Python compilation of changed scripts: PASS
+
+LIVE SOURCE CHECK
+Current FPL-Core GW1, GW2 and GW3 files use stable FPL team codes
+(e.g. Arsenal=3, Brentford=94, Hull=88). The fallback now follows the
+actual files rather than ambiguous upstream documentation.
+
+IMPORTANT
+This ZIP intentionally contains NO data/ files, so uploading it cannot
+overwrite live Tipy/Statistiky logs or current tables.

@@ -169,6 +169,9 @@ def settle_predictions():
             ]
             if len(q)<2:
                 continue
+            home_q=q[(q["team"].astype(str)==str(r["home_team"])) & (q["venue"].astype(str)=="H")]
+            if len(home_q):
+                log.at[idx,"match_date"]=str(home_q.iloc[-1]["match_date"])
             vals=pd.to_numeric(q[actual_col],errors="coerce")
             if vals.isna().any():
                 continue
@@ -183,7 +186,8 @@ def settle_predictions():
             ]
             if q.empty:
                 continue
-            actual=pd.to_numeric(q.iloc[0][actual_col],errors="coerce")
+            log.at[idx,"match_date"]=str(q.iloc[-1]["match_date"])
+            actual=pd.to_numeric(q.iloc[-1][actual_col],errors="coerce")
             if pd.isna(actual):
                 continue
 
