@@ -392,10 +392,10 @@ def _fallback_fpl_core(output_name):
     tr=requests.get(base+"/teams.csv",headers=headers,timeout=25)
     tr.raise_for_status()
     teams=pd.read_csv(io.BytesIO(tr.content))
-    # IMPORTANT: matches.csv home_team / away_team reference teams.id,
-    # not teams.code. Using code here turns club names into bare numbers and
-    # poisons team_match_stats/model feature lookup.
-    id_to_name={int(r.id):str(r.name) for _,r in teams.iterrows() if pd.notna(r.id)}
+    # The live 2026-27 matches CSV uses FPL team CODE values in home_team /
+    # away_team (e.g. 94=Brentford), even though the upstream README currently
+    # describes these fields as teams.id. Trust the actual CSV schema.
+    code_to_name={int(r.code):str(r.name) for _,r in teams.iterrows() if pd.notna(r.code)}
     source_name_map={
         "Bournemouth":"Bournemouth","Brighton":"Brighton","Coventry City":"Coventry",
         "Hull City":"Hull","Ipswich Town":"Ipswich","Leeds":"Leeds",
@@ -428,6 +428,19 @@ def _fallback_fpl_core(output_name):
     x=pd.concat(frames,ignore_index=True)
     if "match_id" in x.columns:
         x=x.drop_duplicates("match_id",keep="last")
+
+    # By-Gameweek snapshots can contain cup/European/friendly matches too.
+    # This app is Premier League-only, so filter competition before resolving
+    # team codes. In the current source PL rows use tournament="prem".
+    if "tournament" in x.columns:
+        tour=x["tournament"].astype("string").str.strip().str.lower()
+        prem_mask=tour.isin(["prem","premier league","epl"])
+        rejected_comp=int((~prem_mask).sum())
+        if rejected_comp:
+            print(f"Fallback: rejected {rejected_comp} non-Premier-League rows")
+        x=x.loc[prem_mask].reset_index(drop=True)
+    if x.empty:
+        raise RuntimeError("Fallback contains no Premier League rows after tournament filter")
 
     # The fallback repository can pre-populate later GWs and can mark rows in a
     # way that is not reliable enough for "played" detection. The robust guard
@@ -462,10 +475,10 @@ def _fallback_fpl_core(output_name):
         try:
             key=int(float(v))
         except Exception:
-            raise ValueError(f"Fallback team id is not numeric: {v!r}")
-        if key not in id_to_name:
-            raise ValueError(f"Fallback team id {key} not found in teams.csv")
-        name=id_to_name[key]
+            raise ValueError(f"Fallback team code is not numeric: {v!r}")
+        if key not in code_to_name:
+            raise ValueError(f"Fallback team code {key} not found in teams.csv")
+        name=code_to_name[key]
         return source_name_map.get(name,name)
 
     out=pd.DataFrame()
@@ -481,6 +494,10 @@ def _fallback_fpl_core(output_name):
     numeric_names=sorted(n for n in resolved if n.strip().isdigit())
     if numeric_names:
         raise RuntimeError(f"Fallback team mapping produced numeric club names: {numeric_names[:10]}")
+    expected_clubs={canonical_team(source_name_map.get(str(n),str(n))) for n in teams["name"].dropna()}
+    unknown_clubs=sorted(resolved-expected_clubs)
+    if unknown_clubs:
+        raise RuntimeError(f"Fallback resolved clubs outside current PL teams: {unknown_clubs}")
     if len(resolved) < 20:
         print(f"Fallback team mapping currently resolved {len(resolved)} clubs: {sorted(resolved)}")
 

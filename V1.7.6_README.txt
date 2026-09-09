@@ -1,0 +1,15 @@
+PL Analytika v1.7.6 – verified FPL-Core schema fix
+
+Verified against the live upstream 2026-27 files:
+- teams.csv: Brentford has code=94, id=4
+- GW3 matches.csv: Brentford appears as home_team=94
+Therefore matches.home_team / away_team currently use teams.code, despite the
+upstream README claiming teams.id.
+
+Fixes:
+- map match team values via teams.code -> teams.name
+- filter fallback rows to tournament=prem before team mapping
+- reject clubs outside the current 20-team PL master list
+- retain v1.7.4 authoritative-cache cleanup and 30-match guard
+
+Upload only scripts/update_data.py and rerun the workflow.
