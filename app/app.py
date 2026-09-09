@@ -84,12 +84,15 @@ def paired_bar_chart(df, index_col, col_a, col_b, label_a, label_b):
     plot[col_a]=pd.to_numeric(plot[col_a],errors="coerce").fillna(0)
     plot[col_b]=pd.to_numeric(plot[col_b],errors="coerce").fillna(0)
     labels=plot[index_col].astype(str).tolist()
-    x=np.arange(len(plot)); width=.38
-    fig,ax=plt.subplots(figsize=(max(8,len(plot)*0.52),4.2))
-    ax.bar(x-width/2,plot[col_a].to_numpy(),width,label=label_a)
-    ax.bar(x+width/2,plot[col_b].to_numpy(),width,label=label_b)
-    ax.set_xticks(x); ax.set_xticklabels(labels,rotation=65,ha="right",fontsize=8)
-    ax.set_ylabel("Počet"); ax.legend(); ax.margins(x=.01)
+    y=np.arange(len(plot)); height=.36
+    fig_h=max(3.2, len(plot)*0.58+1.2)
+    fig,ax=plt.subplots(figsize=(9,fig_h))
+    ax.barh(y-height/2,plot[col_a].to_numpy(),height,label=label_a)
+    ax.barh(y+height/2,plot[col_b].to_numpy(),height,label=label_b)
+    ax.set_yticks(y); ax.set_yticklabels(labels,fontsize=9)
+    ax.invert_yaxis()
+    ax.set_xlabel("Počet"); ax.legend()
+    ax.margins(y=.03)
     fig.tight_layout()
     st.pyplot(fig,use_container_width=True)
     plt.close(fig)
@@ -593,26 +596,37 @@ elif nav=="Data":
         selected_team=st.selectbox("Tým",sorted(H_current.team.dropna().astype(str).unique()),key="data_team")
         view=st.segmented_control("Zobrazení",["Tabulka","Grafy"],default="Tabulka",key="data_team_view")
         g=H_current[H_current.team.astype(str)==selected_team].sort_values(["match_date","match_id"]).copy()
-        g["Datum"]=g.match_date.dt.strftime("%d.%m.%Y")
-        g["Zápas"]=g.apply(lambda r: f"{r.team} – {r.opponent}" if r.venue=="H" else f"{r.opponent} – {r.team}",axis=1)
-        g["Výsledek"]=g.apply(lambda r: f"{int(r.goals_for)}:{int(r.goals_against)}" if r.venue=="H" else f"{int(r.goals_against)}:{int(r.goals_for)}",axis=1)
+        g["Soupeř"]=g.opponent.astype(str)
+        g["Výsledek"]=g.apply(lambda r: f"{int(r.goals_for)}:{int(r.goals_against)}",axis=1)
         if view=="Tabulka":
             out=pd.DataFrame({
-                "Datum":g["Datum"],"Sezóna":g.season,"Zápas":g["Zápas"],"Výsledek":g["Výsledek"],
-                "Fauly pro":pd.to_numeric(g.fouls_committed,errors="coerce"),"Fauly proti":pd.to_numeric(g.fouls_suffered,errors="coerce"),
-                "Karty pro":pd.to_numeric(g.yellow_cards,errors="coerce"),"Karty proti":pd.to_numeric(g.yellow_cards_opponent,errors="coerce"),
-                "Rohy pro":pd.to_numeric(g.corners_for,errors="coerce"),"Rohy proti":pd.to_numeric(g.corners_against,errors="coerce"),
+                "Soupeř":g["Soupeř"],"Výsl.":g["Výsledek"],
+                "F+":pd.to_numeric(g.fouls_committed,errors="coerce"),"F-":pd.to_numeric(g.fouls_suffered,errors="coerce"),
+                "ŽK+":pd.to_numeric(g.yellow_cards,errors="coerce"),"ŽK-":pd.to_numeric(g.yellow_cards_opponent,errors="coerce"),
+                "R+":pd.to_numeric(g.corners_for,errors="coerce"),"R-":pd.to_numeric(g.corners_against,errors="coerce"),
             })
-            st.dataframe(out,use_container_width=True,hide_index=True,height=650)
+            st.dataframe(
+                out,use_container_width=True,hide_index=True,height=650,
+                column_config={
+                    "Soupeř":st.column_config.TextColumn("Soupeř",width="medium"),
+                    "Výsl.":st.column_config.TextColumn("Výsl.",width="small"),
+                    "F+":st.column_config.NumberColumn("F+",width="small"),
+                    "F-":st.column_config.NumberColumn("F-",width="small"),
+                    "ŽK+":st.column_config.NumberColumn("ŽK+",width="small"),
+                    "ŽK-":st.column_config.NumberColumn("ŽK-",width="small"),
+                    "R+":st.column_config.NumberColumn("R+",width="small"),
+                    "R-":st.column_config.NumberColumn("R-",width="small"),
+                }
+            )
         else:
-            chart=g.copy(); chart["Osa"]=chart["Datum"]+" · "+chart.opponent.astype(str)
+            chart=g.copy(); chart["Osa"]=chart.opponent.astype(str)
             st.markdown("#### Fauly")
             paired_bar_chart(chart,"Osa","fouls_committed","fouls_suffered","Pro","Proti")
             st.markdown("#### Karty")
             paired_bar_chart(chart,"Osa","yellow_cards","yellow_cards_opponent","Pro","Proti")
             st.markdown("#### Rohy")
             paired_bar_chart(chart,"Osa","corners_for","corners_against","Pro","Proti")
-            st.caption("Zápasy jsou zleva od nejstaršího po nejnovější. Dvě barvy oddělují hodnoty Pro a Proti.")
+            st.caption("Zápasy jsou shora od nejstaršího po nejnovější. Dvě lišty oddělují hodnoty Pro a Proti.")
 
     else:
         RM=referee_matches()
@@ -641,7 +655,6 @@ elif nav=="Data":
 
             view=st.segmented_control("Zobrazení",["Tabulka","Grafy"],default="Tabulka",key="data_ref_view")
             g=RM[RM.referee_key==selected_ref].sort_values(["match_date","match_id"]).copy()
-            g["Datum"]=g.match_date.dt.strftime("%d.%m.%Y")
             g["Zápas"]=g.home_team.astype(str)+" – "+g.away_team.astype(str)
             # Score is joined from H so referee table includes the result as requested.
             home_rows=H[(H.season.astype(str)==str(season))&(H.venue=="H")][["match_id","goals_for","goals_against"]].drop_duplicates("match_id")
@@ -649,18 +662,30 @@ elif nav=="Data":
             g["Výsledek"]=g.apply(lambda r: f"{int(r.goals_for)}:{int(r.goals_against)}" if pd.notna(r.goals_for) and pd.notna(r.goals_against) else "—",axis=1)
             if view=="Tabulka":
                 out=pd.DataFrame({
-                    "Datum":g["Datum"],"Sezóna":g.season,"Zápas":g["Zápas"],"Výsledek":g["Výsledek"],
-                    "Fauly domácí":pd.to_numeric(g.home_fouls,errors="coerce"),"Fauly hosté":pd.to_numeric(g.away_fouls,errors="coerce"),
-                    "Karty domácí":pd.to_numeric(g.home_yellow,errors="coerce"),"Karty hosté":pd.to_numeric(g.away_yellow,errors="coerce"),
+                    "Zápas":g["Zápas"],"Výsl.":g["Výsledek"],
+                    "F D":pd.to_numeric(g.home_fouls,errors="coerce"),"F H":pd.to_numeric(g.away_fouls,errors="coerce"),
+                    "ŽK D":pd.to_numeric(g.home_yellow,errors="coerce"),"ŽK H":pd.to_numeric(g.away_yellow,errors="coerce"),
                 })
                 # Corners live in the two team rows; join them for the same match-level logic.
-                corners=H[H.season.astype(str)==str(season)].pivot_table(index="match_id",columns="venue",values="corners_for",aggfunc="first").rename(columns={"H":"Rohy domácí","A":"Rohy hosté"}).reset_index()
+                corners=H[H.season.astype(str)==str(season)].pivot_table(index="match_id",columns="venue",values="corners_for",aggfunc="first").rename(columns={"H":"R D","A":"R H"}).reset_index()
                 out=out.join(g[["match_id"]].reset_index(drop=True)).merge(corners,on="match_id",how="left").drop(columns="match_id")
-                st.dataframe(out,use_container_width=True,hide_index=True,height=650)
+                st.dataframe(
+                    out,use_container_width=True,hide_index=True,height=650,
+                    column_config={
+                        "Zápas":st.column_config.TextColumn("Zápas",width="medium"),
+                        "Výsl.":st.column_config.TextColumn("Výsl.",width="small"),
+                        "F D":st.column_config.NumberColumn("F D",width="small"),
+                        "F H":st.column_config.NumberColumn("F H",width="small"),
+                        "ŽK D":st.column_config.NumberColumn("ŽK D",width="small"),
+                        "ŽK H":st.column_config.NumberColumn("ŽK H",width="small"),
+                        "R D":st.column_config.NumberColumn("R D",width="small"),
+                        "R H":st.column_config.NumberColumn("R H",width="small"),
+                    }
+                )
             else:
                 corners=H[H.season.astype(str)==str(season)].pivot_table(index="match_id",columns="venue",values="corners_for",aggfunc="first")
                 g=g.join(corners,on="match_id",rsuffix="_corner")
-                g["Osa"]=g["Datum"]+" · "+g.home_team.astype(str)+"–"+g.away_team.astype(str)
+                g["Osa"]=g.home_team.astype(str)+"–"+g.away_team.astype(str)
                 st.markdown("#### Fauly")
                 paired_bar_chart(g,"Osa","home_fouls","away_fouls","Domácí","Hosté")
                 st.markdown("#### Karty")
@@ -668,6 +693,6 @@ elif nav=="Data":
                 if "H" in g.columns and "A" in g.columns:
                     st.markdown("#### Rohy")
                     paired_bar_chart(g,"Osa","H","A","Domácí","Hosté")
-                st.caption("Zápasy jsou zleva od nejstaršího po nejnovější.")
+                st.caption("Zápasy jsou shora od nejstaršího po nejnovější.")
 
 st.caption("Fair kurz = modelový kurz, nikoli aktuální nabídka bookmakera. Bookmaker value scanner bude další vrstva.")

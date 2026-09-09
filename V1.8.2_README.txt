@@ -1,0 +1,20 @@
+PL Analytika v1.8.2
+
+DATA UI
+- grafy jsou vodorovné: každý zápas je samostatný řádek
+- týmová tabulka: Soupeř, Výsl., F+, F-, ŽK+, ŽK-, R+, R-
+- bez data a sezóny
+- užší sloupce
+- rozhodčí mají obdobně kompaktní tabulku; D=domácí, H=hosté
+- stále pouze aktuální sezóna
+
+TIPY / STATISTIKY
+Kontrolou plného ZIPu staženého z GitHubu bylo zjištěno, že oba CSV logy už v tomto
+repozitáři obsahují pouze hlavičku a 0 záznamů. Tento patch proto žádné historické
+tipy nevymýšlí ani zpětně nevyrábí modelové predikce z modelu trénovaného na výsledcích,
+protože by to zkreslilo statistiku.
+
+Přidán scripts/check_prediction_persistence.py pro jednoznačnou diagnostiku:
+ukáže počet řádků v lokálním/GitHub prediction_log a model_prediction_log.
+
+Balíček neobsahuje data/ a nemůže prázdnými CSV přepsat budoucí logy.
