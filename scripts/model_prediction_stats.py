@@ -179,10 +179,25 @@ def _dedupe_log(x):
     x["_created"]=pd.to_datetime(x["created_at"],errors="coerce")
     rows=[]
     for _,g in x.sort_values("_created",na_position="last").groupby("_key",sort=False):
+        # The earliest row is the immutable pre-match point prediction.
         keep=g.iloc[0].copy()
+
+        # Migration/enrichment fields are allowed to be filled later.  When the
+        # same semantic prediction exists in both an old GitHub copy and a newly
+        # enriched local copy, take the newest non-empty range values instead of
+        # throwing them away during deduplication.
+        for c in ["range_low","range_high","range_probability","range_result"]:
+            vals=g[c]
+            if c=="range_result":
+                valid=vals[vals.fillna("").astype(str).str.strip().ne("")]
+            else:
+                valid=vals[pd.notna(vals)]
+            if len(valid):
+                keep[c]=valid.iloc[-1]
+
         settled=g[g["status"].astype(str).eq("settled")]
         if len(settled):
-            s=settled.sort_values("_created",na_position="last").iloc[0]
+            s=settled.sort_values("_created",na_position="last").iloc[-1]
             for c in ["status","actual_value","result","range_result","range_low","range_high","range_probability","error","abs_error","bias_direction","settled_at","match_date","match_round"]:
                 keep[c]=s[c]
         keep["model_prediction_id"]=_id(keep)

@@ -1,0 +1,29 @@
+PL Analytika v1.9.2 — range persistence fix
+
+Root cause fixed:
+The semantic deduplication kept the oldest pre-match row, but for pending
+predictions it also accidentally kept the OLD empty range fields. Therefore an
+enriched local/GitHub duplicate could collapse back to blank ranges.
+
+v1.9.2:
+- preserves the immutable original point prediction
+- merges the newest non-empty range_low/range_high/range_probability/range_result
+  into that original prediction
+- keeps settled data authoritative once a match is played
+- adds a GitHub Actions pre-commit audit of the actual CSV on disk
+- workflow now fails before commit if range columns are missing or any pending
+  model prediction lacks a range
+
+Upload/replace:
+- scripts/model_prediction_stats.py
+- .github/workflows/update.yml
+
+Then run the normal Update PL Analytika workflow once.
+
+Expected lines before commit:
+CSV rows: 90
+CSV range columns: ['range_low', 'range_high', 'range_probability', 'range_result']
+CSV pending rows missing ranges: 0
+
+After the workflow, GitHub's data/predictions/model_prediction_log.csv must still
+contain 90 rows and the four range columns.
