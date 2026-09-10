@@ -306,7 +306,7 @@ def settle():
 
     if count or enriched:
         _save_log(log,"stats: settle model predictions" if count else "stats: add prediction ranges")
-    return {"settled":count}
+    return {"settled":count, "ranges_enriched":int(enriched)}
 
 def summary(log=None):
     if log is None:
@@ -331,6 +331,32 @@ def summary(log=None):
 
 if __name__=="__main__":
     result=settle()
-    # Persist semantic-ID migration/deduplication even when nothing was settled.
-    _save_log(load_log(),"stats: normalize prediction identities")
+
+    # Reload the LOCAL file written by settle(), not a remote copy. This makes
+    # GitHub Actions verification deterministic even when no persistence token
+    # is available in the runner.
+    if LOG_PATH.exists():
+        verify=pd.read_csv(LOG_PATH)
+    else:
+        verify=pd.DataFrame(columns=COLUMNS)
+    for c in COLUMNS:
+        if c not in verify.columns:
+            verify[c]=np.nan
+
+    pending=verify[verify["status"].fillna("").astype(str).eq("pending")].copy()
+    missing_ranges=0
+    if len(pending):
+        missing_ranges=int(
+            pending[["range_low","range_high","range_probability"]]
+            .isna().any(axis=1).sum()
+        )
+
     print(json.dumps(result,indent=2,ensure_ascii=False))
+    print(f"Prediction ranges: enriched {int(result.get('ranges_enriched',0))} existing rows")
+    print(f"Model prediction log: {len(verify)} rows")
+    print(f"Missing ranges: {missing_ranges}")
+
+    if missing_ranges:
+        raise SystemExit(
+            f"Range migration failed: {missing_ranges} pending model predictions still have no range."
+        )

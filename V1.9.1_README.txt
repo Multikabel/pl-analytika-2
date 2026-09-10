@@ -1,0 +1,33 @@
+PL Analytika v1.9.1 — explicit prediction-range migration check
+
+Fixes the missing range columns on the existing 90 MW4 model predictions.
+
+What this version does:
+- keeps all 90 archived point predictions unchanged
+- backfills range_low / range_high / range_probability on existing pending rows
+- writes the enriched CSV locally so GitHub Actions can commit it
+- prints an explicit migration audit:
+    Prediction ranges: enriched 90 existing rows
+    Model prediction log: 90 rows
+    Missing ranges: 0
+- the workflow fails if any pending model prediction still has a missing range
+- does NOT create another 90 predictions
+- does NOT change manual Tips
+
+Upload/replace:
+- scripts/model_prediction_stats.py
+
+Then run the normal update workflow once.
+
+Expected important lines:
+Prediction ranges: enriched 90 existing rows
+Model prediction log: 90 rows
+Missing ranges: 0
+...
+Match Round 4: archived 0 model point predictions.
+
+After the workflow commit, model_prediction_log.csv should still have 90 rows,
+now with:
+range_low, range_high, range_probability, range_result
+
+range_result remains blank until the fixture is played.
