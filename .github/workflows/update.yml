@@ -33,6 +33,31 @@ jobs:
       - name: Update data, settle tips and rebuild models
         run: python scripts/auto_update.py
 
+      - name: Verify persistent model prediction CSV
+        shell: bash
+        run: |
+          python - <<'PY'
+          import pandas as pd
+          from pathlib import Path
+          p=Path("data/predictions/model_prediction_log.csv")
+          if not p.exists():
+              raise SystemExit(f"Missing {p}")
+          df=pd.read_csv(p)
+          needed=["range_low","range_high","range_probability","range_result"]
+          missing_cols=[c for c in needed if c not in df.columns]
+          missing_rows=0
+          if not missing_cols and len(df):
+              pending=df[df["status"].fillna("").astype(str).eq("pending")]
+              missing_rows=int(pending[["range_low","range_high","range_probability"]].isna().any(axis=1).sum())
+          print("CSV rows:",len(df))
+          print("CSV range columns:", [c for c in needed if c in df.columns])
+          print("CSV pending rows missing ranges:",missing_rows)
+          if missing_cols:
+              raise SystemExit("Missing range columns: "+", ".join(missing_cols))
+          if missing_rows:
+              raise SystemExit(f"{missing_rows} pending rows still lack ranges")
+          PY
+
       - name: Show changed files
         run: git status --short
 
@@ -44,7 +69,9 @@ jobs:
 
           git add -f data/tables/*.csv
           git add -f data/fixtures/*.csv
+          git add -f data/raw/2026-27.csv
           git add -f data/predictions/prediction_log.csv
+          git add -f data/predictions/model_prediction_log.csv
 
           if git diff --cached --quiet; then
             echo "No persistent data changes."
