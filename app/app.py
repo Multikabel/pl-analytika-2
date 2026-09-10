@@ -523,35 +523,38 @@ elif nav=="Tipy":
 
 elif nav=="Statistiky":
     st.subheader("📊 Úspěšnost predikcí")
-    st.caption("Predikce se uloží automaticky při výpočtu jednoho zápasu i celého kola. Opakovaný výpočet stejného zápasu nevytváří duplicity.")
+    st.caption("Bodová predikce zůstává původním odhadem modelu. Rozsah je nejpravděpodobnější souvislé pásmo a po uložení snapshotu se už nemění.")
     plog=load_model_prediction_log()
     ps=model_prediction_summary(plog)
 
     c1,c2,c3,c4=st.columns(4)
     c1.metric("Vyhodnoceno",ps["n"])
-    c2.metric("Over HIT",f'{100*ps["hit_rate"]:.1f}%' if pd.notna(ps["hit_rate"]) else "—")
+    c2.metric("Rozsah HIT",f'{100*ps["range_hit_rate"]:.1f}%' if pd.notna(ps["range_hit_rate"]) else "—")
     c3.metric("MAE",f'{ps["mae"]:.2f}' if pd.notna(ps["mae"]) else "—")
     c4.metric("Bias",f'{ps["bias"]:+.2f}' if pd.notna(ps["bias"]) else "—")
 
-    c5,c6=st.columns(2)
-    c5.metric("Model podstřelil",f'{100*ps["under_rate"]:.1f}%' if pd.notna(ps["under_rate"]) else "—")
-    c6.metric("Model přestřelil",f'{100*ps["over_rate"]:.1f}%' if pd.notna(ps["over_rate"]) else "—")
+    c5,c6,c7=st.columns(3)
+    c5.metric("Prům. šířka rozsahu",f'{ps["avg_range_width"]:.2f}' if pd.notna(ps["avg_range_width"]) else "—")
+    c6.metric("Model podstřelil",f'{100*ps["under_rate"]:.1f}%' if pd.notna(ps["under_rate"]) else "—")
+    c7.metric("Model přestřelil",f'{100*ps["over_rate"]:.1f}%' if pd.notna(ps["over_rate"]) else "—")
 
-    st.caption("Bias = skutečnost − predikce. Kladný bias znamená, že model dlouhodobě podstřeluje; záporný bias znamená přestřelování.")
+    st.caption("Rozsahy: fauly tým 3 hodnoty, fauly celkem 4; rohy tým 2, rohy celkem 3; karty tým i celkem 2. Vždy se vybírá souvislé pásmo s nejvyšší modelovou pravděpodobností. Bias = skutečnost − predikce.")
 
     settled=plog[plog["status"].eq("settled")].copy()
     if len(settled):
         rows=[]
         for market,g in settled.groupby("market"):
             err=pd.to_numeric(g.error,errors="coerce")
+            lo=pd.to_numeric(g.range_low,errors="coerce")
+            hi=pd.to_numeric(g.range_high,errors="coerce")
+            valid=g.range_result.isin(["HIT","MISS"])
             rows.append({
                 "Trh":LABEL.get(market,market),
                 "N":len(g),
-                "Over HIT":f"{100*(g.result=='HIT').mean():.1f}%",
+                "Rozsah HIT":f"{100*(g.loc[valid,'range_result']=='HIT').mean():.1f}%" if valid.any() else "—",
+                "Šířka Ø":round((hi-lo+1).mean(),2),
                 "MAE":round(pd.to_numeric(g.abs_error,errors="coerce").mean(),2),
                 "Bias":round(err.mean(),2),
-                "Podstřeleno":f"{100*(err>0).mean():.1f}%",
-                "Přestřeleno":f"{100*(err<0).mean():.1f}%",
                 "Pred. Ø":round(pd.to_numeric(g.prediction,errors="coerce").mean(),2),
                 "Skuteč. Ø":round(pd.to_numeric(g.actual_value,errors="coerce").mean(),2),
             })
@@ -563,12 +566,14 @@ elif nav=="Statistiky":
         h["Výběr"]=h.team.map(lambda x:"Celý zápas" if x=="CELKEM" else x)
         h["Trh"]=h.market.map(LABEL)
         h["Pred."]=pd.to_numeric(h.prediction,errors="coerce").round(2)
-        h["Test"]="O"+pd.to_numeric(h.test_line,errors="coerce").map(lambda x:f"{x:.1f}")
+        hlo=pd.to_numeric(h.range_low,errors="coerce")
+        hhi=pd.to_numeric(h.range_high,errors="coerce")
+        h["Rozsah"]=[f"{int(lo)}–{int(hi)}" if pd.notna(lo) and pd.notna(hi) else "—" for lo,hi in zip(hlo,hhi)]
         h["Skuteč."]=pd.to_numeric(h.actual_value,errors="coerce")
         h["Chyba"]=pd.to_numeric(h.error,errors="coerce").round(2)
-        h["Výsledek"]=h.result.map({"HIT":"✅","MISS":"❌"})
+        h["Výsledek"]=h.range_result.map({"HIT":"✅","MISS":"❌"}).fillna("—")
         st.dataframe(
-            h[["match_date","Zápas","Výběr","Trh","Pred.","Test","Skuteč.","Chyba","bias_direction","Výsledek"]],
+            h[["match_date","Zápas","Výběr","Trh","Pred.","Rozsah","Skuteč.","Chyba","bias_direction","Výsledek"]],
             use_container_width=True,hide_index=True,height=620
         )
     else:
@@ -582,8 +587,11 @@ elif nav=="Statistiky":
             p["Výběr"]=p.team.map(lambda x:"Celý zápas" if x=="CELKEM" else x)
             p["Trh"]=p.market.map(LABEL)
             p["Pred."]=pd.to_numeric(p.prediction,errors="coerce").round(2)
-            p["Test"]="O"+pd.to_numeric(p.test_line,errors="coerce").map(lambda x:f"{x:.1f}")
-            st.dataframe(p[["match_date","Zápas","Výběr","Trh","Pred.","Test"]],
+            plo=pd.to_numeric(p.range_low,errors="coerce")
+            phi=pd.to_numeric(p.range_high,errors="coerce")
+            p["Rozsah"]=[f"{int(lo)}–{int(hi)}" if pd.notna(lo) and pd.notna(hi) else "—" for lo,hi in zip(plo,phi)]
+            p["P rozsahu"]=pd.to_numeric(p.range_probability,errors="coerce").map(lambda x:f"{100*x:.0f}%" if pd.notna(x) else "—")
+            st.dataframe(p[["match_date","Zápas","Výběr","Trh","Pred.","Rozsah","P rozsahu"]],
                          use_container_width=True,hide_index=True)
 
 elif nav=="Data":

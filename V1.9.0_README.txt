@@ -1,0 +1,39 @@
+PL Analytika v1.9.0 — prediction ranges
+
+What changes:
+- Keeps the archived point prediction unchanged.
+- Adds the most probable contiguous integer range around each archived prediction.
+- Range widths are deliberately market-specific:
+  TEAM fouls: 3 values
+  TOTAL fouls: 4 values
+  TEAM corners: 2 values
+  TOTAL corners: 3 values
+  TEAM yellow cards: 2 values
+  TOTAL yellow cards: 2 values
+- The interval is selected from the model's own Poisson / negative-binomial
+  probability distribution as the contiguous window with the highest probability.
+- Stores range_low, range_high and range_probability in model_prediction_log.csv.
+- Settlement now also stores range_result = HIT/MISS when the real value falls
+  inside/outside the archived range.
+- Statistics use range HIT rate + MAE + bias + average range width.
+- The old test_line/result fields remain in the CSV for backwards compatibility,
+  but the Statistics UI no longer uses Over test-line performance as the main score.
+
+Existing MW4 snapshot:
+The existing 90 point predictions are NOT deleted or recalculated. Running the
+normal GitHub Actions update once after uploading this patch will enrich those
+same 90 rows with ranges and commit the extended CSV. This preserves the original
+pre-match prediction audit.
+
+Example:
+point prediction 22.5 total fouls -> the 4-value window with the greatest model
+probability can naturally become 21–24.
+
+Install:
+Upload/replace:
+- scripts/model_prediction_stats.py
+- app/app.py
+
+Then run the normal update workflow once. After it finishes,
+data/predictions/model_prediction_log.csv should still have 90 rows, now with
+range_low, range_high, range_probability and range_result columns.

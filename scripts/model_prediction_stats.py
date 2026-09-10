@@ -6,6 +6,8 @@ import math
 import numpy as np
 import pandas as pd
 from github_persistence import enabled as github_enabled, read_csv as github_read_csv, write_csv as github_write_csv, merge_append_only
+from count_common import load_config
+from scipy.stats import poisson, nbinom
 
 BASE=Path(__file__).resolve().parent.parent
 LOG_PATH=BASE/"data"/"predictions"/"model_prediction_log.csv"
@@ -22,11 +24,83 @@ MARKET_TO_ACTUAL={
 }
 TOTAL_MARKETS={"fouls_total","corners_total","yellow_cards_total"}
 
+RANGE_WIDTHS={
+    "fouls":3,
+    "corners":2,
+    "yellow_cards":2,
+    "fouls_total":4,
+    "corners_total":3,
+    "yellow_cards_total":2,
+}
+
+def _pmf_values(mu,cfg,total_components=None):
+    """Return integer support and PMF using the same count family as scoring."""
+    mu=max(float(mu),0.05)
+    dist=cfg.get("distribution",{"type":"poisson"})
+    if dist.get("type")=="negative_binomial":
+        alpha=float(dist.get("alpha",0.0))
+        if total_components is not None:
+            mh,ma=[max(float(v),0.05) for v in total_components]
+            var=mh + alpha*mh**2 + ma + alpha*ma**2
+            if var>mu:
+                alpha=(var-mu)/(mu**2)
+        if alpha>0:
+            n=1.0/alpha
+            prob=n/(n+mu)
+            hi=int(max(25, nbinom.ppf(0.999999,n,prob)))
+            xs=np.arange(0,hi+1,dtype=int)
+            return xs,nbinom.pmf(xs,n,prob)
+    hi=int(max(25, poisson.ppf(0.999999,mu)))
+    xs=np.arange(0,hi+1,dtype=int)
+    return xs,poisson.pmf(xs,mu)
+
+def _best_contiguous_range(mu,market,total_components=None):
+    """Highest-probability contiguous integer window with market-specific width."""
+    base=market.replace("_total","")
+    cfg=load_config(base)
+    width=int(RANGE_WIDTHS[market])
+    xs,pmf=_pmf_values(mu,cfg,total_components=total_components)
+    if len(xs)<=width:
+        return int(xs[0]),int(xs[-1]),float(pmf.sum())
+    sums=np.convolve(pmf,np.ones(width),mode="valid")
+    start=int(np.argmax(sums))
+    return int(xs[start]),int(xs[start+width-1]),float(sums[start])
+
+def enrich_prediction_ranges(log):
+    """Fill range fields from archived point predictions without changing the predictions."""
+    if log is None or log.empty:
+        return log,0
+    out=log.copy(); changed=0
+    for c in ["range_low","range_high","range_probability","range_result"]:
+        if c not in out.columns: out[c]=np.nan if c!="range_result" else ""
+    for idx,r in out.iterrows():
+        if pd.notna(r.get("range_low")) and pd.notna(r.get("range_high")) and pd.notna(r.get("range_probability")):
+            continue
+        market=str(r.get("market",""))
+        if market not in RANGE_WIDTHS: continue
+        try: mu=float(r.get("prediction"))
+        except Exception: continue
+        comps=None
+        if market.endswith("_total"):
+            base=market.replace("_total","")
+            sib=out[(out.season.astype(str)==str(r.get("season"))) &
+                    (out.home_team.astype(str)==str(r.get("home_team"))) &
+                    (out.away_team.astype(str)==str(r.get("away_team"))) &
+                    (out.market.astype(str)==base) &
+                    (out.team.astype(str)!="CELKEM")]
+            vals=pd.to_numeric(sib.prediction,errors="coerce").dropna().tolist()
+            if len(vals)>=2: comps=(float(vals[0]),float(vals[1]))
+        lo,hi,prob=_best_contiguous_range(mu,market,total_components=comps)
+        out.at[idx,"range_low"]=lo; out.at[idx,"range_high"]=hi
+        out.at[idx,"range_probability"]=prob; changed+=1
+    return out,changed
+
+
 COLUMNS=[
     "model_prediction_id","created_at","season","match_round","match_date",
     "home_team","away_team","referee","team","venue","market",
-    "prediction","test_line","status","actual_value","result",
-    "error","abs_error","bias_direction","model_version","settled_at"
+    "prediction","test_line","range_low","range_high","range_probability","range_result",
+    "status","actual_value","result","error","abs_error","bias_direction","model_version","settled_at"
 ]
 
 def load_log():
@@ -109,7 +183,7 @@ def _dedupe_log(x):
         settled=g[g["status"].astype(str).eq("settled")]
         if len(settled):
             s=settled.sort_values("_created",na_position="last").iloc[0]
-            for c in ["status","actual_value","result","error","abs_error","bias_direction","settled_at","match_date","match_round"]:
+            for c in ["status","actual_value","result","range_result","range_low","range_high","range_probability","error","abs_error","bias_direction","settled_at","match_date","match_round"]:
                 keep[c]=s[c]
         keep["model_prediction_id"]=_id(keep)
         rows.append(keep)
@@ -135,6 +209,7 @@ def snapshot(scored, match_round, model_version="count-models-v1.4"):
     ).first()
 
     log=load_log()
+    log,_=enrich_prediction_ranges(log)
     existing=set(log["model_prediction_id"].astype(str)) if len(log) else set()
     now=datetime.now().isoformat(timespec="seconds")
     rows=[]
@@ -146,6 +221,7 @@ def snapshot(scored, match_round, model_version="count-models-v1.4"):
             "team":r["team"],"venue":r.get("venue",""),
             "market":r["market"],"prediction":float(r["prediction"]),
             "test_line":prediction_test_line(r["prediction"]),
+            "range_low":np.nan,"range_high":np.nan,"range_probability":np.nan,"range_result":"",
             "status":"pending","actual_value":np.nan,"result":"",
             "error":np.nan,"abs_error":np.nan,"bias_direction":"",
             "model_version":model_version,"settled_at":"",
@@ -160,12 +236,14 @@ def snapshot(scored, match_round, model_version="count-models-v1.4"):
         _save_log(log,"stats: normalize prediction identities")
         return 0
     out=pd.concat([log,pd.DataFrame(rows)],ignore_index=True)
+    out,_=enrich_prediction_ranges(out)
     out=out[COLUMNS]
     _save_log(out,"stats: archive model predictions")
     return len(rows)
 
 def settle():
     log=load_log()
+    log,enriched=enrich_prediction_ranges(log)
     if log.empty or not TEAM_MATCH_PATH.exists():
         return {"settled":0}
     tm=pd.read_csv(TEAM_MATCH_PATH)
@@ -211,10 +289,14 @@ def settle():
         line=float(r.test_line)
         err=actual-pred
         result="HIT" if actual>line else "MISS"
+        lo=pd.to_numeric(pd.Series([r.get("range_low")]),errors="coerce").iloc[0]
+        hi=pd.to_numeric(pd.Series([r.get("range_high")]),errors="coerce").iloc[0]
+        range_result="HIT" if pd.notna(lo) and pd.notna(hi) and float(lo)<=actual<=float(hi) else "MISS"
         direction="Podstřeleno" if err>0 else ("Přestřeleno" if err<0 else "Přesně")
 
         log.at[idx,"actual_value"]=actual
         log.at[idx,"result"]=result
+        log.at[idx,"range_result"]=range_result
         log.at[idx,"error"]=err
         log.at[idx,"abs_error"]=abs(err)
         log.at[idx,"bias_direction"]=direction
@@ -222,8 +304,8 @@ def settle():
         log.at[idx,"settled_at"]=now
         count+=1
 
-    if count:
-        _save_log(log,"stats: settle model predictions")
+    if count or enriched:
+        _save_log(log,"stats: settle model predictions" if count else "stats: add prediction ranges")
     return {"settled":count}
 
 def summary(log=None):
@@ -231,12 +313,16 @@ def summary(log=None):
         log=load_log()
     s=log[log.status.eq("settled")].copy()
     if s.empty:
-        return {"n":0,"hit_rate":np.nan,"mae":np.nan,"bias":np.nan,
+        return {"n":0,"range_hit_rate":np.nan,"avg_range_width":np.nan,"mae":np.nan,"bias":np.nan,
                 "under_rate":np.nan,"over_rate":np.nan}
     err=pd.to_numeric(s.error,errors="coerce")
+    lo=pd.to_numeric(s.range_low,errors="coerce"); hi=pd.to_numeric(s.range_high,errors="coerce")
+    width=hi-lo+1
+    valid=s.range_result.isin(["HIT","MISS"])
     return {
         "n":len(s),
-        "hit_rate":(s.result=="HIT").mean(),
+        "range_hit_rate":(s.loc[valid,"range_result"]=="HIT").mean() if valid.any() else np.nan,
+        "avg_range_width":width.mean(),
         "mae":pd.to_numeric(s.abs_error,errors="coerce").mean(),
         "bias":err.mean(),
         "under_rate":(err>0).mean(),
