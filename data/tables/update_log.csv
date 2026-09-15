@@ -1,6 +1,6 @@
 ﻿update_id,run_at,source_file,rows_read,matches_after_update,status,message
-1,2026-09-14T00:10:52,2022-23.csv,380,380,OK,Imported
-2,2026-09-14T00:10:54,2023-24.csv,380,760,OK,Imported
-3,2026-09-14T00:10:56,2024-25.csv,380,1140,OK,Imported
-4,2026-09-14T00:10:59,2025-26.csv,380,1520,OK,Imported
-5,2026-09-14T00:10:59,2026-27.csv,30,1550,OK,Imported
+1,2026-09-15T00:37:42,2022-23.csv,380,380,OK,Imported
+2,2026-09-15T00:37:46,2023-24.csv,380,760,OK,Imported
+3,2026-09-15T00:37:51,2024-25.csv,380,1140,OK,Imported
+4,2026-09-15T00:37:56,2025-26.csv,380,1520,OK,Imported
+5,2026-09-15T00:37:57,2026-27.csv,40,1560,OK,Imported
