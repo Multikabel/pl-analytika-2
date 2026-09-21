@@ -449,8 +449,8 @@ elif nav=="Tipy":
     # Settle whenever the page is opened; harmless/idempotent if nothing new exists.
     try:
         settle_predictions()
-    except Exception:
-        pass
+    except Exception as e:
+        st.warning(f"Tipy se nepodařilo vyhodnotit: {e}")
     log=load_log()
     stats=summary_stats(log)
 

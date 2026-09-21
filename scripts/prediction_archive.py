@@ -4,7 +4,8 @@ import hashlib
 import json
 import pandas as pd
 import numpy as np
-from github_persistence import enabled as github_enabled, read_csv as github_read_csv, write_csv as github_write_csv, merge_append_only
+from github_persistence import enabled as github_enabled, read_csv as github_read_csv, write_csv as github_write_csv, merge_append_only, merge_settlements, validate_settlement_ids, validate_local_settlements
+from settlement_common import completed_fixture_rows
 
 BASE = Path(__file__).resolve().parent.parent
 LOG_PATH = BASE / "data" / "predictions" / "prediction_log.csv"
@@ -55,28 +56,40 @@ def load_log():
             x[c]=np.nan
     return x[COLUMNS]
 
-def _save_log(log, message="chore: save PL Analytika tips"):
+def _save_log(log, message="chore: save PL Analytika tips", *, settlement=False):
     LOG_PATH.parent.mkdir(parents=True,exist_ok=True)
     for c in COLUMNS:
         if c not in log.columns:
             log[c]=np.nan
     log=log[COLUMNS]
-    log.to_csv(LOG_PATH,index=False,encoding="utf-8-sig")
-
     if not github_enabled():
+        log.to_csv(LOG_PATH,index=False,encoding="utf-8-sig")
         return
 
-    # Reload immediately before commit. Existing remote rows win so a stale
-    # browser session cannot revert a settlement made by GitHub Actions.
+    # Creation remains append-only. Settlement has a separate monotonic merge.
+    # Do not publish a local settlement until the remote merge/write succeeds.
+    if not settlement:
+        log.to_csv(LOG_PATH,index=False,encoding="utf-8-sig")
+    merge = merge_settlements if settlement else merge_append_only
     remote,sha=github_read_csv(REMOTE_LOG_PATH,COLUMNS)
-    merged=merge_append_only(remote,log,key="prediction_id")
+    if settlement and LOG_PATH.exists():
+        validate_settlement_ids(remote,pd.read_csv(LOG_PATH))
+    merged=merge(remote,log,key="prediction_id")
+    if settlement and LOG_PATH.exists():
+        validate_local_settlements(merged,pd.read_csv(LOG_PATH))
     ok,_=github_write_csv(REMOTE_LOG_PATH,merged,message,sha=sha)
     if not ok:
         remote,sha=github_read_csv(REMOTE_LOG_PATH,COLUMNS)
-        merged=merge_append_only(remote,log,key="prediction_id")
+        if settlement and LOG_PATH.exists():
+            validate_settlement_ids(remote,pd.read_csv(LOG_PATH))
+        merged=merge(remote,log,key="prediction_id")
+        if settlement and LOG_PATH.exists():
+            validate_local_settlements(merged,pd.read_csv(LOG_PATH))
         ok,detail=github_write_csv(REMOTE_LOG_PATH,merged,message,sha=sha)
         if not ok:
             raise RuntimeError(f"GitHub tip persistence failed: {detail}")
+    if settlement:
+        merged.to_csv(LOG_PATH,index=False,encoding="utf-8-sig")
 
 def _prediction_id(row):
     raw = "|".join([
@@ -161,33 +174,21 @@ def settle_predictions():
         if not actual_col or actual_col not in tm.columns:
             continue
 
+        fixture=completed_fixture_rows(tm,r["season"],r["home_team"],r["away_team"])
+        if fixture is None:
+            continue
+        actual_match_date=str(fixture[fixture.venue.astype(str).eq("H")].iloc[0].match_date)
         if market in TOTAL_MARKETS:
-            q=tm[
-                (tm["season"].astype(str)==str(r["season"])) &
-                (tm["team"].astype(str).isin([str(r["home_team"]),str(r["away_team"])])) &
-                (tm["opponent"].astype(str).isin([str(r["home_team"]),str(r["away_team"])]))
-            ]
-            if len(q)<2:
-                continue
-            home_q=q[(q["team"].astype(str)==str(r["home_team"])) & (q["venue"].astype(str)=="H")]
-            if len(home_q):
-                log.at[idx,"match_date"]=str(home_q.iloc[-1]["match_date"])
+            q=fixture
             vals=pd.to_numeric(q[actual_col],errors="coerce")
             if vals.isna().any():
                 continue
             actual=float(vals.sum())
         else:
-            q=tm[
-                (tm["season"].astype(str)==str(r["season"])) &
-                (tm["team"].astype(str)==str(r["team"])) &
-                (tm["opponent"].astype(str)==(
-                    str(r["away_team"]) if str(r["team"])==str(r["home_team"]) else str(r["home_team"])
-                ))
-            ]
-            if q.empty:
+            q=fixture[fixture.team.astype(str).eq(str(r["team"]))]
+            if len(q)!=1:
                 continue
-            log.at[idx,"match_date"]=str(q.iloc[-1]["match_date"])
-            actual=pd.to_numeric(q.iloc[-1][actual_col],errors="coerce")
+            actual=pd.to_numeric(q.iloc[0][actual_col],errors="coerce")
             if pd.isna(actual):
                 continue
 
@@ -205,6 +206,7 @@ def settle_predictions():
         else:
             profit=np.nan
 
+        log.at[idx,"match_date"]=actual_match_date
         log.at[idx,"actual_value"]=float(actual)
         log.at[idx,"result"]=result
         log.at[idx,"profit_units"]=profit
@@ -215,7 +217,7 @@ def settle_predictions():
         losses += result=="LOSS"
 
     if settled:
-        _save_log(log,"tips: settle results")
+        _save_log(log,"tips: settle results",settlement=True)
     return {"settled":settled,"wins":wins,"losses":losses}
 
 def summary_stats(log=None):
