@@ -8,6 +8,7 @@ import pandas as pd
 from github_persistence import enabled as github_enabled, read_csv as github_read_csv, write_csv as github_write_csv, merge_append_only
 from count_common import load_config
 from scipy.stats import poisson, nbinom
+from settlement_common import completed_fixture_rows
 
 BASE=Path(__file__).resolve().parent.parent
 LOG_PATH=BASE/"data"/"predictions"/"model_prediction_log.csv"
@@ -273,28 +274,20 @@ def settle():
             continue
 
         # Settle by season + fixture identity, not predicted date. Dates can move.
-        home_q=tm[(tm.season.astype(str)==str(r.season)) &
-                  (tm.team.astype(str)==str(r.home_team)) &
-                  (tm.opponent.astype(str)==str(r.away_team)) &
-                  (tm.venue.astype(str)=="H")]
-        if home_q.empty:
+        fixture=completed_fixture_rows(tm,r.season,r.home_team,r.away_team)
+        if fixture is None:
             continue
-        actual_match_date=str(home_q.iloc[-1].match_date)
+        actual_match_date=str(fixture[fixture.venue.astype(str).eq("H")].iloc[0].match_date)
 
         if market in TOTAL_MARKETS:
-            mid=str(home_q.iloc[-1].match_id)
-            q=tm[tm.match_id.astype(str)==mid]
-            if len(q)<2: continue
+            q=fixture
             vals=pd.to_numeric(q[actual_col],errors="coerce")
             if vals.isna().any(): continue
             actual=float(vals.sum())
         else:
-            opponent=str(r.away_team) if str(r.team)==str(r.home_team) else str(r.home_team)
-            q=tm[(tm.season.astype(str)==str(r.season)) &
-                 (tm.team.astype(str)==str(r.team)) &
-                 (tm.opponent.astype(str)==opponent)]
-            if q.empty: continue
-            actual=pd.to_numeric(q.iloc[-1][actual_col],errors="coerce")
+            q=fixture[fixture.team.astype(str).eq(str(r.team))]
+            if len(q)!=1: continue
+            actual=pd.to_numeric(q.iloc[0][actual_col],errors="coerce")
             if pd.isna(actual): continue
             actual=float(actual)
 
