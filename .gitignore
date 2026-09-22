@@ -9,6 +9,7 @@ data/tables/*
 # Local database
 data/*.sqlite
 data/*.sqlite3
+data/*.import.lock
 *.db
 
 # Python

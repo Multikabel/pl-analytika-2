@@ -6,10 +6,15 @@ import json
 import sqlite3
 import time
 import io
+import math
+import shutil
+import tempfile
+from contextlib import closing
 from datetime import datetime
 
 import pandas as pd
 import requests
+from import_publication import publish_import, ImportRecoveryError, import_lock
 
 BASE = Path(__file__).resolve().parent.parent
 RAW = BASE / "data" / "raw"
@@ -104,8 +109,8 @@ def result_and_points(gf, ga):
     if gf < ga: return "L", 0
     return "D", 1
 
-def normalize_source(path):
-    df = read_csv_any(path)
+def normalize_source(path, frame=None):
+    df = read_csv_any(path) if frame is None else frame.copy()
     if "HomeTeam" not in df or "AwayTeam" not in df:
         raise ValueError(f"{path.name}: HomeTeam/AwayTeam missing")
     df = df[df["HomeTeam"].notna() & df["AwayTeam"].notna()].copy()
@@ -323,46 +328,227 @@ def rebuild_standings(con):
             for _,r in st.iterrows():
                 con.execute("INSERT INTO standings_history VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",tuple(r))
 
-def export_tables(con):
+def export_tables(con, output_dir=None):
+    output_dir = TABLES if output_dir is None else Path(output_dir)
     names=[r[0] for r in con.execute("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'")]
     for name in names:
-        pd.read_sql_query(f"SELECT * FROM {name}",con).to_csv(TABLES/f"{name}.csv",index=False,encoding="utf-8-sig")
+        pd.read_sql_query(f"SELECT * FROM {name}",con).to_csv(output_dir/f"{name}.csv",index=False,encoding="utf-8-sig")
+
+
+def _fixture_pairs(frame, home, away):
+    return set(zip(frame[home], frame[away]))
+
+
+def _complete_season_pairs(frame, home, away):
+    teams = set(frame[home]) | set(frame[away])
+    expected = {(h, a) for h in teams for a in teams if h != a}
+    if len(teams) != 20 or len(frame) != 380 or _fixture_pairs(frame, home, away) != expected:
+        raise ValueError("Season must contain exactly all 380 ordered fixtures of 20 teams")
+
+
+def _validated_inputs(raw_dir, existing, confirmed_teams):
+    """Materialize every source before opening any writable SQLite connection."""
+    files = sorted(Path(raw_dir).glob("*.csv"))
+    if not files:
+        raise ValueError(f"No CSV files in {raw_dir}")
+    today = datetime.now()
+    start_year = today.year if today.month >= 7 else today.year - 1
+    current_season = f"{start_year}-{(start_year + 1) % 100:02d}"
+    required_stats = ("FTHG", "FTAG", "HF", "AF", "HC", "AC", "HY", "AY")
+    # Optional historical statistics may be absent initially, but must not vanish
+    # for an already confirmed fixture. xG is legitimately absent in old sources.
+    home_stats = {
+        "FTHG": "goals_for", "FTAG": "goals_against",
+        "HTHG": "ht_goals_for", "HTAG": "ht_goals_against",
+        "HF": "fouls_committed", "AF": "fouls_suffered",
+        "HC": "corners_for", "AC": "corners_against",
+        "HY": "yellow_cards", "AY": "yellow_cards_opponent",
+        "HR": "red_cards", "AR": "red_cards_opponent",
+        "HS": "shots_for", "AS": "shots_against",
+        "HST": "shots_on_target_for", "AST": "shots_on_target_against",
+        "HxG": "xg_for", "AxG": "xg_against",
+    }
+    datasets = {}
+    for path in files:
+        season = infer_season(path)
+        year = int(season[:4])
+        if season != f"{year}-{(year + 1) % 100:02d}" or season > current_season:
+            raise ValueError(f"{path.name}: unsupported season {season}")
+        if season in datasets:
+            raise ValueError(f"Multiple sources for season {season}")
+        raw = read_csv_any(path)
+        needed = {"Date", "HomeTeam", "AwayTeam", *required_stats}
+        if raw.empty or not needed.issubset(raw.columns):
+            raise ValueError(f"{path.name}: empty or missing required fields {sorted(needed - set(raw.columns))}")
+        for column in ("HomeTeam", "AwayTeam"):
+            raw[column] = raw[column].map(canonical_team)
+            if raw[column].isna().any() or raw[column].eq("").any():
+                raise ValueError(f"{path.name}: missing team identity")
+        if raw.HomeTeam.eq(raw.AwayTeam).any() or raw.duplicated(["HomeTeam", "AwayTeam"]).any():
+            raise ValueError(f"{path.name}: ambiguous fixture identity")
+        if "Div" in raw and not raw.Div.eq("E0").all():
+            raise ValueError(f"{path.name}: invalid league")
+        for column in home_stats:
+            if column not in raw:
+                continue
+            values = pd.to_numeric(raw[column], errors="coerce")
+            valid = values.dropna()
+            if ((raw[column].notna() & values.isna()).any()
+                    or not valid.map(math.isfinite).all() or (valid < 0).any()
+                    or (column not in ("HxG", "AxG") and valid.mod(1).ne(0).any())):
+                raise ValueError(f"{path.name}: invalid statistic {column}")
+            raw[column] = values
+        if raw.FTHG.isna().ne(raw.FTAG.isna()).any():
+            raise ValueError(f"{path.name}: incomplete result")
+        played = raw[raw.FTHG.notna() & raw.FTAG.notna()].copy()
+        if played.empty or played[list(required_stats)].isna().any().any():
+            raise ValueError(f"{path.name}: no complete played data or missing model statistics")
+        # Undated postponed fixtures are identity-only schedule entries. They do
+        # not become historical results; only played rows need a result date.
+        dates = pd.to_datetime(played.Date, dayfirst=True, errors="coerce")
+        if dates.isna().any():
+            raise ValueError(f"{path.name}: invalid match date")
+        if not dates.between(pd.Timestamp(year, 7, 1), pd.Timestamp(year + 1, 7, 1), inclusive="left").all():
+            raise ValueError(f"{path.name}: date outside declared season")
+        if season == current_season:
+            from update_fixtures import validate as validate_schedule
+            schedule_path = BASE / "data/fixtures" / f"premier_league_{season}.csv"
+            if not schedule_path.exists():
+                raise ValueError(f"Missing authoritative fixture schedule: {schedule_path}")
+            schedule = read_csv_any(schedule_path)
+            validate_schedule(schedule, season)
+            for column in ("home_team", "away_team"):
+                schedule[column] = schedule[column].map(canonical_team)
+                if schedule[column].isna().any() or schedule[column].eq("").any():
+                    raise ValueError("Invalid fixture schedule team")
+            _complete_season_pairs(schedule, "home_team", "away_team")
+            if ("season" not in schedule or not schedule.season.eq(season).all()
+                    or pd.to_datetime(schedule.match_date, errors="coerce").isna().any()):
+                raise ValueError("Invalid fixture schedule season/date")
+            if not _fixture_pairs(raw, "HomeTeam", "AwayTeam").issubset(
+                    _fixture_pairs(schedule, "home_team", "away_team")):
+                raise ValueError(f"{path.name}: fixture outside authoritative schedule")
+        else:
+            if len(played) != len(raw):
+                raise ValueError(f"{path.name}: unplayed historical fixture")
+            _complete_season_pairs(played, "HomeTeam", "AwayTeam")
+            if season in confirmed_teams:
+                new_teams = set(played.HomeTeam) | set(played.AwayTeam)
+                if new_teams != confirmed_teams[season]:
+                    raise ValueError(f"{path.name}: historical team identities differ from confirmed database history")
+        previous = existing[existing.season.eq(season)] if not existing.empty else existing
+        if not previous.empty:
+            old_pairs = _fixture_pairs(previous, "team", "opponent")
+            new_pairs = _fixture_pairs(played, "HomeTeam", "AwayTeam")
+            if season == current_season and not old_pairs.issubset(new_pairs):
+                raise ValueError(f"{path.name}: previously played fixtures disappeared")
+            indexed = played.set_index(["HomeTeam", "AwayTeam"])
+            for _, old in previous.iterrows():
+                pair = (old.team, old.opponent)
+                if pair not in new_pairs:
+                    continue
+                new = indexed.loc[pair]
+                for source, stored in home_stats.items():
+                    if pd.notna(old.get(stored)) and pd.isna(new.get(source)):
+                        raise ValueError(f"{path.name}: {pair} lost statistic {source}")
+        datasets[season] = normalize_source(path, frame=played)
+    return datasets
+
+
+def _insert_frame(con, table, frame, replace=False):
+    """Unlike pandas.to_sql(sqlite3), do not commit the caller's transaction."""
+    def quote(name):
+        return '"' + str(name).replace('"', '""') + '"'
+    def sql_type(series):
+        if pd.api.types.is_integer_dtype(series) or pd.api.types.is_bool_dtype(series):
+            return "INTEGER"
+        return "REAL" if pd.api.types.is_numeric_dtype(series) else "TEXT"
+    if replace:
+        con.execute(f"DROP TABLE IF EXISTS {quote(table)}")
+        columns = ",".join(f"{quote(c)} {sql_type(frame[c])}"
+                           for c in frame.columns)
+        con.execute(f"CREATE TABLE {quote(table)} ({columns})")
+    columns = ",".join(map(quote, frame.columns))
+    placeholders = ",".join("?" for _ in frame.columns)
+    con.executemany(f"INSERT INTO {quote(table)} ({columns}) VALUES ({placeholders})",
+                    (tuple(db_value(value) for value in row) for row in frame.itertuples(index=False, name=None)))
 
 def run(raw_dir=RAW):
-    con=sqlite3.connect(DB)
-    initialize(con)
-    files=sorted(Path(raw_dir).glob("*.csv"))
-    if not files: raise FileNotFoundError(f"No CSV files in {raw_dir}")
-    for path in files:
-        try:
-            df=normalize_source(path)
-            import_frame(con,df)
-            con.execute("""INSERT INTO update_log(run_at,source_file,rows_read,matches_after_update,status,message)
-              VALUES (?,?,?,?,?,?)""",(datetime.now().isoformat(timespec="seconds"),path.name,len(df),
-              con.execute("SELECT COUNT(*) FROM matches").fetchone()[0],"OK","Imported"))
-        except Exception as e:
-            con.execute("""INSERT INTO update_log(run_at,source_file,rows_read,matches_after_update,status,message)
-              VALUES (?,?,?,?,?,?)""",(datetime.now().isoformat(timespec="seconds"),path.name,None,
-              con.execute("SELECT COUNT(*) FROM matches").fetchone()[0],"ERROR",str(e)))
-            con.commit()
-            raise
-    rebuild_entities(con)
-    rebuild_team_aggregates(con)
-    rebuild_form(con)
-    rebuild_referees(con)
-    rebuild_league(con)
-    rebuild_standings(con)
-    rebuild_extended_fast(con)
-    rebuild_final_data_layer(con)
-    con.execute("""INSERT INTO data_sources(source_name,source_url,dataset,last_update)
-      VALUES (?,?,?,?)""",("football-data.co.uk","https://www.football-data.co.uk/englandm.php",
-      "Premier League E0.csv",datetime.now().isoformat(timespec="seconds")))
-    con.commit()
-    export_tables(con)
-    print("Matches:",con.execute("SELECT COUNT(*) FROM matches").fetchone()[0])
-    print("Team-match rows:",con.execute("SELECT COUNT(*) FROM team_match_stats").fetchone()[0])
-    print("Database:",DB)
-    con.close()
+    # Include the initial read in the lock: validation and the working backup
+    # must both see the state published by the preceding import.
+    with import_lock(DB):
+        _run_locked(raw_dir)
+
+
+def _run_locked(raw_dir):
+    # Read-only validation cannot create a DB or commit an error log over history.
+    if DB.exists():
+        with closing(sqlite3.connect(DB.resolve().as_uri() + "?mode=ro", uri=True)) as source:
+            existing = pd.read_sql_query("SELECT * FROM team_match_stats WHERE venue='H'", source)
+            history = pd.read_sql_query("SELECT season,home_team,away_team FROM matches", source)
+            confirmed_teams = {season: set(rows.home_team) | set(rows.away_team)
+                               for season, rows in history.groupby("season")}
+    else:
+        existing = pd.DataFrame()
+        confirmed_teams = {}
+    datasets = _validated_inputs(raw_dir, existing, confirmed_teams)
+    # Replacing a database with a live journal/WAL would detach committed data
+    # from its sidecar. Require a closed, checkpointed database for publication.
+    if any(Path(str(DB) + suffix).exists() for suffix in ("-wal", "-shm", "-journal")):
+        raise ValueError("Database has active SQLite sidecars; close/checkpoint it before importing")
+    DB.parent.mkdir(parents=True, exist_ok=True)
+    TABLES.mkdir(parents=True, exist_ok=True)
+    work = Path(tempfile.mkdtemp(prefix=".sqlite-import-", dir=DB.parent)).resolve()
+    keep_backup = False
+    try:
+        staged_db = work / DB.name
+        staged_tables = work / "tables"
+        staged_tables.mkdir()
+        with closing(sqlite3.connect(staged_db)) as con:
+            if DB.exists():
+                with closing(sqlite3.connect(DB.resolve().as_uri() + "?mode=ro", uri=True)) as source:
+                    source.backup(con)
+            initialize(con)
+            # Schema initialization uses executescript before this transaction.
+            con.execute("BEGIN")
+            try:
+                for season, df in datasets.items():
+                    for table in ("match_odds", "referee_match_stats", "team_match_stats"):
+                        con.execute(f"DELETE FROM {table} WHERE match_id IN (SELECT match_id FROM matches WHERE season=?)", (season,))
+                    con.execute("DELETE FROM matches WHERE season=?", (season,))
+                    import_frame(con, df)
+                    con.execute("""INSERT INTO update_log(run_at,source_file,rows_read,matches_after_update,status,message)
+                      VALUES (?,?,?,?,?,?)""", (datetime.now().isoformat(timespec="seconds"), df.iloc[0]._source_file,
+                      len(df), con.execute("SELECT COUNT(*) FROM matches").fetchone()[0], "OK", "Replaced validated season"))
+                rebuild_entities(con)
+                rebuild_team_aggregates(con)
+                rebuild_form(con)
+                rebuild_referees(con)
+                rebuild_league(con)
+                rebuild_standings(con)
+                rebuild_extended_fast(con)
+                rebuild_final_data_layer(con)
+                con.execute("""INSERT INTO data_sources(source_name,source_url,dataset,last_update)
+                  VALUES (?,?,?,?)""", ("football-data.co.uk", "https://www.football-data.co.uk/englandm.php",
+                  "Premier League E0.csv", datetime.now().isoformat(timespec="seconds")))
+                con.commit()
+            except BaseException:
+                con.rollback()
+                raise
+            export_tables(con, staged_tables)
+            matches = con.execute("SELECT COUNT(*) FROM matches").fetchone()[0]
+            team_rows = con.execute("SELECT COUNT(*) FROM team_match_stats").fetchone()[0]
+        publish_import(DB, TABLES, staged_db, staged_tables, work / "backups")
+    except ImportRecoveryError:
+        keep_backup = True
+        raise
+    finally:
+        # This exact directory was allocated above, beneath the intended DB parent.
+        if not keep_backup and work.parent == DB.parent.resolve():
+            shutil.rmtree(work)
+    print("Matches:", matches)
+    print("Team-match rows:", team_rows)
+    print("Database:", DB)
 
 def _validate_current_csv_bytes(raw, source="download"):
     """Reject HTML/error pages and obviously stale/incomplete current-season files."""
@@ -1018,8 +1204,7 @@ def rebuild_final_data_layer(con):
     final=final.loc[:,~final.columns.duplicated()].copy()
 
     # Replace the placeholder table with the wide, reproducible feature table.
-    con.execute("DROP TABLE IF EXISTS pre_match_features")
-    final.to_sql("pre_match_features",con,index=False,if_exists="replace")
+    _insert_frame(con, "pre_match_features", final, replace=True)
     con.execute("CREATE UNIQUE INDEX IF NOT EXISTS ux_prematch_match_team ON pre_match_features(match_id,team)")
     con.execute("CREATE INDEX IF NOT EXISTS idx_prematch_team_date2 ON pre_match_features(team,match_date)")
 
@@ -1051,7 +1236,7 @@ def rebuild_final_data_layer(con):
     schema_cols=[r[1] for r in con.execute("PRAGMA table_info(match_pre_match_context)")]
     for c in schema_cols:
         if c not in ctx.columns: ctx[c]=None
-    ctx[schema_cols].to_sql("match_pre_match_context",con,index=False,if_exists="append")
+    _insert_frame(con, "match_pre_match_context", ctx[schema_cols])
 
     # ------------------------------------------------------------------
     # Current dashboard tables (latest season in the imported data).
