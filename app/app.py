@@ -618,16 +618,16 @@ elif nav in {"Cross-TAB", "Rozhodčí"}:
                                     "A" if split == "Venku" else "H")
             as_of = table.attrs["as_of_date"]
             st.caption(f"Sezona {view_season} · Tabulka k {as_of.day}. {as_of.month}. {as_of.year} · odvozena z našich výsledkových dat")
+            st.caption("+ tým · − soupeř · Doma/Venku se vztahuje k vybranému týmu. — = nedostupný zápas nebo statistika.")
             if len(table) != 20:
                 st.warning("Pořadí zatím neobsahuje všech 20 týmů.")
             if table.attrs["excluded_rows"]:
                 st.caption("Nejednoznačné nebo nekonzistentní zápasy jsou vynechány.")
             st.dataframe(cross_tab_display(table, selected),
                 use_container_width=True, hide_index=True, height=740,
-                column_config={"#": st.column_config.NumberColumn("#", width=35, format="%d"),
+                column_config={"#": st.column_config.NumberColumn("#", width=30, format="%d"),
                                "Tým": st.column_config.TextColumn("Tým", width=120),
-                               **{c: st.column_config.NumberColumn(c, width=50) for c in TEAM_COLUMNS}})
-            st.caption("+ tým · − soupeř · Doma/Venku se vztahuje k vybranému týmu. Prázdné údaje znamenají nedostupný zápas nebo statistiku.")
+                               **{c: st.column_config.TextColumn(c, width=42) for c in TEAM_COLUMNS}})
         else:
             refs = pd.read_csv(TABLES/"referee_match_stats.csv")
             refs["referee"] = refs.referee.map(canonical_referee)
@@ -654,7 +654,7 @@ elif nav in {"Cross-TAB", "Rozhodčí"}:
                             "Domácí": st.column_config.TextColumn("Domácí", width=110),
                             "Hosté": st.column_config.TextColumn("Hosté", width=110),
                             **{c: st.column_config.NumberColumn(c, width=55, format="%d") for c in ["F D", "F H", "ŽK D", "ŽK H"]}})
-                    st.caption("zelená = nad sezonním průměrem · červená = pod sezonním průměrem · Barvy nehodnotí dobrý/špatný výkon.")
+                    st.caption("Barvy vůči sezonnímu průměru rozhodčího: zelená = nad · červená = pod. Barvy nehodnotí dobrý/špatný výkon.")
     except (OSError, ValueError, KeyError, IndexError) as exc:
         st.warning(f"Analytický pohled není dostupný: {exc}")
 
@@ -767,4 +767,5 @@ elif nav=="Data":
                     paired_bar_chart(g,"Osa","H","A","Domácí","Hosté")
                 st.caption("Zápasy jsou shora od nejstaršího po nejnovější.")
 
-st.caption("Fair kurz = modelový kurz, nikoli aktuální nabídka bookmakera. Bookmaker value scanner bude další vrstva.")
+if nav != "Rozhodčí":
+    st.caption("Fair kurz = modelový kurz, nikoli aktuální nabídka bookmakera. Bookmaker value scanner bude další vrstva.")

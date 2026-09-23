@@ -152,13 +152,14 @@ def cross_tab_styles(table, selected_team):
 
 
 def cross_tab_display(table, selected_team):
-    """Format averages and individual matches without changing numeric values."""
+    """Build display-only text; Arrow nulls bypass Styler's na_rep in Streamlit."""
     averages = table.index if selected_team is None else table.index[table["Tým"].eq(selected_team)]
     display = table.copy()
     display["Tým"] = display["Tým"].map(short_team_name)
+    for column in TEAM_COLUMNS:
+        display[column] = [
+            "—" if pd.isna(value) else format(value, ".1f" if index in averages else ".0f")
+            for index, value in table[column].items()
+        ]
     styles = cross_tab_styles(table, selected_team)
-    styled = display.style.apply(lambda _: styles, axis=None).format(
-        {column: "{:.0f}" for column in TEAM_COLUMNS}, na_rep="—")
-    if len(averages):
-        styled = styled.format("{:.1f}", subset=(averages, list(TEAM_COLUMNS)), na_rep="—")
-    return styled
+    return display.style.apply(lambda _: styles, axis=None)

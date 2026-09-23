@@ -143,8 +143,15 @@ class CrossTabTests(unittest.TestCase):
                 if selected is not None:
                     self.assertEqual(cells.values["T_test_row0_col4"], "0")
                 pd.testing.assert_frame_equal(table, before)
-                pd.testing.assert_frame_equal(styled.data[list(views.TEAM_COLUMNS)],
-                                              table[list(views.TEAM_COLUMNS)])
+                # Test the actual dataframe handed to Streamlit, not only Styler HTML:
+                # Arrow nulls would otherwise render as None despite na_rep="—".
+                self.assertEqual(styled.data.loc[3, "F+"], "—")
+                self.assertEqual(styled.data.loc[1, "F+"], "12.0")
+                self.assertFalse(styled.data[list(views.TEAM_COLUMNS)].isna().any().any())
+                self.assertNotIn("None", styled.data[list(views.TEAM_COLUMNS)].to_numpy())
+                if selected is not None:
+                    self.assertEqual(styled.data.loc[0, "ŽK+"], "0")
+                    self.assertEqual(styled.data.loc[0, "F+"], "10")
 
 
 class RefereeTests(unittest.TestCase):
