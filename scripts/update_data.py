@@ -1150,7 +1150,12 @@ def rebuild_final_data_layer(con):
     # Cross-season recent league tempo, also safe for the first round of a season.
     ma=m.sort_values(["match_date_dt","match_id"]).copy()
     for c in ["league_total_fouls","league_total_yellow","league_total_corners","league_total_goals"]:
-        ma[f"pl_last20_{c}_avg_before"]=ma[c].shift().rolling(20,min_periods=1).mean()
+        previous_matches=ma[c].shift().rolling(20,min_periods=1).mean()
+        # Freeze the last-20-match window before the first match of each day.
+        # iloc[0] preserves NaN when no earlier day exists (unlike first()).
+        ma[f"pl_last20_{c}_avg_before"]=previous_matches.groupby(
+            ma["match_date_dt"]
+        ).transform(lambda values: values.iloc[0])
     league_cols=["match_id","league_matches_before"]+list(cumulative_map.values())+[c for c in ma.columns if c.startswith("pl_last20_")]
     # Take date-safe season values from m and cross-season rolling values from ma.
     season_part=m[["match_id","league_matches_before"]+list(cumulative_map.values())]
