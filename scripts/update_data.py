@@ -999,7 +999,6 @@ def rebuild_final_data_layer(con):
     t["gf_before"] = g["goals_for"].transform(lambda s: s.shift().cumsum()).fillna(0)
     t["ga_before"] = g["goals_against"].transform(lambda s: s.shift().cumsum()).fillna(0)
     t["goal_diff_before"] = t["gf_before"] - t["ga_before"]
-    t["days_rest"] = g["match_date_dt"].diff().dt.days.astype(float)
 
     season_metrics = [
         "goals_for","goals_against","shots_for","shots_against",
@@ -1038,9 +1037,14 @@ def rebuild_final_data_layer(con):
     ga = ta.groupby("team", sort=False, group_keys=False)
     ta["pl_matches_before"] = ga.cumcount()
     ta["days_since_last_pl_match"] = ga["match_date_dt"].diff().dt.days.astype(float)
+    # Match inference: previous available PL date, across season boundaries.
+    # Same-day rows share the prior-date gap; no history remains NaN.
+    ta["days_rest"] = ta["days_since_last_pl_match"].groupby(
+        [ta["team"], ta["match_date_dt"]]
+    ).transform(lambda values: values.iloc[0])
     for c in ["fouls_committed","fouls_suffered","corners_for","corners_against","yellow_cards","points"]:
         ta[f"pl_last5_{c}_avg"] = ga[c].transform(lambda s: s.shift().rolling(5,min_periods=1).mean())
-    bridge_cols = ["match_id","team","pl_matches_before","days_since_last_pl_match"] + [
+    bridge_cols = ["match_id","team","pl_matches_before","days_since_last_pl_match","days_rest"] + [
         f"pl_last5_{c}_avg" for c in ["fouls_committed","fouls_suffered","corners_for","corners_against","yellow_cards","points"]
     ]
     t = t.merge(ta[bridge_cols], on=["match_id","team"], how="left")
