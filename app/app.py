@@ -10,6 +10,11 @@ import matplotlib.pyplot as plt
 BASE=Path(__file__).resolve().parent.parent
 SCRIPTS=BASE/"scripts"; MODELS=BASE/"models"; TABLES=BASE/"data"/"tables"
 sys.path.insert(0,str(SCRIPTS))
+sys.path.insert(0,str(BASE/"app"))
+
+from data_views import (latest_standings, build_cross_tab, build_referee_summary,
+                       build_referee_detail, short_team_name, referee_cell_styles,
+                       cross_tab_display, TEAM_COLUMNS, REF_COLUMNS)
 
 from count_common import load_config, ensemble_prediction, over_probability, fair_odds
 from fixture_features import build_fixture_rows
@@ -188,7 +193,7 @@ REF_IMPACTS=impact_lookup(season)
 
 st.title("⚽ PL Analytika 2.0")
 
-nav=st.segmented_control("Pohled",["Kolo","Zápas","Tipy","Statistiky","Data"],default="Kolo",label_visibility="collapsed")
+nav=st.segmented_control("Pohled",["Kolo","Zápas","Tipy","Statistiky","Cross-TAB","Rozhodčí","Data"],default="Kolo",label_visibility="collapsed")
 if nav is None: nav="Kolo"
 
 with st.expander("⚙️ Filtry",expanded=False):
@@ -593,6 +598,65 @@ elif nav=="Statistiky":
             p["P rozsahu"]=pd.to_numeric(p.range_probability,errors="coerce").map(lambda x:f"{100*x:.0f}%" if pd.notna(x) else "—")
             st.dataframe(p[["match_date","Zápas","Výběr","Trh","Pred.","Rozsah","P rozsahu"]],
                          use_container_width=True,hide_index=True)
+
+elif nav in {"Cross-TAB", "Rozhodčí"}:
+    # Deliberately uncached: newly published CSVs are read on every rerun.
+    try:
+        current_history = pd.read_csv(TABLES/"team_match_stats.csv")
+        view_season = sorted(current_history.season.dropna().astype(str).unique())[-1]
+        st.subheader(nav)
+        if nav == "Cross-TAB":
+            standings = pd.read_csv(TABLES/"standings_history.csv")
+            order = latest_standings(standings, view_season)
+            controls = st.columns([2, 1])
+            with controls[0]:
+                selected = st.selectbox("Tým", [None, *order.team.tolist()],
+                    format_func=lambda x: "Celkem" if x is None else short_team_name(x), key="cross_team")
+            with controls[1]:
+                split = st.segmented_control("Split", ["Doma", "Venku"], default="Doma", key="cross_venue")
+            table = build_cross_tab(current_history, standings, view_season, selected,
+                                    "A" if split == "Venku" else "H")
+            as_of = table.attrs["as_of_date"]
+            st.caption(f"Sezona {view_season} · Tabulka k {as_of.day}. {as_of.month}. {as_of.year} · odvozena z našich výsledkových dat")
+            if len(table) != 20:
+                st.warning("Pořadí zatím neobsahuje všech 20 týmů.")
+            if table.attrs["excluded_rows"]:
+                st.caption("Nejednoznačné nebo nekonzistentní zápasy jsou vynechány.")
+            st.dataframe(cross_tab_display(table, selected),
+                use_container_width=True, hide_index=True, height=740,
+                column_config={"#": st.column_config.NumberColumn("#", width=35, format="%d"),
+                               "Tým": st.column_config.TextColumn("Tým", width=120),
+                               **{c: st.column_config.NumberColumn(c, width=50) for c in TEAM_COLUMNS}})
+            st.caption("+ tým · − soupeř · Doma/Venku se vztahuje k vybranému týmu. Prázdné údaje znamenají nedostupný zápas nebo statistiku.")
+        else:
+            refs = pd.read_csv(TABLES/"referee_match_stats.csv")
+            refs["referee"] = refs.referee.map(canonical_referee)
+            summary = build_referee_summary(refs, view_season)
+            st.caption(f"Aktuální sezona {view_season}")
+            ref_config = {c: st.column_config.NumberColumn(c, width=55, format="%.1f") for c in REF_COLUMNS}
+            ref_config["Zápasy"] = st.column_config.NumberColumn("Zápasy", width=60, format="%d")
+            if summary.empty:
+                st.info("Nejsou dostupná data rozhodčích aktuální sezony.")
+            else:
+                st.dataframe(summary, use_container_width=True, hide_index=True, column_config=ref_config)
+                selected_ref = st.selectbox("Detail rozhodčího", [None, *summary["Rozhodčí"].tolist()],
+                    format_func=lambda x: "Vyber rozhodčího" if x is None else x, key="referee_detail")
+                if selected_ref is not None:
+                    periods, detail = build_referee_detail(refs, view_season, selected_ref)
+                    st.dataframe(periods, use_container_width=True, hide_index=True, column_config=ref_config)
+                    styles = referee_cell_styles(detail, periods.iloc[0])
+                    display = detail.copy()
+                    for column in ["Domácí", "Hosté"]:
+                        display[column] = display[column].map(short_team_name)
+                    st.dataframe(display.style.apply(lambda _: styles, axis=None),
+                        use_container_width=True, hide_index=True,
+                        column_config={"Datum": st.column_config.DateColumn("Datum", format="DD.MM.YYYY", width=95),
+                            "Domácí": st.column_config.TextColumn("Domácí", width=110),
+                            "Hosté": st.column_config.TextColumn("Hosté", width=110),
+                            **{c: st.column_config.NumberColumn(c, width=55, format="%d") for c in ["F D", "F H", "ŽK D", "ŽK H"]}})
+                    st.caption("zelená = nad sezonním průměrem · červená = pod sezonním průměrem · Barvy nehodnotí dobrý/špatný výkon.")
+    except (OSError, ValueError, KeyError, IndexError) as exc:
+        st.warning(f"Analytický pohled není dostupný: {exc}")
 
 elif nav=="Data":
     st.subheader("🗂️ Data")
