@@ -140,14 +140,14 @@ def referee_cell_styles(detail, season_means):
         mean = season_means[column]
         if pd.isna(mean):
             continue
-        styles.loc[detail[column].gt(mean), column] = "background-color: #e5f2e8"
-        styles.loc[detail[column].lt(mean), column] = "background-color: #f7e6e6"
+        styles.loc[detail[column].gt(mean), column] = "background-color: #e5f2e8; color: #17212b"
+        styles.loc[detail[column].lt(mean), column] = "background-color: #f7e6e6; color: #17212b"
     return styles
 
 
 def cross_tab_styles(table, selected_team):
     styles = pd.DataFrame("", index=table.index, columns=table.columns)
-    styles.loc[table["Tým"].eq(selected_team), :] = "background-color: #e8edf5"
+    styles.loc[table["Tým"].eq(selected_team), :] = "background-color: #e8edf5; color: #17212b"
     return styles
 
 

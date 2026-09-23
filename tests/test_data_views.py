@@ -2,6 +2,8 @@
 from pathlib import Path
 import sys
 import unittest
+import ast
+from types import SimpleNamespace
 from html.parser import HTMLParser
 
 import pandas as pd
@@ -102,6 +104,7 @@ class CrossTabTests(unittest.TestCase):
         self.assertEqual(views.short_team_name("Arsenal"), "Arsenal")
         styled = views.cross_tab_styles(table.reset_index(), "Manchester United")
         self.assertTrue(styled.loc[1].str.contains("background-color").all())
+        self.assertTrue(styled.loc[1].str.contains("; color: #17212b", regex=False).all())
         self.assertTrue(styled.loc[0].eq("").all())
 
     def test_inputs_are_not_mutated(self):
@@ -216,8 +219,11 @@ class RefereeTests(unittest.TestCase):
         styles = views.referee_cell_styles(detail, means)
         self.assertIn("#f7e6e6", styles.loc[0, "F D"])
         self.assertIn("#e5f2e8", styles.loc[1, "F D"])
+        self.assertIn("; color: #17212b", styles.loc[0, "F D"])
+        self.assertIn("; color: #17212b", styles.loc[1, "F D"])
         self.assertEqual(styles.loc[2, "F D"], "")
         self.assertTrue(styles["F H"].str.contains("#e5f2e8").all())
+        self.assertTrue(styles["F H"].str.contains("; color: #17212b", regex=False).all())
         self.assertTrue(styles["ŽK D"].eq("").all())
         self.assertTrue(styles["ŽK H"].eq("").all())
 
@@ -226,6 +232,33 @@ class RefereeTests(unittest.TestCase):
         views.build_referee_summary(self.history, SEASON)
         views.build_referee_detail(self.history, SEASON, "R One")
         pd.testing.assert_frame_equal(before, self.history)
+
+    def test_referee_count_label_is_display_only(self):
+        # Execute only the column configuration, never the app or its pipeline imports.
+        source = Path(__file__).resolve().parents[1] / "app/app.py"
+        tree = ast.parse(source.read_text(encoding="utf-8"))
+        assignments = []
+        for node in ast.walk(tree):
+            if not isinstance(node, ast.Assign):
+                continue
+            target = node.targets[0]
+            root = target.value if isinstance(target, ast.Subscript) else target
+            if isinstance(root, ast.Name) and root.id == "ref_config":
+                assignments.append(node)
+        self.assertTrue(assignments)
+        config = SimpleNamespace(NumberColumn=lambda label, **kw: dict(label=label, **kw),
+                                 TextColumn=lambda label, **kw: dict(label=label, **kw))
+        namespace = {"st": SimpleNamespace(column_config=config), "REF_COLUMNS": views.REF_COLUMNS}
+        exec(compile(ast.Module(body=sorted(assignments, key=lambda n: n.lineno),
+                                type_ignores=[]), "<column-config-only>", "exec"), namespace)
+        rendered = namespace["ref_config"]
+        self.assertEqual(rendered["Zápasy"]["label"], "Z")
+        self.assertLessEqual(rendered["Zápasy"]["width"], 40)
+        self.assertEqual(rendered["Zápasy"]["format"], "%d")
+        summary = views.build_referee_summary(self.history, SEASON)
+        self.assertIn("Zápasy", summary.columns)
+        self.assertNotIn("Z", summary.columns)
+        self.assertEqual(summary.iloc[0]["Zápasy"], 7)
 
 
 if __name__ == "__main__":

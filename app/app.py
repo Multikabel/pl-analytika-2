@@ -626,15 +626,16 @@ elif nav in {"Cross-TAB", "Rozhodčí"}:
             st.dataframe(cross_tab_display(table, selected),
                 use_container_width=True, hide_index=True, height=740,
                 column_config={"#": st.column_config.NumberColumn("#", width=30, format="%d"),
-                               "Tým": st.column_config.TextColumn("Tým", width=120),
-                               **{c: st.column_config.TextColumn(c, width=42) for c in TEAM_COLUMNS}})
+                               "Tým": st.column_config.TextColumn("Tým", width=105),
+                               **{c: st.column_config.TextColumn(c, width=37) for c in TEAM_COLUMNS}})
         else:
             refs = pd.read_csv(TABLES/"referee_match_stats.csv")
             refs["referee"] = refs.referee.map(canonical_referee)
             summary = build_referee_summary(refs, view_season)
             st.caption(f"Aktuální sezona {view_season}")
-            ref_config = {c: st.column_config.NumberColumn(c, width=55, format="%.1f") for c in REF_COLUMNS}
-            ref_config["Zápasy"] = st.column_config.NumberColumn("Zápasy", width=60, format="%d")
+            ref_config = {c: st.column_config.NumberColumn(c, width=48, format="%.1f") for c in REF_COLUMNS}
+            ref_config["Zápasy"] = st.column_config.NumberColumn("Z", width=38, format="%d")
+            ref_config["Rozhodčí"] = st.column_config.TextColumn("Rozhodčí", width=120)
             if summary.empty:
                 st.info("Nejsou dostupná data rozhodčích aktuální sezony.")
             else:
@@ -650,10 +651,10 @@ elif nav in {"Cross-TAB", "Rozhodčí"}:
                         display[column] = display[column].map(short_team_name)
                     st.dataframe(display.style.apply(lambda _: styles, axis=None),
                         use_container_width=True, hide_index=True,
-                        column_config={"Datum": st.column_config.DateColumn("Datum", format="DD.MM.YYYY", width=95),
-                            "Domácí": st.column_config.TextColumn("Domácí", width=110),
-                            "Hosté": st.column_config.TextColumn("Hosté", width=110),
-                            **{c: st.column_config.NumberColumn(c, width=55, format="%d") for c in ["F D", "F H", "ŽK D", "ŽK H"]}})
+                        column_config={"Datum": st.column_config.DateColumn("Datum", format="DD.MM.YYYY", width=85),
+                            "Domácí": st.column_config.TextColumn("Domácí", width=100),
+                            "Hosté": st.column_config.TextColumn("Hosté", width=100),
+                            **{c: st.column_config.NumberColumn(c, width=42, format="%d") for c in ["F D", "F H", "ŽK D", "ŽK H"]}})
                     st.caption("Barvy vůči sezonnímu průměru rozhodčího: zelená = nad · červená = pod. Barvy nehodnotí dobrý/špatný výkon.")
     except (OSError, ValueError, KeyError, IndexError) as exc:
         st.warning(f"Analytický pohled není dostupný: {exc}")
