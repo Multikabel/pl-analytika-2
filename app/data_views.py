@@ -140,8 +140,8 @@ def referee_cell_styles(detail, season_means):
         mean = season_means[column]
         if pd.isna(mean):
             continue
-        styles.loc[detail[column].gt(mean), column] = "background-color: #e5f2e8; color: #17212b"
-        styles.loc[detail[column].lt(mean), column] = "background-color: #f7e6e6; color: #17212b"
+        styles.loc[detail[column].gt(mean), column] = "background-color: #2f7d3f; color: #f5f5f5"
+        styles.loc[detail[column].lt(mean), column] = "background-color: #a92732; color: #f5f5f5"
     return styles
 
 
