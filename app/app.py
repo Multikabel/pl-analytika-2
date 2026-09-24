@@ -24,6 +24,7 @@ from update_officials import sync_officials,referee_for_match,referee_choices
 from prediction_archive import load_log, archive_selected_predictions, settle_predictions, summary_stats
 from model_prediction_stats import load_log as load_model_prediction_log, summary as model_prediction_summary, snapshot as snapshot_model_predictions
 from referee_impact import impact_lookup, referee_display, canonical_referee
+from pattern_views import prematch_context, match_view, render_patterns
 
 st.set_page_config(page_title="PL Analytika 2.0",page_icon="⚽",layout="wide",initial_sidebar_state="collapsed")
 
@@ -110,6 +111,12 @@ def predict_one(home,away,match_date,season,referee):
         "home_team":home,"away_team":away,"match_date":str(match_date),
         "season":season,"referee":referee
     }])
+
+@st.cache_data(show_spinner=False, max_entries=32)
+def cached_pattern_view(matches_csv, stats_csv, context):
+    from io import BytesIO
+    return match_view(pd.read_csv(BytesIO(matches_csv)),
+                      pd.read_csv(BytesIO(stats_csv)), context)
 
 def best_high_odds_lines(scored,min_fair=2.0):
     # Until bookmaker odds are connected, this filter is explicitly on MODEL FAIR ODDS.
@@ -318,6 +325,26 @@ elif nav=="Zápas":
         selected=st.selectbox("Rozhodčí",opts,index=0,format_func=lambda x: x if x.startswith("—") else referee_display(x,REF_IMPACTS))
         ref="" if selected.startswith("—") else selected
         st.caption("Delegace zatím nebyla nalezena. Model použije neutrální doplnění chybějících referee metrik.")
+
+    # Independent read-only context: never use a manually simulated model referee.
+    try:
+        pattern_schedule=pd.read_csv(BASE/"data"/"fixtures"/f"premier_league_{ss}.csv")
+        officials_path=BASE/"data"/"fixtures"/f"match_officials_{ss}.csv"
+        pattern_officials=pd.read_csv(officials_path) if officials_path.exists() else pd.DataFrame()
+        pattern_context=prematch_context(pattern_schedule,pattern_officials,home,away,ss,
+                                        str(score_date),pd.Timestamp.now(tz="UTC"))
+        if pattern_context is not None:
+            view=cached_pattern_view((TABLES/"matches.csv").read_bytes(),
+                                     (TABLES/"team_match_stats.csv").read_bytes(),pattern_context)
+            render_patterns(st,view)
+            if not pattern_context["referee"]:
+                st.caption("Rozhodčí není jednoznačně známý z delegace; zobrazujeme pouze týmové vzorce.")
+        else:
+            st.subheader("Vzorce")
+            st.caption("Vzorce jsou dostupné pro jednoznačný budoucí zápas s časem výkopu v rozpisu.")
+    except (OSError, ValueError, KeyError, TypeError):
+        st.subheader("Vzorce")
+        st.caption("Historické vzorce nyní nelze bezpečně načíst.")
 
     if st.button("Spočítat zápas",type="primary",use_container_width=True):
         with st.spinner("Počítám…"):
