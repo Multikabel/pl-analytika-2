@@ -5,7 +5,7 @@ from pattern_matcher import match_patterns
 
 LABELS = {"strong_candidate": "Silný vzorec", "supported": "Zajímavý vzorec",
           "weak": "Slabý vzorec", "mixed": "Nejasný vzorec"}
-METRICS = {"fouls": "faulů", "yellow_cards": "žlutých karet", "corners": "rohů"}
+METRICS = {"fouls": "faulů", "yellow_cards": "ŽK", "corners": "rohů"}
 WEEKDAYS = dict(zip(("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"),
                     ("pondělních", "úterních", "středečních", "čtvrtečních", "pátečních", "sobotních", "nedělních")))
 DAYPARTS = {"early": "časných", "afternoon": "odpoledních", "late": "pozdních"}
@@ -48,33 +48,48 @@ def pattern_card(row):
     when = WEEKDAYS[row["weekday"]] if row["weekday"] else DAYPARTS[row["daypart"]]
     context = f"v {when} zápasech" if referee else (
         f"v {when} {venue} zápasech" if row["weekday"] else f"{'ve' if venue == 'venkovních' else 'v'} {venue} {when} zápasech")
-    baseline = ("v ostatních zápasech stejného rozhodčího v téže sezoně" if referee else
-                f"ve svých ostatních {venue} zápasech v téže sezoně")
+    baseline = ("v jeho ostatních zápasech ve stejné sezoně" if referee else
+                f"v ostatních {venue} zápasech ve stejné sezoně")
     direction = {"up": "více", "down": "méně"}.get(row["direction"])
-    if referee:
-        comparison = f"V zápasech, které řídí {subject}, sledujeme celkový počet {metric} obou týmů. "
-    else:
-        comparison = f"Sledujeme počet {metric} týmu {subject}. "
+    actor = f"U rozhodčího {subject} bývá" if referee else f"{subject} mívá"
+    total = " celkem za oba týmy" if referee else ""
     if direction:
-        title = f"{subject} · {direction} {metric}"
-        text = f"{context.capitalize()} vychází {direction} {metric} než {baseline}. "
+        title = f"{subject}: {direction} {metric}"
+        text = f"{actor} {context} {direction} {metric}{total} než {baseline}."
     elif row["direction"] == "mixed":
-        title = f"{subject} · nejasný směr ({metric})"
-        text = f"{context.capitalize()} není rozdíl proti hodnotám {baseline} mezi sezonami jednotný. "
+        title = f"{subject}: nejasný směr ({metric})"
+        text = f"U {subject} je {context} někdy více, jindy méně {metric}{total} nebo žádný rozdíl oproti počtu {baseline}."
     else:
-        title = f"{subject} · bez jasného rozdílu ({metric})"
-        text = f"{context.capitalize()} zatím nemáme jasný rozdíl proti hodnotám {baseline}. "
-    n = int(row["eligible_seasons"])
-    tests, hits = int(row["oos_tests"]), int(row["oos_hits"])
-    evidence = f"Počet sezon s dostatečným vzorkem: {n}. "
+        title = f"{subject}: bez jasného rozdílu ({metric})"
+        text = (f"U {subject} {context} není patrný rozdíl v počtu {metric}{total} oproti počtu {baseline}."
+                if row["direction"] == "neutral" else
+                f"U {subject} zatím nelze určit, zda je {context} více nebo méně {metric}{total} než {baseline}.")
+    # Describe only prior seasons; never label an eligible current season historical.
+    prior = [s for s in row["season_effects"] if s["season"] < row["current_season"]
+             and s["N_group"] >= 5 and s["N_baseline"] > 0 and pd.notna(s["effect"])]
+    n = len(prior)
+    same = sum(s["effect"] > 0 if direction == "více" else s["effect"] < 0 for s in prior)
     if direction and n:
-        evidence += "V těchto sezonách byl směr shodný. "
-    evidence += (f"Historické kontroly na následující sezoně: {hits} úspěšných z {tests}."
-                 if tests else "Zatím bez vyhodnotitelné historické kontroly na následující sezoně.")
+        evidence = f"V předchozích sezonách s dostatečným vzorkem se tento směr opakoval {same}× z {n}. "
+    elif row["direction"] == "mixed":
+        evidence = "Směr není ve sledovaných sezonách jednotný. "
+    elif n:
+        evidence = "Ve sledovaných sezonách s dostatečným vzorkem vyšel stejný průměr jako v ostatních zápasech. "
+    else:
+        evidence = "Předchozí sezony zatím neposkytují dostatek údajů pro srovnání. "
+    tests, hits = int(row["oos_tests"]), int(row["oos_hits"])
+    if tests:
+        evidence += f"Úspěšné historické kontroly: {hits}/{tests}."
+        if row["oos_misses"]:
+            evidence += f" Opačný směr: {int(row['oos_misses'])}."
+        if row["oos_neutral"]:
+            evidence += f" Bez rozdílu: {int(row['oos_neutral'])} (nepočítají se jako úspěch)."
+    else:
+        evidence += "Zatím není k dispozici vyhodnotitelná historická kontrola."
     if row["current_status"] == "pending":
-        evidence += " Aktuální sezona zatím nemá dostatečný vzorek pro toto srovnání."
+        evidence += " Letošní vzorek je zatím příliš malý nebo chybí srovnatelné ostatní zápasy."
     return {"title": title, "label": LABELS[row["evidence_level"]],
-            "text": comparison + text + evidence}
+            "text": text + "\n\nProč: " + evidence}
 
 
 def pattern_sections(patterns, referee=None):

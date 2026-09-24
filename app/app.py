@@ -291,7 +291,7 @@ elif nav=="Zápas":
     away_opts=[t for t in teams if t!=home]
     away=c2.selectbox("Hosté",away_opts)
     c3,c4=st.columns(2)
-    md=c3.date_input("Datum",value=date.today())
+    md=c3.date_input("Datum analýzy",value=date.today())
     ss=c4.text_input("Sezóna",season)
 
     auto_ref=""
