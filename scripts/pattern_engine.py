@@ -3,6 +3,7 @@
 No filesystem access, training, prediction or persistence is performed here.
 """
 from dataclasses import dataclass
+import re
 
 import numpy as np
 import pandas as pd
@@ -17,6 +18,14 @@ SEASON_COLUMNS = ["season", *KEY, "N_group", "N_baseline", "group_mean",
 STABILITY_COLUMNS = [*KEY, "eligible_seasons", "positive_seasons", "negative_seasons",
                      "neutral_seasons", "direction", "direction_consistency"]
 WEEKDAYS = ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
+RELIABILITY_COLUMNS = ["effect_se", "ci_low", "ci_high", "uncertainty_status",
+                       "effective_n", "reliability_weight", "shrunk_effect"]
+WALK_FORWARD_COLUMNS = [*KEY, "target_season", "historical_seasons_used",
+                        "historical_eligible_count", "expected_direction", "target_N_group",
+                        "target_N_baseline", "target_effect", "target_relative_effect",
+                        "validation_result"]
+OOS_COLUMNS = [*KEY, "oos_tests", "oos_hits", "oos_misses", "oos_neutral", "oos_hit_rate"]
+PRIOR_STRENGTH = 5.0
 
 
 @dataclass
@@ -24,6 +33,12 @@ class PatternResults:
     seasonal: pd.DataFrame
     stability: pd.DataFrame
     quality: dict
+
+
+@dataclass
+class PatternResultsV2(PatternResults):
+    walk_forward: pd.DataFrame
+    oos_summary: pd.DataFrame
 
 
 def daypart(value):
@@ -107,7 +122,7 @@ def prepare_results(matches, team_stats):
     return team, ref, quality
 
 
-def season_patterns(frame, entity_type):
+def season_patterns(frame, entity_type, *, include_reliability=False):
     """Metric-specific observed N; baseline is the same-season complement."""
     if entity_type not in ("team", "referee"):
         raise ValueError("entity_type must be team or referee")
@@ -129,7 +144,10 @@ def season_patterns(frame, entity_type):
                         effect=effect, relative_effect=effect / bm if nb and bm != 0 else np.nan,
                         sample_class=sample_class(ng), evaluable=bool(ng and nb),
                         sparse_identity=context.match_id.nunique() < 3))
-    return pd.DataFrame(records, columns=SEASON_COLUMNS)
+                    if include_reliability:
+                        records[-1].update(effect_reliability(group, baseline, effect))
+    columns = SEASON_COLUMNS + (RELIABILITY_COLUMNS if include_reliability else [])
+    return pd.DataFrame(records, columns=columns)
 
 
 def stability_summary(seasonal):
@@ -155,3 +173,112 @@ def analyze_patterns(matches, team_stats):
     seasonal = pd.concat([season_patterns(team, "team"), season_patterns(referee, "referee")],
                          ignore_index=True)
     return PatternResults(seasonal, stability_summary(seasonal), quality)
+
+
+def effect_reliability(group, baseline, effect):
+    """Approximate uncertainty and fixed shrinkage; neither uses other seasons."""
+    ng, nb = len(group), len(baseline)
+    out = dict(effect_se=np.nan, ci_low=np.nan, ci_high=np.nan,
+               uncertainty_status="insufficient_n", effective_n=np.nan,
+               reliability_weight=np.nan, shrunk_effect=np.nan)
+    if ng and nb and pd.notna(effect) and np.isfinite(effect):
+        effective_n = ng * nb / (ng + nb)
+        weight = effective_n / (effective_n + PRIOR_STRENGTH)
+        out.update(effective_n=effective_n, reliability_weight=weight,
+                   shrunk_effect=effect * weight)
+    if ng < 2 or nb < 2:
+        return out
+    vg, vb = group.var(ddof=1), baseline.var(ddof=1)
+    if (pd.isna(vg) or pd.isna(vb) or not np.isfinite(vg) or not np.isfinite(vb)
+            or pd.isna(effect) or not np.isfinite(effect) or vg < 0 or vb < 0):
+        out["uncertainty_status"] = "invalid_variance_or_effect"
+    elif vg == 0 or vb == 0:
+        out["uncertainty_status"] = "zero_variance"
+    else:
+        se = np.sqrt(vg / ng + vb / nb)
+        out.update(effect_se=se, ci_low=effect - 1.96 * se,
+                   ci_high=effect + 1.96 * se, uncertainty_status="available")
+    return out
+
+
+def _season_start(season):
+    """Explicit chronological ordering; reject ambiguous/non-season labels in v2."""
+    match = re.fullmatch(r"(\d{4})[-/](\d{2}|\d{4})", str(season))
+    if match is None:
+        raise ValueError(f"Invalid season for walk-forward: {season!r}")
+    start, end = int(match[1]), int(match[2])
+    if end != ((start + 1) % 100 if len(match[2]) == 2 else start + 1):
+        raise ValueError(f"Invalid season for walk-forward: {season!r}")
+    return start
+
+
+def _eligible(rows):
+    return (rows.N_group.ge(5) & rows.N_baseline.gt(0)
+            & rows.effect.notna() & np.isfinite(rows.effect))
+
+
+def walk_forward_validation(seasonal):
+    """For each existing season-pattern, freeze expectation using earlier seasons only."""
+    if seasonal.duplicated(["season", *KEY]).any():
+        raise ValueError("Duplicate season-pattern would inflate validation")
+    ordered = seasonal.copy()
+    ordered["_season_start"] = ordered.season.map(_season_start)
+    if ordered.duplicated(["_season_start", *KEY]).any():
+        raise ValueError("Aliases for the same season-pattern would inflate validation")
+    records = []
+    for key, rows in ordered.groupby(KEY, sort=True, dropna=False):
+        rows = rows.sort_values("_season_start")
+        for _, target in rows.iterrows():
+            history = rows.loc[rows._season_start.lt(target._season_start) & _eligible(rows)]
+            n = len(history)
+            expected = None
+            if n >= 2:
+                expected = ("up" if history.effect.gt(0).all() else
+                            "down" if history.effect.lt(0).all() else "mixed")
+            target_eligible = (target.N_group >= 5 and target.N_baseline > 0
+                               and pd.notna(target.effect) and np.isfinite(target.effect))
+            if n < 2:
+                result = "not_testable"
+            elif not target_eligible:
+                result = "pending"
+            elif expected == "mixed":
+                result = "mixed"
+            elif target.effect == 0:
+                result = "neutral"
+            else:
+                result = "hit" if (target.effect > 0) == (expected == "up") else "miss"
+            records.append(dict(zip(KEY, key), target_season=target.season,
+                                historical_seasons_used=tuple(history.season),
+                                historical_eligible_count=n, expected_direction=expected,
+                                target_N_group=target.N_group, target_N_baseline=target.N_baseline,
+                                target_effect=target.effect, target_relative_effect=target.relative_effect,
+                                validation_result=result))
+    return pd.DataFrame(records, columns=WALK_FORWARD_COLUMNS)
+
+
+def oos_summary(validation):
+    """Neutral directional tests stay in the denominator; non-tests never do."""
+    if validation.duplicated(["target_season", *KEY]).any():
+        raise ValueError("Duplicate target-season would inflate OOS summary")
+    records = []
+    for key, rows in validation.groupby(KEY, sort=True, dropna=False):
+        tests = rows[rows.expected_direction.isin(["up", "down"])
+                     & rows.validation_result.isin(["hit", "miss", "neutral"])]
+        n = len(tests)
+        hits, misses, neutral = (int(tests.validation_result.eq(s).sum())
+                                for s in ("hit", "miss", "neutral"))
+        records.append(dict(zip(KEY, key), oos_tests=n, oos_hits=hits,
+                            oos_misses=misses, oos_neutral=neutral,
+                            oos_hit_rate=hits / n if n else np.nan))
+    return pd.DataFrame(records, columns=OOS_COLUMNS)
+
+
+def analyze_patterns_v2(matches, team_stats):
+    """Add reliability and walk-forward views without changing v1 results/API."""
+    team, referee, quality = prepare_results(matches, team_stats)
+    seasonal = pd.concat([season_patterns(team, "team", include_reliability=True),
+                          season_patterns(referee, "referee", include_reliability=True)],
+                         ignore_index=True)
+    validation = walk_forward_validation(seasonal)
+    return PatternResultsV2(seasonal, stability_summary(seasonal), quality,
+                            validation, oos_summary(validation))
