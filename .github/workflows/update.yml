@@ -31,9 +31,12 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Update data, settle tips and rebuild models
+        id: update
+        continue-on-error: true
         run: python scripts/auto_update.py
 
       - name: Verify persistent model prediction CSV
+        if: steps.update.outputs.data_completed == 'true'
         shell: bash
         run: |
           python - <<'PY'
@@ -59,9 +62,11 @@ jobs:
           PY
 
       - name: Show changed files
+        if: steps.update.outputs.data_completed == 'true'
         run: git status --short
 
       - name: Commit updated persistent data
+        if: success() && steps.update.outputs.data_completed == 'true'
         shell: bash
         run: |
           git config user.name "PL Analytika Bot"
@@ -80,3 +85,9 @@ jobs:
 
           git commit -m "chore: automatic PL data update"
           git push
+
+      - name: Report update failure after preserving completed data
+        if: always() && steps.update.outcome == 'failure'
+        run: |
+          echo "::error::Update failed. See officials diagnostics or the earlier critical step failure."
+          exit 1
