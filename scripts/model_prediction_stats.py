@@ -104,7 +104,7 @@ COLUMNS=[
     "status","actual_value","result","error","abs_error","bias_direction","model_version","settled_at"
 ]
 
-def load_log():
+def _load_base_log():
     # In Streamlit Cloud, always prefer the latest persistent GitHub copy.
     if github_enabled():
         try:
@@ -126,7 +126,20 @@ def load_log():
             x[c]=np.nan
     return _dedupe_log(x[COLUMNS])
 
+def load_log():
+    from model_snapshot_revisions import active, read
+    return active(_load_base_log(), read(LOG_PATH))
+
+
 def _save_log(log, message):
+    from model_snapshot_revisions import split_save
+    log, unchanged = split_save(LOG_PATH, _load_base_log(), log)
+    if unchanged:
+        return
+    _save_base_log(log, message)
+
+
+def _save_base_log(log, message):
     for c in COLUMNS:
         if c not in log.columns:
             log[c]=np.nan

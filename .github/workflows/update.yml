@@ -77,6 +77,9 @@ jobs:
           git add -f data/raw/2026-27.csv
           git add -f data/predictions/prediction_log.csv
           git add -f data/predictions/model_prediction_log.csv
+          if [ -f data/predictions/model_prediction_revisions.csv ]; then
+            git add -f data/predictions/model_prediction_revisions.csv
+          fi
 
           if git diff --cached --quiet; then
             echo "No persistent data changes."
