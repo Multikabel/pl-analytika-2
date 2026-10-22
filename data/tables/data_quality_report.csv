@@ -1,8 +1,8 @@
 ﻿check_name,check_value,status,details,checked_at
-matches,1590.0,OK,,2026-10-21T00:38:08
-team_match_rows,3180.0,OK,Expected exactly two team rows per match,2026-10-21T00:38:08
-duplicate_match_ids,0.0,OK,,2026-10-21T00:38:08
-duplicate_prematch_team_rows,0.0,OK,,2026-10-21T00:38:08
-missing_referees,0.0,OK,,2026-10-21T00:38:08
-missing_foul_targets,0.0,OK,,2026-10-21T00:38:08
-prematch_rows,3180.0,OK,,2026-10-21T00:38:08
+matches,1590.0,OK,,2026-10-22T00:42:01
+team_match_rows,3180.0,OK,Expected exactly two team rows per match,2026-10-22T00:42:01
+duplicate_match_ids,0.0,OK,,2026-10-22T00:42:01
+duplicate_prematch_team_rows,0.0,OK,,2026-10-22T00:42:01
+missing_referees,0.0,OK,,2026-10-22T00:42:01
+missing_foul_targets,0.0,OK,,2026-10-22T00:42:01
+prematch_rows,3180.0,OK,,2026-10-22T00:42:01
