@@ -1,6 +1,6 @@
 ﻿update_id,run_at,source_file,rows_read,matches_after_update,status,message
-1,2026-10-28T01:19:18,2022-23.csv,380,380,OK,Replaced validated season
-2,2026-10-28T01:19:19,2023-24.csv,380,760,OK,Replaced validated season
-3,2026-10-28T01:19:21,2024-25.csv,380,1140,OK,Replaced validated season
-4,2026-10-28T01:19:22,2025-26.csv,380,1520,OK,Replaced validated season
-5,2026-10-28T01:19:23,2026-27.csv,80,1600,OK,Replaced validated season
+1,2026-10-29T01:47:30,2022-23.csv,380,380,OK,Replaced validated season
+2,2026-10-29T01:47:34,2023-24.csv,380,760,OK,Replaced validated season
+3,2026-10-29T01:47:38,2024-25.csv,380,1140,OK,Replaced validated season
+4,2026-10-29T01:47:42,2025-26.csv,380,1520,OK,Replaced validated season
+5,2026-10-29T01:47:42,2026-27.csv,80,1600,OK,Replaced validated season
