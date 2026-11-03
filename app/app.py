@@ -189,6 +189,66 @@ def selectable_tip_table(x,key_prefix):
 
     return chosen
 
+def load_current_round_view():
+    completed=H[(H.season==season)&(H.venue=="H")][["team","opponent"]].rename(columns={"team":"home_team","opponent":"away_team"})
+    schedule=load_fixtures(season,auto_sync=True)
+    rnd,view=current_round(schedule,completed)
+    try: sync_officials(rnd)
+    except Exception: pass  # Existing cache remains available if synchronization fails.
+    view=view.copy()
+    view["_date"]=pd.to_datetime(view.match_date,errors="coerce")
+    times=view.kickoff_time.fillna("").astype(str).str.strip()
+    times=times.where(times.str.count(":")!=1,times+":00")
+    view["_time"]=pd.to_timedelta(times,errors="coerce")
+    return rnd,view.sort_values(["_date","_time"],kind="stable",na_position="last").reset_index(drop=True)
+
+
+def clear_match_results():
+    for key in list(st.session_state):
+        if key in {"single","single_identity","single_market_filter","single_team_filter","save_single_tips"} or key.startswith("pick_single_"):
+            del st.session_state[key]
+
+
+def select_current_match():
+    st.subheader("Zápas")
+    try:
+        rnd,view=load_current_round_view()
+    except Exception as e:
+        clear_match_results()
+        st.warning(f"Rozpis aktuálního kola se nepodařilo načíst: {e}")
+        st.stop()
+    if view.empty:
+        clear_match_results()
+        st.warning("Rozpis aktuálního kola neobsahuje žádná utkání.")
+        st.stop()
+    if len(view)!=10:
+        st.warning(f"Rozpis kola není kompletní: {len(view)}/10 zápasů.")
+    options=list(zip(view.home_team,view.away_team))
+    if len(set(options))!=len(options):
+        clear_match_results()
+        st.warning("Rozpis obsahuje nejednoznačná utkání. Výběr nyní není dostupný.")
+        st.stop()
+    st.caption(f"Kolo {rnd} · {season}")
+    home,away=st.selectbox("Vyber zápas aktuálního kola",options,
+                          format_func=lambda pair:f"{pair[0]} – {pair[1]}",
+                          key=f"match_fixture_{season}_{rnd}")
+    row=view[(view.home_team==home)&(view.away_team==away)].iloc[0]
+    ref=referee_for_match(home,away,rnd)
+    ref=str(ref).strip() if pd.notna(ref) else ""
+    st.caption(f"Rozhodčí: {ref or 'Zatím neurčen'}")
+    if pd.isna(row["_date"]):
+        clear_match_results()
+        st.warning("Datum utkání zatím není určeno. Výpočet bude dostupný po doplnění rozpisu.")
+        st.stop()
+    score_date=row["_date"].date()
+    time=str(row.kickoff_time).strip() if pd.notna(row.kickoff_time) else ""
+    st.caption(f"Termín: {score_date.strftime('%d.%m.%Y')} · {time or 'Čas neurčen'}")
+    identity=(home,away,str(score_date),season,ref,rnd)
+    if st.session_state.get("single_identity")!=identity:
+        clear_match_results()
+    return home,away,score_date,season,ref,rnd
+
+
 H=history()
 if H.empty:
     st.error("Chybí datové tabulky.")
@@ -213,22 +273,13 @@ if nav!="Kolo":
         st.caption("🎯 Tvoje výchozí preference je 2,00+. Skutečný bookmaker kurz zatím není napojený, proto je sloupec označen jako Fair.")
 
 if nav=="Kolo":
-    completed=H[(H.season==season)&(H.venue=="H")][["team","opponent"]].rename(columns={"team":"home_team","opponent":"away_team"})
     try:
-        schedule=load_fixtures(season,auto_sync=True)
-        rnd,round_df=current_round(schedule,completed)
-        try: sync_officials(rnd)
-        except Exception: pass
+        rnd,view=load_current_round_view()
     except Exception as e:
         st.error(f"Rozlosování se nepodařilo načíst: {e}"); st.stop()
-
     st.subheader(f"Kolo {rnd}")
-    if len(round_df)!=10:
-        st.warning(f"Rozpis kola není kompletní: {len(round_df)}/10 zápasů.")
-    view=round_df.copy()
-    view["_date"]=pd.to_datetime(view.match_date,errors="coerce")
-    view["_time"]=pd.to_timedelta(view.kickoff_time.fillna("").astype(str)+":00",errors="coerce")
-    view=view.sort_values(["_date","_time"],kind="stable",na_position="last")
+    if len(view)!=10:
+        st.warning(f"Rozpis kola není kompletní: {len(view)}/10 zápasů.")
     rows=[]
     for _,r in view.iterrows():
         ref=referee_for_match(r.home_team,r.away_team,rnd)
@@ -248,45 +299,7 @@ if nav=="Kolo":
 
 
 elif nav=="Zápas":
-    c1,c2=st.columns(2)
-    home=c1.selectbox("Domácí",teams)
-    away_opts=[t for t in teams if t!=home]
-    away=c2.selectbox("Hosté",away_opts)
-    c3,c4=st.columns(2)
-    md=c3.date_input("Datum analýzy",value=date.today())
-    ss=c4.text_input("Sezóna",season)
-
-    auto_ref=""
-    match_round=None
-    try:
-        sch=load_fixtures(ss,auto_sync=False)
-        # Prefer exact fixture identity; date can move after TV scheduling.
-        q=sch[(sch.home_team==home)&(sch.away_team==away)]
-        if len(q):
-            row=q.iloc[0]
-            match_round=int(row.match_round)
-            # Keep the official schedule date synced into the scoring identity.
-            official_date=pd.to_datetime(row.match_date).date()
-            if md != official_date:
-                st.caption(f"ℹ️ Rozpis: {official_date.strftime('%d.%m.%Y')} · kolo {match_round}")
-            try: sync_officials(match_round)
-            except Exception: pass
-            auto_ref=referee_for_match(home,away,match_round)
-    except Exception:
-        pass
-
-    score_date=official_date if "official_date" in locals() and match_round is not None else md
-    choices=referee_choices(ref_hist,auto_ref)
-    if auto_ref:
-        ref=st.selectbox("Rozhodčí",choices,index=choices.index(auto_ref),
-                         format_func=lambda x: referee_display(x,REF_IMPACTS),
-                         help="Automaticky načtený z delegace. Můžeš ho ručně změnit.")
-        st.caption("✓ Rozhodčí doplněn automaticky")
-    else:
-        opts=["— zatím neurčen —"]+choices
-        selected=st.selectbox("Rozhodčí",opts,index=0,format_func=lambda x: x if x.startswith("—") else referee_display(x,REF_IMPACTS))
-        ref="" if selected.startswith("—") else selected
-        st.caption("Delegace zatím nebyla nalezena. Model použije neutrální doplnění chybějících referee metrik.")
+    home,away,score_date,ss,ref,match_round=select_current_match()
 
     # Independent read-only context: never use a manually simulated model referee.
     try:

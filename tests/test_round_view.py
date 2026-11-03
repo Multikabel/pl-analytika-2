@@ -23,6 +23,8 @@ class RoundViewTests(unittest.TestCase):
                          load_fixtures=Mock(return_value=frame),
                          current_round=Mock(return_value=(6,frame)),
                          sync_officials=Mock(), referee_for_match=referee)
+        helper=next(n for n in source.body if isinstance(n,ast.FunctionDef) and n.name=='load_current_round_view')
+        exec(compile(ast.Module(body=[helper],type_ignores=[]),'round-loader','exec'),namespace)
         exec(compile(ast.Module(body=branch.body,type_ignores=[]),'round-view','exec'),namespace)
         namespace['sync_officials'].assert_called_once_with(6)
         st.subheader.assert_called_once_with('Kolo 6')
