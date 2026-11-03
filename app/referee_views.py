@@ -118,14 +118,17 @@ def history_chart(data, metric, short_team_name):
     if data.empty:
         return None
     values, labels = [], []
+    team_view = 'Tým' in data.columns
+    context_fields = ['Tým', 'Prostředí', 'Pohled'] if team_view else ['Rozhodčí']
     for i, r in data.iterrows():
-        labels.append(f"{short_team_name(r['Domácí'])} – {short_team_name(r['Hosté'])}")
+        labels.append(f"{short_team_name(r['Soupeř'])} ({'D' if r['venue']=='H' else 'V'})" if team_view
+                      else f"{short_team_name(r['Domácí'])} – {short_team_name(r['Hosté'])}")
         values.append({'order': int(i), 'Datum': r.Datum.strftime('%d.%m.%Y'), 'Čas': r['Čas'],
                        'Domácí': r['Domácí'], 'Hosté': r['Hosté'], 'Výsledek': r['Výsledek'],
-                       'Rozhodčí': r['Rozhodčí'], 'Statistika': metric,
+                       **{k: r[k] for k in context_fields}, 'Statistika': metric,
                        **{k: float(r[k]) for k in ['Hodnota', 'Průměr', 'Rozdíl']}, 'Kategorie': r['Kategorie']})
     mean = values[0]['Průměr']
-    tooltip = [{'field': k, 'type': 'nominal'} for k in ['Datum', 'Čas', 'Domácí', 'Hosté', 'Výsledek', 'Rozhodčí', 'Statistika']]
+    tooltip = [{'field': k, 'type': 'nominal'} for k in ['Datum', 'Čas', 'Domácí', 'Hosté', 'Výsledek', *context_fields, 'Statistika']]
     tooltip += [{'field': k, 'type': 'quantitative', 'format': '.0f' if k == 'Hodnota' else '+.1f' if k == 'Rozdíl' else '.1f'} for k in ['Hodnota', 'Průměr', 'Rozdíl']]
     tooltip += [{'field': 'Kategorie', 'type': 'nominal'}]
     return {'$schema': 'https://vega.github.io/schema/vega-lite/v5.json',
@@ -149,8 +152,8 @@ def history_chart(data, metric, short_team_name):
             'config': {'view': {'stroke': None}}}
 
 
-def render_history(st, history, metric, short_team_name):
-    data = match_history(history, metric)
+def render_history(st, history, metric, short_team_name, value_column=None):
+    data = match_history(history, value_column or metric)
     if data.empty:
         st.info('Pro zvolenou statistiku nejsou dostupná platná pozorování.')
         return
@@ -159,9 +162,12 @@ def render_history(st, history, metric, short_team_name):
     last = data.tail(5)
     mean = data['Průměr'].iloc[0]
     recent = last.Hodnota.mean()
-    st.caption(f'Posledních {len(last)} platných utkání · průměr {recent:.1f} · sezona {mean:.1f} · rozdíl {recent-mean:+.1f}')
-    display = last[['Datum', 'Domácí', 'Hosté', 'Hodnota', 'Rozdíl', 'Kategorie']].copy()
-    for c in ['Domácí', 'Hosté']:
+    team_view = 'Tým' in data.columns
+    reference = 'aktuální filtry' if team_view else 'sezona'
+    st.caption(f'Posledních {len(last)} platných utkání · průměr {recent:.1f} · {reference} {mean:.1f} · rozdíl {recent-mean:+.1f}')
+    context = ['Soupeř', 'Prostředí'] if team_view else ['Domácí', 'Hosté']
+    display = last[['Datum', *context, 'Hodnota', 'Rozdíl', 'Kategorie']].copy()
+    for c in (['Soupeř'] if team_view else ['Domácí', 'Hosté']):
         display[c] = display[c].map(short_team_name)
     st.dataframe(display, hide_index=True, use_container_width=True,
                  column_config={'Datum': st.column_config.DateColumn(format='DD.MM.YYYY'),

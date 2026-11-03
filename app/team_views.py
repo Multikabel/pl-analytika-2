@@ -2,9 +2,11 @@
 import pandas as pd
 
 if __package__:
-    from .referee_views import METRICS, count, match_statistics, summarize
+    from .referee_views import METRICS, count, match_statistics, summarize, render_history
+    from .data_views import short_team_name
 else:
-    from referee_views import METRICS, count, match_statistics, summarize
+    from referee_views import METRICS, count, match_statistics, summarize, render_history
+    from data_views import short_team_name
 
 PERSPECTIVES = ['PRO', 'PROTI', 'CELKEM']
 ENVIRONMENTS = {'Vše': None, 'Doma': 'H', 'Venku': 'A'}
@@ -74,6 +76,18 @@ def team_detail(data, season, team, perspective, environment):
     return pd.DataFrame(summary), pd.DataFrame(comparison), selected
 
 
+def team_chart_context(history, perspective):
+    """Add actual home/away context; retain 5A's team-oriented score unchanged."""
+    data = history.copy()
+    home = data.venue.eq('H')
+    data['Domácí'] = data['Tým'].where(home, data['Soupeř'])
+    data['Hosté'] = data['Soupeř'].where(home, data['Tým'])
+    data['Výsledek'] = [score if venue == 'H' else ':'.join(reversed(score.split(':')))
+                        for score, venue in zip(data['Výsledek'], data.venue)]
+    data['Pohled'] = perspective
+    return data
+
+
 def render_teams(st, matches, teams):
     seasons = sorted(matches.season.dropna().astype(str).unique(), reverse=True)
     if not seasons:
@@ -98,6 +112,8 @@ def render_teams(st, matches, teams):
     st.caption('Liga: každé utkání jednou.' if perspective == 'CELKEM' else 'Liga: platná týmová pozorování odpovídající prostředí a pohledu.')
     st.dataframe(comparison, hide_index=True, use_container_width=True,
                  column_config={c: st.column_config.NumberColumn(format='+%.1f' if c == 'Rozdíl' else '%.1f') for c in ['Tým', 'Liga', 'Rozdíl']})
+    render_history(st, team_chart_context(history, perspective), metric, short_team_name,
+                   value_column=f'{metric} {perspective}')
     # Selected metric first; all nine perspectives remain available by horizontal scrolling.
     stats = [f'{metric} {p}' for p in PERSPECTIVES] + [c for c in STAT_COLUMNS if not c.startswith(metric+' ')]
     display = history[['Datum', 'Soupeř', 'Prostředí', 'Výsledek', *stats]]

@@ -114,12 +114,13 @@ class TeamViewsTests(unittest.TestCase):
     def test_ui_all_filters_and_all_history_columns(self):
         for p in ['PRO','PROTI','CELKEM']:
             for e in ['Vše','Doma','Venku']:
-                st=SimpleNamespace(info=Mock(),caption=Mock(),dataframe=Mock(),
+                st=SimpleNamespace(info=Mock(),caption=Mock(),dataframe=Mock(),vega_lite_chart=Mock(),
                     selectbox=Mock(side_effect=lambda label,opts,**k:opts[0]),
                     segmented_control=Mock(side_effect=lambda label,*a,**k:{'Statistika':'Rohy','Pohled':p,'Prostředí':e}[label]),
                     column_config=SimpleNamespace(NumberColumn=Mock(),DateColumn=Mock()))
                 render_teams(st,self.matches,self.teams)
-                self.assertEqual(st.dataframe.call_count,4)
+                self.assertEqual(st.dataframe.call_count,6)
+                st.vega_lite_chart.assert_called_once()
                 self.assertEqual(len(st.dataframe.call_args.args[0].columns),13)
                 self.assertEqual(st.dataframe.call_args_list[1].args[0]['Statistika'].tolist(),['Fauly','Žluté karty','Rohy'])
 
