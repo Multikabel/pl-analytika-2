@@ -15,14 +15,14 @@ class NavigationTests(unittest.TestCase):
         nav=next(n for n in self.tree.body if isinstance(n,ast.Assign)
                  and any(isinstance(t,ast.Name) and t.id=='nav' for t in n.targets))
         self.assertEqual(ast.literal_eval(nav.value.args[1]),
-                         ['Kolo','Zápas','Cross-TAB','Rozhodčí','Data'])
+                         ['Kolo','Zápas','Cross-TAB','Rozhodčí','Týmy'])
 
     def test_no_removed_page_routes(self):
         routes=[n.test for n in ast.walk(self.tree) if isinstance(n,ast.If)
                 and any(isinstance(x,ast.Name) and x.id=='nav' for x in ast.walk(n.test))]
         values={x.value for r in routes for x in ast.walk(r) if isinstance(x,ast.Constant)}
-        self.assertFalse({'Tipy','Statistiky'} & values)
-        self.assertTrue({'Kolo','Zápas','Cross-TAB','Rozhodčí','Data'} <= values)
+        self.assertFalse({'Tipy','Statistiky','Data'} & values)
+        self.assertTrue({'Kolo','Zápas','Cross-TAB','Rozhodčí','Týmy'} <= values)
 
     def test_match_retains_selection_scoring_and_save(self):
         match=next(n for n in ast.walk(self.tree) if isinstance(n,ast.If)

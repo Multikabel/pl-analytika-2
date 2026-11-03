@@ -260,10 +260,10 @@ REF_IMPACTS=impact_lookup(season)
 
 st.title("⚽ PL Analytika 2.0")
 
-nav=st.segmented_control("Pohled",["Kolo","Zápas","Cross-TAB","Rozhodčí","Data"],default="Kolo",label_visibility="collapsed")
+nav=st.segmented_control("Pohled",["Kolo","Zápas","Cross-TAB","Rozhodčí","Týmy"],default="Kolo",label_visibility="collapsed")
 if nav is None: nav="Kolo"
 
-if nav!="Kolo":
+if nav not in {"Kolo", "Týmy"}:
     with st.expander("⚙️ Filtry",expanded=False):
         min_fair=st.number_input(
             "Minimální modelový fair kurz",
@@ -487,114 +487,13 @@ elif nav in {"Cross-TAB", "Rozhodčí"}:
     except (OSError, ValueError, KeyError, IndexError) as exc:
         st.warning(f"Analytický pohled není dostupný: {exc}")
 
-elif nav=="Data":
-    st.subheader("🗂️ Data")
-    st.caption(f"Aktuální sezóna {season} · bez historických sezón")
-    data_mode=st.segmented_control("Datový pohled",["Týmy","Rozhodčí"],default="Týmy",label_visibility="collapsed")
+elif nav=="Týmy":
+    st.subheader("Týmy")
+    try:
+        from team_views import render_teams
+        render_teams(st, pd.read_csv(TABLES/"matches.csv"), pd.read_csv(TABLES/"team_match_stats.csv"))
+    except (OSError, ValueError, KeyError, IndexError) as exc:
+        st.warning(f"Týmový přehled není dostupný: {exc}")
 
-    if data_mode=="Týmy":
-        H_current=H[H.season.astype(str)==str(season)].copy()
-        selected_team=st.selectbox("Tým",sorted(H_current.team.dropna().astype(str).unique()),key="data_team")
-        view=st.segmented_control("Zobrazení",["Tabulka","Grafy"],default="Tabulka",key="data_team_view")
-        g=H_current[H_current.team.astype(str)==selected_team].sort_values(["match_date","match_id"]).copy()
-        g["Soupeř"]=g.opponent.astype(str)
-        g["Výsledek"]=g.apply(lambda r: f"{int(r.goals_for)}:{int(r.goals_against)}",axis=1)
-        if view=="Tabulka":
-            out=pd.DataFrame({
-                "Soupeř":g["Soupeř"],"Výsl.":g["Výsledek"],
-                "F+":pd.to_numeric(g.fouls_committed,errors="coerce"),"F-":pd.to_numeric(g.fouls_suffered,errors="coerce"),
-                "ŽK+":pd.to_numeric(g.yellow_cards,errors="coerce"),"ŽK-":pd.to_numeric(g.yellow_cards_opponent,errors="coerce"),
-                "R+":pd.to_numeric(g.corners_for,errors="coerce"),"R-":pd.to_numeric(g.corners_against,errors="coerce"),
-            })
-            st.dataframe(
-                out,use_container_width=True,hide_index=True,height=650,
-                column_config={
-                    "Soupeř":st.column_config.TextColumn("Soupeř",width="medium"),
-                    "Výsl.":st.column_config.TextColumn("Výsl.",width="small"),
-                    "F+":st.column_config.NumberColumn("F+",width="small"),
-                    "F-":st.column_config.NumberColumn("F-",width="small"),
-                    "ŽK+":st.column_config.NumberColumn("ŽK+",width="small"),
-                    "ŽK-":st.column_config.NumberColumn("ŽK-",width="small"),
-                    "R+":st.column_config.NumberColumn("R+",width="small"),
-                    "R-":st.column_config.NumberColumn("R-",width="small"),
-                }
-            )
-        else:
-            chart=g.copy(); chart["Osa"]=chart.opponent.astype(str)
-            st.markdown("#### Fauly")
-            paired_bar_chart(chart,"Osa","fouls_committed","fouls_suffered","Pro","Proti")
-            st.markdown("#### Karty")
-            paired_bar_chart(chart,"Osa","yellow_cards","yellow_cards_opponent","Pro","Proti")
-            st.markdown("#### Rohy")
-            paired_bar_chart(chart,"Osa","corners_for","corners_against","Pro","Proti")
-            st.caption("Zápasy jsou shora od nejstaršího po nejnovější. Dvě lišty oddělují hodnoty Pro a Proti.")
-
-    else:
-        RM=referee_matches()
-        RM=RM[RM.season.astype(str)==str(season)].copy() if not RM.empty else RM
-        if RM.empty:
-            st.info("Nejsou dostupná data rozhodčích.")
-        else:
-            refs=sorted(RM.referee_key.dropna().astype(str).unique())
-            selected_ref=st.selectbox("Rozhodčí",refs,format_func=lambda x: referee_display(x,REF_IMPACTS),key="data_ref")
-            imp=REF_IMPACTS.get(selected_ref)
-            if imp is not None:
-                c1,c2=st.columns(2)
-                c1.metric("Dopad na fauly",f"{float(imp['fouls_impact']):+.1f}".replace('.',','))
-                c2.metric("Dopad na karty",f"{float(imp['cards_impact']):+.1f}".replace('.',','))
-                detail=pd.DataFrame(imp.get("season_detail",[]))
-                if len(detail):
-                    detail=detail.sort_values("season")
-                    dd=pd.DataFrame({
-                        "Sezóna":detail.season,"Zápasů":detail.matches,
-                        "Fauly rozhodčí Ø":detail.fouls_avg.round(2),"Liga Ø":detail.league_fouls_avg.round(2),"Rozdíl fauly":detail.fouls_delta.round(2),
-                        "Karty rozhodčí Ø":detail.cards_avg.round(2),"Liga karty Ø":detail.league_cards_avg.round(2),"Rozdíl karty":detail.cards_delta.round(2),
-                    })
-                    with st.expander("Výpočet po sezónách"):
-                        st.dataframe(dd,use_container_width=True,hide_index=True)
-                        st.caption("Celkový dopad používá váhy 50 % aktuální sezóna, 30 % minulá, 20 % předminulá. Pokud sezóna chybí, dostupné váhy se poměrně přepočítají.")
-
-            view=st.segmented_control("Zobrazení",["Tabulka","Grafy"],default="Tabulka",key="data_ref_view")
-            g=RM[RM.referee_key==selected_ref].sort_values(["match_date","match_id"]).copy()
-            g["Zápas"]=g.home_team.astype(str)+" – "+g.away_team.astype(str)
-            # Score is joined from H so referee table includes the result as requested.
-            home_rows=H[(H.season.astype(str)==str(season))&(H.venue=="H")][["match_id","goals_for","goals_against"]].drop_duplicates("match_id")
-            g=g.merge(home_rows,on="match_id",how="left")
-            g["Výsledek"]=g.apply(lambda r: f"{int(r.goals_for)}:{int(r.goals_against)}" if pd.notna(r.goals_for) and pd.notna(r.goals_against) else "—",axis=1)
-            if view=="Tabulka":
-                out=pd.DataFrame({
-                    "Zápas":g["Zápas"],"Výsl.":g["Výsledek"],
-                    "F D":pd.to_numeric(g.home_fouls,errors="coerce"),"F H":pd.to_numeric(g.away_fouls,errors="coerce"),
-                    "ŽK D":pd.to_numeric(g.home_yellow,errors="coerce"),"ŽK H":pd.to_numeric(g.away_yellow,errors="coerce"),
-                })
-                # Corners live in the two team rows; join them for the same match-level logic.
-                corners=H[H.season.astype(str)==str(season)].pivot_table(index="match_id",columns="venue",values="corners_for",aggfunc="first").rename(columns={"H":"R D","A":"R H"}).reset_index()
-                out=out.join(g[["match_id"]].reset_index(drop=True)).merge(corners,on="match_id",how="left").drop(columns="match_id")
-                st.dataframe(
-                    out,use_container_width=True,hide_index=True,height=650,
-                    column_config={
-                        "Zápas":st.column_config.TextColumn("Zápas",width="medium"),
-                        "Výsl.":st.column_config.TextColumn("Výsl.",width="small"),
-                        "F D":st.column_config.NumberColumn("F D",width="small"),
-                        "F H":st.column_config.NumberColumn("F H",width="small"),
-                        "ŽK D":st.column_config.NumberColumn("ŽK D",width="small"),
-                        "ŽK H":st.column_config.NumberColumn("ŽK H",width="small"),
-                        "R D":st.column_config.NumberColumn("R D",width="small"),
-                        "R H":st.column_config.NumberColumn("R H",width="small"),
-                    }
-                )
-            else:
-                corners=H[H.season.astype(str)==str(season)].pivot_table(index="match_id",columns="venue",values="corners_for",aggfunc="first")
-                g=g.join(corners,on="match_id",rsuffix="_corner")
-                g["Osa"]=g.home_team.astype(str)+"–"+g.away_team.astype(str)
-                st.markdown("#### Fauly")
-                paired_bar_chart(g,"Osa","home_fouls","away_fouls","Domácí","Hosté")
-                st.markdown("#### Karty")
-                paired_bar_chart(g,"Osa","home_yellow","away_yellow","Domácí","Hosté")
-                if "H" in g.columns and "A" in g.columns:
-                    st.markdown("#### Rohy")
-                    paired_bar_chart(g,"Osa","H","A","Domácí","Hosté")
-                st.caption("Zápasy jsou shora od nejstaršího po nejnovější.")
-
-if nav != "Rozhodčí":
+if nav not in {"Rozhodčí", "Týmy"}:
     st.caption("Fair kurz = modelový kurz, nikoli aktuální nabídka bookmakera. Bookmaker value scanner bude další vrstva.")
