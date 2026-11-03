@@ -481,36 +481,9 @@ elif nav in {"Cross-TAB", "Rozhodčí"}:
                                "Tým": st.column_config.TextColumn("Tým", width=105),
                                **{c: st.column_config.TextColumn(c, width=37) for c in TEAM_COLUMNS}})
         else:
-            refs = pd.read_csv(TABLES/"referee_match_stats.csv")
-            refs["referee"] = refs.referee.map(canonical_referee)
-            summary = build_referee_summary(refs, view_season)
-            st.caption(f"Aktuální sezona {view_season}")
-            ref_config = {c: st.column_config.NumberColumn(c, width=48, format="%.1f") for c in REF_COLUMNS}
-            ref_config["Zápasy"] = st.column_config.NumberColumn("Z", width=38, format="%d")
-            ref_config["Rozhodčí"] = st.column_config.TextColumn("Rozhodčí", width=120)
-            if summary.empty:
-                st.info("Nejsou dostupná data rozhodčích aktuální sezony.")
-            else:
-                st.dataframe(summary, use_container_width=True, hide_index=True, column_config=ref_config)
-                selected_ref = st.selectbox("Detail rozhodčího", [None, *summary["Rozhodčí"].tolist()],
-                    format_func=lambda x: "Vyber rozhodčího" if x is None else x, key="referee_detail")
-                if selected_ref is not None:
-                    periods, detail = build_referee_detail(refs, view_season, selected_ref)
-                    st.dataframe(periods, use_container_width=True, hide_index=True,
-                        column_config={"Období": st.column_config.TextColumn("Období", width=130),
-                            "Zápasy": st.column_config.NumberColumn("Z", width=35, format="%d"),
-                            **{c: st.column_config.NumberColumn(c, width=42, format="%.1f") for c in REF_COLUMNS}})
-                    styles = referee_cell_styles(detail, periods.iloc[0])
-                    display = detail.copy()
-                    for column in ["Domácí", "Hosté"]:
-                        display[column] = display[column].map(short_team_name)
-                    st.dataframe(display.style.apply(lambda _: styles, axis=None),
-                        use_container_width=True, hide_index=True,
-                        column_config={"Datum": st.column_config.DateColumn("Datum", format="DD.MM.YYYY", width=72),
-                            "Domácí": st.column_config.TextColumn("Domácí", width=85),
-                            "Hosté": st.column_config.TextColumn("Hosté", width=85),
-                            **{c: st.column_config.NumberColumn(c, width=36, format="%d") for c in ["F D", "F H", "ŽK D", "ŽK H"]}})
-                    st.caption("Barvy vůči sezonnímu průměru rozhodčího: zelená = nad · červená = pod. Barvy nehodnotí dobrý/špatný výkon.")
+            from referee_views import render_referees
+            render_referees(st, pd.read_csv(TABLES/"matches.csv"), current_history,
+                            canonical_referee, short_team_name)
     except (OSError, ValueError, KeyError, IndexError) as exc:
         st.warning(f"Analytický pohled není dostupný: {exc}")
 
