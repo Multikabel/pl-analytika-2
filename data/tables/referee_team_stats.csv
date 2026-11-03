@@ -1388,11 +1388,13 @@
 2026-27,A Herczeg,Crystal Palace,1,12.0,10.0,3.0,2.0,0.0
 2026-27,A Herczeg,Fulham,1,11.0,9.0,2.0,0.0,0.0
 2026-27,A Herczeg,Leeds,1,10.0,12.0,2.0,3.0,0.0
+2026-27,A Madley,Arsenal,1,10.0,18.0,4.0,4.0,0.0
 2026-27,A Madley,Aston Villa,1,11.0,16.0,2.0,5.0,0.0
 2026-27,A Madley,Brentford,1,10.0,7.0,2.0,0.0,0.0
 2026-27,A Madley,Chelsea,1,7.0,10.0,0.0,2.0,0.0
 2026-27,A Madley,Coventry,1,14.0,15.0,3.0,1.0,0.0
 2026-27,A Madley,Crystal Palace,1,8.0,11.0,1.0,2.0,0.0
+2026-27,A Madley,Liverpool,1,18.0,10.0,4.0,4.0,0.0
 2026-27,A Madley,Manchester City,1,11.0,8.0,2.0,1.0,0.0
 2026-27,A Madley,Nottingham Forest,1,16.0,11.0,5.0,2.0,0.0
 2026-27,A Madley,Tottenham,1,15.0,14.0,1.0,3.0,0.0
@@ -1410,12 +1412,15 @@
 2026-27,C Pawson,Aston Villa,1,7.0,24.0,2.0,5.0,0.0
 2026-27,C Pawson,Bournemouth,1,16.0,7.0,3.0,2.0,0.0
 2026-27,C Pawson,Brentford,1,24.0,7.0,5.0,2.0,0.0
+2026-27,C Pawson,Brighton & Hove Albion,1,13.0,9.0,3.0,0.0,0.0
 2026-27,C Pawson,Ipswich,1,12.0,7.0,3.0,1.0,0.0
+2026-27,C Pawson,Manchester City,1,9.0,13.0,0.0,3.0,0.0
 2026-27,C Pawson,Manchester United,1,7.0,12.0,1.0,3.0,0.0
 2026-27,C Pawson,Nottingham Forest,1,22.0,14.0,2.0,2.0,0.0
 2026-27,C Pawson,Sunderland,1,7.0,16.0,2.0,3.0,1.0
 2026-27,C Pawson,Tottenham,1,14.0,22.0,2.0,2.0,0.0
 2026-27,D England,Arsenal,1,11.0,13.0,1.0,4.0,0.0
+2026-27,D England,Brentford,1,6.0,17.0,1.0,3.0,0.0
 2026-27,D England,Brighton & Hove Albion,1,13.0,11.0,4.0,1.0,0.0
 2026-27,D England,Everton,1,8.0,14.0,2.0,0.0,0.0
 2026-27,D England,Hull,1,10.0,9.0,2.0,1.0,0.0
@@ -1423,6 +1428,7 @@
 2026-27,D England,Leeds,1,16.0,5.0,2.0,2.0,0.0
 2026-27,D England,Liverpool,1,13.0,6.0,3.0,1.0,0.0
 2026-27,D England,Manchester United,2,7.0,13.0,1.5,2.0,0.0
+2026-27,D England,Nottingham Forest,1,17.0,6.0,3.0,1.0,0.0
 2026-27,D England,Tottenham,1,14.0,8.0,0.0,2.0,0.0
 2026-27,F Hallam,Chelsea,1,7.0,12.0,1.0,5.0,0.0
 2026-27,F Hallam,Hull,1,12.0,7.0,5.0,1.0,0.0
@@ -1458,24 +1464,27 @@
 2026-27,M Oliver,Brentford,1,17.0,14.0,1.0,1.0,0.0
 2026-27,M Oliver,Brighton & Hove Albion,1,12.0,6.0,3.0,1.0,0.0
 2026-27,M Oliver,Chelsea,1,6.0,12.0,1.0,3.0,0.0
+2026-27,M Oliver,Crystal Palace,1,10.0,8.0,1.0,1.0,1.0
 2026-27,M Oliver,Hull,1,10.0,5.0,2.0,0.0,0.0
 2026-27,M Oliver,Liverpool,1,13.0,11.0,2.0,1.0,0.0
 2026-27,M Oliver,Manchester City,1,10.0,17.0,2.0,1.0,1.0
 2026-27,M Oliver,Manchester United,1,17.0,10.0,1.0,2.0,0.0
 2026-27,M Oliver,Nottingham Forest,1,14.0,8.0,1.0,1.0,0.0
-2026-27,M Oliver,Tottenham,1,14.0,17.0,1.0,1.0,0.0
+2026-27,M Oliver,Tottenham,2,11.0,13.5,1.0,1.0,0.0
+2026-27,M Salisbury,Bournemouth,1,12.0,15.0,2.0,2.0,0.0
 2026-27,M Salisbury,Everton,1,4.0,15.0,0.0,2.0,0.0
 2026-27,M Salisbury,Fulham,1,15.0,10.0,2.0,0.0,0.0
 2026-27,M Salisbury,Hull,1,15.0,4.0,2.0,0.0,0.0
-2026-27,M Salisbury,Leeds,1,8.0,13.0,1.0,2.0,0.0
+2026-27,M Salisbury,Leeds,2,11.5,12.5,1.5,2.0,0.0
 2026-27,M Salisbury,Newcastle United,1,13.0,8.0,2.0,1.0,0.0
 2026-27,M Salisbury,Sunderland,1,10.0,15.0,0.0,2.0,0.0
 2026-27,P Bankes,Aston Villa,2,16.0,14.5,3.5,3.0,0.5
 2026-27,P Bankes,Brighton & Hove Albion,1,12.0,11.0,2.0,3.0,0.0
+2026-27,P Bankes,Chelsea,1,8.0,20.0,1.0,6.0,0.0
 2026-27,P Bankes,Crystal Palace,1,11.0,10.0,2.0,2.0,0.0
 2026-27,P Bankes,Fulham,1,9.0,5.0,3.0,0.0,0.0
 2026-27,P Bankes,Manchester City,1,17.0,21.0,4.0,4.0,0.0
-2026-27,P Bankes,Manchester United,1,5.0,9.0,0.0,3.0,0.0
+2026-27,P Bankes,Manchester United,2,12.5,8.5,3.0,2.0,0.5
 2026-27,P Bankes,Newcastle United,1,9.0,15.0,2.0,1.0,0.0
 2026-27,P Bankes,Nottingham Forest,1,10.0,11.0,2.0,2.0,0.0
 2026-27,P Bankes,Tottenham,1,15.0,9.0,1.0,2.0,0.0
@@ -1506,15 +1515,17 @@
 2026-27,S Attwell,Newcastle United,1,16.0,15.0,5.0,3.0,0.0
 2026-27,S Attwell,Sunderland,1,10.0,14.0,1.0,2.0,0.0
 2026-27,S Attwell,Tottenham,1,16.0,13.0,3.0,4.0,1.0
-2026-27,S Barrott,Aston Villa,1,13.0,9.0,2.0,1.0,0.0
+2026-27,S Barrott,Aston Villa,2,10.0,10.5,1.5,2.0,0.0
 2026-27,S Barrott,Bournemouth,1,15.0,7.0,4.0,0.0,0.0
 2026-27,S Barrott,Brighton & Hove Albion,1,9.0,13.0,2.0,0.0,0.0
 2026-27,S Barrott,Chelsea,1,7.0,15.0,0.0,4.0,0.0
 2026-27,S Barrott,Crystal Palace,1,7.0,6.0,0.0,0.0,0.0
-2026-27,S Barrott,Fulham,1,6.0,7.0,0.0,0.0,0.0
+2026-27,S Barrott,Fulham,2,9.0,7.0,1.5,0.5,0.0
 2026-27,S Barrott,Liverpool,2,13.0,9.5,2.0,2.0,0.0
 2026-27,S Barrott,Nottingham Forest,1,10.0,13.0,2.0,4.0,0.0
 2026-27,S Barrott,Tottenham,1,9.0,13.0,1.0,2.0,0.0
+2026-27,S Hooper,Coventry,1,16.0,9.0,2.0,2.0,0.0
+2026-27,S Hooper,Sunderland,1,9.0,16.0,2.0,2.0,1.0
 2026-27,T Bramall,Arsenal,1,10.0,13.0,1.0,1.0,0.0
 2026-27,T Bramall,Brentford,1,19.0,9.0,3.0,2.0,0.0
 2026-27,T Bramall,Brighton & Hove Albion,1,12.0,8.0,1.0,0.0,1.0
@@ -1532,3 +1543,5 @@
 2026-27,T Harrington,Hull,1,10.0,4.0,4.0,1.0,0.0
 2026-27,T Harrington,Leeds,1,5.0,13.0,0.0,4.0,0.0
 2026-27,T Harrington,Newcastle United,1,4.0,10.0,1.0,4.0,0.0
+2026-27,T Kirk,Hull,1,13.0,12.0,3.0,3.0,0.0
+2026-27,T Kirk,Ipswich,1,12.0,13.0,3.0,3.0,0.0
