@@ -203,13 +203,14 @@ st.title("⚽ PL Analytika 2.0")
 nav=st.segmented_control("Pohled",["Kolo","Zápas","Tipy","Statistiky","Cross-TAB","Rozhodčí","Data"],default="Kolo",label_visibility="collapsed")
 if nav is None: nav="Kolo"
 
-with st.expander("⚙️ Filtry",expanded=False):
-    min_fair=st.number_input(
-        "Minimální modelový fair kurz",
-        min_value=1.20,max_value=10.0,value=2.00,step=.05,
-        help="Dokud nepřipojíme skutečné bookmaker kurzy, filtrujeme modelový fair kurz. Bookmaker kurz ≥ 2,00 bude v další value vrstvě."
-    )
-    st.caption("🎯 Tvoje výchozí preference je 2,00+. Skutečný bookmaker kurz zatím není napojený, proto je sloupec označen jako Fair.")
+if nav!="Kolo":
+    with st.expander("⚙️ Filtry",expanded=False):
+        min_fair=st.number_input(
+            "Minimální modelový fair kurz",
+            min_value=1.20,max_value=10.0,value=2.00,step=.05,
+            help="Dokud nepřipojíme skutečné bookmaker kurzy, filtrujeme modelový fair kurz. Bookmaker kurz ≥ 2,00 bude v další value vrstvě."
+        )
+        st.caption("🎯 Tvoje výchozí preference je 2,00+. Skutečný bookmaker kurz zatím není napojený, proto je sloupec označen jako Fair.")
 
 if nav=="Kolo":
     completed=H[(H.season==season)&(H.venue=="H")][["team","opponent"]].rename(columns={"team":"home_team","opponent":"away_team"})
@@ -221,68 +222,29 @@ if nav=="Kolo":
     except Exception as e:
         st.error(f"Rozlosování se nepodařilo načíst: {e}"); st.stop()
 
-    d1=pd.to_datetime(round_df.match_date).min().strftime("%d.%m.")
-    d2=pd.to_datetime(round_df.match_date).max().strftime("%d.%m.")
-    c1,c2,c3=st.columns(3)
-    c1.metric("Kolo",rnd); c2.metric("Termín",f"{d1}–{d2}"); c3.metric("Zbývá",int((~round_df.played).sum()))
-
-    future=round_df[~round_df.played].copy()
-    if len(future):
-        if st.button("⚡ Spočítat zbývající zápasy",type="primary",use_container_width=True):
-            fixtures=[]
-            for _,r in future.iterrows():
-                ref=referee_for_match(r.home_team,r.away_team,rnd)
-                fixtures.append({"home_team":r.home_team,"away_team":r.away_team,
-                                 "match_date":r.match_date,"season":season,"referee":ref})
-            with st.spinner("Počítám celé kolo…"):
-                st.session_state.round_score=score_fixtures(fixtures)
-                st.session_state.round_no=rnd
-                try:
-                    added_stats=snapshot_model_predictions(
-                        st.session_state.round_score,
-                        match_round=rnd,
-                        model_version="count-models-v1.6",
-                    )
-                    if added_stats:
-                        st.toast(f"Do Statistik uloženo {added_stats} nových predikcí.")
-                except Exception as e:
-                    st.warning(f"Predikce byly spočítány, ale nepodařilo se uložit Statistiky: {e}")
-
-    score=st.session_state.get("round_score")
-    selected_parts=[]
-    for _,r in round_df.iterrows():
+    st.subheader(f"Kolo {rnd}")
+    if len(round_df)!=10:
+        st.warning(f"Rozpis kola není kompletní: {len(round_df)}/10 zápasů.")
+    view=round_df.copy()
+    view["_date"]=pd.to_datetime(view.match_date,errors="coerce")
+    view["_time"]=pd.to_timedelta(view.kickoff_time.fillna("").astype(str)+":00",errors="coerce")
+    view=view.sort_values(["_date","_time"],kind="stable",na_position="last")
+    rows=[]
+    for _,r in view.iterrows():
         ref=referee_for_match(r.home_team,r.away_team,rnd)
-        status="✅ Odehráno" if r.played else "🕒 Čeká"
-        st.markdown(
-            f'<div class="match-card"><b>{r.home_team} – {r.away_team}</b><br>'
-            f'<span class="muted">{pd.to_datetime(r.match_date).strftime("%d.%m. %Y")} · '
-            f'{r.kickoff_time if pd.notna(r.kickoff_time) and r.kickoff_time else ""} · {status}<br>'
-            f'👨‍⚖️ {referee_display(ref,REF_IMPACTS)}</span></div>',
-            unsafe_allow_html=True
-        )
-        if isinstance(score,pd.DataFrame) and st.session_state.get("round_no")==rnd and not r.played:
-            sx=score[(score.home_team==r.home_team)&(score.away_team==r.away_team)]
-            cand=best_high_odds_lines(sx,min_fair)
-            picked=selectable_tip_table(cand,f"{rnd}_{r.home_team}_{r.away_team}")
-            if len(picked): selected_parts.append(picked)
-
-    if isinstance(score,pd.DataFrame) and st.session_state.get("round_no")==rnd:
-        chosen=pd.concat(selected_parts,ignore_index=True) if selected_parts else pd.DataFrame()
-        invalid_odds = (
-            len(chosen)>0 and
-            ("bookmaker_odds" not in chosen.columns or
-             pd.to_numeric(chosen["bookmaker_odds"],errors="coerce").isna().any() or
-             (pd.to_numeric(chosen["bookmaker_odds"],errors="coerce")<=1.0).any())
-        )
-        st.divider()
-        st.caption(f"Vybráno: {len(chosen)}. U každého uloženého tipu musí být zadaný skutečný kurz.")
-        if invalid_odds:
-            st.warning("Doplň aktuální kurz u všech zaškrtnutých tipů.")
-        if st.button(f"💾 Uložit vybrané tipy ({len(chosen)})",type="primary",
-                     use_container_width=True,disabled=(len(chosen)==0 or invalid_odds)):
-            added=archive_selected_predictions(chosen,rnd,"count-models-v1.1","manual")
-            if added: st.success(f"Uloženo {added} nových tipů včetně skutečných kurzů.")
-            else: st.info("Vybrané tipy už jsou uložené.")
+        day=r["_date"].strftime("%d.%m.%Y") if pd.notna(r["_date"]) else "Termín neurčen"
+        time=str(r.kickoff_time).strip() if pd.notna(r.kickoff_time) else ""
+        rows.append({"Datum / čas":f"{day} {time}".strip(),
+                     "Domácí":r.home_team,"Hosté":r.away_team,
+                     "Rozhodčí":str(ref).strip() if pd.notna(ref) and str(ref).strip() else "Zatím neurčen"})
+    st.dataframe(pd.DataFrame(rows,columns=["Datum / čas","Domácí","Hosté","Rozhodčí"]),
+                 hide_index=True,use_container_width=True,height=388,
+                 column_config={
+                     "Datum / čas":st.column_config.TextColumn(width=140),
+                     "Domácí":st.column_config.TextColumn(width=145),
+                     "Hosté":st.column_config.TextColumn(width=145),
+                     "Rozhodčí":st.column_config.TextColumn(width=115),
+                 })
 
 
 elif nav=="Zápas":
