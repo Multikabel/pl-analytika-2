@@ -71,6 +71,15 @@ class RefereeViewsTests(unittest.TestCase):
         _,_,history=detail_tables(self.data(),'R')
         self.assertEqual(history.match_id.tolist(),['0','1'])
 
+    def test_kickoff_and_score_metadata(self):
+        self.matches.loc[1,'match_date']=self.matches.loc[0,'match_date']
+        self.matches['kickoff_time']=['20:00','12:30:00',None,'bad']
+        d=self.data()
+        self.assertEqual(d.match_id.tolist()[:2],['1','0'])
+        self.assertEqual(d.iloc[0]['Výsledek'],'1:0')
+        self.assertEqual(d.iloc[0]['_time'],pd.Timedelta(hours=12,minutes=30))
+        self.assertTrue(d.iloc[2:]['_time'].isna().all())
+
     def test_empty_incomplete(self):
         self.assertTrue(match_statistics(pd.DataFrame(),pd.DataFrame()).empty)
         self.teams=self.teams.iloc[1:]
@@ -86,10 +95,11 @@ class RefereeViewsTests(unittest.TestCase):
     def test_ui_tables_for_all_metrics(self):
         for metric in ['Fauly','Žluté karty','Rohy']:
             st=SimpleNamespace(selectbox=Mock(side_effect=lambda label,options,**k:options[0]),
-                segmented_control=Mock(return_value=metric),caption=Mock(),info=Mock(),dataframe=Mock(),
+                segmented_control=Mock(return_value=metric),caption=Mock(),info=Mock(),dataframe=Mock(),vega_lite_chart=Mock(),
                 column_config=SimpleNamespace(NumberColumn=Mock(),DateColumn=Mock()))
             render_referees(st,self.matches,self.teams,lambda x:x,lambda x:x)
-            self.assertEqual(st.dataframe.call_count,4)
+            self.assertEqual(st.dataframe.call_count,6)
+            st.vega_lite_chart.assert_called_once()
             self.assertEqual(st.selectbox.call_args_list[0].args[1],['2026-27','2025-26'])
             st.info.assert_not_called()
 
