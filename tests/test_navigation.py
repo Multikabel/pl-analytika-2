@@ -8,6 +8,13 @@ APP=Path(__file__).resolve().parents[1]/'app/app.py'
 
 
 class NavigationTests(unittest.TestCase):
+    def test_helper_tests_do_not_shadow_app_package(self):
+        for name in ['test_data_views.py', 'test_pattern_views.py']:
+            tree = ast.parse((APP.parents[1] / 'tests' / name).read_text(encoding='utf-8'))
+            for node in ast.walk(tree):
+                if isinstance(node, ast.Call) and ast.unparse(node.func) == 'sys.path.insert':
+                    self.assertNotIn("/ 'app'", ast.unparse(node))
+
     def setUp(self):
         self.tree=ast.parse(APP.read_text(encoding='utf-8'))
 

@@ -8,8 +8,8 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
-sys.path.insert(0, str(ROOT / "app"))
-from pattern_views import (LABELS, EMPTY_MESSAGE, pattern_card, pattern_sections,
+sys.path.insert(0, str(ROOT))
+from app.pattern_views import (LABELS, EMPTY_MESSAGE, pattern_card, pattern_sections,
                            prematch_context, match_view, render_patterns)
 from test_pattern_matcher import history, FIXTURE
 

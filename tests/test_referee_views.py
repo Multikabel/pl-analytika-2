@@ -99,6 +99,9 @@ class RefereeViewsTests(unittest.TestCase):
                 column_config=SimpleNamespace(NumberColumn=Mock(),DateColumn=Mock()))
             render_referees(st,self.matches,self.teams,lambda x:x,lambda x:x)
             self.assertEqual(st.dataframe.call_count,6)
+            formats=[c.kwargs.get('format') for c in st.column_config.NumberColumn.call_args_list]
+            self.assertIn('%+.1f',formats)
+            self.assertNotIn('+%.1f',formats)
             st.vega_lite_chart.assert_called_once()
             self.assertEqual(st.selectbox.call_args_list[0].args[1],['2026-27','2025-26'])
             st.info.assert_not_called()

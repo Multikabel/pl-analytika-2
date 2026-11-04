@@ -111,11 +111,20 @@ class RefereeHistoryTests(unittest.TestCase):
             tooltip=spec['layer'][0]['encoding']['tooltip']
             self.assertTrue({'Datum','Čas','Domácí','Hosté','Výsledek','Rozhodčí','Hodnota','Průměr','Rozdíl','Kategorie'} <= {t['field'] for t in tooltip})
 
+    def test_padding_supports_streamlit_theme_mutation(self):
+        spec=history_chart(match_history(history([2,4,6]),'Fauly'),'Fauly',str)
+        self.assertEqual(spec['padding'], dict(top=5,bottom=5,left=5,right=5))
+        self.assertEqual(spec['autosize'], {'type':'fit-x','contains':'padding'})
+        # Streamlit's frontend adjusts bottom padding when applying its theme.
+        spec['padding']['bottom']=20
+        self.assertEqual(spec['padding']['left'],5)
+
     def test_render_theme_and_absent_run_dash(self):
         st=SimpleNamespace(info=Mock(),caption=Mock(),dataframe=Mock(),vega_lite_chart=Mock(),
                            column_config=SimpleNamespace(DateColumn=Mock(),NumberColumn=Mock()))
         render_history(st,history([3]),'Fauly',str)
         self.assertEqual(st.vega_lite_chart.call_args.kwargs['theme'],'streamlit')
+        self.assertEqual(st.column_config.NumberColumn.call_args.kwargs['format'],'%+.1f')
         runs=st.dataframe.call_args.args[0]
         self.assertEqual(runs['Nejdelší'].tolist(),['—','—'])
         self.assertEqual(runs['Průměrná délka'].tolist(),['—','—'])

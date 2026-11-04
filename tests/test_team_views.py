@@ -120,6 +120,9 @@ class TeamViewsTests(unittest.TestCase):
                     column_config=SimpleNamespace(NumberColumn=Mock(),DateColumn=Mock()))
                 render_teams(st,self.matches,self.teams)
                 self.assertEqual(st.dataframe.call_count,6)
+                formats=[c.kwargs.get('format') for c in st.column_config.NumberColumn.call_args_list]
+                self.assertIn('%+.1f',formats)
+                self.assertNotIn('+%.1f',formats)
                 st.vega_lite_chart.assert_called_once()
                 self.assertEqual(len(st.dataframe.call_args.args[0].columns),13)
                 self.assertEqual(st.dataframe.call_args_list[1].args[0]['Statistika'].tolist(),['Fauly','Žluté karty','Rohy'])

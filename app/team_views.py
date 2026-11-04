@@ -111,7 +111,7 @@ def render_teams(st, matches, teams):
     st.dataframe(summary, hide_index=True, use_container_width=True, column_config=config)
     st.caption('Liga: každé utkání jednou.' if perspective == 'CELKEM' else 'Liga: platná týmová pozorování odpovídající prostředí a pohledu.')
     st.dataframe(comparison, hide_index=True, use_container_width=True,
-                 column_config={c: st.column_config.NumberColumn(format='+%.1f' if c == 'Rozdíl' else '%.1f') for c in ['Tým', 'Liga', 'Rozdíl']})
+                 column_config={c: st.column_config.NumberColumn(format='%+.1f' if c == 'Rozdíl' else '%.1f') for c in ['Tým', 'Liga', 'Rozdíl']})
     render_history(st, team_chart_context(history, perspective), metric, short_team_name,
                    value_column=f'{metric} {perspective}')
     # Selected metric first; all nine perspectives remain available by horizontal scrolling.

@@ -8,8 +8,8 @@ from html.parser import HTMLParser
 
 import pandas as pd
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "app"))
-import data_views as views
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from app import data_views as views
 
 SEASON = "2026-27"
 
@@ -233,31 +233,21 @@ class RefereeTests(unittest.TestCase):
         views.build_referee_detail(self.history, SEASON, "R One")
         pd.testing.assert_frame_equal(before, self.history)
 
-    def test_referee_count_label_is_display_only(self):
-        # Execute only the column configuration, never the app or its pipeline imports.
-        source = Path(__file__).resolve().parents[1] / "app/app.py"
+    def test_referee_ranking_count_config_preserves_values(self):
+        # Stage 4A moved the ranking to referee_views and restored explicit headers.
+        source = Path(__file__).resolve().parents[1] / "app/referee_views.py"
         tree = ast.parse(source.read_text(encoding="utf-8"))
-        assignments = []
-        for node in ast.walk(tree):
-            if not isinstance(node, ast.Assign):
-                continue
-            target = node.targets[0]
-            root = target.value if isinstance(target, ast.Subscript) else target
-            if isinstance(root, ast.Name) and root.id == "ref_config":
-                assignments.append(node)
-        self.assertTrue(assignments)
-        config = SimpleNamespace(NumberColumn=lambda label, **kw: dict(label=label, **kw),
-                                 TextColumn=lambda label, **kw: dict(label=label, **kw))
-        namespace = {"st": SimpleNamespace(column_config=config), "REF_COLUMNS": views.REF_COLUMNS}
-        exec(compile(ast.Module(body=sorted(assignments, key=lambda n: n.lineno),
-                                type_ignores=[]), "<column-config-only>", "exec"), namespace)
-        rendered = namespace["ref_config"]
-        self.assertEqual(rendered["Zápasy"]["label"], "Z")
-        self.assertLessEqual(rendered["Zápasy"]["width"], 40)
-        self.assertEqual(rendered["Zápasy"]["format"], "%d")
+        renderer = next(n for n in tree.body if isinstance(n, ast.FunctionDef)
+                        and n.name == "render_referees")
+        config_node = next(n for n in renderer.body if isinstance(n, ast.Assign)
+                           and isinstance(n.targets[0], ast.Name) and n.targets[0].id == "config")
+        namespace = {"st": SimpleNamespace(column_config=SimpleNamespace(
+            NumberColumn=lambda **kw: kw))}
+        exec(compile(ast.Module(body=[config_node], type_ignores=[]),
+                     "<ranking-config-only>", "exec"), namespace)
+        self.assertEqual(namespace["config"]["Zápasy"]["format"], "%d")
+        self.assertEqual(namespace["config"]["Platné N"]["format"], "%d")
         summary = views.build_referee_summary(self.history, SEASON)
-        self.assertIn("Zápasy", summary.columns)
-        self.assertNotIn("Z", summary.columns)
         self.assertEqual(summary.iloc[0]["Zápasy"], 7)
 
 

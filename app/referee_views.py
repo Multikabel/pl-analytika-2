@@ -132,7 +132,9 @@ def history_chart(data, metric, short_team_name):
     tooltip += [{'field': k, 'type': 'quantitative', 'format': '.0f' if k == 'Hodnota' else '+.1f' if k == 'Rozdíl' else '.1f'} for k in ['Hodnota', 'Průměr', 'Rozdíl']]
     tooltip += [{'field': 'Kategorie', 'type': 'nominal'}]
     return {'$schema': 'https://vega.github.io/schema/vega-lite/v5.json',
-            'height': max(100, len(values)*32), 'padding': 5,
+            'height': max(100, len(values)*32),
+            'autosize': {'type': 'fit-x', 'contains': 'padding'},
+            'padding': {'top': 5, 'bottom': 5, 'left': 5, 'right': 5},
             'title': {'text': f'{metric} · Průměr {mean:.1f}'.replace('.', ','), 'anchor': 'start'},
             'layer': [
                 {'data': {'values': values}, 'mark': {'type': 'bar', 'cornerRadiusEnd': 2},
@@ -171,7 +173,7 @@ def render_history(st, history, metric, short_team_name, value_column=None):
         display[c] = display[c].map(short_team_name)
     st.dataframe(display, hide_index=True, use_container_width=True,
                  column_config={'Datum': st.column_config.DateColumn(format='DD.MM.YYYY'),
-                                'Rozdíl': st.column_config.NumberColumn(format='+%.1f')})
+                                'Rozdíl': st.column_config.NumberColumn(format='%+.1f')})
     streaks = streak_summary(data.Kategorie)
     kind, length = streaks.pop('current')
     if kind == CATEGORIES[2]:
@@ -206,7 +208,7 @@ def render_referees(st, matches, teams, canonical_referee, short_team_name):
     st.caption(f'{ref} · {len(history)} utkání · {season}')
     st.dataframe(summary, hide_index=True, use_container_width=True, column_config=config)
     st.dataframe(comparison, hide_index=True, use_container_width=True,
-                 column_config={c: st.column_config.NumberColumn(format='+%.1f' if c == 'Rozdíl' else '%.1f') for c in ['Rozhodčí', 'Liga', 'Rozdíl']})
+                 column_config={c: st.column_config.NumberColumn(format='%+.1f' if c == 'Rozdíl' else '%.1f') for c in ['Rozhodčí', 'Liga', 'Rozdíl']})
     detail_metric = st.segmented_control('Statistika detailu', list(METRICS), default='Fauly', key='ref_history_metric') or 'Fauly'
     render_history(st, history, detail_metric, short_team_name)
     display = history[['Datum', 'Domácí', 'Hosté', *METRICS]].copy()
