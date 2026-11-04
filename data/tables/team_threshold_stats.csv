@@ -8711,105 +8711,105 @@
 2026-27,2026-10-31,Crystal Palace,AWAY,yellow_cards,2.5,5,1,0.2
 2026-27,2026-10-31,Crystal Palace,AWAY,yellow_cards,3.5,5,0,0.0
 2026-27,2026-10-31,Crystal Palace,AWAY,yellow_cards,4.5,5,0,0.0
-2026-27,2026-10-24,Everton,ALL,fouls_committed,8.5,8,2,0.25
-2026-27,2026-10-24,Everton,ALL,fouls_committed,9.5,8,2,0.25
-2026-27,2026-10-24,Everton,ALL,fouls_committed,10.5,8,2,0.25
-2026-27,2026-10-24,Everton,ALL,fouls_committed,11.5,8,2,0.25
-2026-27,2026-10-24,Everton,ALL,fouls_committed,12.5,8,2,0.25
-2026-27,2026-10-24,Everton,ALL,fouls_committed,13.5,8,1,0.125
-2026-27,2026-10-24,Everton,ALL,fouls_committed,14.5,8,0,0.0
-2026-27,2026-10-24,Everton,ALL,fouls_committed,15.5,8,0,0.0
-2026-27,2026-10-24,Everton,ALL,fouls_suffered,8.5,8,8,1.0
-2026-27,2026-10-24,Everton,ALL,fouls_suffered,9.5,8,8,1.0
-2026-27,2026-10-24,Everton,ALL,fouls_suffered,10.5,8,8,1.0
-2026-27,2026-10-24,Everton,ALL,fouls_suffered,11.5,8,5,0.625
-2026-27,2026-10-24,Everton,ALL,fouls_suffered,12.5,8,4,0.5
-2026-27,2026-10-24,Everton,ALL,fouls_suffered,13.5,8,4,0.5
-2026-27,2026-10-24,Everton,ALL,fouls_suffered,14.5,8,3,0.375
-2026-27,2026-10-24,Everton,ALL,fouls_suffered,15.5,8,0,0.0
-2026-27,2026-10-24,Everton,ALL,corners_for,2.5,8,8,1.0
-2026-27,2026-10-24,Everton,ALL,corners_for,3.5,8,7,0.875
-2026-27,2026-10-24,Everton,ALL,corners_for,4.5,8,4,0.5
-2026-27,2026-10-24,Everton,ALL,corners_for,5.5,8,3,0.375
-2026-27,2026-10-24,Everton,ALL,corners_for,6.5,8,1,0.125
-2026-27,2026-10-24,Everton,ALL,corners_for,7.5,8,0,0.0
-2026-27,2026-10-24,Everton,ALL,corners_against,2.5,8,7,0.875
-2026-27,2026-10-24,Everton,ALL,corners_against,3.5,8,6,0.75
-2026-27,2026-10-24,Everton,ALL,corners_against,4.5,8,5,0.625
-2026-27,2026-10-24,Everton,ALL,corners_against,5.5,8,4,0.5
-2026-27,2026-10-24,Everton,ALL,corners_against,6.5,8,4,0.5
-2026-27,2026-10-24,Everton,ALL,corners_against,7.5,8,2,0.25
-2026-27,2026-10-24,Everton,ALL,yellow_cards,0.5,8,6,0.75
-2026-27,2026-10-24,Everton,ALL,yellow_cards,1.5,8,6,0.75
-2026-27,2026-10-24,Everton,ALL,yellow_cards,2.5,8,3,0.375
-2026-27,2026-10-24,Everton,ALL,yellow_cards,3.5,8,0,0.0
-2026-27,2026-10-24,Everton,ALL,yellow_cards,4.5,8,0,0.0
-2026-27,2026-10-24,Everton,HOME,fouls_committed,8.5,4,0,0.0
-2026-27,2026-10-24,Everton,HOME,fouls_committed,9.5,4,0,0.0
-2026-27,2026-10-24,Everton,HOME,fouls_committed,10.5,4,0,0.0
-2026-27,2026-10-24,Everton,HOME,fouls_committed,11.5,4,0,0.0
-2026-27,2026-10-24,Everton,HOME,fouls_committed,12.5,4,0,0.0
-2026-27,2026-10-24,Everton,HOME,fouls_committed,13.5,4,0,0.0
-2026-27,2026-10-24,Everton,HOME,fouls_committed,14.5,4,0,0.0
-2026-27,2026-10-24,Everton,HOME,fouls_committed,15.5,4,0,0.0
-2026-27,2026-10-24,Everton,HOME,fouls_suffered,8.5,4,4,1.0
-2026-27,2026-10-24,Everton,HOME,fouls_suffered,9.5,4,4,1.0
-2026-27,2026-10-24,Everton,HOME,fouls_suffered,10.5,4,4,1.0
-2026-27,2026-10-24,Everton,HOME,fouls_suffered,11.5,4,3,0.75
-2026-27,2026-10-24,Everton,HOME,fouls_suffered,12.5,4,2,0.5
-2026-27,2026-10-24,Everton,HOME,fouls_suffered,13.5,4,2,0.5
-2026-27,2026-10-24,Everton,HOME,fouls_suffered,14.5,4,2,0.5
-2026-27,2026-10-24,Everton,HOME,fouls_suffered,15.5,4,0,0.0
-2026-27,2026-10-24,Everton,HOME,corners_for,2.5,4,4,1.0
-2026-27,2026-10-24,Everton,HOME,corners_for,3.5,4,4,1.0
-2026-27,2026-10-24,Everton,HOME,corners_for,4.5,4,1,0.25
-2026-27,2026-10-24,Everton,HOME,corners_for,5.5,4,0,0.0
-2026-27,2026-10-24,Everton,HOME,corners_for,6.5,4,0,0.0
-2026-27,2026-10-24,Everton,HOME,corners_for,7.5,4,0,0.0
-2026-27,2026-10-24,Everton,HOME,corners_against,2.5,4,3,0.75
-2026-27,2026-10-24,Everton,HOME,corners_against,3.5,4,2,0.5
-2026-27,2026-10-24,Everton,HOME,corners_against,4.5,4,1,0.25
-2026-27,2026-10-24,Everton,HOME,corners_against,5.5,4,1,0.25
-2026-27,2026-10-24,Everton,HOME,corners_against,6.5,4,1,0.25
-2026-27,2026-10-24,Everton,HOME,corners_against,7.5,4,0,0.0
-2026-27,2026-10-24,Everton,HOME,yellow_cards,0.5,4,3,0.75
-2026-27,2026-10-24,Everton,HOME,yellow_cards,1.5,4,3,0.75
-2026-27,2026-10-24,Everton,HOME,yellow_cards,2.5,4,2,0.5
-2026-27,2026-10-24,Everton,HOME,yellow_cards,3.5,4,0,0.0
-2026-27,2026-10-24,Everton,HOME,yellow_cards,4.5,4,0,0.0
-2026-27,2026-10-24,Everton,AWAY,fouls_committed,8.5,4,2,0.5
-2026-27,2026-10-24,Everton,AWAY,fouls_committed,9.5,4,2,0.5
-2026-27,2026-10-24,Everton,AWAY,fouls_committed,10.5,4,2,0.5
-2026-27,2026-10-24,Everton,AWAY,fouls_committed,11.5,4,2,0.5
-2026-27,2026-10-24,Everton,AWAY,fouls_committed,12.5,4,2,0.5
-2026-27,2026-10-24,Everton,AWAY,fouls_committed,13.5,4,1,0.25
-2026-27,2026-10-24,Everton,AWAY,fouls_committed,14.5,4,0,0.0
-2026-27,2026-10-24,Everton,AWAY,fouls_committed,15.5,4,0,0.0
-2026-27,2026-10-24,Everton,AWAY,fouls_suffered,8.5,4,4,1.0
-2026-27,2026-10-24,Everton,AWAY,fouls_suffered,9.5,4,4,1.0
-2026-27,2026-10-24,Everton,AWAY,fouls_suffered,10.5,4,4,1.0
-2026-27,2026-10-24,Everton,AWAY,fouls_suffered,11.5,4,2,0.5
-2026-27,2026-10-24,Everton,AWAY,fouls_suffered,12.5,4,2,0.5
-2026-27,2026-10-24,Everton,AWAY,fouls_suffered,13.5,4,2,0.5
-2026-27,2026-10-24,Everton,AWAY,fouls_suffered,14.5,4,1,0.25
-2026-27,2026-10-24,Everton,AWAY,fouls_suffered,15.5,4,0,0.0
-2026-27,2026-10-24,Everton,AWAY,corners_for,2.5,4,4,1.0
-2026-27,2026-10-24,Everton,AWAY,corners_for,3.5,4,3,0.75
-2026-27,2026-10-24,Everton,AWAY,corners_for,4.5,4,3,0.75
-2026-27,2026-10-24,Everton,AWAY,corners_for,5.5,4,3,0.75
-2026-27,2026-10-24,Everton,AWAY,corners_for,6.5,4,1,0.25
-2026-27,2026-10-24,Everton,AWAY,corners_for,7.5,4,0,0.0
-2026-27,2026-10-24,Everton,AWAY,corners_against,2.5,4,4,1.0
-2026-27,2026-10-24,Everton,AWAY,corners_against,3.5,4,4,1.0
-2026-27,2026-10-24,Everton,AWAY,corners_against,4.5,4,4,1.0
-2026-27,2026-10-24,Everton,AWAY,corners_against,5.5,4,3,0.75
-2026-27,2026-10-24,Everton,AWAY,corners_against,6.5,4,3,0.75
-2026-27,2026-10-24,Everton,AWAY,corners_against,7.5,4,2,0.5
-2026-27,2026-10-24,Everton,AWAY,yellow_cards,0.5,4,3,0.75
-2026-27,2026-10-24,Everton,AWAY,yellow_cards,1.5,4,3,0.75
-2026-27,2026-10-24,Everton,AWAY,yellow_cards,2.5,4,1,0.25
-2026-27,2026-10-24,Everton,AWAY,yellow_cards,3.5,4,0,0.0
-2026-27,2026-10-24,Everton,AWAY,yellow_cards,4.5,4,0,0.0
+2026-27,2026-11-02,Everton,ALL,fouls_committed,8.5,9,3,0.3333333333333333
+2026-27,2026-11-02,Everton,ALL,fouls_committed,9.5,9,2,0.2222222222222222
+2026-27,2026-11-02,Everton,ALL,fouls_committed,10.5,9,2,0.2222222222222222
+2026-27,2026-11-02,Everton,ALL,fouls_committed,11.5,9,2,0.2222222222222222
+2026-27,2026-11-02,Everton,ALL,fouls_committed,12.5,9,2,0.2222222222222222
+2026-27,2026-11-02,Everton,ALL,fouls_committed,13.5,9,1,0.1111111111111111
+2026-27,2026-11-02,Everton,ALL,fouls_committed,14.5,9,0,0.0
+2026-27,2026-11-02,Everton,ALL,fouls_committed,15.5,9,0,0.0
+2026-27,2026-11-02,Everton,ALL,fouls_suffered,8.5,9,9,1.0
+2026-27,2026-11-02,Everton,ALL,fouls_suffered,9.5,9,9,1.0
+2026-27,2026-11-02,Everton,ALL,fouls_suffered,10.5,9,9,1.0
+2026-27,2026-11-02,Everton,ALL,fouls_suffered,11.5,9,6,0.6666666666666666
+2026-27,2026-11-02,Everton,ALL,fouls_suffered,12.5,9,5,0.5555555555555556
+2026-27,2026-11-02,Everton,ALL,fouls_suffered,13.5,9,4,0.4444444444444444
+2026-27,2026-11-02,Everton,ALL,fouls_suffered,14.5,9,3,0.3333333333333333
+2026-27,2026-11-02,Everton,ALL,fouls_suffered,15.5,9,0,0.0
+2026-27,2026-11-02,Everton,ALL,corners_for,2.5,9,9,1.0
+2026-27,2026-11-02,Everton,ALL,corners_for,3.5,9,8,0.8888888888888888
+2026-27,2026-11-02,Everton,ALL,corners_for,4.5,9,5,0.5555555555555556
+2026-27,2026-11-02,Everton,ALL,corners_for,5.5,9,3,0.3333333333333333
+2026-27,2026-11-02,Everton,ALL,corners_for,6.5,9,1,0.1111111111111111
+2026-27,2026-11-02,Everton,ALL,corners_for,7.5,9,0,0.0
+2026-27,2026-11-02,Everton,ALL,corners_against,2.5,9,8,0.8888888888888888
+2026-27,2026-11-02,Everton,ALL,corners_against,3.5,9,7,0.7777777777777778
+2026-27,2026-11-02,Everton,ALL,corners_against,4.5,9,5,0.5555555555555556
+2026-27,2026-11-02,Everton,ALL,corners_against,5.5,9,4,0.4444444444444444
+2026-27,2026-11-02,Everton,ALL,corners_against,6.5,9,4,0.4444444444444444
+2026-27,2026-11-02,Everton,ALL,corners_against,7.5,9,2,0.2222222222222222
+2026-27,2026-11-02,Everton,ALL,yellow_cards,0.5,9,7,0.7777777777777778
+2026-27,2026-11-02,Everton,ALL,yellow_cards,1.5,9,7,0.7777777777777778
+2026-27,2026-11-02,Everton,ALL,yellow_cards,2.5,9,3,0.3333333333333333
+2026-27,2026-11-02,Everton,ALL,yellow_cards,3.5,9,0,0.0
+2026-27,2026-11-02,Everton,ALL,yellow_cards,4.5,9,0,0.0
+2026-27,2026-11-02,Everton,HOME,fouls_committed,8.5,4,0,0.0
+2026-27,2026-11-02,Everton,HOME,fouls_committed,9.5,4,0,0.0
+2026-27,2026-11-02,Everton,HOME,fouls_committed,10.5,4,0,0.0
+2026-27,2026-11-02,Everton,HOME,fouls_committed,11.5,4,0,0.0
+2026-27,2026-11-02,Everton,HOME,fouls_committed,12.5,4,0,0.0
+2026-27,2026-11-02,Everton,HOME,fouls_committed,13.5,4,0,0.0
+2026-27,2026-11-02,Everton,HOME,fouls_committed,14.5,4,0,0.0
+2026-27,2026-11-02,Everton,HOME,fouls_committed,15.5,4,0,0.0
+2026-27,2026-11-02,Everton,HOME,fouls_suffered,8.5,4,4,1.0
+2026-27,2026-11-02,Everton,HOME,fouls_suffered,9.5,4,4,1.0
+2026-27,2026-11-02,Everton,HOME,fouls_suffered,10.5,4,4,1.0
+2026-27,2026-11-02,Everton,HOME,fouls_suffered,11.5,4,3,0.75
+2026-27,2026-11-02,Everton,HOME,fouls_suffered,12.5,4,2,0.5
+2026-27,2026-11-02,Everton,HOME,fouls_suffered,13.5,4,2,0.5
+2026-27,2026-11-02,Everton,HOME,fouls_suffered,14.5,4,2,0.5
+2026-27,2026-11-02,Everton,HOME,fouls_suffered,15.5,4,0,0.0
+2026-27,2026-11-02,Everton,HOME,corners_for,2.5,4,4,1.0
+2026-27,2026-11-02,Everton,HOME,corners_for,3.5,4,4,1.0
+2026-27,2026-11-02,Everton,HOME,corners_for,4.5,4,1,0.25
+2026-27,2026-11-02,Everton,HOME,corners_for,5.5,4,0,0.0
+2026-27,2026-11-02,Everton,HOME,corners_for,6.5,4,0,0.0
+2026-27,2026-11-02,Everton,HOME,corners_for,7.5,4,0,0.0
+2026-27,2026-11-02,Everton,HOME,corners_against,2.5,4,3,0.75
+2026-27,2026-11-02,Everton,HOME,corners_against,3.5,4,2,0.5
+2026-27,2026-11-02,Everton,HOME,corners_against,4.5,4,1,0.25
+2026-27,2026-11-02,Everton,HOME,corners_against,5.5,4,1,0.25
+2026-27,2026-11-02,Everton,HOME,corners_against,6.5,4,1,0.25
+2026-27,2026-11-02,Everton,HOME,corners_against,7.5,4,0,0.0
+2026-27,2026-11-02,Everton,HOME,yellow_cards,0.5,4,3,0.75
+2026-27,2026-11-02,Everton,HOME,yellow_cards,1.5,4,3,0.75
+2026-27,2026-11-02,Everton,HOME,yellow_cards,2.5,4,2,0.5
+2026-27,2026-11-02,Everton,HOME,yellow_cards,3.5,4,0,0.0
+2026-27,2026-11-02,Everton,HOME,yellow_cards,4.5,4,0,0.0
+2026-27,2026-11-02,Everton,AWAY,fouls_committed,8.5,5,3,0.6
+2026-27,2026-11-02,Everton,AWAY,fouls_committed,9.5,5,2,0.4
+2026-27,2026-11-02,Everton,AWAY,fouls_committed,10.5,5,2,0.4
+2026-27,2026-11-02,Everton,AWAY,fouls_committed,11.5,5,2,0.4
+2026-27,2026-11-02,Everton,AWAY,fouls_committed,12.5,5,2,0.4
+2026-27,2026-11-02,Everton,AWAY,fouls_committed,13.5,5,1,0.2
+2026-27,2026-11-02,Everton,AWAY,fouls_committed,14.5,5,0,0.0
+2026-27,2026-11-02,Everton,AWAY,fouls_committed,15.5,5,0,0.0
+2026-27,2026-11-02,Everton,AWAY,fouls_suffered,8.5,5,5,1.0
+2026-27,2026-11-02,Everton,AWAY,fouls_suffered,9.5,5,5,1.0
+2026-27,2026-11-02,Everton,AWAY,fouls_suffered,10.5,5,5,1.0
+2026-27,2026-11-02,Everton,AWAY,fouls_suffered,11.5,5,3,0.6
+2026-27,2026-11-02,Everton,AWAY,fouls_suffered,12.5,5,3,0.6
+2026-27,2026-11-02,Everton,AWAY,fouls_suffered,13.5,5,2,0.4
+2026-27,2026-11-02,Everton,AWAY,fouls_suffered,14.5,5,1,0.2
+2026-27,2026-11-02,Everton,AWAY,fouls_suffered,15.5,5,0,0.0
+2026-27,2026-11-02,Everton,AWAY,corners_for,2.5,5,5,1.0
+2026-27,2026-11-02,Everton,AWAY,corners_for,3.5,5,4,0.8
+2026-27,2026-11-02,Everton,AWAY,corners_for,4.5,5,4,0.8
+2026-27,2026-11-02,Everton,AWAY,corners_for,5.5,5,3,0.6
+2026-27,2026-11-02,Everton,AWAY,corners_for,6.5,5,1,0.2
+2026-27,2026-11-02,Everton,AWAY,corners_for,7.5,5,0,0.0
+2026-27,2026-11-02,Everton,AWAY,corners_against,2.5,5,5,1.0
+2026-27,2026-11-02,Everton,AWAY,corners_against,3.5,5,5,1.0
+2026-27,2026-11-02,Everton,AWAY,corners_against,4.5,5,4,0.8
+2026-27,2026-11-02,Everton,AWAY,corners_against,5.5,5,3,0.6
+2026-27,2026-11-02,Everton,AWAY,corners_against,6.5,5,3,0.6
+2026-27,2026-11-02,Everton,AWAY,corners_against,7.5,5,2,0.4
+2026-27,2026-11-02,Everton,AWAY,yellow_cards,0.5,5,4,0.8
+2026-27,2026-11-02,Everton,AWAY,yellow_cards,1.5,5,4,0.8
+2026-27,2026-11-02,Everton,AWAY,yellow_cards,2.5,5,1,0.2
+2026-27,2026-11-02,Everton,AWAY,yellow_cards,3.5,5,0,0.0
+2026-27,2026-11-02,Everton,AWAY,yellow_cards,4.5,5,0,0.0
 2026-27,2026-10-31,Fulham,ALL,fouls_committed,8.5,9,7,0.7777777777777778
 2026-27,2026-10-31,Fulham,ALL,fouls_committed,9.5,9,6,0.6666666666666666
 2026-27,2026-10-31,Fulham,ALL,fouls_committed,10.5,9,5,0.5555555555555556
@@ -9503,105 +9503,105 @@
 2026-27,2026-10-31,Manchester United,AWAY,yellow_cards,2.5,5,2,0.4
 2026-27,2026-10-31,Manchester United,AWAY,yellow_cards,3.5,5,1,0.2
 2026-27,2026-10-31,Manchester United,AWAY,yellow_cards,4.5,5,1,0.2
-2026-27,2026-10-25,Newcastle United,ALL,fouls_committed,8.5,8,7,0.875
-2026-27,2026-10-25,Newcastle United,ALL,fouls_committed,9.5,8,6,0.75
-2026-27,2026-10-25,Newcastle United,ALL,fouls_committed,10.5,8,4,0.5
-2026-27,2026-10-25,Newcastle United,ALL,fouls_committed,11.5,8,4,0.5
-2026-27,2026-10-25,Newcastle United,ALL,fouls_committed,12.5,8,4,0.5
-2026-27,2026-10-25,Newcastle United,ALL,fouls_committed,13.5,8,3,0.375
-2026-27,2026-10-25,Newcastle United,ALL,fouls_committed,14.5,8,2,0.25
-2026-27,2026-10-25,Newcastle United,ALL,fouls_committed,15.5,8,2,0.25
-2026-27,2026-10-25,Newcastle United,ALL,fouls_suffered,8.5,8,6,0.75
-2026-27,2026-10-25,Newcastle United,ALL,fouls_suffered,9.5,8,6,0.75
-2026-27,2026-10-25,Newcastle United,ALL,fouls_suffered,10.5,8,5,0.625
-2026-27,2026-10-25,Newcastle United,ALL,fouls_suffered,11.5,8,4,0.5
-2026-27,2026-10-25,Newcastle United,ALL,fouls_suffered,12.5,8,3,0.375
-2026-27,2026-10-25,Newcastle United,ALL,fouls_suffered,13.5,8,3,0.375
-2026-27,2026-10-25,Newcastle United,ALL,fouls_suffered,14.5,8,3,0.375
-2026-27,2026-10-25,Newcastle United,ALL,fouls_suffered,15.5,8,1,0.125
-2026-27,2026-10-25,Newcastle United,ALL,corners_for,2.5,8,7,0.875
-2026-27,2026-10-25,Newcastle United,ALL,corners_for,3.5,8,7,0.875
-2026-27,2026-10-25,Newcastle United,ALL,corners_for,4.5,8,3,0.375
-2026-27,2026-10-25,Newcastle United,ALL,corners_for,5.5,8,2,0.25
-2026-27,2026-10-25,Newcastle United,ALL,corners_for,6.5,8,1,0.125
-2026-27,2026-10-25,Newcastle United,ALL,corners_for,7.5,8,0,0.0
-2026-27,2026-10-25,Newcastle United,ALL,corners_against,2.5,8,7,0.875
-2026-27,2026-10-25,Newcastle United,ALL,corners_against,3.5,8,6,0.75
-2026-27,2026-10-25,Newcastle United,ALL,corners_against,4.5,8,6,0.75
-2026-27,2026-10-25,Newcastle United,ALL,corners_against,5.5,8,4,0.5
-2026-27,2026-10-25,Newcastle United,ALL,corners_against,6.5,8,3,0.375
-2026-27,2026-10-25,Newcastle United,ALL,corners_against,7.5,8,1,0.125
-2026-27,2026-10-25,Newcastle United,ALL,yellow_cards,0.5,8,8,1.0
-2026-27,2026-10-25,Newcastle United,ALL,yellow_cards,1.5,8,6,0.75
-2026-27,2026-10-25,Newcastle United,ALL,yellow_cards,2.5,8,3,0.375
-2026-27,2026-10-25,Newcastle United,ALL,yellow_cards,3.5,8,2,0.25
-2026-27,2026-10-25,Newcastle United,ALL,yellow_cards,4.5,8,2,0.25
-2026-27,2026-10-25,Newcastle United,HOME,fouls_committed,8.5,4,3,0.75
-2026-27,2026-10-25,Newcastle United,HOME,fouls_committed,9.5,4,3,0.75
-2026-27,2026-10-25,Newcastle United,HOME,fouls_committed,10.5,4,3,0.75
-2026-27,2026-10-25,Newcastle United,HOME,fouls_committed,11.5,4,3,0.75
-2026-27,2026-10-25,Newcastle United,HOME,fouls_committed,12.5,4,3,0.75
-2026-27,2026-10-25,Newcastle United,HOME,fouls_committed,13.5,4,3,0.75
-2026-27,2026-10-25,Newcastle United,HOME,fouls_committed,14.5,4,2,0.5
-2026-27,2026-10-25,Newcastle United,HOME,fouls_committed,15.5,4,2,0.5
-2026-27,2026-10-25,Newcastle United,HOME,fouls_suffered,8.5,4,4,1.0
-2026-27,2026-10-25,Newcastle United,HOME,fouls_suffered,9.5,4,4,1.0
-2026-27,2026-10-25,Newcastle United,HOME,fouls_suffered,10.5,4,3,0.75
-2026-27,2026-10-25,Newcastle United,HOME,fouls_suffered,11.5,4,2,0.5
-2026-27,2026-10-25,Newcastle United,HOME,fouls_suffered,12.5,4,2,0.5
-2026-27,2026-10-25,Newcastle United,HOME,fouls_suffered,13.5,4,2,0.5
-2026-27,2026-10-25,Newcastle United,HOME,fouls_suffered,14.5,4,2,0.5
-2026-27,2026-10-25,Newcastle United,HOME,fouls_suffered,15.5,4,1,0.25
-2026-27,2026-10-25,Newcastle United,HOME,corners_for,2.5,4,3,0.75
-2026-27,2026-10-25,Newcastle United,HOME,corners_for,3.5,4,3,0.75
-2026-27,2026-10-25,Newcastle United,HOME,corners_for,4.5,4,0,0.0
-2026-27,2026-10-25,Newcastle United,HOME,corners_for,5.5,4,0,0.0
-2026-27,2026-10-25,Newcastle United,HOME,corners_for,6.5,4,0,0.0
-2026-27,2026-10-25,Newcastle United,HOME,corners_for,7.5,4,0,0.0
-2026-27,2026-10-25,Newcastle United,HOME,corners_against,2.5,4,4,1.0
-2026-27,2026-10-25,Newcastle United,HOME,corners_against,3.5,4,3,0.75
-2026-27,2026-10-25,Newcastle United,HOME,corners_against,4.5,4,3,0.75
-2026-27,2026-10-25,Newcastle United,HOME,corners_against,5.5,4,2,0.5
-2026-27,2026-10-25,Newcastle United,HOME,corners_against,6.5,4,1,0.25
-2026-27,2026-10-25,Newcastle United,HOME,corners_against,7.5,4,0,0.0
-2026-27,2026-10-25,Newcastle United,HOME,yellow_cards,0.5,4,4,1.0
-2026-27,2026-10-25,Newcastle United,HOME,yellow_cards,1.5,4,3,0.75
-2026-27,2026-10-25,Newcastle United,HOME,yellow_cards,2.5,4,2,0.5
-2026-27,2026-10-25,Newcastle United,HOME,yellow_cards,3.5,4,2,0.5
-2026-27,2026-10-25,Newcastle United,HOME,yellow_cards,4.5,4,2,0.5
-2026-27,2026-10-25,Newcastle United,AWAY,fouls_committed,8.5,4,4,1.0
-2026-27,2026-10-25,Newcastle United,AWAY,fouls_committed,9.5,4,3,0.75
-2026-27,2026-10-25,Newcastle United,AWAY,fouls_committed,10.5,4,1,0.25
-2026-27,2026-10-25,Newcastle United,AWAY,fouls_committed,11.5,4,1,0.25
-2026-27,2026-10-25,Newcastle United,AWAY,fouls_committed,12.5,4,1,0.25
-2026-27,2026-10-25,Newcastle United,AWAY,fouls_committed,13.5,4,0,0.0
-2026-27,2026-10-25,Newcastle United,AWAY,fouls_committed,14.5,4,0,0.0
-2026-27,2026-10-25,Newcastle United,AWAY,fouls_committed,15.5,4,0,0.0
-2026-27,2026-10-25,Newcastle United,AWAY,fouls_suffered,8.5,4,2,0.5
-2026-27,2026-10-25,Newcastle United,AWAY,fouls_suffered,9.5,4,2,0.5
-2026-27,2026-10-25,Newcastle United,AWAY,fouls_suffered,10.5,4,2,0.5
-2026-27,2026-10-25,Newcastle United,AWAY,fouls_suffered,11.5,4,2,0.5
-2026-27,2026-10-25,Newcastle United,AWAY,fouls_suffered,12.5,4,1,0.25
-2026-27,2026-10-25,Newcastle United,AWAY,fouls_suffered,13.5,4,1,0.25
-2026-27,2026-10-25,Newcastle United,AWAY,fouls_suffered,14.5,4,1,0.25
-2026-27,2026-10-25,Newcastle United,AWAY,fouls_suffered,15.5,4,0,0.0
-2026-27,2026-10-25,Newcastle United,AWAY,corners_for,2.5,4,4,1.0
-2026-27,2026-10-25,Newcastle United,AWAY,corners_for,3.5,4,4,1.0
-2026-27,2026-10-25,Newcastle United,AWAY,corners_for,4.5,4,3,0.75
-2026-27,2026-10-25,Newcastle United,AWAY,corners_for,5.5,4,2,0.5
-2026-27,2026-10-25,Newcastle United,AWAY,corners_for,6.5,4,1,0.25
-2026-27,2026-10-25,Newcastle United,AWAY,corners_for,7.5,4,0,0.0
-2026-27,2026-10-25,Newcastle United,AWAY,corners_against,2.5,4,3,0.75
-2026-27,2026-10-25,Newcastle United,AWAY,corners_against,3.5,4,3,0.75
-2026-27,2026-10-25,Newcastle United,AWAY,corners_against,4.5,4,3,0.75
-2026-27,2026-10-25,Newcastle United,AWAY,corners_against,5.5,4,2,0.5
-2026-27,2026-10-25,Newcastle United,AWAY,corners_against,6.5,4,2,0.5
-2026-27,2026-10-25,Newcastle United,AWAY,corners_against,7.5,4,1,0.25
-2026-27,2026-10-25,Newcastle United,AWAY,yellow_cards,0.5,4,4,1.0
-2026-27,2026-10-25,Newcastle United,AWAY,yellow_cards,1.5,4,3,0.75
-2026-27,2026-10-25,Newcastle United,AWAY,yellow_cards,2.5,4,1,0.25
-2026-27,2026-10-25,Newcastle United,AWAY,yellow_cards,3.5,4,0,0.0
-2026-27,2026-10-25,Newcastle United,AWAY,yellow_cards,4.5,4,0,0.0
+2026-27,2026-11-02,Newcastle United,ALL,fouls_committed,8.5,9,8,0.8888888888888888
+2026-27,2026-11-02,Newcastle United,ALL,fouls_committed,9.5,9,7,0.7777777777777778
+2026-27,2026-11-02,Newcastle United,ALL,fouls_committed,10.5,9,5,0.5555555555555556
+2026-27,2026-11-02,Newcastle United,ALL,fouls_committed,11.5,9,5,0.5555555555555556
+2026-27,2026-11-02,Newcastle United,ALL,fouls_committed,12.5,9,5,0.5555555555555556
+2026-27,2026-11-02,Newcastle United,ALL,fouls_committed,13.5,9,3,0.3333333333333333
+2026-27,2026-11-02,Newcastle United,ALL,fouls_committed,14.5,9,2,0.2222222222222222
+2026-27,2026-11-02,Newcastle United,ALL,fouls_committed,15.5,9,2,0.2222222222222222
+2026-27,2026-11-02,Newcastle United,ALL,fouls_suffered,8.5,9,7,0.7777777777777778
+2026-27,2026-11-02,Newcastle United,ALL,fouls_suffered,9.5,9,6,0.6666666666666666
+2026-27,2026-11-02,Newcastle United,ALL,fouls_suffered,10.5,9,5,0.5555555555555556
+2026-27,2026-11-02,Newcastle United,ALL,fouls_suffered,11.5,9,4,0.4444444444444444
+2026-27,2026-11-02,Newcastle United,ALL,fouls_suffered,12.5,9,3,0.3333333333333333
+2026-27,2026-11-02,Newcastle United,ALL,fouls_suffered,13.5,9,3,0.3333333333333333
+2026-27,2026-11-02,Newcastle United,ALL,fouls_suffered,14.5,9,3,0.3333333333333333
+2026-27,2026-11-02,Newcastle United,ALL,fouls_suffered,15.5,9,1,0.1111111111111111
+2026-27,2026-11-02,Newcastle United,ALL,corners_for,2.5,9,8,0.8888888888888888
+2026-27,2026-11-02,Newcastle United,ALL,corners_for,3.5,9,8,0.8888888888888888
+2026-27,2026-11-02,Newcastle United,ALL,corners_for,4.5,9,3,0.3333333333333333
+2026-27,2026-11-02,Newcastle United,ALL,corners_for,5.5,9,2,0.2222222222222222
+2026-27,2026-11-02,Newcastle United,ALL,corners_for,6.5,9,1,0.1111111111111111
+2026-27,2026-11-02,Newcastle United,ALL,corners_for,7.5,9,0,0.0
+2026-27,2026-11-02,Newcastle United,ALL,corners_against,2.5,9,8,0.8888888888888888
+2026-27,2026-11-02,Newcastle United,ALL,corners_against,3.5,9,7,0.7777777777777778
+2026-27,2026-11-02,Newcastle United,ALL,corners_against,4.5,9,7,0.7777777777777778
+2026-27,2026-11-02,Newcastle United,ALL,corners_against,5.5,9,4,0.4444444444444444
+2026-27,2026-11-02,Newcastle United,ALL,corners_against,6.5,9,3,0.3333333333333333
+2026-27,2026-11-02,Newcastle United,ALL,corners_against,7.5,9,1,0.1111111111111111
+2026-27,2026-11-02,Newcastle United,ALL,yellow_cards,0.5,9,9,1.0
+2026-27,2026-11-02,Newcastle United,ALL,yellow_cards,1.5,9,7,0.7777777777777778
+2026-27,2026-11-02,Newcastle United,ALL,yellow_cards,2.5,9,4,0.4444444444444444
+2026-27,2026-11-02,Newcastle United,ALL,yellow_cards,3.5,9,3,0.3333333333333333
+2026-27,2026-11-02,Newcastle United,ALL,yellow_cards,4.5,9,2,0.2222222222222222
+2026-27,2026-11-02,Newcastle United,HOME,fouls_committed,8.5,5,4,0.8
+2026-27,2026-11-02,Newcastle United,HOME,fouls_committed,9.5,5,4,0.8
+2026-27,2026-11-02,Newcastle United,HOME,fouls_committed,10.5,5,4,0.8
+2026-27,2026-11-02,Newcastle United,HOME,fouls_committed,11.5,5,4,0.8
+2026-27,2026-11-02,Newcastle United,HOME,fouls_committed,12.5,5,4,0.8
+2026-27,2026-11-02,Newcastle United,HOME,fouls_committed,13.5,5,3,0.6
+2026-27,2026-11-02,Newcastle United,HOME,fouls_committed,14.5,5,2,0.4
+2026-27,2026-11-02,Newcastle United,HOME,fouls_committed,15.5,5,2,0.4
+2026-27,2026-11-02,Newcastle United,HOME,fouls_suffered,8.5,5,5,1.0
+2026-27,2026-11-02,Newcastle United,HOME,fouls_suffered,9.5,5,4,0.8
+2026-27,2026-11-02,Newcastle United,HOME,fouls_suffered,10.5,5,3,0.6
+2026-27,2026-11-02,Newcastle United,HOME,fouls_suffered,11.5,5,2,0.4
+2026-27,2026-11-02,Newcastle United,HOME,fouls_suffered,12.5,5,2,0.4
+2026-27,2026-11-02,Newcastle United,HOME,fouls_suffered,13.5,5,2,0.4
+2026-27,2026-11-02,Newcastle United,HOME,fouls_suffered,14.5,5,2,0.4
+2026-27,2026-11-02,Newcastle United,HOME,fouls_suffered,15.5,5,1,0.2
+2026-27,2026-11-02,Newcastle United,HOME,corners_for,2.5,5,4,0.8
+2026-27,2026-11-02,Newcastle United,HOME,corners_for,3.5,5,4,0.8
+2026-27,2026-11-02,Newcastle United,HOME,corners_for,4.5,5,0,0.0
+2026-27,2026-11-02,Newcastle United,HOME,corners_for,5.5,5,0,0.0
+2026-27,2026-11-02,Newcastle United,HOME,corners_for,6.5,5,0,0.0
+2026-27,2026-11-02,Newcastle United,HOME,corners_for,7.5,5,0,0.0
+2026-27,2026-11-02,Newcastle United,HOME,corners_against,2.5,5,5,1.0
+2026-27,2026-11-02,Newcastle United,HOME,corners_against,3.5,5,4,0.8
+2026-27,2026-11-02,Newcastle United,HOME,corners_against,4.5,5,4,0.8
+2026-27,2026-11-02,Newcastle United,HOME,corners_against,5.5,5,2,0.4
+2026-27,2026-11-02,Newcastle United,HOME,corners_against,6.5,5,1,0.2
+2026-27,2026-11-02,Newcastle United,HOME,corners_against,7.5,5,0,0.0
+2026-27,2026-11-02,Newcastle United,HOME,yellow_cards,0.5,5,5,1.0
+2026-27,2026-11-02,Newcastle United,HOME,yellow_cards,1.5,5,4,0.8
+2026-27,2026-11-02,Newcastle United,HOME,yellow_cards,2.5,5,3,0.6
+2026-27,2026-11-02,Newcastle United,HOME,yellow_cards,3.5,5,3,0.6
+2026-27,2026-11-02,Newcastle United,HOME,yellow_cards,4.5,5,2,0.4
+2026-27,2026-11-02,Newcastle United,AWAY,fouls_committed,8.5,4,4,1.0
+2026-27,2026-11-02,Newcastle United,AWAY,fouls_committed,9.5,4,3,0.75
+2026-27,2026-11-02,Newcastle United,AWAY,fouls_committed,10.5,4,1,0.25
+2026-27,2026-11-02,Newcastle United,AWAY,fouls_committed,11.5,4,1,0.25
+2026-27,2026-11-02,Newcastle United,AWAY,fouls_committed,12.5,4,1,0.25
+2026-27,2026-11-02,Newcastle United,AWAY,fouls_committed,13.5,4,0,0.0
+2026-27,2026-11-02,Newcastle United,AWAY,fouls_committed,14.5,4,0,0.0
+2026-27,2026-11-02,Newcastle United,AWAY,fouls_committed,15.5,4,0,0.0
+2026-27,2026-11-02,Newcastle United,AWAY,fouls_suffered,8.5,4,2,0.5
+2026-27,2026-11-02,Newcastle United,AWAY,fouls_suffered,9.5,4,2,0.5
+2026-27,2026-11-02,Newcastle United,AWAY,fouls_suffered,10.5,4,2,0.5
+2026-27,2026-11-02,Newcastle United,AWAY,fouls_suffered,11.5,4,2,0.5
+2026-27,2026-11-02,Newcastle United,AWAY,fouls_suffered,12.5,4,1,0.25
+2026-27,2026-11-02,Newcastle United,AWAY,fouls_suffered,13.5,4,1,0.25
+2026-27,2026-11-02,Newcastle United,AWAY,fouls_suffered,14.5,4,1,0.25
+2026-27,2026-11-02,Newcastle United,AWAY,fouls_suffered,15.5,4,0,0.0
+2026-27,2026-11-02,Newcastle United,AWAY,corners_for,2.5,4,4,1.0
+2026-27,2026-11-02,Newcastle United,AWAY,corners_for,3.5,4,4,1.0
+2026-27,2026-11-02,Newcastle United,AWAY,corners_for,4.5,4,3,0.75
+2026-27,2026-11-02,Newcastle United,AWAY,corners_for,5.5,4,2,0.5
+2026-27,2026-11-02,Newcastle United,AWAY,corners_for,6.5,4,1,0.25
+2026-27,2026-11-02,Newcastle United,AWAY,corners_for,7.5,4,0,0.0
+2026-27,2026-11-02,Newcastle United,AWAY,corners_against,2.5,4,3,0.75
+2026-27,2026-11-02,Newcastle United,AWAY,corners_against,3.5,4,3,0.75
+2026-27,2026-11-02,Newcastle United,AWAY,corners_against,4.5,4,3,0.75
+2026-27,2026-11-02,Newcastle United,AWAY,corners_against,5.5,4,2,0.5
+2026-27,2026-11-02,Newcastle United,AWAY,corners_against,6.5,4,2,0.5
+2026-27,2026-11-02,Newcastle United,AWAY,corners_against,7.5,4,1,0.25
+2026-27,2026-11-02,Newcastle United,AWAY,yellow_cards,0.5,4,4,1.0
+2026-27,2026-11-02,Newcastle United,AWAY,yellow_cards,1.5,4,3,0.75
+2026-27,2026-11-02,Newcastle United,AWAY,yellow_cards,2.5,4,1,0.25
+2026-27,2026-11-02,Newcastle United,AWAY,yellow_cards,3.5,4,0,0.0
+2026-27,2026-11-02,Newcastle United,AWAY,yellow_cards,4.5,4,0,0.0
 2026-27,2026-10-31,Nottingham Forest,ALL,fouls_committed,8.5,9,9,1.0
 2026-27,2026-10-31,Nottingham Forest,ALL,fouls_committed,9.5,9,9,1.0
 2026-27,2026-10-31,Nottingham Forest,ALL,fouls_committed,10.5,9,7,0.7777777777777778
