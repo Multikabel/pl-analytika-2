@@ -36,8 +36,9 @@ class NavigationTests(unittest.TestCase):
                    and ast.unparse(n.test)=="nav == 'Zápas'")
         calls={n.func.id for statement in match.body for n in ast.walk(statement)
                if isinstance(n,ast.Call) and isinstance(n.func,ast.Name)}
-        self.assertTrue({'select_current_match','predict_one','snapshot_model_predictions',
+        self.assertTrue({'select_current_match','analyze',
                          'archive_selected_predictions','selectable_tip_table'} <= calls)
+        self.assertNotIn('snapshot_model_predictions', calls)
 
     def test_scoring_wrapper_preserves_inputs(self):
         func=next(n for n in self.tree.body if isinstance(n,ast.FunctionDef) and n.name=='predict_one')

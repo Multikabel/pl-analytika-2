@@ -241,8 +241,9 @@ class RefereeTests(unittest.TestCase):
                         and n.name == "render_referees")
         config_node = next(n for n in renderer.body if isinstance(n, ast.Assign)
                            and isinstance(n.targets[0], ast.Name) and n.targets[0].id == "config")
-        namespace = {"st": SimpleNamespace(column_config=SimpleNamespace(
-            NumberColumn=lambda **kw: kw))}
+        from app.table_layout import summary_config
+        namespace = {"summary_config": summary_config, "st": SimpleNamespace(column_config=SimpleNamespace(
+            NumberColumn=lambda label, **kw: dict(label=label, **kw)))}
         exec(compile(ast.Module(body=[config_node], type_ignores=[]),
                      "<ranking-config-only>", "exec"), namespace)
         self.assertEqual(namespace["config"]["Zápasy"]["format"], "%d")

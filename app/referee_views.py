@@ -1,5 +1,10 @@
 """Read-only match statistics and referee views, independent of model scoring."""
 import pandas as pd
+
+if __package__:
+    from .table_layout import summary_config, comparison_config, SUMMARY_LEGEND
+else:
+    from table_layout import summary_config, comparison_config, SUMMARY_LEGEND
 import json
 from itertools import groupby
 
@@ -86,7 +91,7 @@ def detail_tables(data, referee):
     return pd.DataFrame(summary), pd.DataFrame(comparison), selected.sort_values(['Datum', '_time', 'match_id'], na_position='last')
 
 
-CATEGORIES = ['Nad průměrem', 'Pod průměrem', 'Na průměru']
+CATEGORIES = ['Over', 'Under', 'Equal']
 COLORS = ['#57957D', '#BF7A76', '#87919C']
 
 
@@ -139,7 +144,8 @@ def history_chart(data, metric, short_team_name):
             'layer': [
                 {'data': {'values': values}, 'mark': {'type': 'bar', 'cornerRadiusEnd': 2},
                  'encoding': {'x': {'field': 'Hodnota', 'type': 'quantitative', 'title': metric,
-                                    'scale': {'zero': True}, 'axis': {'tickMinStep': 1, 'gridOpacity': 0.12}},
+                                    'scale': {'zero': True, 'domain': [0, max(1, max(v['Hodnota'] for v in values))*1.25]},
+                                    'axis': {'tickMinStep': 1, 'gridOpacity': 0.12}},
                               'y': {'field': 'order', 'type': 'ordinal', 'sort': list(range(len(values))),
                                     'title': None, 'scale': {'reverse': False, 'paddingInner': 0.25},
                                     'axis': {'labelExpr': json.dumps(labels, ensure_ascii=False)+'[datum.value]',
@@ -150,7 +156,19 @@ def history_chart(data, metric, short_team_name):
                 {'data': {'values': [{'mean': mean}]},
                  'mark': {'type': 'rule', 'color': '#8593A3', 'strokeWidth': 2, 'strokeDash': [5, 3]},
                  'encoding': {'x': {'field': 'mean', 'type': 'quantitative'},
-                              'tooltip': [{'field': 'mean', 'type': 'quantitative', 'title': 'Průměr', 'format': '.1f'}]}}],
+                              'tooltip': [{'field': 'mean', 'type': 'quantitative', 'title': 'Průměr', 'format': '.1f'}]}},
+                {'data': {'values': values},
+                 'mark': {'type': 'rect', 'width': 25, 'height': 20, 'cornerRadius': 2, 'color': '#e6ebef'},
+                 'encoding': {'x': {'field': 'Hodnota', 'type': 'quantitative'},
+                              'xOffset': {'value': 16},
+                              'y': {'field': 'order', 'type': 'ordinal', 'sort': list(range(len(values)))}}},
+                {'data': {'values': values},
+                 'mark': {'type': 'text', 'align': 'left', 'baseline': 'middle', 'dx': 5, 'fontSize': 12,
+                          'color': '#17212b'},
+                 'encoding': {'x': {'field': 'Hodnota', 'type': 'quantitative'},
+                              'y': {'field': 'order', 'type': 'ordinal', 'sort': list(range(len(values)))},
+                              'text': {'field': 'Hodnota', 'type': 'quantitative', 'format': '.0f'},
+                              'tooltip': tooltip}}],
             'config': {'view': {'stroke': None}}}
 
 
@@ -162,6 +180,7 @@ def render_history(st, history, metric, short_team_name, value_column=None):
     if data['_time'].isna().any():
         st.caption('U některých utkání chybí čas výkopu. V rámci stejného data jsou za známými časy; jejich přesné časové pořadí nelze doložit.')
     last = data.tail(5)
+    st.caption('Over / Under = nad / pod vlastním průměrem vybraného týmu nebo rozhodčího. Equal = přesně na průměru. Nejde o sázkovou hranici.')
     mean = data['Průměr'].iloc[0]
     recent = last.Hodnota.mean()
     team_view = 'Tým' in data.columns
@@ -172,19 +191,20 @@ def render_history(st, history, metric, short_team_name, value_column=None):
     for c in (['Soupeř'] if team_view else ['Domácí', 'Hosté']):
         display[c] = display[c].map(short_team_name)
     st.dataframe(display, hide_index=True, use_container_width=True,
-                 column_config={'Datum': st.column_config.DateColumn(format='DD.MM.YYYY'),
-                                'Rozdíl': st.column_config.NumberColumn(format='%+.1f')})
+                 column_config={'Datum': st.column_config.DateColumn(format='DD.MM.YYYY', width=82),
+                                'Hodnota': st.column_config.NumberColumn('Počet', format='%d', width=52),
+                                'Rozdíl': st.column_config.NumberColumn(format='%+.1f', width=60)})
     streaks = streak_summary(data.Kategorie)
     kind, length = streaks.pop('current')
     if kind == CATEGORIES[2]:
-        st.caption('Poslední platné utkání je na průměru; žádná aktuální série nad/pod průměrem.')
+        st.caption('Poslední platné utkání: Equal; žádná aktuální série Over / Under.')
     else:
-        st.caption(f'Aktuální série: {kind.lower()} · počet utkání {length}')
+        st.caption(f'Aktuální série: {kind} · počet utkání {length}')
     st.dataframe(pd.DataFrame([{'Kategorie': k,
                                'Nejdelší': str(v['Nejdelší']) if v['Nejdelší'] is not None else '—',
                                'Průměrná délka': f"{v['Průměrná délka']:.1f}" if v['Průměrná délka'] is not None else '—'}
                               for k, v in streaks.items()]), hide_index=True, use_container_width=True)
-    st.caption('Chybějící délka (—) znamená, že taková série nenastala. Zelená = nad, červená = pod, šedá = na průměru. Popis historie, nikoli předpověď dalšího utkání.')
+    st.caption('Chybějící délka (—) znamená, že taková série nenastala. Zelená = Over, červená = Under, šedá = Equal. Popis historie, nikoli předpověď dalšího utkání.')
     st.vega_lite_chart(spec=history_chart(data, metric, short_team_name), theme='streamlit', use_container_width=True)
 
 
@@ -200,20 +220,20 @@ def render_referees(st, matches, teams, canonical_referee, short_team_name):
     table = ranking(data, metric)
     if table.empty:
         st.info('Pro tuto sezonu nejsou dostupné zápasy s přiřazeným rozhodčím.'); return
-    config = {'Průměr': st.column_config.NumberColumn(format='%.1f', width=75),
-              **{c: st.column_config.NumberColumn(format='%d', width=70) for c in ['Pořadí', 'Zápasy', 'Platné N', 'Součet', 'Minimum', 'Maximum']}}
+    config = summary_config(st)
+    st.caption(SUMMARY_LEGEND)
     st.dataframe(table, hide_index=True, use_container_width=True, column_config=config)
     ref = st.selectbox('Detail rozhodčího', table['Rozhodčí'].tolist(), key=f'ref_stats_detail_{season}')
     summary, comparison, history = detail_tables(data, ref)
     st.caption(f'{ref} · {len(history)} utkání · {season}')
     st.dataframe(summary, hide_index=True, use_container_width=True, column_config=config)
     st.dataframe(comparison, hide_index=True, use_container_width=True,
-                 column_config={c: st.column_config.NumberColumn(format='%+.1f' if c == 'Rozdíl' else '%.1f') for c in ['Rozhodčí', 'Liga', 'Rozdíl']})
+                 column_config=comparison_config(st, 'Rozhodčí'))
     detail_metric = st.segmented_control('Statistika detailu', list(METRICS), default='Fauly', key='ref_history_metric') or 'Fauly'
     render_history(st, history, detail_metric, short_team_name)
     display = history[['Datum', 'Domácí', 'Hosté', *METRICS]].copy()
     for c in ['Domácí', 'Hosté']:
         display[c] = display[c].map(short_team_name)
     st.dataframe(display, hide_index=True, use_container_width=True,
-                 column_config={'Datum': st.column_config.DateColumn(format='DD.MM.YYYY', width=100),
-                                **{c: st.column_config.NumberColumn(format='%d', width=65) for c in METRICS}})
+                 column_config={'Datum': st.column_config.DateColumn(format='DD.MM.YYYY', width=82),
+                                **{c: st.column_config.NumberColumn(c.replace('Žluté karty', 'ŽK'), format='%d', width=52) for c in METRICS}})

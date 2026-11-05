@@ -40,7 +40,8 @@ class MatchSelectionTests(unittest.TestCase):
         self.assertEqual(result[:2],('H0','A0'))
         self.assertEqual(result[3:],('2026-27','P Tierney',6))
         self.assertEqual(str(result[2]),'2026-10-10')
-        self.ns['load_fixtures'].assert_called_once_with('2026-27',auto_sync=True)
+        self.ns['load_fixtures'].assert_called_once_with('2026-27',auto_sync=False)
+        self.ns['sync_officials'].assert_not_called()
         self.ns['referee_for_match'].assert_called_once_with('H0','A0',6)
         self.assertEqual(len(self.st.selectbox.call_args.args[1]),10)
 

@@ -2,6 +2,11 @@
 import pandas as pd
 
 if __package__:
+    from .table_layout import summary_config, comparison_config, SUMMARY_LEGEND
+else:
+    from table_layout import summary_config, comparison_config, SUMMARY_LEGEND
+
+if __package__:
     from .referee_views import METRICS, count, match_statistics, summarize, render_history
     from .data_views import short_team_name
 else:
@@ -102,8 +107,8 @@ def render_teams(st, matches, teams):
     table = team_ranking(data, season, metric, perspective, environment)
     if table.empty:
         st.info('Pro zvolené filtry nejsou dostupná platná odehraná utkání.'); return
-    config = {'Průměr': st.column_config.NumberColumn(format='%.1f', width=75),
-              **{c: st.column_config.NumberColumn(format='%d', width=70) for c in ['Pořadí', 'Zápasy', 'Platné N', 'Součet', 'Minimum', 'Maximum']}}
+    config = summary_config(st)
+    st.caption(SUMMARY_LEGEND)
     st.dataframe(table, hide_index=True, use_container_width=True, column_config=config)
     team = st.selectbox('Detail týmu', table['Tým'].tolist(), key=f'team_stats_detail_{season}_{environment}')
     summary, comparison, history = team_detail(data, season, team, perspective, environment)
@@ -111,7 +116,7 @@ def render_teams(st, matches, teams):
     st.dataframe(summary, hide_index=True, use_container_width=True, column_config=config)
     st.caption('Liga: každé utkání jednou.' if perspective == 'CELKEM' else 'Liga: platná týmová pozorování odpovídající prostředí a pohledu.')
     st.dataframe(comparison, hide_index=True, use_container_width=True,
-                 column_config={c: st.column_config.NumberColumn(format='%+.1f' if c == 'Rozdíl' else '%.1f') for c in ['Tým', 'Liga', 'Rozdíl']})
+                 column_config=comparison_config(st, 'Tým'))
     render_history(st, team_chart_context(history, perspective), metric, short_team_name,
                    value_column=f'{metric} {perspective}')
     # Selected metric first; all nine perspectives remain available by horizontal scrolling.
@@ -119,5 +124,5 @@ def render_teams(st, matches, teams):
     display = history[['Datum', 'Soupeř', 'Prostředí', 'Výsledek', *stats]]
     st.caption('Výsledek je uveden z pohledu vybraného týmu. Utkání jsou od nejstaršího.')
     st.dataframe(display, hide_index=True, use_container_width=True,
-                 column_config={'Datum': st.column_config.DateColumn(format='DD.MM.YYYY', width=100),
-                                **{c: st.column_config.NumberColumn(format='%d', width=85) for c in stats}})
+                 column_config={'Datum': st.column_config.DateColumn(format='DD.MM.YYYY', width=82),
+                                **{c: st.column_config.NumberColumn(c.replace('Žluté karty', 'ŽK').replace('CELKEM', 'Σ'), format='%d', width=70) for c in stats}})

@@ -22,11 +22,11 @@ from score_round import score_fixtures
 from update_fixtures import load_fixtures,current_round,sync_fixtures
 from update_officials import sync_officials,referee_for_match,referee_choices
 from prediction_archive import load_log, archive_selected_predictions, settle_predictions, summary_stats
-from model_prediction_stats import load_log as load_model_prediction_log, summary as model_prediction_summary, snapshot as snapshot_model_predictions
+from match_analysis import analyze
 from referee_impact import impact_lookup, referee_display, canonical_referee
 from pattern_views import prematch_context, match_view, render_patterns
 
-st.set_page_config(page_title="PL Analytika 2.0",page_icon="⚽",layout="wide",initial_sidebar_state="collapsed")
+st.set_page_config(page_title="NABOMBI Skaut",page_icon="⚽",layout="wide",initial_sidebar_state="collapsed")
 
 MARKETS=("fouls","corners","yellow_cards")
 LABEL={"fouls":"Fauly","corners":"Rohy","yellow_cards":"ŽK",
@@ -62,10 +62,11 @@ st.markdown("""
 """,unsafe_allow_html=True)
 
 @st.cache_data(show_spinner=False)
-def history():
+def history(contents):
     p=TABLES/"team_match_stats.csv"
     if not p.exists(): return pd.DataFrame()
-    x=pd.read_csv(p); x["match_date"]=pd.to_datetime(x.match_date,errors="coerce")
+    from io import BytesIO
+    x=pd.read_csv(BytesIO(contents)); x["match_date"]=pd.to_datetime(x.match_date,errors="coerce")
     return x
 
 @st.cache_data(show_spinner=False)
@@ -118,15 +119,6 @@ def cached_pattern_view(matches_csv, stats_csv, context):
     return match_view(pd.read_csv(BytesIO(matches_csv)),
                       pd.read_csv(BytesIO(stats_csv)), context)
 
-def best_high_odds_lines(scored,min_fair=2.0):
-    # Until bookmaker odds are connected, this filter is explicitly on MODEL FAIR ODDS.
-    x=scored[scored.fair_over>=min_fair].copy()
-    if x.empty:return x
-    # For each team/market select the highest probability line that still has fair >= threshold.
-    x=x.sort_values(["team","market","p_over"],ascending=[True,True,False])
-    x=x.groupby(["team","market"],as_index=False).first()
-    return x.sort_values("p_over",ascending=False)
-
 def display_tip_table(x):
     if x.empty:
         st.info("Pro zvolený filtr nejsou žádné modelové kandidáty.")
@@ -166,9 +158,14 @@ def selectable_tip_table(x,key_prefix):
         key=f"pick_{key_prefix}",
         disabled=["Tým","Trh","Tip","Pred.","P","Fair"],
         column_config={
+            'Pred.':st.column_config.NumberColumn(format='%.2f',width=65),
+            'Fair':st.column_config.NumberColumn(format='%.2f',width=65),
+            'P':st.column_config.TextColumn(width=50),
+            'Tip':st.column_config.TextColumn(width=55),
             "Uložit":st.column_config.CheckboxColumn("✓",help="Zaškrtni jen tipy, které chceš sledovat."),
             "Kurz":st.column_config.NumberColumn(
                 "Aktuální kurz",
+                width=95,
                 min_value=1.01,
                 max_value=100.0,
                 step=0.01,
@@ -189,12 +186,13 @@ def selectable_tip_table(x,key_prefix):
 
     return chosen
 
-def load_current_round_view():
+def load_current_round_view(auto_sync=True):
     completed=H[(H.season==season)&(H.venue=="H")][["team","opponent"]].rename(columns={"team":"home_team","opponent":"away_team"})
-    schedule=load_fixtures(season,auto_sync=True)
+    schedule=load_fixtures(season,auto_sync=auto_sync)
     rnd,view=current_round(schedule,completed)
-    try: sync_officials(rnd)
-    except Exception: pass  # Existing cache remains available if synchronization fails.
+    if auto_sync:
+        try: sync_officials(rnd)
+        except Exception: pass  # Existing cache remains available if synchronization fails.
     view=view.copy()
     view["_date"]=pd.to_datetime(view.match_date,errors="coerce")
     times=view.kickoff_time.fillna("").astype(str).str.strip()
@@ -205,14 +203,14 @@ def load_current_round_view():
 
 def clear_match_results():
     for key in list(st.session_state):
-        if key in {"single","single_identity","single_market_filter","single_team_filter","save_single_tips"} or key.startswith("pick_single_"):
+        if key in {"single","single_identity","single_version","single_market_filter","single_team_filter","save_single_tips"} or key.startswith("pick_single_"):
             del st.session_state[key]
 
 
 def select_current_match():
     st.subheader("Zápas")
     try:
-        rnd,view=load_current_round_view()
+        rnd,view=load_current_round_view(auto_sync=False)
     except Exception as e:
         clear_match_results()
         st.warning(f"Rozpis aktuálního kola se nepodařilo načíst: {e}")
@@ -249,7 +247,7 @@ def select_current_match():
     return home,away,score_date,season,ref,rnd
 
 
-H=history()
+H=history((TABLES/"team_match_stats.csv").read_bytes()) if (TABLES/"team_match_stats.csv").exists() else pd.DataFrame()
 if H.empty:
     st.error("Chybí datové tabulky.")
     st.stop()
@@ -258,19 +256,10 @@ season=sorted(H.season.dropna().unique())[-1]
 ref_hist=sorted({canonical_referee(x) for x in H.referee.dropna().unique()})
 REF_IMPACTS=impact_lookup(season)
 
-st.title("⚽ PL Analytika 2.0")
+st.title("⚽ NABOMBI Skaut")
 
 nav=st.segmented_control("Pohled",["Kolo","Zápas","Cross-TAB","Rozhodčí","Týmy"],default="Kolo",label_visibility="collapsed")
 if nav is None: nav="Kolo"
-
-if nav not in {"Kolo", "Týmy"}:
-    with st.expander("⚙️ Filtry",expanded=False):
-        min_fair=st.number_input(
-            "Minimální modelový fair kurz",
-            min_value=1.20,max_value=10.0,value=2.00,step=.05,
-            help="Dokud nepřipojíme skutečné bookmaker kurzy, filtrujeme modelový fair kurz. Bookmaker kurz ≥ 2,00 bude v další value vrstvě."
-        )
-        st.caption("🎯 Tvoje výchozí preference je 2,00+. Skutečný bookmaker kurz zatím není napojený, proto je sloupec označen jako Fair.")
 
 if nav=="Kolo":
     try:
@@ -291,9 +280,9 @@ if nav=="Kolo":
     st.dataframe(pd.DataFrame(rows,columns=["Datum / čas","Domácí","Hosté","Rozhodčí"]),
                  hide_index=True,use_container_width=True,height=388,
                  column_config={
-                     "Datum / čas":st.column_config.TextColumn(width=140),
-                     "Domácí":st.column_config.TextColumn(width=145),
-                     "Hosté":st.column_config.TextColumn(width=145),
+                     "Datum / čas":st.column_config.TextColumn(width=135),
+                     "Domácí":st.column_config.TextColumn(width=120),
+                     "Hosté":st.column_config.TextColumn(width=120),
                      "Rozhodčí":st.column_config.TextColumn(width=115),
                  })
 
@@ -321,27 +310,23 @@ elif nav=="Zápas":
         st.subheader("Vzorce")
         st.caption("Historické vzorce nyní nelze bezpečně načíst.")
 
-    if st.button("Spočítat zápas",type="primary",use_container_width=True):
-        with st.spinner("Počítám…"):
-            st.session_state.single=predict_one(home,away,score_date,ss,ref)
-            st.session_state.single_identity=(home,away,str(score_date),ss,ref,match_round)
-            try:
-                round_for_stats=match_round if match_round is not None else 0
-                added_stats=snapshot_model_predictions(
-                    st.session_state.single,
-                    match_round=round_for_stats,
-                    model_version="count-models-v1.6",
-                )
-                if added_stats:
-                    st.toast(f"Do Statistik uloženo {added_stats} predikcí tohoto zápasu.")
-                else:
-                    st.toast("Predikce tohoto zápasu už jsou ve Statistikách.")
-            except Exception as e:
-                st.warning(f"Zápas byl spočítán, ale nepodařilo se uložit Statistiky: {e}")
-
-    scored=st.session_state.get("single")
-    identity=st.session_state.get("single_identity")
     current_identity=(home,away,str(score_date),ss,ref,match_round)
+    scored=None
+    try:
+        with st.spinner("Načítám analýzu…"):
+            scored,version=analyze(BASE,home,away,score_date,ss,ref)
+        if st.session_state.get("single_version")!=version:
+            clear_match_results()
+        st.session_state.single=scored
+        st.session_state.single_identity=current_identity
+        st.session_state.single_version=version
+    except FileNotFoundError as exc:
+        clear_match_results()
+        st.warning(f"Modelová analýza není dostupná. {exc}. Modely nebyly přetrénovány ani nahrazeny.")
+    except Exception as exc:
+        clear_match_results()
+        st.warning(f"Analýzu se nepodařilo bezpečně načíst: {exc}")
+    identity=st.session_state.get("single_identity")
 
     if isinstance(scored,pd.DataFrame) and len(scored) and identity==current_identity:
         # Compact expected-count overview, including match totals.
@@ -359,11 +344,6 @@ elif nav=="Zápas":
         for j,m in enumerate(total_markets):
             val=totals.loc[m,"prediction"] if m in totals.index else np.nan
             cols[j].metric(LABEL[m],f"{val:.2f}")
-
-        st.subheader("Hlavní kandidáti")
-        main=best_high_odds_lines(scored,min_fair)
-        display_tip_table(main)
-        st.caption("Hlavní kandidáti jsou jen rychlý přehled. Tip můžeš uložit z libovolné půlbodové hranice níže.")
 
         st.subheader("Vybrat tip")
         f1,f2=st.columns(2)

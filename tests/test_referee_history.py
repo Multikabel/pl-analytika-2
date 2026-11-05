@@ -93,7 +93,13 @@ class RefereeHistoryTests(unittest.TestCase):
     def test_spec_order_colors_and_reference(self):
         d=match_history(history([2,4,6]).iloc[::-1],'Fauly')
         spec=history_chart(d,'Fauly',str)
-        bars,line=spec['layer']
+        bars,line,backing,labels=spec['layer']
+        self.assertEqual(CATEGORIES, ['Over','Under','Equal'])
+        self.assertEqual(labels['encoding']['text'], {'field':'Hodnota','type':'quantitative','format':'.0f'})
+        self.assertEqual(labels['data'], bars['data'])
+        self.assertGreater(bars['encoding']['x']['scale']['domain'][1], 6)
+        self.assertEqual(labels['mark']['color'], '#17212b')
+        self.assertEqual(backing['mark']['color'], '#e6ebef')  # Contrast on either theme.
         self.assertEqual(bars['encoding']['y']['sort'],[0,1,2])
         self.assertFalse(bars['encoding']['y']['scale']['reverse'])
         self.assertEqual(bars['data']['values'][0]['Hosté'],'Team 0')
@@ -110,6 +116,14 @@ class RefereeHistoryTests(unittest.TestCase):
             self.assertEqual(spec['height'],32*n)
             tooltip=spec['layer'][0]['encoding']['tooltip']
             self.assertTrue({'Datum','Čas','Domácí','Hosté','Výsledek','Rozhodčí','Hodnota','Průměr','Rozdíl','Kategorie'} <= {t['field'] for t in tooltip})
+
+    def test_zero_labels_and_room(self):
+        spec=history_chart(match_history(history([0,0]),'Fauly'),'Fauly',str)
+        self.assertGreater(spec['layer'][0]['encoding']['x']['scale']['domain'][1],0)
+        labels=spec['layer'][3]
+        self.assertEqual([v['Hodnota'] for v in labels['data']['values']],[0,0])
+        self.assertEqual(labels['mark']['align'],'left')
+        self.assertGreater(labels['mark']['dx'],0)
 
     def test_padding_supports_streamlit_theme_mutation(self):
         spec=history_chart(match_history(history([2,4,6]),'Fauly'),'Fauly',str)
