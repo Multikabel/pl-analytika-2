@@ -1,5 +1,5 @@
 from pathlib import Path
-import subprocess, sys
+import subprocess, sys, os
 import pandas as pd
 
 BASE=Path(__file__).resolve().parent.parent
@@ -36,13 +36,22 @@ def main():
     # Results are critical: never report a green workflow with stale cached results.
     run([py,"scripts/update_data.py","--download-current"], required=True)
     validate_current_state()
-    # Officials may legitimately not be published yet, so this one is non-fatal.
-    run([py,"scripts/update_officials.py","--force"], required=False)
     # Settlement is critical. If either fails, the workflow must be red.
     run([py,"scripts/prediction_archive.py"], required=True)
     run([py,"scripts/model_prediction_stats.py"], required=True)
+    # Defer officials failure until results and both settlements have completed.
+    officials_code = run([py,"scripts/update_officials.py","--force"], required=False)
     run([py,"scripts/train_count_models.py"], required=True)
-    run([py,"scripts/snapshot_model_predictions.py"], required=True)
+    if not officials_code:
+        run([py,"scripts/snapshot_model_predictions.py"], required=True)
+    else:
+        print("Snapshot skipped: officials retrieval failed.")
+    # Actions persists successful updates before reporting the deferred failure.
+    if os.environ.get("GITHUB_OUTPUT"):
+        with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as handle:
+            handle.write("data_completed=true\n")
+    if officials_code:
+        raise SystemExit(officials_code)
     print("\nAutomatic update completed successfully.")
 
 if __name__=="__main__": main()
