@@ -61,7 +61,8 @@ def _league_features(tm,season,date):
     away_sh=tm[(tm.season==season)&(tm.match_date_dt<date)&(tm.venue=="A")]
     out["away_fouls_avg_before"]=_mean(away_sh,"fouls_committed")
 
-    recent=hist.tail(20)
+    # Match the historical training window, including the same-day ID tie-break.
+    recent=hist.sort_values(["match_date_dt", "match_id"], kind="stable").tail(20)
     out["pl_last20_league_total_fouls_avg_before"]=match_metric(recent,"fouls_committed","fouls_committed")
     out["pl_last20_league_total_corners_avg_before"]=match_metric(recent,"corners_for","corners_for")
     out["pl_last20_league_total_yellow_avg_before"]=match_metric(recent,"yellow_cards","yellow_cards")
