@@ -208,6 +208,33 @@ class OfficialsTests(unittest.TestCase):
         self.assertIn('/4729629/',officials._discover_url(6))
         self.assertEqual(50,self.net.call_args.kwargs['params']['offset'])
 
+    def test_discovery_new_title_future_round_and_season_formats(self):
+        for season in ('2026/27', '2026/2027', '2026-27'):
+            self.net.side_effect = None
+            self.net.return_value = Mock(json=Mock(return_value={'content': [dict(
+                id=123, title='Premier League referee appointments: Matchweek 11 officials',
+                description=season, titleUrlSegment='referee-appointments-mw11')]}), raise_for_status=Mock())
+            self.assertEqual('https://www.premierleague.com/en/news/123/referee-appointments-mw11',
+                             officials._discover_url(11))
+            self.assertIsNone(officials._discover_url(10))
+
+    def test_discovery_rejects_conflicting_authoritative_references(self):
+        for kind, ident in [('SDP_FOOTBALL_SEASON', 2025), ('SDP_FOOTBALL_COMPETITION', 9)]:
+            self.net.side_effect = None
+            self.net.return_value = Mock(json=Mock(return_value={'content': [dict(
+                id=123, title='Premier League referee appointments: Matchweek 10 officials',
+                description='2026/27', references=[dict(type=kind,id=ident)])]}), raise_for_status=Mock())
+            self.assertIsNone(officials._discover_url(10))
+
+    def test_ambiguity_on_later_page_is_rejected(self):
+        candidate=dict(id=999,title='Match officials for Matchweek 6',description='2026/27')
+        first=[dict(id=i,title='Other',date='2026-10-01') for i in range(49)]+[candidate]
+        second=[dict(candidate,id=1000)]
+        self.net.side_effect=[Mock(json=Mock(return_value={'content':x}),raise_for_status=Mock())
+                              for x in [first,second]]
+        with self.assertRaisesRegex(ValueError,'Ambiguous'):
+            officials._discover_url(6)
+
     def test_broken_pagination_is_not_unpublished(self):
         rows=[dict(id=i,title='Other article',date='2026-10-01') for i in range(50)]
         self.net.side_effect=None
@@ -234,6 +261,80 @@ class OfficialsTests(unittest.TestCase):
         self.net.reset_mock()
         officials.sync_officials(6)
         self.net.assert_not_called()
+
+
+class MW10Tests(unittest.TestCase):
+    """Article/card extracts captured from PL article 4753359 and match API."""
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.base = Path(self.temp.name)
+        self.html = (FIXTURES/'mw10.html').read_text(encoding='utf-8')
+        self.matches = json.loads((FIXTURES/'mw10_matches.json').read_text())
+        self.expected = dict(zip(
+            [('Everton','Coventry'),('Leeds','Tottenham'),('Arsenal','Hull'),
+             ('Fulham','Newcastle United'),('Nottingham Forest','Manchester City'),
+             ('Brighton & Hove Albion','Brentford'),('Crystal Palace','Liverpool'),
+             ('Ipswich','Bournemouth'),('Sunderland','Chelsea'),('Manchester United','Aston Villa')],
+            ['S Attwell','J Brooks','F Hallam','R Jones','S Barrott','M Oliver',
+             'T Harrington','S Hooper','J Gillett','C Kavanagh']))
+        pd.DataFrame([dict(season='2026-27',match_round=10,home_team=h,away_team=a)
+                      for h,a in self.expected]).to_csv(self.base/'premier_league_2026-27.csv',index=False)
+        self.enterContext(patch.object(officials,'FIXTURE_DIR',self.base))
+        self.enterContext(patch.object(officials,'CACHE',self.base/'cache.csv'))
+        self.enterContext(patch.object(officials,'KNOWN_URLS',{}))
+        self.enterContext(patch.object(officials,'KNOWN_APPOINTMENTS',{}))
+        self.net=self.enterContext(patch.object(officials,'_get',side_effect=self.response))
+        self.enterContext(contextlib.redirect_stdout(io.StringIO()))
+
+    def response(self,url,**kwargs):
+        if url==officials.CONTENT_API:
+            return Mock(json=Mock(return_value={'content':[dict(id=4753359,
+                title='Premier League referee appointments: Matchweek 10 officials',
+                description='2026/27 Premier League',
+                titleUrlSegment='premier-league-referee-appointments-matchweek-10-officials')]}))
+        if url.startswith(officials.MATCH_API):
+            return Mock(json=Mock(return_value=self.matches[url.rsplit('/',1)[-1]]))
+        return Mock(text=self.html)
+
+    def sync(self):
+        return officials.sync_officials(10,force=True)
+
+    def test_real_mw10_complete_and_idempotent_preserves_mw7_8_9(self):
+        old=pd.DataFrame([dict(match_round=r,home_team='Old',away_team='Other',
+            referee='J Brooks',source='previous',synced_at='original') for r in (7,8,9)])
+        old.to_csv(officials.CACHE,index=False)
+        result=self.sync()
+        self.assertEqual(self.expected,{(r.home_team,r.away_team):r.referee for r in result.itertuples()})
+        self.assertEqual('complete',result.attrs['officials_report']['status'])
+        pd.testing.assert_frame_equal(old,pd.read_csv(officials.CACHE).iloc[:3])
+        before=officials.CACHE.read_bytes();self.sync()
+        self.assertEqual(before,officials.CACHE.read_bytes())
+        self.assertTrue(result.source.str.contains('/4753359/').all())
+
+    def test_reordered_mw10_cards_and_pictured_annotation(self):
+        s=BeautifulSoup(self.html,'html.parser')
+        blocks=[str(c)+str(c.find_next_sibling('p')) for c in s.select('[data-match-reference]')]
+        self.html='<article>'+str(s.h1)+'<p>2026/27</p>'+''.join(reversed(blocks))+'</article>'
+        result=self.sync()
+        self.assertEqual(self.expected,{(r.home_team,r.away_team):r.referee for r in result.itertuples()})
+
+    def test_mw10_partial_and_conflict_preserve_cache(self):
+        self.sync();before=officials.CACHE.read_bytes()
+        self.html=self.html.replace('Stuart Attwell.','Not appointed.',1)
+        self.assertEqual('published_import_failed',self.sync().attrs['officials_report']['status'])
+        self.assertEqual(before,officials.CACHE.read_bytes())
+        self.html=self.html.replace('Not appointed.','John Brooks.',1)
+        result=self.sync()
+        self.assertEqual('published_import_failed',result.attrs['officials_report']['status'])
+        self.assertEqual(before,officials.CACHE.read_bytes())
+
+    def test_mw10_wrong_season_or_round_article_rejected(self):
+        original=self.html
+        for before,after in [('2026/27','2025/26'),('Matchweek 10','Matchweek 11')]:
+            self.html=original.replace(before,after)
+            self.assertEqual(0,len(self.sync()))
+            self.assertFalse(officials.CACHE.exists())
 
 
 if __name__ == '__main__':
