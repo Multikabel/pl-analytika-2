@@ -35,6 +35,8 @@ class AnalysisTests(unittest.TestCase):
                 p=self.base/folder/name; p.parent.mkdir(parents=True,exist_ok=True); p.write_bytes(b'fixture')
         analysis.cached_analysis.clear()
         self.addCleanup(analysis.cached_analysis.clear)
+        validator=patch('app.model_loading.validate_models',return_value=[])
+        validator.start(); self.addCleanup(validator.stop)
         self.scorer=Mock(return_value=pd.DataFrame({'prediction':[12.0]}))
         patcher=patch.object(score_round,'score_fixtures',self.scorer)
         patcher.start(); self.addCleanup(patcher.stop)
@@ -70,6 +72,13 @@ class AnalysisTests(unittest.TestCase):
             (self.base/'data/tables/team_match_stats.csv').write_bytes(b'new')
             return pd.DataFrame({'prediction':[1]})
         self.scorer.side_effect=change
+        with self.assertRaises(ValueError): self.call()
+
+    def test_invalid_predictions_not_cached(self):
+        for value in [float('nan'), float('inf'), -1.]:
+            self.scorer.return_value=pd.DataFrame({'prediction':[value]})
+            with self.assertRaises(ValueError): self.call()
+        self.scorer.return_value=pd.DataFrame({'prediction':[10.], 'p_over':[1.1], 'p_under':[-.1]})
         with self.assertRaises(ValueError): self.call()
 
     def render(self, home='A', manual=False, error=None):

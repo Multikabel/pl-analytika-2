@@ -317,6 +317,8 @@ elif nav=="Zápas":
             scored,version=analyze(BASE,home,away,score_date,ss,ref)
         if st.session_state.get("single_version")!=version:
             clear_match_results()
+        for notice in scored.attrs.get("model_provenance", []):
+            st.caption(notice)
         st.session_state.single=scored
         st.session_state.single_identity=current_identity
         st.session_state.single_version=version
