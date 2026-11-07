@@ -32,7 +32,10 @@ def cached_analysis(base, version, home, away, match_date, season, referee):
     # Check again on a cache miss before the scorer opens the same files.
     if input_version(base) != version:
         raise ValueError('Vstupní data se během analýzy změnila. Zkus znovu načíst stránku.')
-    from app.model_loading import validate_models
+    # The Streamlit entrypoint is app/app.py; importing app.model_loading can
+    # resolve `app` to that entrypoint and execute the UI a second time.
+    # app/ is already on sys.path in the entrypoint.
+    from model_loading import validate_models
     provenance = validate_models(base)
     result = score_fixtures([dict(home_team=home, away_team=away, match_date=str(match_date),
                                   season=season, referee=referee)])
