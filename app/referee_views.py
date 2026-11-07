@@ -1,5 +1,6 @@
 """Read-only match statistics and referee views, independent of model scoring."""
 import pandas as pd
+import streamlit as st
 
 if __package__:
     from .table_layout import summary_config, comparison_config, SUMMARY_LEGEND
@@ -19,6 +20,7 @@ def count(value):
         return float('nan')
 
 
+@st.cache_data(show_spinner=False, max_entries=4)
 def match_statistics(matches, teams):
     columns = ['match_id', 'season', 'Datum', 'Čas', '_time', 'Výsledek', 'Domácí', 'Hosté', 'Rozhodčí', *METRICS]
     if matches.empty or teams.empty:
