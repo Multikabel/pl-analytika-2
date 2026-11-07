@@ -81,6 +81,13 @@ def _get(url, **kwargs):
     return response
 
 
+def _appointment_title(title, round_no):
+    return bool(re.fullmatch(
+        rf'(?:Match officials for Matchweek {int(round_no)}|'
+        rf'Premier League referee appointments:\s*Matchweek {int(round_no)} officials)',
+        str(title).strip(), re.I))
+
+
 def _discover_url(round_no):
     """Use PL's content API, not the client-rendered search page.
 
@@ -88,6 +95,7 @@ def _discover_url(round_no):
     failures remain errors; they are never evidence of unpublished appointments.
     """
     seen = set()
+    candidates = []
     for page in range(20):
         payload = _get(CONTENT_API, params={
             'tagNames': 'franchise:referees', 'limit': 50, 'offset': page * 50,
@@ -101,24 +109,36 @@ def _discover_url(round_no):
             if ident in seen:
                 raise ValueError('PL article index repeated a page')
             seen.add(ident)
-            if not re.fullmatch(rf'Match officials for Matchweek {int(round_no)}',
-                                item.get('title','').strip(), re.I):
+            if not _appointment_title(item.get('title',''), round_no):
                 continue
             # The title repeats every season. Require this season in its content.
             text = ' '.join(str(item.get(k) or '') for k in ('description','summary','body'))
             if not re.search(r'2026(?:/27|/2027|-27)', text):
                 continue
+            # When supplied, authoritative API references must agree as well.
+            references = item.get('references') or []
+            if any(str(ref.get('id')) != expected for kind, expected in
+                   [('SDP_FOOTBALL_COMPETITION', '8'), ('SDP_FOOTBALL_SEASON', '2026')]
+                   for ref in references if ref.get('type') == kind):
+                continue
             if not ident.isdigit():
                 raise ValueError('Invalid PL article id')
-            return f'https://www.premierleague.com/en/news/{ident}/match-officials-for-matchweek-{round_no}'
+            slug = item.get('titleUrlSegment') or f'match-officials-for-matchweek-{round_no}'
+            if not re.fullmatch(r'[a-z0-9-]+', slug):
+                raise ValueError('Invalid PL article slug')
+            candidates.append(f'https://www.premierleague.com/en/news/{ident}/{slug}')
         # Do not trust pageInfo: current PL API reports numPages=0 even with rows.
         if len(items) < 50:
-            return None
+            break
         # Completed pages entirely before this season cannot contain its articles.
         dates = [str(item.get('date',''))[:10] for item in items]
         if dates and all(re.fullmatch(r'\d{4}-\d{2}-\d{2}', d) and d < '2026-07-01' for d in dates):
-            return None
-    raise ValueError('PL article index pagination limit reached')
+            break
+    else:
+        raise ValueError('PL article index pagination limit reached')
+    if len(candidates) > 1:
+        raise ValueError('Ambiguous PL appointment articles for requested season/round')
+    return candidates[0] if candidates else None
 
 
 def _round_fixtures(round_no):
@@ -177,8 +197,8 @@ def _parse_article(html, round_no):
     soup = BeautifulSoup(html, 'html.parser')
     article = soup.find('article')
     title = soup.find('h1')
-    if (article is None or title is None or not re.fullmatch(
-            rf'Match officials for Matchweek {round_no}', title.get_text(' ',strip=True), re.I)
+    if (article is None or title is None or not _appointment_title(
+            title.get_text(' ',strip=True), round_no)
             or not re.search(r'2026(?:/27|/2027|-27)', article.get_text(' ',strip=True))):
         raise ValueError('Article title/season/body does not match requested round')
     diagnostics = []
@@ -203,8 +223,10 @@ def _parse_article(html, round_no):
         match = re.match(r'^Referee:\s*([^.:]+?)(?:\.|\s+Assistants?:|$)', text, re.I)
         if match:
             if current is not None:
+                # PL sometimes annotates the main referee's photograph.
+                referee = re.sub(r'\s+\(pictured\)$', '', match[1].strip(), flags=re.I)
                 out.append(dict(match_round=round_no, home_team=current[0], away_team=current[1],
-                    referee=canonical_referee(match[1]), source='premierleague.com match identity',
+                    referee=canonical_referee(referee), source='premierleague.com match identity',
                     synced_at=datetime.now().isoformat(timespec='seconds')))
             else:
                 diagnostics.append('Referee paragraph has no verified match identity')
@@ -283,6 +305,7 @@ def sync_officials(round_no, force=False):
         if url:
             status = 'published_import_failed'
             parsed = _parse_article(_get(url).text, round_no)
+            parsed['source'] = url
             diagnostics.extend(parsed.attrs.get('diagnostics', []))
         else:
             diagnostics.append('No current-season article found in the official index; publication not confirmed.')
@@ -313,6 +336,7 @@ def sync_officials(round_no, force=False):
             merged.setdefault(key, row)
     result = pd.DataFrame([r._asdict() for r in merged.values()], columns=COLUMNS)
     if conflict:
+        diagnostics.append('Cache retained without update; correctness of the original cache was not independently confirmed.')
         return _report(existing, fixtures, round_no, 'published_import_failed' if url else 'discovery_failed', diagnostics)
     if len(result) > len(existing):
         # Preserve every other round and every existing valid row verbatim in value.
